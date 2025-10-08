@@ -36,7 +36,7 @@
 
 \begin{document}
 \mainmatter
-\title{Cognitive MRI of AI Conversations: Analyzing AI Interactions through Semantic Embedding Networks}
+\title{Cognitive MRI of AI Conversations: A Single-User Case Study}
 
 \titlerunning{Cognitive MRI of AI Conversations} % Abbreviated title
 
@@ -50,7 +50,7 @@ Edwardsville, IL, USA\\
 \maketitle
 
 \begin{abstract}
-We introduce a \emph{cognitive MRI} for AI conversations, applying network analysis to reveal thought topology hidden in linear conversation logs. We construct semantic similarity networks with user-weighted embeddings to identify knowledge communities and bridge conversations that enable cross-domain flow. Our analysis reveals heterogeneous topology: theoretical domains exhibit hub-and-spoke structures while practical domains show tree-like hierarchies. We identify three distinct bridge types that facilitate knowledge integration across communities.
+Through a single-user case study of 449 ChatGPT conversations, we introduce a \emph{cognitive MRI} applying network analysis to reveal thought topology hidden in linear conversation logs. We construct semantic similarity networks with user-weighted embeddings to identify knowledge communities and bridge conversations that enable cross-domain flow. Our analysis reveals heterogeneous topology: theoretical domains exhibit hub-and-spoke structures while practical domains show tree-like hierarchies. We identify three distinct bridge types that facilitate knowledge integration across communities.
 \keywords{AI conversation, complex networks, semantic embedding, conversation analysis, knowledge exploration}
 \end{abstract}
 
@@ -58,7 +58,9 @@ We introduce a \emph{cognitive MRI} for AI conversations, applying network analy
 
 Linear conversation logs conceal rich cognitive structure. Our \emph{cognitive MRI} uses network analysis to transform these sequential traces into topological maps. Each conversation becomes a node in a semantic network, revealing how humans navigate knowledge domains through AI dialogue.
 
-Our analysis of 449 ChatGPT conversations reveals heterogeneous network topology. Theoretical domains like ML/AI exhibit hub-and-spoke patterns while practical domains like programming show tree-like hierarchical structures. We identify three bridge types: evolutionary bridges emerge through topic drift, integrative bridges deliberately synthesize concepts, and pure bridges form critical links with minimal connections. These patterns suggest cognitive processes unique to conversational AI.
+We introduce three key concepts: A \emph{cognitive MRI} is a network-based visualization technique that reveals the latent structure of thought preserved in conversational data, analogous to how medical MRI reveals brain structure. \emph{Cognitive structure} refers to the organizational patterns of knowledge as manifested through conversational exploration---the topology of concepts, domains, and their interconnections. \emph{Topological maps} are graph representations where nodes (conversations) and edges (semantic similarities) expose the geometry of knowledge navigation, making visible the pathways between ideas that linear logs obscure.
+
+Our analysis of 449 ChatGPT conversations reveals heterogeneous network topology. Theoretical domains like ML/AI exhibit hub-and-spoke patterns while practical domains like programming show tree-like hierarchical structures. We identify three bridge types: evolutionary bridges emerge through topic drift, integrative bridges deliberately synthesize concepts, and pure bridges form critical links with minimal connections. These patterns reflect knowledge organization in AI-assisted exploration.
 
 We build on distributed cognition \cite{hutchins1995}, which views cognitive processes as distributed across individuals and tools, and transactive memory systems \cite{wegner1987}, where groups encode, store, and retrieve knowledge collectively. In this framework, human-AI dialogue forms externalized cognitive networks where knowledge emerges through interaction, revealing the non-linear structure of thought independent of temporal sequence.
 
@@ -72,7 +74,7 @@ Complex network analysis has been widely applied to textual data, from co-word o
 
 \subsection{Semantic Embeddings for Document Representation}
 
-Dense vector representations of text have revolutionized natural language processing. These embeddings map text to high-dimensional spaces where different dimensions encode various semantic and syntactic features. Word2Vec \cite{mikolov2013} demonstrated that embeddings capture analogical relationships (e.g., king - man + woman $\approx$ queen). Modern models like \texttt{nomic-embed-text} operate at the sequence level, encoding entire conversations into vectors that capture topic, style, and semantic content simultaneously. When computing similarity between these conversation embeddings, we compare multi-faceted representations rather than simple topic matches.
+Dense vector representations of text have revolutionized natural language processing. These embeddings map text to high-dimensional spaces where different dimensions encode various semantic and syntactic features. Word2Vec \cite{mikolov2013} demonstrated that embeddings capture analogical relationships (e.g., king - man + woman $\approx$ queen). Modern models like \texttt{nomic-embed-text} \cite{nomicembed} operate at the sequence level, encoding text sequences into vectors that capture topic, style, and semantic content simultaneously. When aggregated to represent conversations, these embeddings enable multi-faceted similarity comparisons rather than simple topic matches.
 
 \subsection{Conversation Analysis in AI Systems}
 
@@ -85,15 +87,18 @@ The code for this analysis is publicly available \cite{chatgpt-complex-net}.
 
 \subsection{Data Collection and Preparation}
 
-Our dataset comprises one user's ChatGPT conversations over two years (1,908 total conversations). After filtering by semantic similarity threshold, our network contains 449 conversations at $\theta = 0.9$. We exported and preprocessed the conversations from OpenAI's ChatGPT interface to extract meaningful content while preserving conversational structure. The export process generated individual JSON files for each conversation containing both message content and metadata, establishing the foundation for our embedding generation.
+Our dataset comprises one user's ChatGPT conversations spanning December 2022 to April 2025 (1,908 total conversations). All conversations were organic---conducted for actual research, learning, and problem-solving purposes with no knowledge of future network analysis. The dataset reflects natural model evolution: 63\% with GPT-3.5/4 (inferred from timeframe, lacking explicit model metadata), 22\% GPT-4o, and 15\% newer models (o1/o3 series and variants). While this model diversity introduces potential embedding variability, it reflects realistic longitudinal usage patterns.
+
+After filtering by semantic similarity threshold, our network contains 449 conversations at $\theta = 0.9$. We exported and preprocessed the conversations from OpenAI's ChatGPT interface to extract meaningful content while preserving conversational structure. The export process generated individual JSON files for each conversation containing both message content and metadata, establishing the foundation for our embedding generation.
 
 \subsection{Embedding Generation}
 
-We generated embeddings for each conversation using the \texttt{nomic-embed-text} \cite{nomicembed} model to capture semantic content while preserving topical focus despite variations in conversation length. Since users typically drive conversation direction, we weighted user inputs more heavily than AI responses when creating conversation embeddings:
+We generated embeddings for each conversation using the \texttt{nomic-embed-text} \cite{nomicembed} model (8,192 token context window) to capture semantic content while preserving topical focus despite variations in conversation length. Embeddings were generated from message content only; metadata (titles, timestamps) was excluded to focus purely on semantic relationships. Since users typically drive conversation direction, we weighted user inputs more heavily than AI responses when creating conversation embeddings:
 
 \begin{enumerate}
     \item Split each conversation into user prompts and AI responses
-    \item Generated embeddings for individual turns, calculating separate means for user ($\vec{e}_{user}$) and AI ($\vec{e}_{AI}$) content
+    \item Generated embeddings for individual messages (most within the 8K token limit, avoiding chunking)
+    \item Calculated separate means: $\vec{e}_{user}$ (mean of all user message embeddings) and $\vec{e}_{AI}$ (mean of all AI message embeddings)
     \item Created the final conversation embedding as a weighted combination:
     \begin{equation}
     \vec{e}_{conversation} = \frac{\alpha \times \vec{e}_{user} + \vec{e}_{AI}}{\|\alpha \times \vec{e}_{user} + \vec{e}_{AI}\|}
@@ -309,15 +314,15 @@ Notably, some conversations like \url{geometric-mean-calculation} function as bo
 
 \subsection{Cognitive Interpretation}
 
-The network reveals cognitive patterns distinct from academic citation networks, which provide a natural comparison as both capture knowledge exploration processes. While citation networks evolve through preferential attachment with papers citing influential work (creating major hubs like foundational papers with thousands of citations), conversation networks reflect real-time cognitive exploration. Our finding of heterogeneous topology with some tree-like, branching clusters entirely lacking hubs contrasts sharply with citation networks' consistent scale-free structure. In citation networks, even specialized subfields connect to seminal papers, but our conversational communities like \emph{Metaprogramming} show purely branching exploration without central authorities. This suggests cognitive exploration follows different organizing principles: intense local exploration punctuated by cross-topic jumps rather than cumulative authority building. This constitutes a \emph{structural trace of thinking}. Just as MRI reveals the physical structure of the brain, this cognitive MRI reveals the topological structure of thought preserved in conversation logs. Three community types emerge: \emph{Expert domains} such as Stats/Probability are densely connected with high clustering. \emph{Bridging domains} like ML/AI/LLM are broadly connected with lower clustering. \emph{Task domains} such as Programming are sparsely connected and implementation-focused. This suggests design implications: surfacing pure bridges could facilitate creative leaps, while respecting natural knowledge boundaries could improve retrieval systems.
+The network reveals cognitive patterns distinct from academic citation networks, which provide a natural comparison as both capture knowledge exploration processes. While citation networks evolve through preferential attachment with papers citing influential work (creating major hubs like foundational papers with thousands of citations), conversation networks reflect real-time knowledge exploration. Our finding of heterogeneous topology with some tree-like, branching clusters entirely lacking hubs contrasts sharply with citation networks' consistent scale-free structure. In citation networks, even specialized subfields connect to seminal papers, but our conversational communities like \emph{Metaprogramming} show purely branching exploration without central authorities. This suggests cognitive exploration follows different organizing principles: intense local exploration punctuated by cross-topic jumps rather than cumulative authority building. This constitutes a \emph{structural trace of thinking}. Just as MRI reveals the physical structure of the brain, this cognitive MRI reveals the topological structure of thought preserved in conversation logs. Three community types emerge: \emph{Expert domains} such as Stats/Probability are densely connected with high clustering. \emph{Bridging domains} like ML/AI/LLM are broadly connected with lower clustering. \emph{Task domains} such as Programming are sparsely connected and implementation-focused. This suggests design implications: surfacing pure bridges could facilitate creative leaps, while respecting natural knowledge boundaries could improve retrieval systems.
 
 \subsection{Limitations and Future Work}
 
-Our single-user study limits generalizability; future work should analyze diverse users to understand how cognitive styles influence exploration patterns. The static snapshot could be extended using temporal metadata to reveal how knowledge domains evolve through continued AI interaction.
+Our single-user study limits generalizability; future work should analyze diverse users to understand how cognitive styles influence exploration patterns. The static snapshot could be extended using temporal metadata to reveal how knowledge domains evolve through continued AI interaction. Additionally, the optimal 2:1 user:AI weighting ratio likely depends on individual cognitive styles, conversation patterns, and the specific AI model used (GPT-3.5/4 in our case); multi-user studies would be needed to establish whether this ratio generalizes.
 
 \subsection{Conclusion}
 
-We presented a novel application of complex network analysis to AI conversations, revealing distinct knowledge communities and bridge conversations. Our comprehensive ablation study established that a 2:1 user:AI weighting ratio ($\alpha = 2$) optimally balances user intent with AI semantic contributions for this dataset, achieving maximum modularity (0.750) at similarity threshold $\theta = 0.9$. However, this optimal ratio likely depends on individual cognitive styles, conversation patterns, and the specific AI model used (GPT-3.5/4 in our case). The heterogeneous network topology reflects cognitive processes in topic exploration, with bridges facilitating movement between specialized domains. This \emph{cognitive MRI} methodology provides a framework for understanding and enhancing AI-assisted knowledge work as these systems become increasingly integrated into human cognition.
+Through a single-user case study, we presented a novel application of complex network analysis to AI conversations, revealing distinct knowledge communities and bridge conversations. Our comprehensive ablation study established that a 2:1 user:AI weighting ratio ($\alpha = 2$) optimally balances user intent with AI semantic contributions for this dataset, achieving maximum modularity (0.750) at similarity threshold $\theta = 0.9$. The heterogeneous network topology reflects patterns in AI-assisted topic exploration, with bridges facilitating movement between specialized domains. This \emph{cognitive MRI} methodology provides a framework for understanding and enhancing AI-assisted knowledge work as these systems become increasingly integrated into human cognition.
 
 \bibliographystyle{splncs04}
 \begin{thebibliography}{00}
