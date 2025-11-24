@@ -1,3 +1,4 @@
+# Python
 *.pyc
 __pycache__
 *.egg-info
@@ -8,13 +9,15 @@ __pycache__
 *.db
 *.sqlite
 *.log
-*.DS_Store
+
+# LaTeX auxiliary files
 *.aux
 *.log
 *.toc
 *.out
 *.nav
 *.snm
+*.vrb
 *.bbl
 *.blg
 *.fls
@@ -24,4 +27,39 @@ __pycache__
 *.run.xml
 *.lof
 *.lot
+*.pdfsync
+*.alg
+*.acn
+*.acr
+*.glg
+*.glo
+*.gls
+*.ist
+*.xdy
+
+# Editor/IDE temporary files
+*~
+*.swp
+*.swo
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Project directories
 dev
+
+# Uncomment to ignore PDFs (currently tracking them)
+# *.pdf
+
+# Ignore archive directories
+archive/
