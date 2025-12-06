@@ -58,7 +58,7 @@ Through a single-user case study of 449 ChatGPT conversations, we introduce a \e
 
 Linear conversation logs conceal rich cognitive structure. Our \emph{cognitive MRI} uses network analysis to transform these sequential traces into topological maps. Each conversation becomes a node in a semantic network, revealing how humans navigate knowledge domains through AI dialogue.
 
-We introduce three key concepts: A \emph{cognitive MRI} is a network-based visualization technique that reveals the latent structure of thought preserved in conversational data, analogous to how medical MRI reveals brain structure. \emph{Cognitive structure} refers to the organizational patterns of knowledge as manifested through conversational exploration---the topology of concepts, domains, and their interconnections. \emph{Topological maps} are graph representations where nodes (conversations) and edges (semantic similarities) expose the geometry of knowledge navigation, making visible the pathways between ideas that linear logs obscure.
+We introduce three key concepts: A \emph{cognitive MRI} reveals latent thought structure in conversational data through network visualization, analogous to medical MRI revealing brain structure. \emph{Cognitive structure} refers to knowledge organization patterns manifested through conversation---the topology of concepts and domains. \emph{Topological maps} are graph representations exposing knowledge navigation geometry through nodes (conversations) and edges (semantic similarities).
 
 Our analysis of 449 ChatGPT conversations reveals heterogeneous network topology. Theoretical domains like ML/AI exhibit hub-and-spoke patterns while practical domains like programming show tree-like hierarchical structures. We identify three bridge types: evolutionary bridges emerge through topic drift, integrative bridges deliberately synthesize concepts, and pure bridges form critical links with minimal connections. These patterns reflect knowledge organization in AI-assisted exploration.
 
@@ -123,8 +123,8 @@ For each configuration, we reconstructed the complete network, detected communit
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=\textwidth]{./images/threshold_evolution_clean.png}
-\caption{Network metrics across similarity thresholds. Critical phase transition occurs at $\theta \approx 0.875$: below this threshold, the network maintains over 90\% connectivity; above it, catastrophic fragmentation occurs. This percolation phenomenon is remarkably consistent across all weight ratios, confirming a fundamental boundary in semantic space.}
+\includegraphics[width=0.85\textwidth]{./images/threshold_evolution_clean.png}
+\caption{Network metrics across similarity thresholds. Critical phase transition at $\theta \approx 0.875$: below this, the network maintains over 90\% connectivity; above it, catastrophic fragmentation occurs.}
 \label{fig:phase_transition}
 \end{figure}
 
@@ -148,8 +148,8 @@ As shown in Figure~\ref{fig:phase_transition}, the phase transition at $\theta \
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=\textwidth]{./images/weight_ratio_analysis_clean.png}
-\caption{Weight ratio optimization at $\theta = 0.9$. Systematic variation of weight ratios reveals that the 2:1 user:AI configuration (green) maximizes modularity (0.750) while preserving network coherence. This ratio achieves optimal balance across multiple metrics with 15 distinct communities.}
+\includegraphics[width=0.85\textwidth]{./images/weight_ratio_analysis_clean.png}
+\caption{Weight ratio optimization at $\theta = 0.9$. The 2:1 user:AI configuration maximizes modularity (0.750) with 15 distinct communities.}
 \label{fig:weight_ratio_analysis}
 \end{figure}
 
@@ -161,7 +161,7 @@ The 2:1 user:AI ratio proves optimal precisely because it maximizes modularity (
 
 \subsubsection{Case Study: Semantic Boundaries at the Phase Transition}
 
-To illustrate these semantic boundaries empirically, we examine a specific case study in Figure~\ref{fig:semantic_boundary}.
+Figure~\ref{fig:semantic_boundary} illustrates how threshold variation reveals semantic boundaries. At $\theta=0.9$ (left), a niece conversation cluster remains isolated from the main network. At $\theta=0.875$ (right), this cluster connects through philosophical bridge conversations, illustrating the 2.5\% semantic distance between technical and peripheral conversational contexts.
 
 \begin{figure}[h]
 \centering
@@ -176,22 +176,13 @@ To illustrate these semantic boundaries empirically, we examine a specific case 
     \includegraphics[width=\textwidth]{./images/refine/crop-right.png}
     \caption{$\theta=0.875$: Peripheral context emerges}
 \end{subfigure}
-\caption{Semantic boundaries revealed by threshold variation. At $\theta=0.9$ (left), the niece conversation cluster remains isolated from the main network (zoomed region of the full network shown in Figure~\ref{fig:network_vis}). At $\theta=0.875$ (right), this cluster connects to the giant component through philosophical bridge conversations, illustrating the 2.5\% semantic distance between conversational contexts.}
+\caption{Semantic boundaries revealed by threshold variation at the phase transition.}
 \label{fig:semantic_boundary}
 \end{figure}
 
-The difference between $\theta=0.9$ and $\theta=0.875$ reveals the semantic distance between the primary knowledge network (technical vocabulary, formal register) and peripheral contexts (age-appropriate explanations, creative topics). Our selection of $\theta=0.9$ thus preserves analytical clarity by maintaining natural boundaries between distinct cognitive contexts.
-
 \subsubsection{Parameter Selection Justification}
 
-Our comprehensive ablation study confirms the optimality of threshold 0.9 with 2:1 user:AI weighting:
-
-\begin{enumerate}
-    \item Maximum modularity (0.750) ensures clear community boundaries
-    \item Post-transition operation removes noise while preserving essential connections (1,615 edges from ~100K possible)
-    \item Semantic coherence maintains topic-focused communities reflecting human knowledge organization
-    \item Boundary preservation separates distinct conversational contexts while revealing their connection points
-\end{enumerate}
+Our comprehensive ablation study confirms the optimality of threshold 0.9 with 2:1 user:AI weighting: (1) maximum modularity (0.750) ensures clear community boundaries, (2) post-transition operation removes noise while preserving essential connections (1,615 edges from $\sim$100K possible), (3) semantic coherence maintains topic-focused communities, and (4) boundary preservation separates distinct conversational contexts while revealing connection points.
 
 \begin{table}[h]
 \centering

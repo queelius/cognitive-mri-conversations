@@ -1,0 +1,108 @@
+%% Camera-Ready Abstract for Complex Networks 2025
+\documentclass{llncs}
+%
+\usepackage{mathptmx}       % selects Times Roman as basic font
+\usepackage{helvet}         % selects Helvetica as sans-serif font
+\usepackage{courier}        % selects Courier as typewriter font
+\usepackage{type1cm}        % activate if the above 3 fonts are not available on your system
+\usepackage{makeidx}        % allows index generation
+\usepackage{graphicx}       % standard LaTeX graphics tool when including figure files
+\graphicspath{{./images/}}
+\usepackage{multicol}       % used for the two-column index
+\usepackage[bottom]{footmisc}% places footnotes at page bottom
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[cmex10]{amsmath}
+\usepackage{booktabs}
+\usepackage{url}
+\def\UrlFont{\small\ttfamily}
+
+% Tighter spacing for 4-page limit
+\setlength{\textfloatsep}{5pt plus 1pt minus 2pt}
+\setlength{\intextsep}{5pt plus 1pt minus 2pt}
+\setlength{\abovecaptionskip}{3pt}
+\setlength{\belowcaptionskip}{3pt}
+
+\begin{document}
+
+\title{Cognitive MRI of AI Conversations: Analyzing AI Interactions through Semantic Embedding Networks}
+%
+\titlerunning{Cognitive MRI of AI Conversations}
+%
+\author{Alex Towell\inst{1} \and John Matta\inst{1}}
+%
+\authorrunning{A. Towell et al.}
+%
+\institute{Southern Illinois University Edwardsville,\\
+Edwardsville, IL, USA\\
+\email{\{atowell, jmatta\}@siue.edu}}
+
+\maketitle
+
+\begin{abstract}
+Through a single-user case study of 449 ChatGPT conversations, we introduce a \emph{cognitive MRI} applying network analysis to reveal thought topology hidden in linear conversation logs. We construct semantic similarity networks with user-weighted embeddings to identify knowledge communities and bridge conversations that enable cross-domain flow. Our analysis reveals heterogeneous topology: theoretical domains exhibit hub-and-spoke structures while practical domains show tree-like hierarchies. We identify three distinct bridge types that facilitate knowledge integration across communities.
+\end{abstract}
+
+\section{Introduction}
+
+Linear conversation logs conceal rich cognitive structure. Our \emph{cognitive MRI} uses network analysis to transform sequential traces into topological maps, revealing knowledge navigation patterns in AI dialogue. We analyze 449 ChatGPT conversations, revealing heterogeneous topology: theoretical domains exhibit hub-and-spoke patterns while practical domains show tree-like structures.
+
+Building on distributed cognition \cite{hutchins1995} and transactive memory \cite{wegner1987}, we model human-AI dialogue as externalized cognitive networks. Contributions: (1) user-weighted embeddings (2:1 ratio) validated through 63-configuration ablation study, (2) empirical characterization revealing modularity 0.750 with 15 communities, (3) taxonomy of three bridge types with distinct structural signatures.
+
+\section{Methods}
+
+\textbf{Dataset.} 1,908 ChatGPT conversations (Dec 2022--Apr 2025), filtered at $\theta = 0.9$ yielding 449 nodes.
+
+\textbf{Embeddings.} \texttt{nomic-embed-text} \cite{nomicembed} with user-weighted aggregation: $\vec{e}_{conversation} = \frac{\alpha \times \vec{e}_{user} + \vec{e}_{AI}}{\|\alpha \times \vec{e}_{user} + \vec{e}_{AI}\|}$ where $\alpha = 2$.
+
+\textbf{Ablation Study.} 63-configuration sweep (9 weight ratios $\times$ 7 thresholds) revealed phase transition at $\theta \approx 0.875$ (Figure~\ref{fig:phase_transition}). The 2:1 ratio maximizes modularity (0.750) at $\theta = 0.9$ without distorting topic structure.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{threshold_evolution_clean.png}
+\caption{Phase transition at $\theta \approx 0.875$. The 2:1 ratio achieves maximum modularity (0.750) at $\theta = 0.9$.}
+\label{fig:phase_transition}
+\end{figure}
+
+\textbf{Analysis.} Louvain detection \cite{blondel2008}, centrality measures, core-periphery structure.
+
+\section{Results}
+
+\subsection{Network Topology}
+
+Network: 449 nodes, 1,615 edges, degree 7.19, clustering 0.60, path length 5.81. High clustering with long paths indicates ``cognitive distance'' between domains.
+
+Figure~\ref{fig:network_vis} reveals heterogeneity: theoretical communities (\emph{M.S. Math}, \emph{Stats \& Probability}, \emph{ML/AI}) exhibit hub-and-spoke structures; \emph{Metaprogramming} shows tree-like branching; \emph{Practical Programming} has dispersed structure without hubs. This contrasts with citation networks' consistent scale-free structure. Core-periphery structure: 25.6\% dense core (degree 18.94), sparse periphery (degree 3.15).
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.95\textwidth]{cluster-vis-topics-better.png}
+\caption{15 communities at $\theta=0.9$ showing heterogeneous topology.}
+\label{fig:network_vis}
+\end{figure}
+
+\subsection{Community Structure}
+
+15 communities emerged: \emph{ML/AI} (23\%, 103 nodes), \emph{Stats/Probability} (18\%, 82), \emph{Philosophy/AI Ethics} (14\%, 65), \emph{M.S. Math} (10\%, 44), \emph{Programming} (10\%, 45). Varying structure: \emph{M.S. Math} shows high core membership (59.1\%) and clustering (0.576); \emph{Programming} shows sparse connectivity (degree 3.78, core 8.9\%).
+
+\subsection{Bridge Conversations}
+
+Three bridge types \cite{granovetter1973,burt1992}: \emph{Evolutionary} (high-degree, topic drift, e.g., degree=61, betweenness=45,467), \emph{Integrative} (moderate-degree, deliberate synthesis, degree=10, betweenness=36,909), \emph{Pure} (low-degree critical links, degree=2, betweenness=9,775). Figure~\ref{fig:bridge_zoom} shows mechanisms. Hub nodes exhibit lower clustering (0.224 vs. 0.436).
+
+\section{Discussion and Conclusion}
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=0.7\textwidth]{bridge-better.png}
+\caption{Bridge types: evolutionary, integrative, and pure.}
+\label{fig:bridge_zoom}
+\end{figure}
+
+Unlike citation networks with preferential attachment, conversation networks show heterogeneous topology: theoretical domains form hubs, practical domains show trees. This \emph{structural trace of thinking} reveals: \emph{Expert domains} (dense, high clustering), \emph{Bridging domains} (broad, lower clustering), \emph{Task domains} (sparse, implementation-focused).
+
+Our ablation study established 2:1 user:AI weighting optimally balances intent with semantic contributions (modularity 0.750 at $\theta = 0.9$). Three bridge types facilitate cross-domain movement. This cognitive MRI methodology provides a framework for understanding AI-assisted knowledge exploration. Limitations: single-user study; optimal weighting may vary by individual/model. Future work: multi-user analysis, temporal evolution.
+
+\bibliographystyle{splncs03}
+\bibliography{refs}
+
+\end{document}
