@@ -75,7 +75,7 @@
 
 ``We take the average of your messages, the average of the AI's, then blend them 2-to-1 in your favor. One vector per conversation.''
 
-``That gives us two knobs to turn. Alpha: how much to weight user versus AI. Theta: how similar two conversations need to be before we connect them.''
+``That gives us two knobs to turn. Alpha: how much to weight user versus AI. And theta---that's our similarity cutoff. How close do two conversations need to be before we draw an edge?''
 
 ``Both need testing. That's the ablation study.''
 
@@ -83,7 +83,7 @@
 
 ``We tested 63 combinations. Swept through different values of theta and alpha together. Optimized for modularity---how clean the community boundaries are.''
 
-``For the threshold: there's a tipping point around 0.875. Below that, everything connects. It's a mess. Above that, it falls apart into fragments.''
+``For theta---the similarity cutoff---there's a tipping point around 0.875. Below that, everything connects. It's a mess. Above that, things fall apart.''
 
 ``0.9 worked well. Clear structure, not too sparse.''
 
@@ -107,7 +107,7 @@
 
 ``Philosophy off to the side. Math. Writing.''
 
-``It's not uniform. About a quarter is this dense core---general stuff that connects everywhere. The edges are specialized. And the average path? About 6 hops between any two chats.''
+``It's not uniform. About a quarter is this dense core---general stuff that connects everywhere. The outer parts are more specialized. And the average path? About 6 hops between any two chats.''
 
 ``I labeled these myself. The algorithm finds patterns; I interpret them. Though I tested having an LLM do the labeling---it worked okay. You could automate the whole thing.''
 
@@ -117,7 +117,7 @@
 
 ``Different topics have different shapes.''
 
-``Theory---math, ML concepts, philosophy---clusters tightly. Clustering coefficient around 0.58. Small-world structure.''
+``Theory---math, ML concepts, philosophy---clusters tightly. Clustering coefficient around 0.58. That's high. Small-world structure.''
 
 ``That makes sense. Theory means revisiting core ideas. Refining definitions. Everything links back.''
 
