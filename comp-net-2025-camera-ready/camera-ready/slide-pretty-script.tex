@@ -1,0 +1,172 @@
+\documentclass[17pt]{extarticle}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{fontspec}
+\usepackage{parskip}
+\usepackage{titlesec}
+
+% Large slide number headers
+\titleformat{\section}{\normalfont\LARGE\bfseries}{}{0em}{}
+\titlespacing*{\section}{0pt}{0pt}{0.5em}
+
+% Each section on its own page
+\newcommand{\slide}[1]{%
+  \clearpage
+  \section*{#1}
+  \vspace{0.5em}
+}
+
+\begin{document}
+
+\slide{Slide 1: Cognitive MRI of AI Conversations}
+
+``Good morning. This talk is about a simple question: what if you treat your AI chat history as data?''
+
+``Most of us have hundreds of conversations with ChatGPT by now. Maybe thousands. And they just sit there, buried in a scroll. We wanted to know: is there structure hiding in there?''
+
+``We call this a `Cognitive MRI.' That's a metaphor---we're trying to extract a kind of knowledge map from chat logs.''
+
+\slide{Slide 2: Why Now? The Scale of the Opportunity}
+
+``ChatGPT has 1.7 billion users. That's a lot of conversations.''
+
+``And here's what's interesting. These logs capture something different. Citation networks show you papers---outputs. Social networks show you who knows whom---connections.''
+
+``But chat logs might show you the \emph{process}. How ideas develop. The back-and-forth.''
+
+``Is that actually true? That's what we wanted to test. Today I'll show you one case study.''
+
+\slide{Slide 3: The Big Picture: Externalized Cognition}
+
+``We're using a framework called Distributed Cognition. The idea is simple: thinking doesn't just happen in your head. It happens between you and your tools.''
+
+``When you talk to an LLM, you're thinking out loud. Offloading work. And ideas get built through that conversation---not just looked up.''
+
+``Now, what gets saved? Usually just the product. The final draft. Clean and polished.''
+
+``But the messy part---the exploring, the dead ends---that usually disappears.''
+
+``Think about fixing a bug. Twenty rounds of trying things. False starts. Then finally it clicks. The commit message? One line.''
+
+``Or a mathematician. Notebooks full of wrong turns. We only see the final proof.''
+
+``That's what I call cognitive dark matter. And chat logs might capture it.''
+
+``So here's what we did.''
+
+\slide{Slide 4: From Log to a ``Cognitive MRI''}
+
+``Start with a chat history. It's just a timeline. January: Python bug. February: banana bread. March: more debugging. April: ethics.''
+
+``We turn each conversation into a vector. 768 dimensions. Similar topics land near each other in that space.''
+
+``Then we connect by similarity, not by time.''
+
+``What happens? Those two coding chats---months apart---snap together. Banana bread floats off on its own. Philosophy clusters somewhere else.''
+
+``The key insight: close in time doesn't mean close in thought. The network reconnects what the timeline splits apart.''
+
+\slide{Slide 5: Method: Capturing Intent}
+
+``There's a problem though. AI responses are wordy. Lots of filler. If you treat everything the same, the AI's voice drowns out yours.''
+
+``So we split them. User messages separate from AI messages. Then we weight them.''
+
+``Why? Your prompts carry the intent. What you actually care about. The AI just adds context.''
+
+``We take the average of your messages, the average of the AI's, then blend them 2-to-1 in your favor. One vector per conversation.''
+
+``That gives us two knobs to turn. Alpha: how much to weight user versus AI. Theta: how similar two conversations need to be before we connect them.''
+
+``Both need testing. That's the ablation study.''
+
+\slide{Slide 6: Rigorous Parameter Tuning: 2D Ablation Study}
+
+``We tested 63 combinations. Swept through different values of theta and alpha together. Optimized for modularity---how clean the community boundaries are.''
+
+``For the threshold: there's a tipping point around 0.875. Below that, everything connects. It's a mess. Above that, it falls apart into fragments.''
+
+``0.9 worked well. Clear structure, not too sparse.''
+
+``For the weighting: 2-to-1 user-to-AI gave the best modularity. That backs up the intuition---your voice matters more.''
+
+``So: theta 0.9, alpha 2-to-1, modularity 0.750.''
+
+``This isn't arbitrary. We tested it. Though it's still just one person's data.''
+
+\slide{Slide 7: The Cognitive MRI: 15 Knowledge Domains}
+
+\emph{[Pause---let them look]}
+
+``Here's the result. 449 conversations. Two years of chats.''
+
+``1,615 edges. 15 communities. Modularity 0.750---that's pretty good. Real structure, not noise.''
+
+``The clusters match what I'd expect. AI and machine learning up here---dense, lots of overlap. Probability, neural nets, embeddings, all tangled together.''
+
+``Coding projects down here. More spread out. Different projects, different clusters.''
+
+``Philosophy off to the side. Math. Writing.''
+
+``It's not uniform. About a quarter is this dense core---general stuff that connects everywhere. The edges are specialized. And the average path? About 6 hops between any two chats.''
+
+``I labeled these myself. The algorithm finds patterns; I interpret them. Though I tested having an LLM do the labeling---it worked okay. You could automate the whole thing.''
+
+``Point is: the algorithm found something. Whether it means anything beyond my own head? Hard to say with N of 1.''
+
+\slide{Slide 8: Insight 1: Structural Heterogeneity}
+
+``Different topics have different shapes.''
+
+``Theory---math, ML concepts, philosophy---clusters tightly. Clustering coefficient around 0.58. Small-world structure.''
+
+``That makes sense. Theory means revisiting core ideas. Refining definitions. Everything links back.''
+
+``Coding is looser. Around 0.39. More like a tree.''
+
+``You fix one bug, move on. Less backtracking. Projects stay in their own lanes. Metaprogramming here, physics simulation there. Not much crossover.''
+
+``This is suggestive. We'd need more users to know if it holds up.''
+
+\slide{Slide 9: Insight 2: A Taxonomy of Bridges}
+
+``We also looked at the connectors. High-betweenness nodes---chats that link different clusters.''
+
+``Three patterns showed up.''
+
+``Evolutionary bridges. Conversations that drift. You start talking about one thing, end up somewhere else. Like a math chat that wanders into neural network loss functions.''
+
+``Integrative bridges. Deliberate. You're explicitly combining two fields. AI ethics, for example.''
+
+``Pure bridges. Rare. A single chat that links distant clusters. Maybe a Linux question that happens to connect gaming and work.''
+
+``We're proposing this as a taxonomy. Based on what we saw.''
+
+\slide{Slide 10: The Vision: Personal Knowledge Cartography}
+
+``Why does this matter?''
+
+``Right now, your chat history is a scroll. Finding something from six months ago? Good luck.''
+
+``What if you could search by topic instead of date?''
+
+``Query: `Show me everything about entropy.' The network lights up. Biology connects to AI connects to coding connects to ethics.''
+
+``This paper is about structure---communities, bridges, topology. But that structure enables other things. Semantic search. Recommendations. Finding gaps. We haven't built those yet.''
+
+``The problem: insights buried in the scroll. The solution: a map.''
+
+``That's the direction.''
+
+\slide{Slide 11: Cognitive MRI: A Proof of Concept}
+
+``Key findings: user weighting works. The topology varies---hubs for theory, trees for practice. Three kinds of bridges.''
+
+``But this is exploratory. One user. One platform. One snapshot. No ground truth.''
+
+``Next steps: more users. Track changes over time. Proper validation---permutation tests, benchmarks, user studies.''
+
+``We'd love collaborators with bigger datasets.''
+
+``Thanks. Happy to take questions.''
+
+\end{document}
