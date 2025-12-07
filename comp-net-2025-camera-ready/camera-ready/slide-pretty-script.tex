@@ -71,15 +71,13 @@
 
 ``There's a problem though. AI responses are wordy. Lots of filler. If you treat everything the same, the AI's voice drowns out yours.''
 
-``So we split them. User messages separate from AI messages. Then we weight them.''
+``So we split user messages from AI messages, and weight them differently. Why? Your prompts carry the intent. What you actually care about. The AI just adds context.''
 
-``Why? Your prompts carry the intent. What you actually care about. The AI just adds context.''
+``We take the average of your messages, the average of the AI's, then blend them. One vector per conversation.''
 
-``So that gives us two knobs. Alpha: how much to weight user versus AI. And theta---the similarity cutoff I mentioned---how close do two conversations need to be before we draw an edge?''
+``That gives us two knobs to tune. Alpha: how much to weight user versus AI. And theta---the similarity cutoff I mentioned---how close do two conversations need to be before we draw an edge?''
 
-``We take the average of your messages, the average of the AI's, then blend them with alpha. One vector per conversation.''
-
-``Both need testing. That's the ablation study.''
+``Both parameters need testing. That's the ablation study.''
 
 \slide{Slide 6: Rigorous Parameter Tuning: 2D Ablation Study}
 
