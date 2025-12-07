@@ -59,7 +59,7 @@
 
 ``Start with a chat history. It's just a timeline. One week you're asking about some Python bug. Next week, a banana bread recipe. Month later, back to debugging. Then something about ethics.''
 
-``We turn each conversation into a vector. Like word2vec, where `king' and `queen' end up near each other---but for whole conversations. Similar topics land close together in that space.''
+``We turn each conversation into a vector---an embedding. Similar topics land close together in that space. Like word2vec, where `king' and `queen' end up near each other. Same idea, but for whole conversations.''
 
 ``Then we connect by similarity, not by time. If two conversations are similar enough---above some threshold we call theta---we draw an edge.''
 
