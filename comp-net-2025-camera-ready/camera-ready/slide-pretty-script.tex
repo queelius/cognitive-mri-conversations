@@ -81,17 +81,15 @@
 
 \slide{Slide 6: Rigorous Parameter Tuning: 2D Ablation Study}
 
-``We tested 63 combinations. Swept through different values of theta and alpha together. Optimized for modularity---how clean the community boundaries are.''
+``We tested 63 combinations---swept through different values of theta and alpha together. We optimized for modularity, which measures how clean the community boundaries are.''
 
-``For theta---the similarity cutoff---there's a tipping point around 0.875. Below that, everything connects. It's a mess. Above that, things fall apart.''
+``For theta, there's a tipping point around 0.875. Below that, everything connects---it's a mess. Above that, things fall apart. 0.9 hit the sweet spot: clear structure, not too sparse.''
 
-``0.9 worked well. Clear structure, not too sparse.''
+``For alpha, 2-to-1 user-to-AI gave the best modularity. That backs up the intuition---your voice matters more than the AI's.''
 
-``For the weighting: 2-to-1 user-to-AI gave the best modularity. That backs up the intuition---your voice matters more.''
+``So our final parameters: theta 0.9, alpha 2-to-1, giving us modularity of 0.750.''
 
-``So: theta 0.9, alpha 2-to-1, modularity 0.750.''
-
-``This isn't arbitrary. We tested it. Though it's still just one person's data.''
+``The point is: these choices aren't arbitrary. We tested them. Though it's still just one person's data.''
 
 \slide{Slide 7: The Cognitive MRI: 15 Knowledge Domains}
 
