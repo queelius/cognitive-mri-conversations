@@ -33,21 +33,21 @@
 
 ``But chat logs might show you the \emph{process}. How ideas develop. The back-and-forth.''
 
-``Is that actually true? That's what we wanted to test. Today I'll show you one case study.''
+``So our question: can we extract a meaningful knowledge map from someone's chat history? Today I'll show you one case study.''
 
 \slide{Slide 3: The Big Picture: Externalized Cognition}
 
-``We're using a framework called Distributed Cognition. The idea is simple: thinking doesn't just happen in your head. It happens between you and your tools.''
+``There's a concept called Distributed Cognition. The idea is simple: thinking doesn't just happen in your head. It happens between you and your tools.''
 
 ``When you talk to an LLM, you're thinking out loud. Offloading work. And ideas get built through that conversation---not just looked up.''
 
-``Now, what gets saved? Usually just the product. The final draft. Clean and polished.''
+``Traditionally, what gets archived? The product. The final draft. Clean and polished.''
 
-``But the messy part---the exploring, the dead ends---that usually disappears.''
+``The messy part---the exploring, the dead ends---that usually disappears.''
 
-``Think about fixing a bug. Twenty rounds of trying things. False starts. Then finally it clicks. The commit message? One line.''
+``Think about fixing a bug. Twenty rounds of trying things. False starts, backtracking, trying something else. That's where you actually learn how the system works. But the commit message? One line: `fixed bug.'  ''
 
-``Or a mathematician. Notebooks full of wrong turns. We only see the final proof.''
+``Or a mathematician. Months of redefining the problem. Filling notebooks with attempts that don't work. That struggle is where the insight comes from. But we only ever see the final theorem.''
 
 ``That's what I call cognitive dark matter. And chat logs might capture it.''
 
@@ -55,15 +55,17 @@
 
 \slide{Slide 4: From Log to a ``Cognitive MRI''}
 
-``Start with a chat history. It's just a timeline. January: Python bug. February: banana bread. March: more debugging. April: ethics.''
+``So how do we turn a linear chat log into a network?''
 
-``We turn each conversation into a vector. 768 dimensions. Similar topics land near each other in that space.''
+``Start with a chat history. It's just a timeline. One week you're asking about some Python bug. Next week, a banana bread recipe. Month later, back to debugging. Then something about ethics.''
 
-``Then we connect by similarity, not by time.''
+``We turn each conversation into a vector. Like word2vec, where `king' and `queen' end up near each other---but for whole conversations. Similar topics land close together in that space.''
 
-``What happens? Those two coding chats---months apart---snap together. Banana bread floats off on its own. Philosophy clusters somewhere else.''
+``Then we connect by similarity, not by time. If two conversations are similar enough---above some threshold we call theta---we draw an edge.''
 
-``The key insight: close in time doesn't mean close in thought. The network reconnects what the timeline splits apart.''
+``What happens? Those two coding chats---months apart---snap together. Banana bread floats off on its own. Ethics clusters somewhere else.''
+
+``The point is: close in time doesn't mean close in thought. The network reconnects what the timeline splits apart.''
 
 \slide{Slide 5: Method: Capturing Intent}
 
@@ -73,9 +75,9 @@
 
 ``Why? Your prompts carry the intent. What you actually care about. The AI just adds context.''
 
-``We take the average of your messages, the average of the AI's, then blend them 2-to-1 in your favor. One vector per conversation.''
+``So that gives us two knobs. Alpha: how much to weight user versus AI. And theta---the similarity cutoff I mentioned---how close do two conversations need to be before we draw an edge?''
 
-``That gives us two knobs to turn. Alpha: how much to weight user versus AI. And theta---that's our similarity cutoff. How close do two conversations need to be before we draw an edge?''
+``We take the average of your messages, the average of the AI's, then blend them with alpha. One vector per conversation.''
 
 ``Both need testing. That's the ablation study.''
 
