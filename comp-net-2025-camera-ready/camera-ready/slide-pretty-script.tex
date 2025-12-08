@@ -19,21 +19,21 @@
 
 \slide{Slide 1: Cognitive MRI of AI Conversations}
 
-``Good morning. This talk is about a simple question: what if you treat your AI chat history as data?''
+``How many conversations have you had with ChatGPT? Hundreds? Thousands? All of them sitting there, buried in a timeline.''
 
-``Most of us have hundreds, even thousands, of conversations with ChatGPT and other AI assistants by now. And they just sit there, buried in a timeline. We wanted to know: is there structure hiding in there?''
+``What if there's structure hiding in there?''
 
-``We call this a `Cognitive MRI.' That's a metaphor---we're trying to extract a kind of knowledge map from chat logs.''
+``We call this a `Cognitive MRI'---extracting a knowledge map from your chat logs.''
 
 \slide{Slide 2: Why Now? The Scale of the Opportunity}
 
-``ChatGPT has 1.7 billion users. That's a lot of conversations.''
+``ChatGPT has about a billion users. That's a lot of conversations.''
 
-``And here's what's interesting. These logs capture something different. Citation networks show you papers---outputs. Social networks show you who knows whom---connections.''
+``And these logs capture something different. Citation networks give you papers---outputs. Social networks give you connections.''
 
-``But chat logs might show you the \emph{process}. How ideas develop. The back-and-forth.''
+``But chat logs? They capture the process. How ideas develop. The back-and-forth.''
 
-``So our question: can we extract a meaningful knowledge map from someone's chat history? Today I'll show you one case study.''
+``Today: one case study.''
 
 \slide{Slide 3: The Big Picture: Externalized Cognition}
 
@@ -45,67 +45,59 @@
 
 ``The messy part---the exploring, the dead ends---that usually disappears.''
 
-``Think about fixing a bug. Twenty rounds of trying things. False starts, backtracking, trying something else. That's where you actually learn how the system works. But the commit message? One line: `fixed bug.'  ''
+``Think about fixing a bug. Twenty rounds of trying things. False starts, backtracking. That's where you actually learn how the system works. But the commit message? One line: `fixed bug.' The process disappears.''
 
-``Or a mathematician. Months of redefining the problem. Filling notebooks with attempts that don't work. That struggle is where the insight comes from. But we only ever see the final theorem.''
-
-``That's what I call cognitive dark matter. And chat logs might capture it.''
+``That's cognitive dark matter. And chat logs might capture it.''
 
 ``So here's what we did.''
 
-\slide{Slide 4: From Log to a ``Cognitive MRI''}
+\slide{Slide 4: From Chat Logs to Network}
 
 ``So how do we turn a linear chat log into a network?''
 
-``Start with a chat history. It's just a timeline. One week you're asking about some Python bug. Next week, a banana bread recipe. Month later, back to debugging. Then something about ethics.''
+``Start with a chat history. It's just a timeline. January, you're debugging a Python error. February, a banana bread recipe. March, back to debugging.''
 
-``We turn each conversation into a vector---an embedding. Similar topics land close together in that space. Like word2vec, where `king' and `queen' end up near each other. Same idea, but for whole conversations.''
+``First, we turn each conversation into a vector---an embedding. You can use classical approaches like TF-IDF, but we use LLM-based embeddings. They're denser, more semantically meaningful. Similar topics land close together in that space.''
 
-``Then we connect by similarity, not by time. If two conversations are similar enough---above some threshold we call theta---we draw an edge.''
+``So now each conversation is a node. To form edges, we measure cosine similarity between embeddings---how close are two conversations in meaning? Then we apply a threshold, theta. If the similarity is above theta, we draw an edge. If not, no connection.''
 
-``What happens? Those two coding chats---months apart---snap together. Banana bread floats off on its own. Ethics clusters somewhere else.''
+``What happens? Those two coding chats---January and March---snap together. Banana bread floats off on its own.''
 
-``The point is: close in time doesn't mean close in thought. The network reconnects what the timeline splits apart.''
+``The point is: close in time doesn't mean close in thought. The network reconnects what the timeline splits apart. How we choose theta? That comes later.''
 
-\slide{Slide 5: Method: Capturing Intent}
+\slide{Slide 5: Whose Voice Matters?}
 
-``There's a problem though. AI responses are wordy. Lots of filler. If you treat everything the same, the AI's voice drowns out yours.''
+``There's a problem though. AI responses are wordy. Lots of filler. If you treat everything the same, the AI's voice could drown out yours.''
 
-``So we split user messages from AI messages, and weight them differently. Why? Your prompts carry the intent. What you actually care about. The AI just adds context.''
+``So we split user messages from AI messages. Intuitively, your prompts carry the intent---what you actually care about. The AI just adds context.''
 
-``We take the average of your messages, the average of the AI's, then blend them. One vector per conversation.''
+``We introduce a weighting parameter, alpha. How much should we prioritize the user? Should we even prioritize the user at all? Maybe the AI's responses actually categorize topics better?''
 
-``That gives us two knobs to tune. Alpha: how much to weight user versus AI. And theta---the similarity cutoff I mentioned---how close do two conversations need to be before we draw an edge?''
-
-``Both parameters need testing. That's the ablation study.''
+``That's an empirical question. Let's test it.''
 
 \slide{Slide 6: Rigorous Parameter Tuning: 2D Ablation Study}
 
-``We tested 63 combinations---swept through different values of theta and alpha together. We optimized for modularity, which measures how clean the community boundaries are.''
+``We tested 63 configurations to answer two questions. What threshold theta? And does user weighting actually help?''
 
-``For theta, there's a tipping point around 0.875. Below that, everything connects---it's a mess. Above that, things fall apart. 0.9 hit the sweet spot: clear structure, not too sparse.''
+``For theta, there's a tipping point around 0.875. Below that, everything connects---it's a hairball. We chose 0.9, just past the transition.''
 
-``For alpha, 2-to-1 user-to-AI gave the best modularity. That backs up the intuition---your voice matters more than the AI's.''
+``For alpha---remember our intuition that the user's voice should matter more? The data confirms it. Modularity peaks precisely at 2-to-1. Not 1-to-1, not 3-to-1. Exactly 2-to-1.''
 
-``So our final parameters: theta 0.9, alpha 2-to-1, giving us modularity of 0.750.''
+``So the ablation study does two things: confirms our intuition, and finds the optimal ratio. Final result: Q equals 0.750.''
 
-``The point is: these choices aren't arbitrary. We tested them. Though it's still just one person's data.''
+``These choices aren't arbitrary. They're data-driven.''
 
 \slide{Slide 7: The Cognitive MRI: 15 Knowledge Domains}
 
 \emph{[Pause---let them look]}
 
-``Here's the result. 449 conversations, two years of chats, 1,615 edges connecting them into 15 communities. Modularity of 0.750---that's strong structure, not noise.''
+``Hundreds of nodes, thousands of edges. Modularity 0.75. 15 communities---15 knowledge domains.''
 
-``Let me walk you through the map. Up top-left in orange, that's my master's thesis work in pure math. Next to it in green, stats and probability. Then ML, AI, and LLMs in blue. And over here in red, philosophy and AI alignment. You can see how they flow into each other.''
+``I labeled these communities manually by inspecting each one. Though I did try having an LLM automate it, and it worked reasonably well.''
 
-``Down here, coding projects---more spread out. Different projects form their own clusters. There are other small clusters scattered around; you can scan those yourself.''
+``Let me walk you through the major domains. Up here, my master's thesis work in pure math. Next to it, stats and probability. Over here, ML and AI. Philosophy and alignment. Down here, coding projects---more spread out, different projects in their own clusters.''
 
-``What's interesting is it's not uniform. About a quarter of the network is this dense core that connects everywhere. The outer parts are more specialized. Average path length? About 6 hops between any two conversations.''
-
-``I labeled these communities myself---the algorithm finds the patterns, I interpret what they mean. Though I tested having an LLM do it, and it worked reasonably well. You could automate the whole thing.''
-
-``The point is: the algorithm found real structure. Whether it generalizes beyond my own head? That's the N-of-1 limitation.''
+``The communities were discovered by the algorithm. I just interpreted what they mean.''
 
 \slide{Slide 8: Insight 1: Structural Heterogeneity}
 
@@ -127,31 +119,29 @@
 
 ``Three patterns showed up.''
 
-``Evolutionary bridges. Conversations that drift. See `Geometric Mean' here---the title sounds narrow, right? But look at the actual conversation and it's sprawling. Started in pure math, wandered through probability, ended up in neural networks. The title only captures where it began.''
+``Evolutionary bridges. Conversations that drift. See `Geometric Mean' here---the title sounds narrow, right? But the conversation sprawls. Started in stats and probability, drifted through ML and AI, ended up in practical programming. The title only captures where it began.''
 
 ``Integrative bridges. Deliberate synthesis. `mcts-code' here---Monte Carlo Tree Search implementation. It explicitly combines ML and AI concepts with practical programming. You're consciously building connections between theory and practice.''
 
-``Pure bridges. Rare but powerful. `cuda-program-linux'---a single Linux config question that happens to link my physics space sandbox with practical programming. A shortcut through conceptual space.''
+``Pure bridges---rare shortcuts. `cuda-program-linux'---a single Linux config question that happens to link my physics simulation with practical programming. Rare, but powerful.''
 
 ``We're proposing this as a taxonomy. Based on what we saw.''
 
 \slide{Slide 10: The Vision: Personal Knowledge Cartography}
 
-``So why does any of this matter?''
+\emph{[30 seconds MAX - don't linger]}
 
-``Right now, your chat history is organized by time. There's keyword search, sure. But you need to remember what words you used. You're searching by date, hoping you remember a phrase.''
+``Why does this matter? Right now, your chat history is an infinite scroll. Buried. The map makes it navigable.''
 
-``But what if you could search by topic instead? Query: `Show me everything about entropy.' And the network lights up---biology connects to AI connects to coding connects to ethics. You see the whole landscape at once.''
+``Imagine: `Show me everywhere I discussed entropy.' The network lights up---connections you forgot about.''
 
-``Now, this paper is about the structure itself---communities, bridges, topology. But once you have that structure, it enables other things. Semantic search. Recommendations. Finding gaps in your knowledge. We haven't built those yet.''
-
-``The problem is insights buried in a timeline. The solution is a map. That's where this is heading.''
+\emph{[Move on to conclusion]}
 
 \slide{Slide 11: Cognitive MRI: A Proof of Concept}
 
 ``So what did we show? That LLM conversation logs can be transformed into meaningful cognitive maps. The structure is real---not noise.''
 
-``What were the key ideas? User-weighted embeddings to capture your intent, not just the AI's responses. Adaptive similarity thresholding to get clean community boundaries. We found heterogeneous topology---theoretical domains form hubs, practical domains form trees. We proposed a taxonomy of bridge types---not necessarily a real thing, just an initial attempt at naming structure we saw. And we ran a 2D ablation study showing these choices weren't arbitrary.''
+``What were the key ideas? User-weighted embeddings---2-to-1 ratio---to capture your intent, not just the AI's responses. Tuned link thresholds to optimize modularity. We found heterogeneous topology---theoretical domains form hubs, practical domains form trees. We proposed a taxonomy of bridge types. And we ran a 2D ablation study showing these choices weren't arbitrary.''
 
 ``But let's be honest about the limitations. This is N-of-1---one user, one platform, one snapshot in time. No ground truth to validate against. We don't know yet if these patterns generalize.''
 

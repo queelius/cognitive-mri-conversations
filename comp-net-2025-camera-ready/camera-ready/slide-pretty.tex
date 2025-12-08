@@ -154,7 +154,7 @@
         \centering
         \vspace{0.3cm}
 
-        \textbf{1.7 Billion ChatGPT Users}
+        \textbf{$\sim$1 Billion ChatGPT Users}
 
         \vspace{0.3cm}
 
@@ -192,30 +192,24 @@
         \column{0.5\textwidth}
         \vspace{0.2cm}
 
-        \textbf{Why This Matters}
+        \textbf{Chat logs capture something different:}
 
-        \vspace{0.2cm}
+        \vspace{0.3cm}
 
-        % Enhanced comparison table
-        \small
-        \renewcommand{\arraystretch}{1.3}
-        \begin{tabular}{@{}p{3.2cm}cc@{}}
-            \toprule
-            \textbf{Dataset Type} & \textbf{Scale} & \textbf{Process?} \\
-            \midrule
-            Citation Networks & $10^8$ papers & \textcolor{red!80}{\textbf{No}} \\
-            Social Networks & $10^9$ users & \textcolor{red!80}{\textbf{No}} \\
-            \rowcolor{PracticalGreen!15}
-            \textbf{LLM Conversations} & \textbf{$10^9$ users} & \textcolor{PracticalGreen!80!black}{\textbf{\Large \checkmark}} \\
-            \bottomrule
-        \end{tabular}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item \textbf{Citations} $\rightarrow$ papers (outputs)
+            \item \textbf{Social networks} $\rightarrow$ connections
+            \item \textbf{Chat logs} $\rightarrow$ \textcolor{PracticalGreen!80!black}{\textbf{the process}}
+        \end{itemize}
 
-        \vspace{0.5cm}
+        \vspace{0.4cm}
 
-        \begin{block}{\small First-Time Opportunity}
-            \scriptsize
-            Traditional datasets capture \textbf{outputs} (papers, posts).\\[0.2em]
-            LLM logs capture the \textbf{iterative reasoning process} at global scale.
+        \begin{block}{}
+            \centering
+            \small
+            How ideas develop. The back-and-forth.\\[0.3em]
+            \textit{Today: one case study.}
         \end{block}
     \end{columns}
 
@@ -354,93 +348,94 @@
 %---------------------------------------------------------
 % 4. From Log to "Cognitive MRI"
 %---------------------------------------------------------
-\begin{frame}{From Log to a ``Cognitive MRI''}
-    \centering
-    \textbf{Transforming Linear Time into Semantic Topology}
-
-    \vspace{0.1cm} % Reduced vertical spacing
-
+\begin{frame}{From Chat Logs to Network}
     \begin{columns}[T]
-        % --- LEFT: THE LINEAR LOG ---
-        \column{0.45\textwidth}
+        % --- LEFT: THE INPUT ---
+        \column{0.3\textwidth}
         \centering
-        \textbf{\textcolor{gray}{1. The Linear Log}} \\
-        \scriptsize \textit{(Chronological Sequence)}
+        \textbf{\textcolor{gray}{Your Chat History}}
 
-        \vspace{0.1cm}
+        \vspace{0.3cm}
 
-        % Reduced scale to 0.7 to save vertical space
-        \begin{tikzpicture}[scale=0.7, transform shape]
-            % Timeline arrow
-            \draw[->, thick, gray] (0, 4) -- (0, 0) node[below] {Time};
-
-            % Time Nodes
-            \node[circle, fill=blue!30, inner sep=2pt, label=right:\tiny{Jan: Python Error}] (t1) at (0, 3.5) {};
-            \node[circle, fill=gray!40, inner sep=2pt, label=right:\tiny{Feb: Banana Bread}] (t2) at (0, 2.5) {};
-            \node[circle, fill=blue!30, inner sep=2pt, label=right:\tiny{Mar: Debugging}] (t3) at (0, 1.5) {};
-            \node[circle, fill=purple!30, inner sep=2pt, label=right:\tiny{Apr: Ethics}] (t4) at (0, 0.5) {};
-
-            % Dotted connections
-            \draw[gray!30, dashed] (t1) -- (3, 3.5);
-            \draw[gray!30, dashed] (t3) -- (3, 1.5);
+        \begin{tikzpicture}
+            % Simple list representation with topics
+            \node[draw=blue!50, fill=blue!10, rounded corners=2pt,
+                  minimum width=2.8cm, minimum height=0.5cm, font=\scriptsize]
+                  (c1) at (0, 2.0) {Python Error \textcolor{gray!60}{(Jan)}};
+            \node[draw=gray!50, fill=gray!10, rounded corners=2pt,
+                  minimum width=2.8cm, minimum height=0.5cm, font=\scriptsize]
+                  (c2) at (0, 1.2) {Banana Bread \textcolor{gray!60}{(Feb)}};
+            \node[draw=blue!50, fill=blue!10, rounded corners=2pt,
+                  minimum width=2.8cm, minimum height=0.5cm, font=\scriptsize]
+                  (c3) at (0, 0.4) {Debugging \textcolor{gray!60}{(Mar)}};
+            \node[font=\scriptsize, gray] at (0, -0.2) {$\vdots$};
         \end{tikzpicture}
+
+        \vspace{0.2cm}
+        {\scriptsize \textit{Just a timeline}}
 
         % --- MIDDLE: THE TRANSFORMATION ---
-        \column{0.1\textwidth}
+        \column{0.4\textwidth}
         \centering
-        \vspace{1.2cm} % Adjusted for new scale
-        \begin{tikzpicture}[scale=0.7, transform shape]
-            \draw[->, ultra thick, blue!50] (0,0) -- (0.8,0);
-        \end{tikzpicture}\\
-        \tiny \textbf{Embed}\\ \textbf{\& Link}
+        \textbf{\textcolor{blue!70}{The Transformation}}
 
-        % --- RIGHT: THE SEMANTIC NETWORK ---
-        \column{0.45\textwidth}
-        \centering
-        \textbf{\textcolor{blue}{2. The Cognitive MRI}} \\
-        \scriptsize \textit{(Semantic Topology)}
+        \vspace{0.3cm}
 
-        \vspace{0.1cm}
-
-        % Reduced scale to 0.7
-        \begin{tikzpicture}[scale=0.7, transform shape]
-            % Network Nodes
-            \node[circle, fill=blue!30, inner sep=2pt] (n1) at (0, 3) {}; % Python
-            \node[circle, fill=blue!30, inner sep=2pt] (n3) at (0.8, 2.5) {}; % Debugging
-            \node[font=\tiny, text=blue] at (0.4, 3.3) {Coding};
-
-            \node[circle, fill=gray!40, inner sep=2pt] (n2) at (2, 0.5) {}; % Banana Bread
-            \node[font=\tiny, text=gray!60] at (2, 0.2) {Cooking};
-
-            \node[circle, fill=purple!30, inner sep=2pt] (n4) at (-1, 1) {}; % Ethics
-            \node[font=\tiny, text=purple] at (-1, 0.7) {Philosophy};
-
-            % Edges
-            \draw[thick, blue] (n1) -- (n3); % The link hidden in time!
-            \draw[gray!30] (n1) -- (n4);
-            \draw[gray!30] (n3) -- (n2);
-
-            % Highlight the link
-            \node[font=\tiny, text=blue, rotate=-30] at (0.3, 2.7) {\textbf{Linked!}};
+        \begin{tikzpicture}
+            \draw[->, ultra thick, blue!50] (0,0) -- (1.2,0);
         \end{tikzpicture}
+
+        \vspace{0.3cm}
+
+        \begin{block}{}
+            \footnotesize
+            \textbf{Nodes:} Each conversation $\rightarrow$ vector \textcolor{gray}{(embedding)}\\[0.15cm]
+            \textbf{Edges:} Connect if similarity $> \theta$ \textcolor{gray}{(cosine)}\\
+            {\scriptsize (similar direction $=$ similar meaning)}
+        \end{block}
+
+        % --- RIGHT: THE OUTPUT ---
+        \column{0.3\textwidth}
+        \centering
+        \textbf{\textcolor{blue}{The Network}}
+
+        \vspace{0.3cm}
+
+        \begin{tikzpicture}[scale=0.9]
+            % Coding cluster (connected) - Jan and Mar
+            \node[circle, fill=blue!40, inner sep=3pt] (n1) at (0, 2.0) {};
+            \node[font=\tiny, text=gray!70, anchor=west] at (0.2, 2.0) {Jan};
+            \node[circle, fill=blue!40, inner sep=3pt] (n3) at (0.6, 1.2) {};
+            \node[font=\tiny, text=gray!70, anchor=west] at (0.8, 1.2) {Mar};
+            \draw[thick, blue!70] (n1) -- (n3);
+            \node[font=\scriptsize, text=blue!70, anchor=south] at (0.3, 2.3) {\textbf{Coding}};
+
+            % Banana bread (isolated)
+            \node[circle, fill=gray!40, inner sep=3pt] (n2) at (2.0, 0.8) {};
+            \node[font=\tiny, text=gray!70, anchor=north] at (2.0, 0.5) {Feb};
+            \node[font=\scriptsize, text=gray!60, anchor=south] at (2.0, 1.1) {Cooking};
+        \end{tikzpicture}
+
+        \vspace{0.2cm}
+        {\scriptsize \textit{Grouped by meaning}}
     \end{columns}
 
-    % Negative spacing to pull the block up away from the footer
-    \vspace{-0.2cm}
+    \vspace{0.3cm}
 
-    \begin{block}{The Insight}
-        \footnotesize % Smaller font to ensure it fits
-        Distance in \textbf{Time} $\neq$ Distance in \textbf{Thought}.\\
-        The network reconnects ideas (e.g., two coding sessions months apart) that the linear log separates.
+    \begin{block}{The Key Insight}
+        \centering
+        \footnotesize
+        Close in \textbf{time} $\neq$ close in \textbf{thought}.\\
+        Jan and Mar snap together. Banana bread floats alone.
     \end{block}
 
     \note{
-        \textbf{Slide 4: From Log to MRI (45s)}
+        \textbf{Slide 4: From Chat Logs to Network (1 min)}
         \begin{itemize}
-            \item \textbf{Point to Left Side (15s):} [GESTURE TO TIMELINE] ``Here's the raw log. Chronological. January: Python error. February: Banana bread recipe. March: More Python debugging. April: Ethics discussion. Time flows downward.''
-            \item \textbf{Point to Transformation Arrow (10s):} [GESTURE TO ARROW] ``Now we embed each conversation semantically and link by similarity, not by time.''
-            \item \textbf{Point to Right Side - The Clustering (15s):} [GESTURE TO NETWORK] ``What happens? The two Python sessions---January and March---snap together in the network. They were months apart in time, but they're neighbors in semantic space. Banana bread stays isolated. Ethics forms its own cluster.''
-            \item \textbf{The Key Insight (5s):} ``Distance in time does not equal distance in thought. The network reveals the true topology of your knowledge.''
+            \item \textbf{Point LEFT (15s):} ``Here's your chat history. Just a list. One conversation after another, ordered by time.''
+            \item \textbf{Point CENTER (25s):} ``Here's what we do. First, each conversation becomes a vector---an embedding. Then we measure similarity. Vectors pointing in similar directions mean similar topics. If similarity is above our threshold theta, we draw an edge.''
+            \item \textbf{Point RIGHT (15s):} ``What comes out? A network grouped by meaning. Those two coding chats---January and March---they're connected now. Banana bread floats off on its own.''
+            \item \textbf{Key Insight (5s):} ``Close in time doesn't mean close in thought. The network finds the real structure.''
         \end{itemize}
     }
 \end{frame}
@@ -448,19 +443,19 @@
 %---------------------------------------------------------
 % 5. Pipeline: Intuition over Math
 %---------------------------------------------------------
-\begin{frame}{Method: Capturing Intent}
+\begin{frame}{Whose Voice Matters?}
     \textbf{The Challenge:} AI responses are verbose and generic.\\
-    \textbf{The Solution:} Focus on the human.
+    \textbf{The Intuition:} User prompts carry the intent. But by how much?
 
     \vspace{0.2cm}
 
     \begin{columns}[T]
         \column{0.5\textwidth}
-        \begin{block}{The ``Signal'' is the User}
+        \begin{block}{Separating Signal from Context}
             \begin{itemize}
                 \item We separate \textbf{User Prompts} from \textbf{AI Replies}.
-                \item \textbf{Weighting:} We prioritize the user's voice (2:1 ratio).
-                \item \textbf{Result:} The network connects conversations based on \emph{your} intent, not the AI's boilerplate.
+                \item \textbf{Weighting:} Introduce parameter $\alpha$ (user-to-AI ratio).
+                \item \textbf{Question:} Does prioritizing the user actually improve structure?
             \end{itemize}
         \end{block}
 
@@ -484,7 +479,7 @@
             \node[TheoreticalBlue, font=\bfseries\small, fill=TheoreticalBlue!10,
                   rounded corners=2pt, inner sep=2pt] at (-0.5,4.9) {Signal};
             \node[TheoreticalBlue, font=\tiny\bfseries, fill=white,
-                  rounded corners=1pt, inner sep=1pt] at (1.5,4.9) {$\times 2$};
+                  rounded corners=1pt, inner sep=1pt] at (1.5,4.9) {$\times \alpha$};
 
             % AI arrow with subtle glow
             \foreach \w/\op in {3pt/0.15, 2.5pt/0.25} {
@@ -521,113 +516,24 @@
             \draw[rounded corners=3pt, fill=PracticalGreen!20, draw=PracticalGreen!70, line width=1.2pt]
                 (0.3,0.5) rectangle (3.8,1.9);
             \node[font=\large\bfseries] at (2.05,1.45) {$\vec{e}_{conv}$};
-            \node[font=\tiny] at (2.05,0.85) {$= 2 \cdot \vec{e}_{user} + 1 \cdot \vec{e}_{AI}$};
+            \node[font=\tiny] at (2.05,0.85) {$= \alpha \cdot \vec{e}_{user} + 1 \cdot \vec{e}_{AI}$};
         \end{tikzpicture}
     \end{columns}
 
     \note{
-        \textbf{Slide 5: Method (1 min)}
+        \textbf{Slide 5: Whose Voice Matters? (1 min)}
         \begin{itemize}
-            \item \textbf{The Challenge (15s):} ``AI models are verbose. Full of boilerplate, helpful explanations, politeness. If you embed everything equally, the generic filler drowns out the actual signal---what you wanted to know.''
-            \item \textbf{Point to Diagram - Top Split (20s):} [GESTURE TO FLOWCHART] ``So we split each conversation. User prompts on the left---this is the \textbf{signal}, your intent. AI responses on the right---that's \textbf{context}, helpful but secondary.''
-            \item \textbf{Point to Diagram - Weighting (15s):} ``We weight the user 2:1. Twice as important. This amplifies your voice in the embedding space.''
-            \item \textbf{Point to Bottom - Final Embedding (10s):} [GESTURE TO BOTTOM] ``The result is this weighted conversation embedding. It reflects what \textit{you} were thinking about, not just what the AI said.''
-            \item \textbf{Bridge (5s):} ``That's the intuition. But did we just guess these numbers? No. We tested 63 configurations to validate every choice.''
+            \item \textbf{The Challenge (15s):} ``AI models are verbose. Full of boilerplate, helpful explanations, politeness. If you embed everything equally, the generic filler could drown out the actual signal---what you wanted to know.''
+            \item \textbf{Point to Diagram - Top Split (20s):} [GESTURE TO FLOWCHART] ``So we split each conversation. User prompts on the left---intuitively, this is the \textbf{signal}, your intent. AI responses on the right---that's \textbf{context}.''
+            \item \textbf{Point to Diagram - Weighting (15s):} ``We introduce a weighting parameter alpha. How much should we prioritize the user? Should we even prioritize the user at all?''
+            \item \textbf{Point to Bottom - Final Embedding (10s):} [GESTURE TO BOTTOM] ``The result is this weighted conversation embedding. But what's the right alpha?''
+            \item \textbf{Bridge (5s):} ``That's an empirical question. Let's test it.''
         \end{itemize}
     }
 \end{frame}
 
 %---------------------------------------------------------
-% 6. From Embeddings to Edges
-%---------------------------------------------------------
-\begin{frame}{From Embeddings to Edges}
-    \textbf{How do we decide which conversations connect?}
-
-    \vspace{0.15cm}
-
-    \begin{columns}[T]
-        % LEFT: Visual diagram
-        \column{0.5\textwidth}
-        \centering
-        \begin{tikzpicture}[scale=0.8, transform shape]
-            % Coordinate system
-            \draw[->, thick, gray!50] (0,0) -- (4.5,0) node[right, font=\tiny, gray] {};
-            \draw[->, thick, gray!50] (0,0) -- (0,4) node[above, font=\tiny, gray] {};
-
-            % Vector A (conversation 1)
-            \draw[->, line width=2pt, TheoreticalBlue] (0,0) -- (3.5,2.5);
-            \node[TheoreticalBlue, font=\small\bfseries] at (3.8,2.8) {$\vec{e}_1$};
-            \fill[TheoreticalBlue] (3.5,2.5) circle (3pt);
-
-            % Vector B (conversation 2) - similar direction
-            \draw[->, line width=2pt, PracticalGreen] (0,0) -- (3.2,3.2);
-            \node[PracticalGreen, font=\small\bfseries] at (3.0,3.6) {$\vec{e}_2$};
-            \fill[PracticalGreen] (3.2,3.2) circle (3pt);
-
-            % Angle arc
-            \draw[AccentOrange, thick] (1.2,0.86) arc[start angle=35, end angle=45, radius=1.5];
-            \node[AccentOrange, font=\scriptsize\bfseries] at (1.8,1.4) {$\phi$};
-
-            % Cosine similarity annotation
-            \node[draw=PrimaryBlue!50, fill=PrimaryBlue!5, rounded corners=3pt,
-                  font=\scriptsize, align=center, inner sep=4pt] at (2.2,0.4)
-                  {$\cos(\phi) = \vec{e}_1 \cdot \vec{e}_2$};
-
-            % Vector C (conversation 3) - different direction
-            \draw[->, line width=2pt, AccentOrange!70] (0,0) -- (0.8,3.5);
-            \node[AccentOrange!70, font=\small\bfseries] at (0.4,3.8) {$\vec{e}_3$};
-            \fill[AccentOrange!70] (0.8,3.5) circle (3pt);
-
-            % Large angle arc for dissimilar
-            \draw[gray, dashed] (0.6,0.43) arc[start angle=35, end angle=77, radius=0.75];
-
-            % Edge illustration
-            \draw[PracticalGreen!70, line width=2pt, dashed] (3.5,2.5) -- (3.2,3.2);
-            \node[PracticalGreen!80!black, font=\tiny\bfseries, fill=white, inner sep=1pt] at (3.6,3.0) {Edge!};
-
-            % No edge illustration
-            \node[gray, font=\tiny, align=center] at (1.8,3.2) {No edge\\(too different)};
-        \end{tikzpicture}
-
-        % RIGHT: Explanation
-        \column{0.5\textwidth}
-        \begin{block}{Cosine Similarity}
-            \begin{itemize}
-                \item Measures \textbf{angle} between vectors
-                \item Same direction $\rightarrow$ 1
-                \item Orthogonal $\rightarrow$ 0
-            \end{itemize}
-        \end{block}
-
-        \vspace{0.1cm}
-
-        \begin{alertblock}{Edge Formation Rule}
-            Connect $i$ and $j$ if: $\cos(\vec{e}_i, \vec{e}_j) \geq \theta$
-
-            \smallskip
-            Edge weight $=$ similarity score.
-        \end{alertblock}
-    \end{columns}
-
-    \vspace{0.3cm}
-    \centering
-    {\small \textbf{Two Parameters:} \;
-    $\alpha$ = user-to-AI weight (\textit{embed}) \quad
-    $\theta$ = similarity threshold (\textit{connect})}
-
-    \note{
-        \textbf{Slide 6: From Embeddings to Edges (45s)}
-        \begin{itemize}
-            \item \textbf{Opening (10s):} ``Now we have embeddings---vectors in high-dimensional space. How do we turn that into a network?''
-            \item \textbf{Point to Vectors (15s):} [GESTURE TO DIAGRAM] ``Cosine similarity measures the angle between two vectors. Same direction means similar content. We normalize to unit length, so this is just the dot product.''
-            \item \textbf{Point to Edge Rule (12s):} ``If similarity is at or above our threshold theta, we connect them. The edge weight is the similarity score itself---stronger connections for more similar conversations.''
-            \item \textbf{Two Parameters (8s):} ``So we have two key parameters: alpha controls how we embed, theta controls how we connect. Both need validation.''
-        \end{itemize}
-    }
-\end{frame}
-
-%---------------------------------------------------------
-% 7. Rigorous Parameter Tuning (2D Ablation Study)
+% 6. Rigorous Parameter Tuning (2D Ablation Study)
 %---------------------------------------------------------
 \begin{frame}{Rigorous Parameter Tuning: 2D Ablation Study}
     \textbf{We ran a 63-configuration parameter sweep to maximize \textit{Modularity} (Q).}
@@ -667,8 +573,8 @@
             \item \textbf{Weight Ratio ($\alpha$):}
             \begin{itemize}
                 \scriptsize
-                \item Peak at $\alpha=2:1$ (user voice prioritized)
-                \item \textbf{Result: Q = 0.750}
+                \item \textbf{Confirmed:} Peak at $\alpha=2:1$
+                \item User voice matters more $\rightarrow$ \textbf{Q = 0.750}
             \end{itemize}
         \end{enumerate}
 
@@ -679,10 +585,10 @@
     \note{
         \textbf{Slide 6: Rigorous Parameter Tuning (2 min)}
         \begin{itemize}
-            \item \textbf{Opening - Set Context (30s):} ``We didn't pick parameters arbitrarily. We ran a rigorous 63-configuration 2D ablation study to maximize modularity Q. Two key dimensions.''
-            \item \textbf{Point to TOP PLOT - Threshold Dimension (45s):} [GESTURE TO TOP PLOT] ``First: the similarity threshold. Look at this curve. Below 0.875, modularity crashes---everything connects into a hairball. We found a critical phase transition right at 0.875. Above it, the network fragments. We chose theta = 0.9 to stay just past the transition---filtering noise while maintaining connectivity. This is data-driven, not guesswork.''
-            \item \textbf{Point to BOTTOM PLOT - Weight Ratio (45s):} [GESTURE TO BOTTOM PLOT] ``Second dimension: user-to-AI weight ratio. This plot shows modularity peaks \textit{precisely} at 2:1. Not 1:1, not 3:1. Exactly 2:1. The data validated our intuition---users drive the intent. This ratio gives us the sharpest community structure: Q = 0.750.''
-            \item \textbf{Conclusion (10s):} ``This two-dimensional sweep ensures our findings aren't artifacts of parameter choices. They're robust.''
+            \item \textbf{Opening - Set Context (30s):} ``We tested 63 configurations to answer two questions: what threshold theta? And does user weighting actually help?''
+            \item \textbf{Point to TOP PLOT - Threshold Dimension (45s):} [GESTURE TO TOP PLOT] ``First: the similarity threshold. Look at this curve. Below 0.875, modularity crashes---everything connects into a hairball. We found a critical phase transition right at 0.875. We chose theta = 0.9---just past the transition. Data-driven, not guesswork.''
+            \item \textbf{Point to BOTTOM PLOT - Weight Ratio (45s):} [GESTURE TO BOTTOM PLOT] ``Second: the weight ratio. Remember our intuition that user voice should matter more? The data confirms it. Modularity peaks precisely at 2:1. Not 1:1, not 3:1. The user's intent really does drive the structure. Q = 0.750.''
+            \item \textbf{Conclusion (10s):} ``The ablation study serves two purposes: it confirms our intuition, and it finds the optimal ratio. These choices aren't arbitrary.''
         \end{itemize}
     }
 \end{frame}
@@ -691,43 +597,17 @@
 % 8. The Cognitive MRI: Network Visualization
 %---------------------------------------------------------
 \begin{frame}{The Cognitive MRI: 15 Knowledge Domains}
-    \begin{columns}
-        \column{0.7\textwidth}
-        \includegraphics[width=\textwidth, height=6.5cm, keepaspectratio]{cluster-vis-topics-better.png}
-
-        % Visual callouts for speaker notes guidance
-        \begin{tikzpicture}[remember picture, overlay]
-            % Callout for AI Theory (RIGHT SIDE blue cluster)
-            \node[font=\small\bfseries, text=blue!70!black, anchor=south west] at (6.5, 4.5) {AI Theory $\rightarrow$};
-
-            % Callout for Coding Projects (BOTTOM pink/green)
-            \node[font=\small\bfseries, text=green!60!black, anchor=north] at (4, 1.2) {$\downarrow$ Coding};
-        \end{tikzpicture}
-
-        \column{0.3\textwidth}
-        \textbf{Giant Component (single user):}
-        \begin{itemize}
-            \item \textbf{Nodes:} 449
-            \item \textbf{Edges:} 1,615
-            \item \textbf{Modularity:} 0.750
-            \item \textbf{Communities:} 15
-        \end{itemize}
-        \vspace{0.3cm}
-        {\small Clusters emerged \textbf{organically} -- no manual categorization.}
-
-        \vspace{0.2cm}
-        {\scriptsize Core-periphery: 25\% dense core \\ Avg. path: $\sim$6 hops}
-    \end{columns}
+    \centering
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{cluster-vis-topics-better.png}
 
     \note{
         \textbf{Slide 7: The Reveal (1.5 min)}
         \begin{itemize}
             \item \textbf{PAUSE FOR EFFECT (5s):} [ADVANCE SLIDE, LET IMAGE FILL SCREEN, SILENCE] \textit{Let them absorb the network.}
-            \item \textbf{Opening (10s):} ``This... is two years of thinking. Four hundred forty-nine conversations. The hidden structure---finally visible.'' [ANOTHER BEAT]
-            \item \textbf{The Numbers (20s):} ``449 conversations. 1,615 connections. 15 distinct communities. Modularity Q = 0.750---that's exceptionally high, meaning these communities have sharp, natural boundaries.''
-            \item \textbf{Point to Clusters - RIGHT SIDE (30s):} [GESTURE TO BLUE CLUSTER] ``Over here on the right, this dense blue cluster? AI Theory. Machine learning concepts, neural networks, probability. Tightly interconnected---lots of cross-references.''
-            \item \textbf{Point to Clusters - BOTTOM (30s):} [GESTURE TO PINK/GREEN] ``Down here, pink and green? Practical coding projects. Python debugging, software engineering, specific implementations. More isolated---different projects in separate silos.''
-            \item \textbf{Key Point (15s):} ``Here's what's critical: these colors, these communities---they were \textit{discovered} by the algorithm, not assigned by me. The Louvain algorithm found the natural fault lines in the knowledge space.''
+            \item \textbf{The Numbers (15s):} ``Hundreds of nodes, thousands of edges. Modularity 0.75. 15 communities---15 knowledge domains.''
+            \item \textbf{Labeling (15s):} ``I labeled these communities manually by inspecting each one. Though I did try having an LLM automate it, and it worked reasonably well.''
+            \item \textbf{Walk Through Communities (45s):} [GESTURE TO CLUSTERS] ``Let me walk you through the major domains. Up here, my master's thesis work in pure math. Next to it, stats and probability. Over here, ML and AI. Philosophy and alignment. Down here, coding projects---more spread out, different projects in their own clusters.''
+            \item \textbf{Key Point (10s):} ``The communities were \textit{discovered} by the algorithm. I just interpreted what they mean.''
         \end{itemize}
     }
 \end{frame}
@@ -876,21 +756,21 @@
         \textcolor{blue}{\textbf{1. Evolutionary Bridges}} \\
         { \scriptsize
         \textit{(e.g., Geometric Mean)}\\
-        Conversations that \textbf{drift} from one topic to another (Math $\rightarrow$ AI).
+        Conversations that \textbf{drift}: \textcolor{purple!70!black}{Stats} $\rightarrow$ \textcolor{green!60!black}{ML/AI} $\rightarrow$ \textcolor{orange!80!black}{Programming}.
         }
         \vspace{0.2cm}
 
         \textcolor{teal}{\textbf{2. Integrative Bridges}} \\
         { \scriptsize
-        \textit{(e.g., AI Ethics)}\\
-        Deliberate synthesis of two fields.
+        \textit{(e.g., mcts-code)}\\
+        Deliberate synthesis: \textcolor{green!60!black}{AI/ML} $\leftrightarrow$ \textcolor{orange!80!black}{Programming}.
         }
         \vspace{0.2cm}
 
         \textcolor{orange!80!black}{\textbf{3. Pure Bridges}} \\
         { \scriptsize
-        \textit{(e.g., CUDA Linux)}\\
-        \textbf{Cognitive Wormholes.} Rare shortcuts through conceptual space (e.g., Gaming $\leftrightarrow$ Coding).
+        \textit{(e.g., cuda-program-linux)}\\
+        \textbf{Rare shortcuts:} \textcolor{red!70!black}{Physics Sim} $\leftrightarrow$ \textcolor{blue!70!black}{Programming}.
         }
     \end{columns}
 
@@ -899,9 +779,9 @@
         \begin{itemize}
             \item \textbf{Opening Question (15s):} ``Second finding: How do ideas move between these isolated knowledge islands? The network reveals three distinct bridging mechanisms.''
             \item \textbf{Point to Visualization (15s):} [GESTURE TO LEFT IMAGE] ``This visualization shows high-betweenness nodes---the bridges. Notice they're not all the same type.''
-            \item \textbf{Type 1 - Evolutionary (30s):} ``First: Evolutionary Bridges. Conversations that \textit{drift}. The `Geometric Mean' conversation started in pure mathematics, drifted through probability theory, ended up in neural networks. Natural topic evolution. You didn't plan to cross domains---it just happened through the flow of ideas.''
-            \item \textbf{Type 2 - Integrative (30s):} ``Second: Integrative Bridges. Deliberate synthesis. `AI Ethics' explicitly brings together technical machine learning knowledge and philosophical frameworks. You're consciously building connections.''
-            \item \textbf{Type 3 - Pure Bridges (20s):} ``Third: Pure Bridges---we call them Cognitive Wormholes. A single conversation connecting otherwise distant clusters. Example: a Linux configuration question linking a gaming project to a work project. Rare, but powerful shortcuts through conceptual space.''
+            \item \textbf{Type 1 - Evolutionary (30s):} ``First: Evolutionary Bridges. Conversations that \textit{drift}. The `Geometric Mean' conversation started in statistics and probability, drifted through ML and AI concepts, ended up in practical programming. Natural topic evolution. You didn't plan to cross domains---it just happened through the flow of ideas.''
+            \item \textbf{Type 2 - Integrative (30s):} ``Second: Integrative Bridges. Deliberate synthesis. `mcts-code'---Monte Carlo Tree Search implementation---explicitly combines AI and ML concepts with practical programming. You're consciously building connections between theory and practice.''
+            \item \textbf{Type 3 - Pure Bridges (20s):} ``Third: Pure Bridges---rare shortcuts. A single conversation connecting otherwise distant clusters. `cuda-program-linux'---a Linux config question that happens to link my physics simulation work with practical programming. Rare, but powerful.''
             \item \textbf{Bridge (5s):} ``These bridges---these connections across domains---are precisely what makes the map useful. Here's why...''
         \end{itemize}
     }
@@ -990,12 +870,11 @@
     \end{columns}
 
     \note{
-        \textbf{Slide 10: Vision - Personal Knowledge Cartography (50s)}
+        \textbf{Slide 10: Vision (30s MAX - don't linger)}
         \begin{itemize}
-            \item \textbf{Opening Question (10s):} ``Why do we need this map?''
-            \item \textbf{Point to LEFT - The Problem (20s):} [GESTURE TO SCROLL GRAPHIC] ``Right now, this is how we interact with our AI conversations. An infinite scroll. Linear. Ephemeral. That brilliant insight you had three months ago? Buried somewhere in the timeline. Lost.''
-            \item \textbf{Point to ARROW - Transformation (5s):} [GESTURE TO ARROW] ``The Cognitive MRI transforms this...''
-            \item \textbf{Point to RIGHT - The Vision (15s):} [GESTURE TO MAP] ``...into this. A navigable map of your knowledge. Imagine asking: `Show me everywhere I discussed entropy.' The network lights up. You see how entropy connected to biology, to your coding projects, to AI ethics discussions. All the cross-connections you forgot about.''
+            \item \textbf{Quick Contrast (15s):} ``Why does this matter? Right now, your chat history is an infinite scroll. Buried. The map makes it navigable.''
+            \item \textbf{One Example (15s):} ``Imagine: `Show me everywhere I discussed entropy.' The network lights up---connections you forgot about.''
+            \item \textbf{Move On:} Don't elaborate. The visual speaks. Go to conclusion.
         \end{itemize}
     }
 \end{frame}
@@ -1013,7 +892,7 @@
             \vspace{0.02cm}
             \begin{itemize}
                 \scriptsize
-                \item \textbf{Method:} User-weighted embedding + Adaptive Thresholding.
+                \item \textbf{Method:} Tuned user-weighting (2:1) and link thresholds (for modularity).
                 \item \textbf{Topology:} Heterogeneous (Hubs vs. Trees).
                 \item \textbf{Bridges:} Evolutionary, Integrative, \& Pure.
             \end{itemize}
@@ -1088,9 +967,9 @@
             \vspace{0.02cm}
             \begin{itemize}
                 \scriptsize
-                \item \textbf{Scale:} Multi-user cohorts \& cross-platform analysis.
+                \item \textbf{Scale:} More users \& cross-platform analysis.
                 \item \textbf{Longitudinal:} Track knowledge evolution over time.
-                \item \textbf{Validation:} Permutation tests, retrieval benchmarks, user studies.
+                \item \textbf{Validation:} User studies.
             \end{itemize}
         \end{block}
     \end{columns}
@@ -1107,7 +986,7 @@
         \item \textbf{Opening Summary (20s):} ``We've demonstrated a proof of concept: LLM conversation logs can be transformed into meaningful cognitive maps showing the latent structure of knowledge.''
         \item \textbf{Point to LEFT - Key Findings (20s):} [GESTURE TO NETWORK IMAGE] ``User-weighted embeddings to capture intent. Heterogeneous topology---theoretical domains look fundamentally different from practical ones. A taxonomy of three bridge types. All validated through rigorous 2D ablation studies.''
         \item \textbf{Point to MIDDLE - Acknowledge Limits (10s):} [GESTURE TO N=1 ICON] ``This is N=1. A single user, single platform, snapshot in time. No ground truth validation yet.''
-        \item \textbf{Point to RIGHT - The Path Forward (10s):} [GESTURE TO GROWTH DIAGRAM] ``But those limitations point the way forward. Scale to cohorts. Track longitudinal evolution. Validate with permutation tests and retrieval benchmarks.''
+        \item \textbf{Point to RIGHT - The Path Forward (10s):} [GESTURE TO GROWTH DIAGRAM] ``But those limitations point the way forward. Scale to cohorts. Track longitudinal evolution. Validate with user studies.''
         \item \textbf{Closing (5s):} ``Thank you. Happy to take questions.''
     \end{itemize}
 }
@@ -1132,7 +1011,7 @@
         \scriptsize
         \item Algorithm: Louvain (resolution = 1.0)
         \item Modularity: Q = 0.750 (15 communities discovered)
-        \item Giant component: 449 nodes, 1,615 edges
+        \item Giant component: $\sim$500 nodes, $\sim$1,600 edges
     \end{itemize}
 
     \vspace{0.3cm}
@@ -1140,8 +1019,8 @@
     \textbf{Dataset Filtering}
     \begin{itemize}
         \scriptsize
-        \item Original dataset: 1,908 conversations (2 years)
-        \item After similarity threshold ($\theta=0.9$): 449 conversations in giant component
+        \item Original dataset: 1,908 conversations (2--3 years)
+        \item After similarity threshold ($\theta=0.9$): $\sim$500 conversations in giant component
         \item Isolated nodes filtered: conversations with no semantic neighbors
     \end{itemize}
 

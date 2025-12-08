@@ -297,7 +297,7 @@
         \begin{tikzpicture}[scale=0.7, transform shape]
             \draw[->, ultra thick, blue!50] (0,0) -- (0.8,0);
         \end{tikzpicture}\\
-        \tiny \textbf{Embed}\\ \textbf{\& Link}
+        \tiny \textbf{Embed}\\ \textbf{\& Link}\\ \textbf{($\theta$)}
 
         % --- RIGHT: THE SEMANTIC NETWORK ---
         \column{0.45\textwidth}
@@ -333,10 +333,11 @@
     % Negative spacing to pull the block up away from the footer
     \vspace{-0.2cm}
 
-    \begin{block}{The Insight}
+    \begin{block}{Building the Network}
         \footnotesize % Smaller font to ensure it fits
-        Distance in \textbf{Time} $\neq$ Distance in \textbf{Thought}.\\
-        The network reconnects ideas (e.g., two coding sessions months apart) that the linear log separates.
+        \textbf{Nodes:} Conversations as embeddings (LLM-based vectors). \quad
+        \textbf{Edges:} Cosine similarity $>$ threshold $\theta$.\\
+        Distance in \textbf{Time} $\neq$ Distance in \textbf{Thought}. The network reconnects what the timeline separates.
     \end{block}
 
     \note{
