@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+type: conference-paper
+title: "Cognitive MRI of AI Conversations: Analyzing AI Interactions through Semantic Embedding Networks"
+authors:
+  - family-names: Towell
+    given-names: Alex
+    email: atowell@siue.edu
+    affiliation: Southern Illinois University Edwardsville
+  - family-names: Matta
+    given-names: John
+    email: jmatta@siue.edu
+    affiliation: Southern Illinois University Edwardsville
+keywords:
+  - AI conversation
+  - complex networks
+  - semantic embedding
+  - conversation analysis
+  - knowledge exploration
+  - cognitive MRI
+repository-code: "https://github.com/queelius/chatgpt-complex-net"
+license: MIT
+conference:
+  name: "Complex Networks 2025"
+date-released: 2025-12-01

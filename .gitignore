@@ -57,6 +57,8 @@ Thumbs.db
 
 # Project directories
 dev
+venv/
+code/venv/
 
 # Uncomment to ignore PDFs (currently tracking them)
 # *.pdf
