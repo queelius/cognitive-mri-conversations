@@ -4,149 +4,114 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository Overview
 
-Academic research repository analyzing ChatGPT conversations through complex network analysis. Contains both the LaTeX papers/presentations and Python implementation for network generation and analysis of 449 ChatGPT conversations as semantic networks.
+Academic research repository for "Cognitive MRI of AI Conversations" — applying complex network analysis to ChatGPT conversation archives. Contains a published Springer conference paper (Complex Networks 2025) and an in-progress journal extension for PLOS Complex Systems.
+
+The core idea: transform linear conversation logs into semantic similarity networks, revealing knowledge communities, bridge conversations, and cognitive structure in AI-assisted knowledge exploration.
+
+## Active Work
+
+**Journal extension**: Extending the conference paper for PLOS Complex Systems special issue. Deadline: February 27, 2026. Requires 30%+ new material vs conference paper, <30% iThenticate similarity. Extension direction TBD — `comp-net-2025-journal/` contains a preliminary multi-layer approach (not committed to).
 
 ## Project Structure
 
 ```
 .
-├── class_paper/                       # Original class paper version
-│   ├── alex-chatgpt-complex-net.tex  # Main research paper
-│   ├── alex-pres-complex-networks.tex # Beamer presentation
-│   └── images/                        # 47+ network visualizations
-├── comp-net-2025-paper/              # Conference submission version
-│   ├── paper.tex                     # Updated paper for conference
-│   └── images/                        # Enhanced visualizations
-├── code/                              # Python implementation
-│   ├── cli.py                        # Main CLI interface
-│   ├── networks.py                   # Core network generation
-│   ├── rec-conv.py                   # Recommendation system
-│   ├── embedding/                    # Embedding generation modules
-│   ├── graph/                        # Graph processing utilities
-│   └── data/                         # Data processing utilities
-└── dev/                              # Research data
-    └── chatgpt-4-11-2025_json_no_embeddings/  # 1908 raw ChatGPT conversation logs (no embeddings)
-
+├── comp-net-2025-camera-ready/        # PUBLISHED conference paper (Springer)
+│   ├── paper/paper.tex                # Camera-ready paper (svproc.cls)
+│   ├── slides/slide-pretty.tex        # Conference presentation (Beamer)
+│   └── paper/images/                  # Figures for the paper
+├── comp-net-2025-journal/             # IN-PROGRESS journal extension
+│   ├── code/                          # Multi-layer network implementation
+│   │   ├── core_types.py              # Node/link type definitions (Episodic, Concept)
+│   │   ├── concept_extraction.py      # LLM-based concept extraction from clusters
+│   │   ├── instantiation_scoring.py   # Concept→Episode link scoring
+│   │   ├── association_network.py     # Concept↔Concept Jaccard similarity
+│   │   ├── hidden_connections.py      # Find concept-mediated episode pairs
+│   │   ├── multilayer_analysis.py     # Community detection, metrics
+│   │   └── visualization.py           # Network viz & export
+│   ├── paper/                         # LaTeX paper (empty, not yet started)
+│   └── data/                          # Generated data artifacts (empty)
+├── code/                              # Original pipeline implementation
+│   ├── cli.py                         # Main CLI (embeddings, edges, export)
+│   ├── networks.py                    # Network statistics & metrics
+│   ├── rec-conv.py                    # Conversation recommendation REPL
+│   ├── embedding/                     # LLM (Ollama) & TF-IDF embedding models
+│   ├── graph/                         # Edge generation, GPU acceleration, export
+│   ├── run_ablation_study.py          # 63-config ablation study runner
+│   └── analyze_ablation_*.py          # Ablation analysis & visualization scripts
+├── dev/                               # Research data
+│   ├── chatgpt-4-11-2025_json_no_embeddings/  # 1908 raw conversation JSONs
+│   └── ablation_study/                # Ablation study results & metadata
+└── conf-items/                        # Conference travel receipts (not research)
 ```
 
-## Common Development Commands
-
-### LaTeX Document Building
+## Building Papers
 
 ```bash
-# Build class paper version
-cd class_paper
-pdflatex alex-chatgpt-complex-net.tex
-bibtex alex-chatgpt-complex-net        # If references change
-pdflatex alex-chatgpt-complex-net.tex  # Second pass
-pdflatex alex-chatgpt-complex-net.tex  # Final pass
+# Camera-ready conference paper (Springer svproc class)
+cd comp-net-2025-camera-ready/paper
+pdflatex paper.tex && bibtex paper && pdflatex paper.tex && pdflatex paper.tex
 
-# Build conference paper version  
-cd comp-net-2025-paper
-pdflatex paper.tex
-bibtex paper                           # If references change
-pdflatex paper.tex                     # Second pass
-pdflatex paper.tex                     # Final pass
-
-# Build presentations
-pdflatex alex-pres-complex-networks.tex
-
-# Convert SVG images to PDF
-cd images && ./export-svg.sh
+# Conference slides
+cd comp-net-2025-camera-ready/slides
+pdflatex slide-pretty.tex
 ```
 
-### Python Code Commands
+## Python Pipeline (`code/`)
 
 ```bash
-# Install dependencies
 cd code
-pip install -r requirements.txt
+source venv/bin/activate   # Python 3.12 venv exists in code/venv/
 
-# Generate node embeddings (creates new directories with embeddings)
+# Full pipeline
 python cli.py node-embeddings --input-dir ../dev/chatgpt-4-11-2025_json_no_embeddings \
-    --method role-aggregate --embedding-method llm \
-    --output-dir ../dev/chatgpt-4-11-2025_json_llm
-
-# Generate edges (CPU)
-python cli.py edges --input-dir ./embeddings_json --output-file edges.json
-
-# Generate edges (GPU-accelerated)
+    --method role-aggregate --embedding-method llm --output-dir ../dev/chatgpt-json-llm
 python cli.py edges-gpu --input-dir ./embeddings_json --output-file edges.json
+python cli.py cut-off --input-file edges.json --output-file filtered.json --cutoff 0.9
+python cli.py export --nodes-dir ./embeddings_json --edges-file filtered.json --format gexf -o graph.gexf
 
-# Filter edges by similarity threshold
-python cli.py cut-off --input-file edges.json --output-file filtered_edges.json --cutoff 0.7
-
-# Export to Gephi format
-python cli.py export --nodes-dir ./embeddings_json --edges-file filtered_edges.json \
-    --format gexf --output-file graph.gexf
-
-# Run recommendation system
-python rec-conv.py --nodes-dir ./embeddings_json --csv nodes.csv --repl
-
-# Validate JSON conversation files
-python cli.py validate --input-dir ../dev/chatgpt-4-11-2025_json_simple
-
-# Normalize embeddings
-python cli.py normalize --input-dir ./embeddings_json
-
-# Clean embeddings from JSON files
-python cli.py clean --input-dir ./embeddings_json --embedding-type llm
+# Ablation study (63 configs: 9 weight ratios x 7 thresholds)
+python run_ablation_study.py
+python analyze_ablation_results.py
 ```
 
-## Architecture Overview
+Embeddings use Ollama API (`nomic-embed-text` model, 8192 token context). The pipeline weights user messages at 2:1 vs AI responses (validated by ablation study).
 
-### Python Implementation (`code/`)
+## Architecture: Conference Paper Pipeline
 
-The codebase implements a pipeline for converting conversational data into analyzable networks:
+1. **Embedding** → per-message embeddings via Ollama, role-aggregated (user/AI separate means), weighted combination, L2-normalized
+2. **Edge generation** → all-pairs cosine similarity, threshold filter (θ=0.9 optimal)
+3. **Network analysis** → Louvain community detection, centrality metrics, core-periphery decomposition
+4. **Export** → GEXF/GraphML for Gephi visualization
 
-1. **Embedding Generation** (`embedding/`):
-   - `llm_embedding_model.py`: LLM-based embeddings via Ollama API
-   - `tdidf_embedding_model.py`: Classical TF-IDF approach
-   - Role-based aggregation (user vs assistant messages)
-   - Automatic text chunking for long messages
+## Architecture: Journal Extension (Multi-Layer)
 
-2. **Graph Construction** (`graph/`):
-   - `edge_utils.py`: Cosine similarity-based edge generation
-   - `gpu-edge.py`: CUDA-accelerated edge computation
-   - `normalization.py`: Vector normalization utilities
-   - `export_utils.py`: Export to GEXF, GraphML, GML formats
+Adds a concept layer on top of the episodic (conversation) layer:
+- **Episodic nodes (E)**: Conversations with embeddings (from conference paper)
+- **Concept nodes (C)**: Abstract principles extracted via LLM from community clusters
+- **E—E links**: Cosine similarity (existing)
+- **C→E links**: Instantiation — concept exemplified by episode (LLM-scored)
+- **C—C links**: Association — Jaccard overlap of episode sets
+- **Hidden connections**: Episode pairs linked through shared concepts but not by direct embedding similarity
 
-3. **Analysis Tools**:
-   - `networks.py`: Core network statistics and metrics
-   - `rec-conv.py`: Interactive conversation recommendation
-   - `cli.py`: Unified command-line interface
+## Key Research Parameters
 
-### LaTeX Documents
-
-Two paper versions exist:
-- `class_paper/`: Original academic paper with comprehensive analysis
-- `comp-net-2025-paper/`: Conference-optimized version with ablation studies
-
-Key findings documented:
-- 15 distinct knowledge communities (0.75 modularity)
-- Three bridge conversation types (evolutionary, integrative, pure)
-- Non-standard degree distribution challenging scale-free assumptions
+| Parameter | Optimal Value | Source |
+|-----------|--------------|--------|
+| User:AI weight ratio (α) | 2:1 | Ablation study (63 configs) |
+| Similarity threshold (θ) | 0.9 | Phase transition analysis |
+| Network size | 449 nodes, 1615 edges | At θ=0.9 |
+| Communities | 15 (modularity 0.750) | Louvain method |
+| Embedding model | nomic-embed-text | 768-dim, 8192 token context |
 
 ## Key Dependencies
 
-### Python
-- networkx (3.4.2) - Graph analysis
-- scikit-learn (1.6.1) - TF-IDF embeddings
-- numpy (2.2.5) - Numerical operations
-- pandas (2.2.3) - Data manipulation
-- requests - Ollama API communication
-- tqdm - Progress visualization
-
-### LaTeX Packages
-- `svproc.cls` - Springer conference class
-- `algorithm2e` - Algorithm presentation
-- `tikz` - Network diagrams
-- `graphicx` - Image inclusion
-- `beamer` - Presentation framework
+- Python: networkx, scikit-learn, numpy, pandas, requests (Ollama API), tqdm
+- LaTeX: svproc.cls (Springer), llncs.cls (LNCS), beamer
+- Ollama running locally for embedding generation
 
 ## External References
 
-- Implementation repository: https://github.com/queelius/chatgpt-complex-net
-- Dataset: `dev/chatgpt-4-11-2025_json_no_embeddings/` contains 1908 raw ChatGPT conversation exports
-- Embeddings: Generated on-demand with different methods (LLM, TF-IDF), stored in separate directories
-- Images use both vector (SVG/PDF) and raster (PNG) formats for compatibility
+- Code repo: https://github.com/queelius/chatgpt-complex-net (DOI: 10.5281/zenodo.15314235)
+- Dataset: 1908 ChatGPT conversations (Dec 2022 – Apr 2025), 449 after θ=0.9 filtering
+- Conference: Complex Networks 2025, published in Springer proceedings
