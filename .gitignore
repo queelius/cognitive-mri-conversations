@@ -65,3 +65,6 @@ code/venv/
 
 # Ignore archive directories
 archive/
+
+# Git worktrees
+.worktrees/
