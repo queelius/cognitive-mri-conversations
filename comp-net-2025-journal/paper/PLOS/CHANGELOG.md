@@ -14,6 +14,11 @@ and was impossible to trace individual communities across time.
 - **Caption rewritten**: Now accurately describes horizontal ribbons, size encoding,
   birth markers, and key patterns (first-mover advantage, Reasoning-phase growth).
 - **Monthly resolution**: Uses full monthly data instead of quarterly aggregation.
+- **Prose/caption aligned to line plot (v0.3.2b)**: Updated prose paragraph and caption
+  to match the line-plot redesign. Community names now use descriptive labels from the
+  figure legend (Stats & R Packages, Deep Learning, etc.) instead of opaque tracked IDs
+  (C5, C21). Caption describes line plot with star birth markers rather than swimlane
+  ribbons. Both `paper.tex` and `paper-with-figs.tex` updated in sync.
 
 ---
 
