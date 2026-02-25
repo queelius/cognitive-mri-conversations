@@ -8,6 +8,7 @@ Derived data supporting the analyses in both papers of this research compendium.
 |-------|-------|------|
 | Temporal Evolution of Cognitive Knowledge Networks | PLOS Complex Systems | `temporal/` |
 | Cognitive MRI of AI Conversations | Complex Networks 2025 (Springer) | `ablation/` |
+| Both papers | — | `embeddings/`, `network/` |
 
 ## Temporal Analysis Data (`temporal/`)
 
@@ -160,19 +161,50 @@ Publication-quality figures (PDF only) from the ablation analysis:
 - `weight_ratio_analysis_t0.9.pdf` -- Effect of user:AI ratio at theta=0.9
 - `threshold_analysis_r2.0-1.0.pdf` -- Effect of threshold at 2:1 ratio
 
+## Embeddings (`embeddings/`)
+
+Per-conversation semantic embeddings for all 1,908 conversations, generated at the optimal 2:1 user:AI weight ratio. Messages have been stripped for privacy; only embeddings and metadata are included.
+
+Each JSON file contains:
+
+| Key | Description |
+|-----|-------------|
+| `title` | Conversation title |
+| `conversation_id` | OpenAI conversation UUID |
+| `model` | ChatGPT model used (when available) |
+| `created`, `updated` | Timestamps |
+| `embeddings.role_aggregate.vector` | 768-dim weighted embedding (user=2.0, ai=1.0) |
+| `embeddings.role_aggregate.per_role.user.vector` | 768-dim user-message embedding |
+| `embeddings.role_aggregate.per_role.assistant.vector` | 768-dim AI-response embedding |
+| `embeddings.role_aggregate.metadata` | Algorithm, weights, aggregation method |
+
+The per-role vectors are the raw Ollama outputs (model: `nomic-embed-text`) and are identical across all weight ratio configurations. Any weight ratio can be reconstructed by re-combining the per-role vectors.
+
+*Used in:* Both papers — these are the foundation for all network construction.
+
+## Primary Network (`network/`)
+
+### `edges_user2.0-ai1.0_t0.9.json`
+
+The edge list for the primary network used in both papers: 2:1 user:AI weight ratio, θ=0.9 similarity threshold. Each entry is `[node_a, node_b, cosine_similarity]`. Contains 601 connected nodes and 1,718 edges across all components. The giant component (449 nodes, 1,615 edges) analyzed in the conference paper is the largest connected component of this network.
+
+*Used in:* All network analyses in both papers.
+
 ## Conversation Corpus (`conversations/`)
 
 See `conversations/README.md` for details. The raw conversations are not yet included due to ongoing privacy sanitization. The derived data in `temporal/` and `ablation/` is sufficient to reproduce all published results.
 
 ## Regenerating Large Artifacts
 
-The following large intermediate artifacts (>3 GB total) are excluded from this repository but can be regenerated using the analysis pipeline:
+The following large intermediate artifacts are excluded from this repository but can be regenerated using the analysis pipeline:
 
 | Artifact | Size | Command |
 |----------|------|---------|
-| Embeddings | ~1.8 GB | `python cli.py node-embeddings ...` (requires Ollama) |
+| All 9 weight-ratio embeddings | ~1.8 GB | `python cli.py node-embeddings ...` (requires Ollama) |
 | Unfiltered edge lists | ~1.6 GB | `python cli.py edges-gpu ...` |
-| Filtered edge lists | ~98 MB | `python cli.py cut-off ...` |
+| All 63 filtered edge lists | ~98 MB | `python cli.py cut-off ...` |
+
+Note: The primary embedding configuration (2:1 ratio) is included in `embeddings/`, and the primary edge list is in `network/`. Only the remaining 8 configurations and 62 edge lists need regeneration.
 
 The pipeline code is available at [chatgpt-complex-net](https://github.com/queelius/chatgpt-complex-net) (DOI: [10.5281/zenodo.15314235](https://doi.org/10.5281/zenodo.15314235)).
 
@@ -185,4 +217,5 @@ The pipeline code is available at [chatgpt-complex-net](https://github.com/queel
 | Similarity threshold | θ = 0.9 |
 | Community detection | Louvain method |
 | Corpus | 1,908 ChatGPT conversations, Dec 2022 -- Apr 2025 |
-| Final network | 449 nodes, 1,615 edges, 15 communities (modularity 0.750) |
+| Full network | 601 nodes, 1,718 edges (all connected components) |
+| Giant component | 449 nodes, 1,615 edges, 15 communities (modularity 0.750) |
