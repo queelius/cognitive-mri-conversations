@@ -1,0 +1,36 @@
+{
+  "title": "Cognitive MRI of AI Conversations: Research Compendium",
+  "upload_type": "other",
+  "description": "Research compendium containing papers, temporal analysis code, and data for studying the evolution of knowledge networks in AI-assisted conversations. Accompanies publications at Complex Networks 2025 (Springer) and PLOS Complex Systems.",
+  "creators": [
+    {
+      "name": "Towell, Alexander",
+      "orcid": "0000-0001-6443-9897",
+      "affiliation": "Southern Illinois University Edwardsville"
+    },
+    {
+      "name": "Matta, John",
+      "orcid": "0000-0002-7666-1409",
+      "affiliation": "Southern Illinois University Edwardsville"
+    }
+  ],
+  "keywords": [
+    "complex networks",
+    "temporal networks",
+    "knowledge networks",
+    "AI conversation",
+    "semantic embedding",
+    "ChatGPT",
+    "network evolution",
+    "distributed cognition"
+  ],
+  "license": "MIT",
+  "related_identifiers": [
+    {
+      "identifier": "10.5281/zenodo.15314235",
+      "relation": "isSupplementedBy",
+      "resource_type": "software"
+    }
+  ],
+  "access_right": "open"
+}

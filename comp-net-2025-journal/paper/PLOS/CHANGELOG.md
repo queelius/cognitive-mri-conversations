@@ -1,5 +1,53 @@
 # CHANGELOG
 
+## v0.3.3 -- Critical + major review fixes (2026-02-25)
+
+Addresses findings from 8-agent papermill review. Fixes 3 critical issues,
+7 major issues, and several minor issues.
+
+### Critical fixes
+
+- **C1: Modularity timeline corrected**: "by mid-2023" was wrong (data shows 0.435
+  at mid-2023). Changed to "exceeding 0.6 by late 2023 and reaching ~0.75 by the
+  final snapshot" in abstract, introduction, discussion, results, and figure caption.
+  Distinguished two plateaus (~0.67 Nov 2023-Sep 2024, ~0.74 Oct 2024 onward).
+- **C2: Community death count**: 23 -> 25. Two tracked communities (IDs 20, 24)
+  vanished without recorded death events. Now 40 - 25 = 15 survivors, matching data.
+  Updated Table 2 and prose.
+- **C3: Z-score figure annotation**: Regenerated Figure 5(c). Annotation now reads
+  "Median z=8.4" (was 8.3 from stale data). Text was already correct.
+
+### Major fixes
+
+- **M4: PA confound caveat**: Added 2 sentences in Discussion acknowledging that the
+  densification paradox also applies to preferential attachment (high-degree nodes
+  span broad semantic space, mechanically attracting connections).
+- **M5: Conclusion softened**: "demonstrate" -> "suggest", "same macroscopic laws
+  that govern" -> "macroscopic laws resembling those governing",
+  "scale-invariant" -> "scale-bridging".
+- **M6: Newman (2001) misattribution**: Replaced with Jeong et al. (2003) for the
+  empirical sub-linear PA claim. Newman 2001 is about clustering, not PA measurement.
+- **M7: PA kernel definition**: "attachment probability (fraction receiving at least
+  one connection)" -> "attachment rate (mean new connections per node)" to match code.
+- **M8: Friends-of-friends metaphor**: Replaced social-network language with
+  domain-appropriate: "topically related conversations tend to share neighbors".
+- **M9: Author Summary rewritten**: Now emphasizes *why this matters* (implications,
+  broader significance) rather than repeating abstract findings. Distinct from abstract
+  per PLOS requirements.
+- **M10: Confidence intervals**: gamma = 1.405 +/- 0.022, beta = 0.763 +/- 0.074.
+  Both significantly different from 1.0.
+
+### Minor fixes
+
+- Fixed stray space before comma in structural evolution paragraph
+- Clustering claim: "stabilizes around 0.44 by mid-2023" -> "gradually converges to
+  ~0.44 by the final snapshot" (data shows it starts at 0.54 and declines)
+- Float specifiers: [!h] -> [htbp] in paper-with-figs.tex for proper placement
+- towell2025cognitive: added `note = {In press}` to fix double-period artifact
+- Regenerated all 7 temporal figures from current data
+
+---
+
 ## v0.3.2 -- Fig 4 redesign: swimlane community timeline (2026-02-25)
 
 Replaced the stacked bar chart (Fig 4) with a horizontal swimlane chart showing
