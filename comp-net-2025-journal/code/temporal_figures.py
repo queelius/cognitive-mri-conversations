@@ -187,129 +187,120 @@ def plot_structural_evolution(metrics_csv: str, output_path: str):
 
 def plot_community_timeline(tracked_json: str, events_json: str, output_path: str):
     """
-    Wide alluvial/timeline showing quarterly community flows, colored by topic.
-    Shows communities >= 10 nodes; smaller ones aggregated into 'Other'.
+    Horizontal swimlane chart showing community lifespans and size evolution.
+    Each significant community (max size >= 10) gets a horizontal ribbon whose
+    height at each month is proportional to community size. Colored by topic.
     """
     setup_style()
 
     with open(tracked_json) as f:
         tracked = json.load(f)
 
-    # Aggregate to quarters
-    quarterly = defaultdict(lambda: defaultdict(lambda: {'size': 0, 'topic': 'General'}))
+    # Build per-community monthly data
+    community_data = defaultdict(dict)  # {tid: {month: {size, topic}}}
     for tc in tracked:
-        year, month = tc['month'].split('-')
-        q = (int(month) - 1) // 3 + 1
-        quarter = f"{year}-Q{q}"
-        tid = tc['tracked_id']
-        # Keep the max size for each tracked_id in each quarter
-        if tc['size'] > quarterly[quarter][tid]['size']:
-            quarterly[quarter][tid] = {
-                'size': tc['size'],
-                'topic': tc['topic_dominant'],
-            }
+        community_data[tc['tracked_id']][tc['month']] = {
+            'size': tc['size'],
+            'topic': tc['topic_dominant'],
+        }
 
-    quarters = sorted(quarterly.keys())
-    if not quarters:
-        print("  Warning: no community data for timeline")
+    # Filter to significant communities (max size >= 10)
+    max_sizes = {}
+    for tid, months in community_data.items():
+        max_sizes[tid] = max(info['size'] for info in months.values())
+    significant = {tid for tid, ms in max_sizes.items() if ms >= 10}
+
+    if not significant:
+        print("  Warning: no significant communities for timeline")
         return
 
-    # Identify communities that reach >= 10 nodes at any point
-    significant_ids = set()
-    for q in quarters:
-        for tid, info in quarterly[q].items():
-            if info['size'] >= 10:
-                significant_ids.add(tid)
-
-    fig, ax = plt.subplots(figsize=(18, 8))
-
-    # Build stacked area data
-    x_positions = np.arange(len(quarters))
-
-    # For each quarter, get sizes of significant communities
-    # Sort communities by their average size (largest at bottom)
-    avg_sizes = {}
-    for tid in significant_ids:
-        sizes = [quarterly[q].get(tid, {'size': 0})['size'] for q in quarters]
-        avg_sizes[tid] = np.mean([s for s in sizes if s > 0])
-
-    sorted_ids = sorted(significant_ids, key=lambda t: avg_sizes.get(t, 0), reverse=True)
-
-    # Get topic for each tracked community (use most common topic)
+    # Get dominant topic per community (most common across months)
     tid_topics = {}
-    for tid in sorted_ids:
-        topics = []
-        for q in quarters:
-            if tid in quarterly[q] and quarterly[q][tid]['size'] > 0:
-                topics.append(quarterly[q][tid]['topic'])
-        if topics:
-            tid_topics[tid] = Counter(topics).most_common(1)[0][0]
-        else:
-            tid_topics[tid] = 'General'
+    for tid in significant:
+        topics = [info['topic'] for info in community_data[tid].values()]
+        tid_topics[tid] = Counter(topics).most_common(1)[0][0]
 
-    # Build size matrix
-    size_matrix = np.zeros((len(sorted_ids), len(quarters)))
-    for i, tid in enumerate(sorted_ids):
-        for j, q in enumerate(quarters):
-            size_matrix[i, j] = quarterly[q].get(tid, {'size': 0})['size']
+    # Sort by birth date (earliest first at top), then by max size desc
+    def sort_key(tid):
+        birth = min(community_data[tid].keys())
+        return (birth, -max_sizes[tid])
+    sorted_ids = sorted(significant, key=sort_key)
 
-    # Add "Other" row (all remaining communities)
-    other_sizes = np.zeros(len(quarters))
-    for j, q in enumerate(quarters):
-        total_significant = sum(quarterly[q].get(tid, {'size': 0})['size'] for tid in significant_ids)
-        total_all = sum(info['size'] for info in quarterly[q].values())
-        other_sizes[j] = max(0, total_all - total_significant)
+    # All months in the dataset
+    all_months = sorted({m for tc in tracked for m in [tc['month']]})
+    month_dates = [month_to_date(m) for m in all_months]
 
-    # Stacked bar chart (more readable than area for quarterly data)
-    bottoms = np.zeros(len(quarters))
-    legend_handles = {}
+    # Layout constants
+    row_height = 1.0
+    max_ribbon = 0.42  # max half-height of ribbon (leaves gap between rows)
+    global_max_size = max(max_sizes[tid] for tid in sorted_ids)
 
-    for i, tid in enumerate(sorted_ids):
+    fig, ax = plt.subplots(figsize=(14, 0.7 * len(sorted_ids) + 2))
+
+    # Phase shading first (behind everything)
+    add_phase_shading(ax)
+
+    for row, tid in enumerate(sorted_ids):
+        y_center = len(sorted_ids) - 1 - row  # earliest at top
+        months_data = community_data[tid]
+        active_months = sorted(months_data.keys())
+
+        # Build arrays for the ribbon
+        dates = [month_to_date(m) for m in active_months]
+        sizes = [months_data[m]['size'] for m in active_months]
+
+        # Scale ribbon height: size -> half-height
+        half_heights = [max_ribbon * (s / global_max_size) for s in sizes]
+
         topic = tid_topics[tid]
         color = TOPIC_COLORS.get(topic, '#7f7f7f')
-        # Slightly vary shade for different communities with same topic
-        hsv = plt.cm.colors.rgb_to_hsv(plt.cm.colors.to_rgb(color))
-        hsv[1] = max(0.2, hsv[1] - 0.1 * (i % 3))
-        hsv[2] = min(1.0, hsv[2] + 0.05 * (i % 3))
-        varied_color = plt.cm.colors.hsv_to_rgb(hsv)
 
-        bars = ax.bar(x_positions, size_matrix[i], bottom=bottoms,
-                      color=varied_color, edgecolor='white', linewidth=0.5,
-                      label=f'C{tid} ({topic})')
-        bottoms += size_matrix[i]
+        # Draw ribbon as filled area between y_center ± half_height
+        upper = [y_center + h for h in half_heights]
+        lower = [y_center - h for h in half_heights]
+        ax.fill_between(dates, lower, upper, color=color, alpha=0.8,
+                        edgecolor='white', linewidth=0.5)
 
+        # Birth marker
+        ax.plot(dates[0], y_center, '*', color=color, markersize=8,
+                markeredgecolor='black', markeredgewidth=0.5, zorder=5)
+
+        # Right-side label: topic (max size)
+        label = f"{topic} ({max_sizes[tid]})"
+        ax.text(month_to_date('2025-05'), y_center, label,
+                va='center', ha='left', fontsize=8, color=color, fontweight='bold')
+
+    # Configure axes
+    ax.set_yticks(range(len(sorted_ids)))
+    ax.set_yticklabels([f'C{tid}' for tid in reversed(sorted_ids)], fontsize=8)
+    ax.set_ylim(-0.7, len(sorted_ids) - 0.3)
+
+    ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m'))
+    ax.xaxis.set_major_locator(mdates.MonthLocator(interval=3))
+    plt.setp(ax.get_xticklabels(), rotation=45, ha='right')
+
+    # Extend x-axis slightly for labels
+    ax.set_xlim(month_to_date('2022-12'), month_to_date('2025-08'))
+
+    # Phase labels at top
+    add_phase_labels(ax)
+
+    # Topic legend (deduplicated)
+    legend_handles = {}
+    for tid in sorted_ids:
+        topic = tid_topics[tid]
         if topic not in legend_handles:
-            legend_handles[topic] = mpatches.Patch(color=color, label=topic)
+            legend_handles[topic] = mpatches.Patch(
+                color=TOPIC_COLORS.get(topic, '#7f7f7f'), label=topic)
+    # Add birth marker to legend
+    from matplotlib.lines import Line2D
+    birth_handle = Line2D([0], [0], marker='*', color='gray', markersize=8,
+                          markeredgecolor='black', markeredgewidth=0.5,
+                          linestyle='None', label='Birth month')
+    handles = list(legend_handles.values()) + [birth_handle]
+    ax.legend(handles=handles, loc='lower right', fontsize=9, ncol=2)
 
-    # Add "Other"
-    if other_sizes.sum() > 0:
-        ax.bar(x_positions, other_sizes, bottom=bottoms,
-               color='#d0d0d0', edgecolor='white', linewidth=0.5, label='Other (<10 nodes)')
-        legend_handles['Other'] = mpatches.Patch(color='#d0d0d0', label='Other (<10 nodes)')
-
-    ax.set_xticks(x_positions)
-    ax.set_xticklabels(quarters, rotation=45, ha='right')
-    ax.set_ylabel('Community Size (nodes)')
-    ax.set_title('Community Evolution Over Time (Quarterly)', fontsize=14, fontweight='bold')
-
-    # Phase shading using quarter positions
-    phase_quarters = {
-        'Phase 1: Early': ('2022-Q4', '2023-Q1'),
-        'Phase 2: Exploration': ('2023-Q1', '2023-Q3'),
-        'Phase 3: Established': ('2023-Q3', '2024-Q1'),
-        'Phase 4: GPT-4o': ('2024-Q1', '2024-Q3'),
-        'Phase 5: Reasoning': ('2024-Q4', '2025-Q2'),
-    }
-    for (pname, (ps, pe)), (_, _, _, color) in zip(phase_quarters.items(), PHASES):
-        si = quarters.index(ps) if ps in quarters else 0
-        ei = quarters.index(pe) if pe in quarters else len(quarters) - 1
-        ax.axvspan(si - 0.5, ei + 0.5, alpha=0.15, color=color, zorder=0)
-
-    # Legend
-    handles = list(legend_handles.values())
-    ax.legend(handles=handles, loc='upper left', ncol=2, fontsize=9,
-              bbox_to_anchor=(0, 1))
-
+    ax.set_title('Community Lifecycles', fontsize=14, fontweight='bold')
     plt.tight_layout()
     _save_figure(fig, output_path, 'community_timeline')
 

@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## v0.3.2 -- Fig 4 redesign: swimlane community timeline (2026-02-25)
+
+Replaced the stacked bar chart (Fig 4) with a horizontal swimlane chart showing
+community lifecycles. The old design had many indistinguishable gray/brown segments
+and was impossible to trace individual communities across time.
+
+### Changes
+
+- **New swimlane layout**: Each significant community (max size ≥ 10 nodes) gets a
+  horizontal ribbon. Ribbon width ∝ community size at each month. Color = dominant
+  topic. Stars mark birth months. Communities ordered by birth date (earliest at top).
+- **Caption rewritten**: Now accurately describes horizontal ribbons, size encoding,
+  birth markers, and key patterns (first-mover advantage, Reasoning-phase growth).
+- **Monthly resolution**: Uses full monthly data instead of quarterly aggregation.
+
+---
+
 ## v0.3.1 -- Figure-text audit fixes (2026-02-25)
 
 Post-audit pass fixing text-image discrepancies found during figure-by-figure review.
