@@ -82,15 +82,15 @@ def add_phase_labels(ax, y_pos=0.97):
 # ─── Figure 1: Growth Curves ─────────────────────────────────────────
 
 def plot_growth_curves(metrics_csv: str, output_path: str):
-    """2x2: Cumulative nodes+bar, cumulative edges+bar, density, edges/node."""
+    """1x3: Cumulative nodes+bar, cumulative edges+bar, edges/node."""
     setup_style()
     df = pd.read_csv(metrics_csv)
     dates = [month_to_date(m) for m in df['month']]
 
-    fig, axes = plt.subplots(2, 2, figsize=(12, 8))
+    fig, axes = plt.subplots(1, 3, figsize=(16, 5))
 
-    # (0,0) Cumulative nodes with monthly bar
-    ax = axes[0, 0]
+    # (0) Cumulative nodes with monthly bar
+    ax = axes[0]
     add_phase_shading(ax)
     ax.plot(dates, df['total_nodes'], 'b-', linewidth=2, label='Total')
     ax.plot(dates, df['connected_nodes'], 'r-', linewidth=2, label='Connected')
@@ -101,8 +101,8 @@ def plot_growth_curves(metrics_csv: str, output_path: str):
     ax.legend(loc='upper left')
     ax.set_title('(a) Node Accumulation')
 
-    # (0,1) Cumulative edges with monthly bar
-    ax = axes[0, 1]
+    # (1) Cumulative edges with monthly bar
+    ax = axes[1]
     add_phase_shading(ax)
     ax.plot(dates, df['edges'], 'r-', linewidth=2)
     ax2 = ax.twinx()
@@ -111,19 +111,12 @@ def plot_growth_curves(metrics_csv: str, output_path: str):
     ax2.set_ylabel('New Edges/Month', color='coral')
     ax.set_title('(b) Edge Accumulation')
 
-    # (1,0) Density
-    ax = axes[1, 0]
-    add_phase_shading(ax)
-    ax.plot(dates, df['density'], 'g-', linewidth=2)
-    ax.set_ylabel('Network Density')
-    ax.set_title('(c) Density Evolution')
-
-    # (1,1) Edges per node
-    ax = axes[1, 1]
+    # (2) Edges per node (connectivity ratio)
+    ax = axes[2]
     add_phase_shading(ax)
     ax.plot(dates, df['edges_per_node'], 'm-', linewidth=2)
     ax.set_ylabel('Edges per Connected Node')
-    ax.set_title('(d) Connectivity Ratio')
+    ax.set_title('(c) Connectivity Ratio')
 
     for ax in axes.flat:
         ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m'))
