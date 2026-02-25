@@ -38,10 +38,15 @@ The core idea: transform linear conversation logs into semantic similarity netwo
 │   ├── graph/                         # Edge generation, GPU acceleration, export
 │   ├── run_ablation_study.py          # 63-config ablation study runner
 │   └── analyze_ablation_*.py          # Ablation analysis & visualization scripts
-├── dev/                               # Research data
-│   ├── chatgpt-4-11-2025_json_no_embeddings/  # 1908 raw conversation JSONs
-│   └── ablation_study/                # Ablation study results & metadata
-└── conf-items/                        # Conference travel receipts (not research)
+├── data/                              # Curated reproducibility data (tracked)
+│   ├── embeddings/                    # 1908 conversation embeddings (2:1 ratio, no messages)
+│   ├── network/                       # Primary edge list (601 nodes, 1718 edges)
+│   ├── temporal/                      # Journal paper: monthly network snapshots
+│   ├── ablation/                      # Conference paper: 63-config parameter study
+│   └── conversations/                 # Placeholder (privacy sanitization in progress)
+└── dev/                               # Research data (gitignored)
+    ├── chatgpt-4-11-2025_json_no_embeddings/  # 1908 raw conversation JSONs
+    └── ablation_study/                # Ablation study results & metadata
 ```
 
 ## Building Papers
@@ -107,7 +112,8 @@ Adds a concept layer on top of the episodic (conversation) layer:
 |-----------|--------------|--------|
 | User:AI weight ratio (α) | 2:1 | Ablation study (63 configs) |
 | Similarity threshold (θ) | 0.9 | Phase transition analysis |
-| Network size | 449 nodes, 1615 edges | At θ=0.9 |
+| Network size (full) | 601 nodes, 1718 edges | At θ=0.9 (journal paper) |
+| Network size (giant component) | 449 nodes, 1615 edges | At θ=0.9 (conference paper) |
 | Communities | 15 (modularity 0.750) | Louvain method |
 | Embedding model | nomic-embed-text | 768-dim, 8192 token context |
 
@@ -120,5 +126,5 @@ Adds a concept layer on top of the episodic (conversation) layer:
 ## External References
 
 - Code repo: https://github.com/queelius/chatgpt-complex-net (DOI: 10.5281/zenodo.15314235)
-- Dataset: 1908 ChatGPT conversations (Dec 2022 – Apr 2025), 449 after θ=0.9 filtering
+- Dataset: 1908 ChatGPT conversations (Dec 2022 – Apr 2025), 601 connected at θ=0.9 (449 in giant component)
 - Conference: Complex Networks 2025, published in Springer proceedings

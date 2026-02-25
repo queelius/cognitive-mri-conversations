@@ -29,6 +29,8 @@ This repository transforms sequential AI conversation logs into semantic similar
 │   ├── paper/                       # Camera-ready paper
 │   └── slides/                      # Conference presentation (Beamer)
 ├── data/                            # Reproducibility data for both papers
+│   ├── embeddings/                  # 1,908 conversation embeddings (2:1 ratio)
+│   ├── network/                     # Primary edge list (449 nodes, 1,615 edges)
 │   ├── temporal/                    # Journal paper: monthly network snapshots
 │   ├── ablation/                    # Conference paper: 63-config parameter study
 │   └── conversations/               # Placeholder (sanitization in progress)
