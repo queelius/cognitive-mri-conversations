@@ -1,5 +1,30 @@
 # CHANGELOG
 
+## v0.3.1 -- Figure-text audit fixes (2026-02-25)
+
+Post-audit pass fixing text-image discrepancies found during figure-by-figure review.
+
+### Fixes
+
+- **Densification figure**: Changed annotation and reference line from α to γ to match
+  paper notation. Regenerated `densification_law.pdf`.
+- **Preferential attachment z-score**: Corrected median z-score from 8.5 to 8.4 in prose
+  (actual data: 8.38). Figure legend was already dynamically computed and correct.
+- **Preferential attachment caption**: Changed "black" to "blue" to match the actual line
+  color in panel (b).
+- **Community count caption**: Removed "gradually" — the figure shows step jumps, not
+  gradual growth.
+- **Bibliography**: Added publisher field to `chatgpt-complex-net` entry to reduce BibTeX
+  warnings.
+
+### Verified correct (no change needed)
+
+- Clustering coefficient prose ("around 0.44") matches data (final: 0.439)
+- Transitivity prose ("around 0.44") matches data (final: 0.436)
+- Zero undefined references, zero overfull boxes
+
+---
+
 ## v0.3 -- Round 2 revisions (2026-02-25)
 
 Addresses substantive feedback from co-author John Matta after full paper read-through.

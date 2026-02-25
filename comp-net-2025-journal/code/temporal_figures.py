@@ -501,7 +501,7 @@ def plot_model_era_comparison(era_csv: str, output_path: str):
 # ─── Figure 7: Densification Law ─────────────────────────────────────
 
 def plot_densification_law(densification_json: str, output_path: str):
-    """Log-log edges vs nodes, power law fit, alpha annotation."""
+    """Log-log edges vs nodes, power law fit, gamma annotation."""
     setup_style()
 
     with open(densification_json) as f:
@@ -525,10 +525,10 @@ def plot_densification_law(densification_json: str, output_path: str):
 
     # Reference lines
     n_ref = np.logspace(np.log10(nodes.min()), np.log10(nodes.max()), 50)
-    # Linear reference (alpha=1)
+    # Linear reference (gamma=1)
     scale_1 = edges.mean() / nodes.mean()
     ax.plot(n_ref, scale_1 * n_ref, ':', color='gray', alpha=0.5,
-            label='$\\alpha=1$ (constant avg degree)')
+            label='$\\gamma=1$ (constant avg degree)')
 
     ax.set_xscale('log')
     ax.set_yscale('log')
@@ -537,9 +537,9 @@ def plot_densification_law(densification_json: str, output_path: str):
     ax.set_title('Densification Law: Super-linear Edge Growth', fontsize=14, fontweight='bold')
     ax.legend(fontsize=11, loc='upper left')
 
-    # Annotate alpha
+    # Annotate gamma
     ax.text(0.95, 0.05,
-            f"$\\alpha = {dens['alpha']:.3f}$\nSuper-linear\ndensification",
+            f"$\\gamma = {dens['alpha']:.3f}$\nSuper-linear\ndensification",
             transform=ax.transAxes, ha='right', va='bottom', fontsize=12,
             bbox=dict(boxstyle='round,pad=0.5', facecolor='lightyellow', alpha=0.8))
 
