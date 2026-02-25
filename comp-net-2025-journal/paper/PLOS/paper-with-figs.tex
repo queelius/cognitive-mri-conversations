@@ -126,11 +126,11 @@ John Matta\textsuperscript{1}
 \section*{Abstract}
 % ============================================================
 
-How does a person's knowledge landscape evolve through sustained AI-assisted conversation? We previously introduced a \emph{cognitive MRI} methodology that transforms linear conversation logs into semantic similarity networks, revealing knowledge communities and bridge conversations in a static snapshot. Here we extend this analysis to the temporal domain, tracking how the network grows over 29~months (December 2022 -- April 2025) across 1{,}908 ChatGPT conversations. We construct cumulative monthly snapshots and discover several evolution patterns characteristic of real-world complex networks. The network exhibits \emph{super-linear densification} ($\gamma = 1.405$, $R^2 = 0.993$), meaning knowledge exploration accelerates as the network grows. New conversations attach to existing topics via \emph{sub-linear preferential attachment} ($\beta = 0.763$, $R^2 = 0.914$), indicating that popular topics attract disproportionate attention but less aggressively than in scale-free models. Community structure stabilizes early (modularity $\approx 0.75$ by mid-2023) and persists through subsequent growth, with 40 distinct communities tracked through birth, continuation, and death events. Bridge conversations, critical cross-domain connectors, emerge at identifiable moments and maintain their structural role once established. Comparison across model eras (GPT-3.5 through GPT-4.5) reveals that AI model capabilities shape sub-network topology. These findings suggest that individual AI-assisted knowledge exploration self-organizes according to the same macroscopic laws observed in collective knowledge systems such as citation and collaboration networks, but arising through a different mechanism: the progressive revelation of latent semantic structure rather than active social tie formation. This scale-bridging parallel offers both theoretical insight into distributed cognition and practical implications for knowledge management systems.
+How does a person's knowledge landscape evolve through sustained AI-assisted conversation? We previously introduced a \emph{cognitive MRI} methodology that transforms linear conversation logs into semantic similarity networks, revealing knowledge communities and bridge conversations in a static snapshot. Here we extend this analysis to the temporal domain, tracking how the network grows over 29~months (December 2022 -- April 2025) across 1{,}908 ChatGPT conversations. We construct cumulative monthly snapshots and discover several evolution patterns characteristic of real-world complex networks. The network exhibits \emph{super-linear densification} ($\gamma = 1.405$, $R^2 = 0.993$), meaning knowledge exploration accelerates as the network grows. New conversations attach to existing topics via \emph{sub-linear preferential attachment} ($\beta = 0.763$, $R^2 = 0.914$), indicating that popular topics attract disproportionate attention but less aggressively than in scale-free models. Community structure stabilizes early (modularity exceeding 0.6 by late 2023 and reaching $\approx 0.75$ by the final snapshot) and persists through subsequent growth, with 40 distinct communities tracked through birth, continuation, and death events. Bridge conversations, critical cross-domain connectors, emerge at identifiable moments and maintain their structural role once established. Comparison across model eras (GPT-3.5 through GPT-4.5) reveals that AI model capabilities shape sub-network topology. These findings suggest that individual AI-assisted knowledge exploration self-organizes according to the same macroscopic laws observed in collective knowledge systems such as citation and collaboration networks, but arising through a different mechanism: the progressive revelation of latent semantic structure rather than active social tie formation. This scale-bridging parallel offers both theoretical insight into distributed cognition and practical implications for knowledge management systems.
 
 
 \section*{Author summary}
-We analyzed one person's archive of 1,908 ChatGPT conversations spanning 29 months to understand how knowledge exploration through AI unfolds over time. By treating conversations as nodes in a network (connected when they discuss similar topics) we tracked how this ``knowledge map'' grows and changes. We found that the network follows the same growth laws seen in much larger systems like scientific citation networks: connections accumulate faster than new topics appear (densification), popular topics attract more follow-up conversations (preferential attachment), and the major knowledge communities stabilize early and persist. These patterns suggest that an individual exploring knowledge through AI conversation self-organizes their inquiry in the same way that entire scientific communities organize collective knowledge, a striking parallel between individual and collective cognition. Our approach offers a new way to visualize and understand how people use AI for knowledge exploration, with implications for designing better conversation archival and knowledge management tools.
+Every day, millions of people use AI chatbots to explore ideas, learn new topics, and solve problems. Over months of use, these conversations accumulate into a personal archive, but what structure, if any, lies hidden in that archive? We developed a method to find out. By connecting conversations that discuss similar topics into a network and watching how that network grows over time, we can see patterns that are invisible in a flat chat history. Surprisingly, the growth patterns we found in one person's 29-month ChatGPT archive mirror those seen in much larger knowledge systems like scientific citation networks, suggesting that individual curiosity may follow the same organizational principles as collective knowledge production. Our approach could help design smarter conversation archives that surface hidden connections between past and present inquiries, turning a passive chat log into an active tool for knowledge discovery.
 
 \linenumbers
 
@@ -158,7 +158,7 @@ Our analysis reveals that this single-user knowledge network exhibits evolution 
 \begin{itemize}
   \item Super-linear densification ($\gamma = 1.405$, $R^2 = 0.993$), where edges grow faster than nodes, meaning the network becomes proportionally denser over time.
   \item Sub-linear preferential attachment ($\beta = 0.763$, $R^2 = 0.914$), where high-degree nodes attract new connections disproportionately, but less aggressively than in the Barab\'asi-Albert model.
-  \item Early community stabilization, with modularity reaching $\sim$0.75 by mid-2023 and remaining stable through 18 subsequent months of growth, despite the network tripling in size.
+  \item Early community stabilization, with modularity exceeding 0.6 by late 2023 and stabilizing near 0.75, persisting through continued growth despite the network tripling in size.
   \item Bridge persistence, where once a conversation achieves bridge status (top-5\% betweenness centrality), it maintains that role throughout the observation period.
   \item Model era effects, with sub-networks from different LLM eras exhibiting distinct topological signatures.
 \end{itemize}
@@ -173,9 +173,9 @@ These findings contribute to temporal network theory by providing a new empirica
 
 \subsection*{Temporal network evolution}
 
-The study of how networks evolve over time has revealed universal patterns across diverse domains. Holme and Saram\"aki \cite{holme2012temporal} provide a comprehensive review of temporal network analysis, distinguishing between \emph{contact sequences} (discrete events) and \emph{interval graphs} (persistent connections). Our cumulative snapshot approach falls into the latter category: once a conversation enters the network, it persists permanently, making the network monotonically non-decreasing. This models the reality that knowledge, once explored, remains part of one's cognitive landscape.
+The study of how networks evolve over time has revealed universal patterns across diverse domains. Holme and Saram\"aki~\cite{holme2012temporal} provide a comprehensive review of temporal network analysis, distinguishing between \emph{contact sequences} (discrete events) and \emph{interval graphs} (persistent connections). Our cumulative snapshot approach falls into the latter category: once a conversation enters the network, it persists permanently, making the network monotonically non-decreasing. This models the reality that knowledge, once explored, remains part of one's cognitive landscape.
 
-Dorogovtsev and Mendes \cite{dorogovtsev2002evolution} survey evolution models for growing networks, identifying preferential attachment, fitness-based growth, and aging as key mechanisms. Albert and Barab\'asi \cite{albert2002statistical} provide a broader statistical mechanics perspective on complex network evolution, including the emergence of scale-free properties and small-world characteristics during growth.
+Dorogovtsev and Mendes~\cite{dorogovtsev2002evolution} survey evolution models for growing networks, identifying preferential attachment, fitness-based growth, and aging as key mechanisms. Albert and Barab\'asi~\cite{albert2002statistical} provide a broader statistical mechanics perspective on complex network evolution, including the emergence of scale-free properties and small-world characteristics during growth.
 
 \subsection*{Densification laws}
 
@@ -183,21 +183,21 @@ Leskovec et al.\ \cite{leskovec2005graphs} discovered that many real-world netwo
 
 \subsection*{Preferential attachment}
 
-Barab\'asi and Albert \cite{barabasi1999emergence} proposed preferential attachment as a mechanism for generating scale-free networks: new nodes connect preferentially to high-degree existing nodes with probability $\Pi(k) \propto k^\beta$. When $\beta = 1$, this produces power-law degree distributions. Jeong et al.\ \cite{jeong2003measuring} developed methods to measure preferential attachment empirically, finding linear ($\beta \approx 1$) attachment in citation and collaboration networks. Subsequent work has shown that many real networks exhibit \emph{sub-linear} attachment ($\beta < 1$), where high-degree nodes attract connections but not as strongly as the pure model predicts~\cite{newman2001clustering}. Sub-linear attachment produces networks with more moderate degree heterogeneity than pure scale-free networks.
+Barab\'asi and Albert~\cite{barabasi1999emergence} proposed preferential attachment as a mechanism for generating scale-free networks: new nodes connect preferentially to high-degree existing nodes with probability $\Pi(k) \propto k^\beta$. When $\beta = 1$, this produces power-law degree distributions. Jeong et al.\ \cite{jeong2003measuring} developed methods to measure preferential attachment empirically, finding linear ($\beta \approx 1$) attachment in citation and collaboration networks. Subsequent work has shown that many real networks exhibit \emph{sub-linear} attachment ($\beta < 1$), where high-degree nodes attract connections but not as strongly as the pure model predicts~\cite{jeong2003measuring}. Sub-linear attachment produces networks with more moderate degree heterogeneity than pure scale-free networks.
 
 \subsection*{Community dynamics}
 
-Palla et al.\ \cite{palla2007quantifying} pioneered the study of community evolution in temporal networks, tracking overlapping communities in mobile phone and collaboration networks. They identified key lifecycle events: birth, growth, contraction, merging, splitting, and death. Greene et al.\ \cite{greene2010tracking} proposed event-based frameworks for tracking non-overlapping communities across snapshots using set overlap measures. Mucha et al.\ \cite{mucha2010community} introduced multiscale community detection for time-dependent networks using generalized modularity optimization. Rossetti and Cazabet \cite{rossetti2018community} survey the broader field of dynamic community discovery, cataloging approaches from incremental methods to tensor decompositions.
+Palla et al.\ \cite{palla2007quantifying} pioneered the study of community evolution in temporal networks, tracking overlapping communities in mobile phone and collaboration networks. They identified key lifecycle events: birth, growth, contraction, merging, splitting, and death. Greene et al.\ \cite{greene2010tracking} proposed event-based frameworks for tracking non-overlapping communities across snapshots using set overlap measures. Mucha et al.\ \cite{mucha2010community} introduced multiscale community detection for time-dependent networks using generalized modularity optimization. Rossetti and Cazabet~\cite{rossetti2018community} survey the broader field of dynamic community discovery, cataloging approaches from incremental methods to tensor decompositions.
 
 A key finding across this literature is that community structure in growing networks tends to \emph{stabilize}: after an initial transient period, the mesoscale organization persists even as the microscale (individual nodes and edges) continues to change~\cite{palla2007quantifying}.
 
 \subsection*{Knowledge and citation network evolution}
 
-Citation networks provide a natural comparison for knowledge exploration networks. de Solla Price \cite{price1965networks} first studied their growth dynamics, and subsequent work has characterized their densification~\cite{leskovec2007graph}, preferential attachment~\cite{jeong2003measuring}, and community structure~\cite{chen2010structure}. Shi et al.\ \cite{shi2015weaving} model the evolution of scientific knowledge as a dynamic network, finding that the structure of science exhibits path-dependent growth with both conservative (within-field) and innovative (cross-field) exploration patterns. Our work extends this paradigm from collective scientific knowledge to individual knowledge exploration through AI conversation.
+Citation networks provide a natural comparison for knowledge exploration networks. de Solla Price~\cite{price1965networks} first studied their growth dynamics, and subsequent work has characterized their densification~\cite{leskovec2007graph}, preferential attachment~\cite{jeong2003measuring}, and community structure~\cite{chen2010structure}. Shi et al.\ \cite{shi2015weaving} model the evolution of scientific knowledge as a dynamic network, finding that the structure of science exhibits path-dependent growth with both conservative (within-field) and innovative (cross-field) exploration patterns. Our work extends this paradigm from collective scientific knowledge to individual knowledge exploration through AI conversation.
 
 \subsection*{Distributed cognition and the extended mind}
 
-Hutchins \cite{hutchins1995cognition} introduced the framework of \emph{distributed cognition}, arguing that cognitive processes are not confined to the individual brain but are distributed across people, artifacts, and the environment. His analysis of ship navigation demonstrated how a complex cognitive task is accomplished through the coordinated interaction of multiple agents and tools rather than any single mind. Clark and Chalmers \cite{clark1998extended} extended this reasoning with the \emph{extended mind thesis}, arguing that when external resources play the right functional role in cognitive processing, they constitute genuine parts of the cognitive system. A notebook that reliably stores and retrieves beliefs, for instance, functions as an extension of memory. These frameworks are directly relevant to our analysis: the AI conversation archive functions as an external cognitive artifact whose structure reveals patterns of knowledge organization. We treat the archive not merely as a record of past inquiries but as an externalized cognitive system whose network structure is amenable to the same analytical tools used for other complex networks.
+Hutchins~\cite{hutchins1995cognition} introduced the framework of \emph{distributed cognition}, arguing that cognitive processes are not confined to the individual brain but are distributed across people, artifacts, and the environment. His analysis of ship navigation demonstrated how a complex cognitive task is accomplished through the coordinated interaction of multiple agents and tools rather than any single mind. Clark and Chalmers~\cite{clark1998extended} extended this reasoning with the \emph{extended mind thesis}, arguing that when external resources play the right functional role in cognitive processing, they constitute genuine parts of the cognitive system. A notebook that reliably stores and retrieves beliefs, for instance, functions as an extension of memory. These frameworks are directly relevant to our analysis: the AI conversation archive functions as an external cognitive artifact whose structure reveals patterns of knowledge organization. We treat the archive not merely as a record of past inquiries but as an externalized cognitive system whose network structure is amenable to the same analytical tools used for other complex networks.
 
 \subsection*{AI conversation analysis}
 
@@ -284,7 +284,7 @@ To test whether new conversations preferentially attach to high-degree existing 
 
 To assess statistical significance, we compare the observed degree--attachment correlation against a null model of uniform random attachment using 1{,}000 permutation tests per month. We compute a $z$-score indicating how many standard deviations the observed correlation exceeds the null expectation.
 
-To quantify the attachment kernel, we pool data across all months and bin existing nodes by degree. For each bin, we compute the empirical attachment probability $\Pi(k)$ (fraction of nodes at degree $k$ that receive at least one new connection). We then fit the power-law kernel:
+To quantify the attachment kernel, we pool data across all months and bin existing nodes by degree. For each bin, we compute the empirical attachment rate $\Pi(k)$ (mean number of new connections per existing node at degree $k$). We then fit the power-law kernel:
 \begin{equation}
   \Pi(k) \propto k^\beta
   \label{eq:attachment_kernel}
@@ -326,7 +326,7 @@ To assess whether AI model capabilities influence network topology, we construct
 
 Fig~\ref{fig:growth} shows the network's growth over 29 months. Total conversations grow from 1 (December 2022) to 1{,}908 (April 2025), with a rapid expansion phase from March through July 2023 (averaging 135 new conversations per month) followed by steadier growth (averaging 54 per month thereafter). Of the 1{,}908 total conversations, 601 (31.5\%) appear in the connected network at $\theta = 0.9$.
 
-\begin{figure}[!h]
+\begin{figure}[htbp]
   \centering
   \includegraphics[width=\textwidth]{growth_curves.pdf}
   \caption{\textbf{Network growth over 29 months.} (a)~Cumulative node count with monthly additions (bars). (b)~Cumulative edge count with monthly additions. (c)~Edges per connected node (connectivity ratio), which rises steeply through late 2023, then stabilizes near 3.0. Background shading indicates five temporal phases: Early (Dec 2022 -- Feb 2023), Exploration (Mar -- Jul 2023), Established (Aug 2023 -- Jan 2024), GPT-4o (Feb -- Sep 2024), and Reasoning (Oct 2024 -- Apr 2025).}
@@ -338,23 +338,23 @@ Edge growth outpaces node growth throughout the observation period. The edges-pe
 \subsection*{Structural evolution}
 \label{sec:structural}
 
-Fig~\ref{fig:structural} tracks four structural properties over time. Modularity rises rapidly from 0.0 to 0.44 during the Exploration phase (March--July 2023), then undergoes a step increase to 0.64 in November 2023 when the giant component undergoes significant restructuring. From that point onward, modularity stabilizes around 0.74 and reaches 0.750 at the final snapshot , matching our previous work's static analysis exactly.
+Fig~\ref{fig:structural} tracks four structural properties over time. Modularity rises rapidly from 0.0 to 0.44 during the Exploration phase (March--July 2023), then undergoes a step increase to 0.64 in November 2023 when the giant component undergoes significant restructuring. From late 2024, modularity stabilizes around 0.74 and reaches 0.750 at the final snapshot, matching our previous work's static analysis exactly.
 
-\begin{figure}[!h]
+\begin{figure}[htbp]
   \centering
   \includegraphics[width=\textwidth]{structural_evolution.pdf}
-  \caption{\textbf{Structural evolution of network properties.} (a)~Modularity stabilizes at $\sim$0.75 by late 2023. (b)~Community count grows from 1 to 15. (c)~Clustering coefficient and transitivity remain stable after initial growth. (d)~Giant component fraction shows a step increase in November 2023.}
+  \caption{\textbf{Structural evolution of network properties.} (a)~Modularity jumps to 0.64 in November 2023, then gradually reaches 0.75. (b)~Community count grows from 1 to 15. (c)~Clustering coefficient and transitivity remain stable after initial growth. (d)~Giant component fraction shows a step increase in November 2023.}
   \label{fig:structural}
 \end{figure}
 
-The number of detected communities grows from 1 to 15 over the observation period, with most community births occurring before mid-2024. Clustering coefficient stabilizes around 0.44 and transitivity around 0.44 by mid-2023, indicating that the local connection pattern (friends-of-friends tend to be friends) establishes early and persists.
+The number of detected communities grows from 1 to 15 over the observation period, with most community births occurring before mid-2024. Clustering coefficient and transitivity gradually converge to approximately 0.44 by the final snapshot, indicating that topically related conversations tend to share neighbors (if A is similar to B and B to C, then A and C are also likely similar), a pattern that establishes early and persists.
 
 The giant component fraction exhibits interesting non-monotonic behavior. It grows to $\sim$0.47 during the Exploration phase, drops temporarily, then increases sharply to 0.69 in November 2023 when previously isolated clusters merge. This step change coincides with the modularity jump, suggesting a phase transition in the network's mesoscale organization. We note that this step change is partly mechanical: when previously isolated clusters merge into the giant component, modularity captures the separation between these formerly independent groups, inflating the apparent magnitude of the jump. The communities themselves are real, but the abruptness of the increase reflects the measurement context as much as the network dynamics.
 
 \subsection*{Community lifecycles}
 \label{sec:community_results}
 
-Community tracking across 29 snapshots reveals 40 unique tracked communities, of which 15 survive to the final snapshot (Table~\ref{tab:community_events}). The lifecycle analysis recorded 189 continuation events, 40 births, and 23 deaths. No merge or split events were detected at the Jaccard threshold of $J = 0.3$, suggesting that communities in this network grow and dissolve rather than recombining.
+Community tracking across 29 snapshots reveals 40 unique tracked communities, of which 15 survive to the final snapshot (Table~\ref{tab:community_events}). The lifecycle analysis recorded 189 continuation events, 40 births, and 25 deaths. No merge or split events were detected at the Jaccard threshold of $J = 0.3$, suggesting that communities in this network grow and dissolve rather than recombining.
 
 \begin{table}[!ht]
   \centering
@@ -366,7 +366,7 @@ Community tracking across 29 snapshots reveals 40 unique tracked communities, of
     \midrule
     Continuations & 189 \\
     Births        & 40 \\
-    Deaths        & 23 \\
+    Deaths        & 25 \\
     Merges        & 0 \\
     Splits        & 0 \\
     \midrule
@@ -376,9 +376,9 @@ Community tracking across 29 snapshots reveals 40 unique tracked communities, of
   \end{tabular}
 \end{table}
 
-Fig~\ref{fig:community_timeline} shows the size trajectories of the eight largest communities. Several patterns emerge. First, the two earliest and largest communities---Stats \& R Packages and Deep Learning---are born in the first months and grow throughout the observation period, consistent with the ``first-mover advantage'' observed in other temporal community studies~\cite{palla2007quantifying}. Second, community births are distributed across the entire period rather than concentrated at the beginning: later communities such as Software Dev and Prog.\ Languages appear during the Reasoning phase, indicating ongoing diversification of knowledge exploration. Third, community deaths are concentrated among small, specialized communities that emerge briefly and dissolve (e.g., Casual / Philosophy), often subsumed by their larger neighbors as the network densifies.
+Fig~\ref{fig:community_timeline} shows the size trajectories of the eight largest communities. Several patterns emerge. First, the two earliest and largest communities (Stats \& R Packages and Deep Learning) are born in the first months and grow throughout the observation period, consistent with the ``first-mover advantage'' observed in other temporal community studies~\cite{palla2007quantifying}. Second, community births are distributed across the entire period rather than concentrated at the beginning: later communities such as Software Dev and Prog.\ Languages appear during the Reasoning phase, indicating ongoing diversification of knowledge exploration. Third, community deaths are concentrated among small, specialized communities that emerge briefly and dissolve (e.g., Casual / Philosophy), often subsumed by their larger neighbors as the network densifies.
 
-\begin{figure}[!h]
+\begin{figure}[htbp]
   \centering
   \includegraphics[width=\textwidth]{community_timeline.pdf}
   \caption{\textbf{Community size trajectories.} Line plot showing the eight largest communities (by maximum size) over time; each line is labeled by its dominant topic. Stars mark community birth months. The two earliest communities (Stats \& R Packages, Deep Learning) grow steadily throughout the observation period, while later-born communities (Software Dev, Prog.\ Languages) emerge during the Reasoning phase.}
@@ -392,10 +392,10 @@ The absence of merge and split events is notable. In social networks, community 
 
 The relationship between connected nodes and edges follows a power law with remarkable fidelity (Fig~\ref{fig:densification}). Fitting $\log e(t) = \gamma \log n(t) + c$ yields:
 \begin{equation}
-  \gamma = 1.405, \quad R^2 = 0.993, \quad p < 10^{-29}
+  \gamma = 1.405 \pm 0.022, \quad R^2 = 0.993, \quad p < 10^{-29}
 \end{equation}
 
-\begin{figure}[!h]
+\begin{figure}[htbp]
   \centering
   \includegraphics[width=0.7\textwidth]{densification_law.pdf}
   \caption{\textbf{Densification law.} Log-log plot of edges versus connected nodes across 28 monthly snapshots. The fitted power law $e(t) \propto n(t)^{1.405}$ (dashed line) fits the data with $R^2 = 0.993$, indicating super-linear densification.}
@@ -427,7 +427,7 @@ The exponent $\gamma = 1.405$ indicates that for every doubling of the connected
 
 Fig~\ref{fig:attachment} presents the preferential attachment analysis. The degree--attachment correlation is consistently positive and significantly exceeds the null model of random attachment across nearly all months. The median $z$-score is 8.4 (range: 0.5--13.2), indicating strong statistical evidence for preferential attachment.
 
-\begin{figure}[!h]
+\begin{figure}[htbp]
   \centering
   \includegraphics[width=\textwidth]{preferential_attachment.pdf}
   \caption{\textbf{Preferential attachment analysis.} (a)~Attachment kernel $\Pi(k)$ versus degree $k$ on log-log axes, with fitted power law $\Pi(k) \propto k^{0.763}$. (b)~Monthly degree--attachment correlation (blue) versus null model distribution (gray band shows mean $\pm 2\sigma$). (c)~Distribution of $z$-scores across months, consistently exceeding the significance threshold.}
@@ -436,7 +436,7 @@ Fig~\ref{fig:attachment} presents the preferential attachment analysis. The degr
 
 The pooled attachment kernel follows a power law $\Pi(k) \propto k^\beta$ with:
 \begin{equation}
-  \beta = 0.763, \quad R^2 = 0.914
+  \beta = 0.763 \pm 0.074, \quad R^2 = 0.914
 \end{equation}
 
 This sub-linear exponent ($0 < \beta < 1$) indicates that high-degree nodes attract disproportionately many new connections, but less aggressively than pure preferential attachment ($\beta = 1$). This is consistent with the observation from our previous work that our network exhibits ``evolution beyond preferential attachment, reflecting cognitive exploration with hub formation limited by specialization and cross-domain constraints''~\cite{towell2025cognitive}. The sub-linear kernel produces networks with moderate degree heterogeneity (broad-tailed degree distributions without extreme hubs), matching the empirical degree distribution observed in our network.
@@ -450,7 +450,7 @@ Our previous work identified three bridge types based on how conversations achie
 
 Fig~\ref{fig:bridges} tracks the five bridge conversations identified in our previous work over time. The most striking pattern is the \emph{dominance and persistence} of the primary bridge, \texttt{geometric-mean-calculation}, which achieves bridge status immediately upon appearing in the connected network (November 2023) and maintains normalized betweenness centrality above 0.44 throughout the remaining 18~months. This conversation, which evolved from geometric means into probability theory and neural networks, exemplifies the ``evolutionary bridge'' type from our previous taxonomy.
 
-\begin{figure}[!h]
+\begin{figure}[htbp]
   \centering
   \includegraphics[width=\textwidth]{bridge_dynamics.pdf}
   \caption{\textbf{Bridge formation dynamics.} Normalized betweenness centrality over time for the five bridge conversations identified in the conference paper. Vertical dashed lines mark creation dates. The ``geometric-mean-calculation'' bridge dominates throughout, while other bridges emerge later and stabilize at lower centrality levels.}
@@ -498,14 +498,14 @@ The temporal evolution patterns we observe can be interpreted through the lens o
 
 The super-linear densification ($\gamma = 1.405$) has a natural cognitive interpretation: as one's knowledge base grows, new inquiries increasingly connect to existing knowledge rather than standing alone. This reflects the cumulative nature of learning, as later conversations benefit from a richer contextual landscape, making semantic connections more likely. The densification exponent quantifies the \emph{rate} at which knowledge becomes interconnected.
 
-Sub-linear preferential attachment ($\beta = 0.763$) suggests a balanced exploration strategy. Popular topics (high-degree nodes) do attract follow-up conversations, but the sub-linear kernel indicates that the user also explores less-established topics rather than exclusively deepening existing interests. This balances \emph{exploitation} (deepening known topics) with \emph{exploration} (investigating new ones), a trade-off recognized as fundamental in organizational learning~\cite{march1991exploration} and cognitive search~\cite{hills2015exploration}.
+Sub-linear preferential attachment ($\beta = 0.763$) suggests a balanced exploration strategy. Popular topics (high-degree nodes) do attract follow-up conversations, but the sub-linear kernel indicates that the user also explores less-established topics rather than exclusively deepening existing interests. This balances \emph{exploitation} (deepening known topics) with \emph{exploration} (investigating new ones), a trade-off recognized as fundamental in organizational learning~\cite{march1991exploration} and cognitive search~\cite{hills2015exploration}. The same caveat from the densification paradox (Section~\ref{sec:densification_paradox}) applies here: high-degree nodes may attract new connections partly because they occupy broad regions of semantic space where new conversations are more likely to land, rather than through a generative rich-get-richer mechanism. The permutation null model tests against random attachment but does not account for this geometric confound.
 
-The early stabilization of community structure (modularity $\sim$0.75 by mid-2023, persisting through 18~months) suggests that a user's knowledge domains crystallize relatively quickly. Once the major thematic communities are established, subsequent growth fills in rather than restructures. This is consistent with schema theory in cognitive psychology~\cite{bartlett1932remembering}: once mental frameworks are established, new information is assimilated into existing schemas rather than triggering wholesale reorganization.
+The early stabilization of community structure (modularity exceeding 0.6 by late 2023 and stabilizing near 0.75) suggests that a user's knowledge domains crystallize relatively quickly. Once the major thematic communities are established, subsequent growth fills in rather than restructures. This is consistent with schema theory in cognitive psychology~\cite{bartlett1932remembering}: once mental frameworks are established, new information is assimilated into existing schemas rather than triggering wholesale reorganization.
 
 \subsection*{Comparison with known network evolution patterns}
 \label{sec:comparison}
 
-Our findings place this personal knowledge network squarely within the family of densifying, preferentially attaching real-world networks documented by Leskovec et al.\ \cite{leskovec2007graph} and Barab\'asi and Albert \cite{barabasi1999emergence}. The densification exponent ($\gamma = 1.405$) falls between those of patent citation networks ($\gamma = 1.26$) and arXiv citation networks ($\gamma = 1.69$), suggesting comparable but not identical growth dynamics. The sub-linear preferential attachment ($\beta = 0.763$) is lower than the near-linear values reported for citation networks~\cite{jeong2003measuring}, consistent with our previous observation that hub formation is limited by cognitive specialization constraints.
+Our findings place this personal knowledge network squarely within the family of densifying, preferentially attaching real-world networks documented by Leskovec et al.\ \cite{leskovec2007graph} and Barab\'asi and Albert~\cite{barabasi1999emergence}. The densification exponent ($\gamma = 1.405$) falls between those of patent citation networks ($\gamma = 1.26$) and arXiv citation networks ($\gamma = 1.69$), suggesting comparable but not identical growth dynamics. The sub-linear preferential attachment ($\beta = 0.763$) is lower than the near-linear values reported for citation networks~\cite{jeong2003measuring}, consistent with our previous observation that hub formation is limited by cognitive specialization constraints.
 
 The community lifecycle patterns (persistent major communities, gradual births, no merges or splits) differ from social networks where community fusion and fission are common~\cite{palla2007quantifying}. This distinction likely reflects the fundamental difference between social identity (fluid, negotiated) and knowledge domain identity (more stable, ontologically grounded). A ``machine learning'' community and a ``statistics'' community may grow closer as related conversations accumulate, but they do not merge in the way social groups do.
 
@@ -557,11 +557,11 @@ Several limitations constrain the generalizability of our findings.
 
 We have extended the cognitive MRI methodology from static to temporal network analysis, tracking how a personal knowledge network grows over 29~months of AI-assisted conversation. The network exhibits evolution patterns characteristic of real-world complex systems: super-linear densification ($\gamma = 1.405$), sub-linear preferential attachment ($\beta = 0.763$), early community stabilization, and persistent bridge formation.
 
-These findings demonstrate that personal knowledge exploration through conversational AI is not random accumulation but self-organizes according to the same macroscopic laws that govern collective knowledge systems. Densification quantifies how knowledge becomes increasingly interconnected; preferential attachment reveals the balance between deepening existing interests and exploring new ones; community tracking shows how knowledge domains crystallize early and persist; bridge dynamics illuminate how cross-domain connections form and stabilize. That these patterns emerge at the scale of a single individual, mirroring dynamics previously documented only in multi-agent systems like scientific citation networks and online collaboration platforms, suggests that the organizational principles of knowledge exploration may be scale-invariant, operating whether the exploring agent is a community of scientists or a single person conversing with an AI.
+These findings suggest that personal knowledge exploration through conversational AI is not random accumulation but produces network growth patterns quantitatively similar to those observed in collective knowledge systems such as citation and collaboration networks. Densification quantifies how knowledge becomes increasingly interconnected; preferential attachment reveals the balance between deepening existing interests and exploring new ones; community tracking shows how knowledge domains crystallize early and persist; bridge dynamics illuminate how cross-domain connections form and stabilize. That these patterns emerge at the scale of a single individual, mirroring dynamics previously documented only in multi-agent systems like scientific citation networks and online collaboration platforms, suggests that the organizational principles of knowledge exploration may be scale-bridging, operating whether the exploring agent is a community of scientists or a single person conversing with an AI.
 
 The mechanism differs: in our network, densification reflects the progressive revelation of latent semantic structure rather than active social tie formation. Yet the resulting growth laws are strikingly similar, raising the question of whether individual and collective knowledge exploration are governed by common underlying dynamics. Multi-user studies will be needed to test this hypothesis. Different users may exhibit different densification exponents depending on whether their exploration strategy is focused (deep specialist) or broad (wide generalist). The balance between exploitation and exploration captured by the attachment exponent $\beta$ likely varies with individual cognitive style and professional domain. Multi-user comparison would reveal which parameters are universal properties of knowledge exploration through AI and which reflect individual differences in how people organize inquiry. Our methodology provides a template for such investigations, and our findings offer a first empirical characterization of how one person's knowledge landscape evolves through sustained AI interaction.
 
-Code and data for reproducing this analysis are publicly available~\cite{chatgpt-complex-net}.
+The analysis pipeline is available at~\cite{chatgpt-complex-net} and the temporal analysis code, data, and paper source at~\cite{cognitive-mri-conversations}.
 
 
 % ============================================================

@@ -1,64 +1,80 @@
-# Cognitive MRI of AI Conversations
+# Cognitive MRI of AI Conversations: Research Compendium
 
-Analyzing AI interactions through semantic embedding networks using complex network analysis.
+<!-- [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXXX.svg)](https://doi.org/10.5281/zenodo.XXXXXXX) -->
 
-**Authors:** Alex Towell and John Matta
-**Institution:** Southern Illinois University Edwardsville
-**Conference:** Complex Networks 2025
+Applying complex network analysis to ChatGPT conversation archives to reveal knowledge organization, community structure, and temporal evolution patterns.
 
-## Abstract
+**Authors:**
+[Alexander Towell](https://orcid.org/0000-0001-6443-9897) and
+[John Matta](https://orcid.org/0000-0002-7666-1409)
+— Southern Illinois University Edwardsville
 
-We present a "cognitive MRI" methodology that transforms sequential AI conversation logs into semantic networks, revealing latent thought structure. Using LLM-generated embeddings of 449 ChatGPT conversations, we construct a similarity network that exposes knowledge organization patterns invisible in linear logs.
+## Overview
 
-Our analysis reveals heterogeneous network topology: theoretical domains (ML/AI) exhibit hub-and-spoke patterns while practical domains (programming) show hierarchical tree structures. We identify three bridge types connecting knowledge communities: evolutionary bridges (topic drift), integrative bridges (deliberate synthesis), and pure bridges (critical minimal-connection links).
+This repository transforms sequential AI conversation logs into semantic similarity networks, revealing latent cognitive structure in AI-assisted knowledge exploration. We analyze 1,908 ChatGPT conversations spanning December 2022 to April 2025, constructing networks that expose knowledge communities, bridge conversations, and temporal evolution patterns invisible in linear logs.
 
-**Keywords:** AI conversation, complex networks, semantic embedding, conversation analysis, knowledge exploration
+## Papers
+
+| Paper | Venue | Status |
+|-------|-------|--------|
+| **Temporal Evolution of Cognitive Knowledge Networks in AI-Assisted Conversations** | PLOS Complex Systems | Submitted |
+| **Cognitive MRI of AI Conversations: Analyzing AI Interactions through Semantic Embedding Networks** | Complex Networks 2025 (Springer) | Published |
 
 ## Repository Structure
 
 ```
-.
-├── code/                              # Python implementation
-│   ├── cli.py                         # Main CLI interface
-│   ├── networks.py                    # Network generation & analysis
-│   ├── embedding/                     # LLM & TF-IDF embedding modules
-│   └── graph/                         # Graph construction & export
-├── comp-net-2025-camera-ready/        # Conference submission
-│   ├── paper/                         # Camera-ready paper & LaTeX
-│   ├── supplemental-docs/             # Supplementary materials
-│   └── abstract-extended/             # Extended abstract
-└── dev/                               # Research data & notes
+├── comp-net-2025-journal/           # Journal extension (PLOS Complex Systems)
+│   └── paper/PLOS/                  # Submission-ready paper, figures, refs
+├── comp-net-2025-camera-ready/      # Published conference paper (Springer)
+│   ├── paper/                       # Camera-ready paper
+│   └── slides/                      # Conference presentation (Beamer)
+├── data/                            # Reproducibility data for both papers
+│   ├── temporal/                    # Journal paper: monthly network snapshots
+│   ├── ablation/                    # Conference paper: 63-config parameter study
+│   └── conversations/               # Placeholder (sanitization in progress)
+├── code/                            # Analysis pipeline
+│   ├── cli.py                       # Main CLI (embeddings, edges, export)
+│   ├── networks.py                  # Network statistics & metrics
+│   ├── embedding/                   # LLM & TF-IDF embedding models
+│   ├── graph/                       # Edge generation, GPU acceleration
+│   └── run_ablation_study.py        # 63-config ablation study
+└── dev/                             # Research data (conversations, ablation results)
 ```
 
-## Key Findings
-
-- **15 distinct knowledge communities** with 0.75 modularity score
-- **Non-standard degree distribution** challenging scale-free assumptions
-- **Three bridge conversation types** connecting communities:
-  - Evolutionary bridges (organic topic drift)
-  - Integrative bridges (deliberate concept synthesis)
-  - Pure bridges (minimal but critical connections)
-
-## Usage
+## Quick Start
 
 ```bash
 cd code
-pip install -r requirements.txt
+source venv/bin/activate
 
-# Generate embeddings
-python cli.py node-embeddings --input-dir <conversations> --method role-aggregate
+# Generate embeddings (requires Ollama with nomic-embed-text)
+python cli.py node-embeddings --input-dir ../dev/chatgpt-4-11-2025_json_no_embeddings \
+    --method role-aggregate --embedding-method llm --output-dir ../dev/chatgpt-json-llm
 
 # Build similarity network
-python cli.py edges-gpu --input-dir <embeddings> --output-file edges.json
+python cli.py edges-gpu --input-dir ./embeddings_json --output-file edges.json
+python cli.py cut-off --input-file edges.json --output-file filtered.json --cutoff 0.9
 
-# Export for visualization
-python cli.py export --nodes-dir <embeddings> --edges-file edges.json --format gexf
+# Export for Gephi
+python cli.py export --nodes-dir ./embeddings_json --edges-file filtered.json --format gexf -o graph.gexf
 ```
-
-## License
-
-MIT License - see [LICENSE](LICENSE)
 
 ## Citation
 
-See [CITATION.cff](CITATION.cff) for citation information.
+If you use this work, please cite the journal paper:
+
+```bibtex
+@article{towell2026temporal,
+  author  = {Towell, Alexander and Matta, John},
+  title   = {Temporal Evolution of Cognitive Knowledge Networks in AI-Assisted Conversations},
+  journal = {PLOS Complex Systems},
+  year    = {2026},
+  note    = {Submitted}
+}
+```
+
+See [CITATION.cff](CITATION.cff) for machine-readable citation metadata. The analysis pipeline is available separately at [chatgpt-complex-net](https://github.com/queelius/chatgpt-complex-net) (DOI: [10.5281/zenodo.15314235](https://doi.org/10.5281/zenodo.15314235)).
+
+## License
+
+[MIT](LICENSE)

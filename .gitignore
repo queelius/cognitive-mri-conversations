@@ -68,3 +68,6 @@ archive/
 
 # Git worktrees
 .worktrees/
+
+# Papermill review output
+.papermill/
