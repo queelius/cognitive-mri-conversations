@@ -10,7 +10,7 @@ The core idea: transform linear conversation logs into semantic similarity netwo
 
 ## Active Work
 
-**Journal extension**: Extending the conference paper for PLOS Complex Systems special issue. Deadline: February 27, 2026. Requires 30%+ new material vs conference paper, <30% iThenticate similarity. Extension direction TBD — `comp-net-2025-journal/` contains a preliminary multi-layer approach (not committed to).
+**Journal extension**: Extending the conference paper for PLOS Complex Systems special issue. Deadline: February 27, 2026. The extension adds temporal network evolution analysis (densification, preferential attachment, community dynamics, bridge persistence, model era effects). The paper is drafted and submission-ready in `comp-net-2025-journal/paper/PLOS/`.
 
 ## Project Structure
 
@@ -20,17 +20,16 @@ The core idea: transform linear conversation logs into semantic similarity netwo
 │   ├── paper/paper.tex                # Camera-ready paper (svproc.cls)
 │   ├── slides/slide-pretty.tex        # Conference presentation (Beamer)
 │   └── paper/images/                  # Figures for the paper
-├── comp-net-2025-journal/             # IN-PROGRESS journal extension
-│   ├── code/                          # Multi-layer network implementation
-│   │   ├── core_types.py              # Node/link type definitions (Episodic, Concept)
-│   │   ├── concept_extraction.py      # LLM-based concept extraction from clusters
-│   │   ├── instantiation_scoring.py   # Concept→Episode link scoring
-│   │   ├── association_network.py     # Concept↔Concept Jaccard similarity
-│   │   ├── hidden_connections.py      # Find concept-mediated episode pairs
-│   │   ├── multilayer_analysis.py     # Community detection, metrics
-│   │   └── visualization.py           # Network viz & export
-│   ├── paper/                         # LaTeX paper (empty, not yet started)
-│   └── data/                          # Generated data artifacts (empty)
+├── comp-net-2025-journal/             # SUBMISSION-READY journal extension
+│   ├── paper/PLOS/                    # PLOS Complex Systems submission files
+│   │   ├── paper.tex                  # Submission version (no embedded figures)
+│   │   ├── paper-with-figs.tex        # Review version (figures embedded)
+│   │   ├── refs.bib                   # Bibliography
+│   │   ├── plos2025.bst              # PLOS bibliography style
+│   │   └── submission-info.txt        # Editorial Manager form values, reviewer suggestions
+│   ├── paper/figures/temporal/        # Figure files for the paper
+│   ├── code/                          # Multi-layer network implementation (earlier approach)
+│   └── data/                          # Generated data artifacts
 ├── code/                              # Original pipeline implementation
 │   ├── cli.py                         # Main CLI (embeddings, edges, export)
 │   ├── networks.py                    # Network statistics & metrics
@@ -48,6 +47,14 @@ The core idea: transform linear conversation logs into semantic similarity netwo
 ## Building Papers
 
 ```bash
+# PLOS Complex Systems journal paper (submission version, no figures)
+cd comp-net-2025-journal/paper/PLOS
+pdflatex paper.tex && bibtex paper && pdflatex paper.tex && pdflatex paper.tex
+
+# PLOS Complex Systems journal paper (review version, figures embedded)
+cd comp-net-2025-journal/paper/PLOS
+pdflatex paper-with-figs.tex && bibtex paper-with-figs && pdflatex paper-with-figs.tex && pdflatex paper-with-figs.tex
+
 # Camera-ready conference paper (Springer svproc class)
 cd comp-net-2025-camera-ready/paper
 pdflatex paper.tex && bibtex paper && pdflatex paper.tex && pdflatex paper.tex

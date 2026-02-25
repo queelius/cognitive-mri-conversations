@@ -5,10 +5,18 @@
 % Journal extension for PLOS Complex Systems
 % Extends: Towell & Matta (2025), Complex Networks 2025
 % ============================================================
+\newif\ifdraft
+\drafttrue  % \drafttrue = review mode (line numbers, double-spaced, wide left margin)
+            % \draftfalse = polished mode (single-spaced, standard margins)
+
 \documentclass[10pt,letterpaper]{article}
 
-% --- PLOS-style formatting ---
-\usepackage[top=0.85in,left=2.75in,footskip=0.75in]{geometry}
+% --- Page geometry ---
+\ifdraft
+  \usepackage[top=0.85in,left=2.75in,footskip=0.75in]{geometry}
+\else
+  \usepackage[margin=1in]{geometry}
+\fi
 \usepackage{amsmath,amssymb}
 \usepackage{graphicx}
 \graphicspath{{./figures/temporal/}{../../../comp-net-2025-camera-ready/paper/images/}}
@@ -24,13 +32,14 @@
 \usepackage{setspace}
 \usepackage{xcolor}
 \usepackage{float}
+\usepackage{hyphenat}
 
-% Line numbers for review
-\usepackage{lineno}
-\linenumbers
-
-% Double spacing for review
-\doublespacing
+% Draft mode: line numbers + double spacing
+\ifdraft
+  \usepackage{lineno}
+  \linenumbers
+  \doublespacing
+\fi
 
 % Remove indentation, add paragraph spacing
 \setlength{\parindent}{0pt}
@@ -42,20 +51,21 @@
 \author{
   Alexander Towell\textsuperscript{1*},
   John Matta\textsuperscript{1} \\[6pt]
-  \textsuperscript{1} Department of Computer Science, Southern Illinois University Edwardsville, Edwardsville, IL, USA \\[3pt]
+  \textsuperscript{1} Department of Computer Science,
+  Southern Illinois University Edwardsville, Edwardsville, IL, USA \\[3pt]
   \textsuperscript{*} Corresponding author: \href{mailto:atowell@siue.edu}{atowell@siue.edu}
 }
 
 \date{}
 
 \begin{document}
-\maketitle
+{\sloppy\maketitle}
 
 % ============================================================
 \begin{abstract}
 % ============================================================
 
-How does a person's knowledge landscape evolve through sustained AI-assisted conversation? We previously introduced a \emph{cognitive MRI} methodology that transforms linear conversation logs into semantic similarity networks, revealing knowledge communities and bridge conversations in a static snapshot~\citep{towell2025cognitive}. Here we extend this analysis to the temporal domain, tracking how the network grows over 29~months (December 2022 -- April 2025) across 1{,}908 ChatGPT conversations. We construct cumulative monthly snapshots and discover several evolution patterns characteristic of real-world complex networks. The network exhibits \emph{super-linear densification} ($\gamma = 1.405$, $R^2 = 0.993$), meaning knowledge exploration accelerates as the network grows. New conversations attach to existing topics via \emph{sub-linear preferential attachment} ($\beta = 0.763$, $R^2 = 0.914$), indicating that popular topics attract disproportionate attention but less aggressively than in scale-free models. Community structure stabilizes early (modularity $\approx 0.75$ by mid-2023) and persists through subsequent growth, with 35 distinct communities tracked through birth, continuation, and death events. Bridge conversations --- critical cross-domain connectors --- emerge at identifiable moments and maintain their structural role once established. Comparison across model eras (GPT-3.5 through GPT-4.5) reveals that AI model capabilities shape sub-network topology. These findings demonstrate that personal knowledge exploration through AI conversation follows lawful evolutionary dynamics, offering both theoretical insight into distributed cognition and practical implications for knowledge management systems.
+How does a person's knowledge landscape evolve through sustained AI-assisted conversation? We previously introduced a \emph{cognitive MRI} methodology that transforms linear conversation logs into semantic similarity networks, revealing knowledge communities and bridge conversations in a static snapshot~\citep{towell2025cognitive}. Here we extend this analysis to the temporal domain, tracking how the network grows over 29~months (December 2022 -- April 2025) across 1{,}908 ChatGPT conversations. We construct cumulative monthly snapshots and discover several evolution patterns characteristic of real-world complex networks. The network exhibits \emph{super-linear densification} ($\gamma = 1.405$, $R^2 = 0.993$), meaning knowledge exploration accelerates as the network grows. New conversations attach to existing topics via \emph{sub-linear preferential attachment} ($\beta = 0.763$, $R^2 = 0.914$), indicating that popular topics attract disproportionate attention but less aggressively than in scale-free models. Community structure stabilizes early (modularity $\approx 0.75$ by mid-2023) and persists through subsequent growth, with 40 distinct communities tracked through birth, continuation, and death events. Bridge conversations --- critical cross-domain connectors --- emerge at identifiable moments and maintain their structural role once established. Comparison across model eras (GPT-3.5 through GPT-4.5) reveals that AI model capabilities shape sub-network topology. These findings suggest that individual AI-assisted knowledge exploration self-organizes according to the same macroscopic laws observed in collective knowledge systems such as citation and collaboration networks --- but arising through a different mechanism: the progressive revelation of latent semantic structure rather than active social tie formation. This scale-bridging parallel offers both theoretical insight into distributed cognition and practical implications for knowledge management systems.
 
 \textbf{Keywords:} temporal networks, knowledge networks, AI conversation analysis, network evolution, densification law, preferential attachment, community dynamics
 \end{abstract}
@@ -67,7 +77,7 @@ How does a person's knowledge landscape evolve through sustained AI-assisted con
 
 The rise of conversational AI has created a new medium for knowledge exploration. Millions of users now interact daily with large language models (LLMs), generating conversation archives that constitute externalized records of cognitive activity~\citep{zhao2023survey}. These archives are typically presented as flat, chronological lists --- a format that conceals the rich associative structure latent in accumulated inquiry.
 
-In prior work, we introduced a \emph{cognitive MRI} methodology that transforms such archives into semantic similarity networks, where conversations become nodes and edges connect semantically related pairs~\citep{towell2025cognitive}. Analyzing a single user's 449 ChatGPT conversations (filtered at similarity threshold $\theta = 0.9$), we identified 15 knowledge communities, heterogeneous network topology (hub-and-spoke vs.\ tree-like structures), and three distinct bridge conversation types that facilitate cross-domain knowledge transfer. That analysis, however, treated the network as a static snapshot --- collapsing 29~months of knowledge exploration into a single graph.
+In prior work, we introduced a \emph{cognitive MRI} methodology that transforms such archives into semantic similarity networks, where conversations become nodes and edges connect semantically related pairs~\citep{towell2025cognitive}. Analyzing the giant component of a single user's conversation archive (449 of 601 connected conversations at similarity threshold $\theta = 0.9$), we identified 15 knowledge communities, heterogeneous network topology (hub-and-spoke vs.\ tree-like structures), and three distinct bridge conversation types that facilitate cross-domain knowledge transfer. That analysis, however, treated the network as a static snapshot --- collapsing 29~months of knowledge exploration into a single graph.
 
 This limitation is significant. The \emph{temporal dimension} of knowledge exploration is precisely what distinguishes organic human inquiry from static knowledge bases. Questions build on previous questions; interests drift, deepen, and occasionally collide; new AI model capabilities reshape what is possible to explore. A static analysis cannot capture these dynamics.
 
@@ -85,7 +95,7 @@ Our analysis reveals that this single-user knowledge network exhibits evolution 
   \item \textbf{Super-linear densification} ($\gamma = 1.405$, $R^2 = 0.993$): edges grow faster than nodes, meaning the network becomes proportionally denser over time.
   \item \textbf{Sub-linear preferential attachment} ($\beta = 0.763$, $R^2 = 0.914$): high-degree nodes attract new connections disproportionately, but less aggressively than in the Barab\'asi-Albert model.
   \item \textbf{Early community stabilization}: modularity reaches $\sim$0.75 by mid-2023 and remains stable through 18 subsequent months of growth, despite the network tripling in size.
-  \item \textbf{Bridge persistence}: once a conversation achieves bridge status (top-5\% betweenness centrality), it maintains that role indefinitely.
+  \item \textbf{Bridge persistence}: once a conversation achieves bridge status (top-5\% betweenness centrality), it maintains that role throughout the observation period.
   \item \textbf{Model era effects}: sub-networks from different LLM eras exhibit distinct topological signatures.
 \end{itemize}
 
@@ -138,7 +148,7 @@ We describe the temporal analysis methodology that extends our static conference
 \subsection{Dataset and Base Network}
 \label{sec:dataset}
 
-The dataset comprises 1{,}908 ChatGPT conversations generated by one of the authors between December 2022 and April 2025. Conversations were conducted for authentic research, learning, and problem-solving purposes with no anticipation of future network analysis. Each conversation was embedded using \texttt{nomic-embed-text}~\citep{nussbaum2024nomic} with a 2:1 user:AI message weighting ratio ($\alpha = 2$), validated through a 63-configuration ablation study~\citep{towell2025cognitive}. Pairwise cosine similarities were computed and filtered at threshold $\theta = 0.9$, yielding 601 connected nodes and 1{,}718 edges (1{,}307 conversations remain isolated at this threshold).
+The dataset comprises 1{,}908 ChatGPT conversations generated by one of the authors between December 2022 and April 2025. Conversations were conducted for authentic research, learning, and problem-solving purposes with no anticipation of future network analysis. Each conversation was embedded using \texttt{nomic-embed-text}~\citep{nussbaum2024nomic} with a 2:1 user:AI message weighting ratio ($\alpha = 2$), validated through a 63-configuration ablation study~\citep{towell2025cognitive}. Pairwise cosine similarities were computed and filtered at threshold $\theta = 0.9$, yielding 601 connected nodes and 1{,}718 edges across 59 connected components, with a giant component of 453 nodes (1{,}307 conversations remain isolated at this threshold). The conference paper~\citep{towell2025cognitive} analyzed the giant component (449 nodes at the time of that analysis); the present work analyzes all connected nodes.
 
 Each conversation carries a creation timestamp, enabling temporal ordering. Conversations span five model eras based on the underlying LLM: GPT-3.5 (pre-GPT-4, $n = 1{,}214$), GPT-4 ($n = 44$), GPT-4o ($n = 453$), Reasoning models (o1/o3 series, $n = 181$), and GPT-4.5 ($n = 16$).
 
@@ -154,6 +164,8 @@ We construct the network's temporal evolution through cumulative monthly snapsho
 This cumulative construction models the irreversibility of knowledge exploration: conversations, once created, permanently enrich the knowledge landscape. It produces 29 monthly snapshots (December 2022 through April 2025), growing from 1 node to the full 1{,}908.
 
 For each snapshot, we compute a comprehensive set of network metrics on the connected subgraph: node count, edge count, density, number of connected components, giant component size and fraction, mean and maximum degree, average clustering coefficient, transitivity, average shortest path length (within the giant component), Louvain modularity and community count~\citep{blondel2008fast}, average betweenness centrality, and degree assortativity. Community detection uses a fixed random seed for reproducibility.
+
+For visualization and narrative purposes, we divide the 29-month observation period into five temporal phases based on usage intensity and model availability: \emph{Early} (December 2022 -- February 2023; 59 conversations, network bootstrapping), \emph{Exploration} (March -- July 2023; 635 conversations, rapid growth), \emph{Established} (August 2023 -- January 2024; 402 conversations, structural consolidation), \emph{GPT-4o} (February -- September 2024; 396 conversations, new model capabilities), and \emph{Reasoning} (October 2024 -- April 2025; 416 conversations, reasoning model era). These phases appear as background shading in several figures.
 
 \subsection{Community Lifecycle Tracking}
 \label{sec:community_tracking}
@@ -215,7 +227,7 @@ Following~\citet{leskovec2005graphs}, we test whether the network exhibits densi
 \end{equation}
 where $n(t) = |V_{\text{connected}}(t)|$ and $e(t) = |E(t)|$ are the number of connected nodes and edges at time $t$. The exponent $\gamma > 1$ indicates super-linear densification (the network becomes proportionally denser), $\gamma = 1$ indicates constant average degree, and $\gamma < 1$ indicates sparsification.
 
-We fit this relationship using ordinary least squares regression on the log-transformed data, reporting the exponent $\gamma$, coefficient of determination $R^2$, and $p$-value. We exclude early months with fewer than 4 connected nodes where metrics are unstable.
+We fit this relationship using ordinary least squares (OLS) regression on the log-transformed data, reporting the exponent $\gamma$, coefficient of determination $R^2$, and $p$-value. We note that OLS on log-transformed data is an approximation; more rigorous power-law fitting methods exist~\citep{clauset2009power}, but OLS is standard practice for densification analysis~\citep{leskovec2007graph} and sufficient given our high $R^2$ values. We exclude early months with fewer than 4 connected nodes where metrics are unstable.
 
 An important methodological consideration: because our edges derive from a pre-computed similarity matrix, the densification we observe reflects the \emph{progressive revelation} of latent semantic structure rather than the \emph{creation} of new connections (as in social networks where people actively form ties). We discuss the implications of this distinction in Section~\ref{sec:densification_paradox}.
 
@@ -268,7 +280,7 @@ The giant component fraction exhibits interesting non-monotonic behavior. It gro
 \subsection{Community Lifecycles}
 \label{sec:community_results}
 
-Community tracking across 29 snapshots reveals 35 unique tracked communities, of which 15 survive to the final snapshot (Table~\ref{tab:community_events}). The lifecycle analysis recorded 196 continuation events, 35 births, and 20 deaths. No merge or split events were detected at the Jaccard threshold of $J = 0.3$, suggesting that communities in this network grow and dissolve rather than recombining.
+Community tracking across 29 snapshots reveals 40 unique tracked communities, of which 15 survive to the final snapshot (Table~\ref{tab:community_events}). The lifecycle analysis recorded 189 continuation events, 40 births, and 23 deaths. No merge or split events were detected at the Jaccard threshold of $J = 0.3$, suggesting that communities in this network grow and dissolve rather than recombining.
 
 \begin{table}[t]
   \centering
@@ -278,13 +290,13 @@ Community tracking across 29 snapshots reveals 35 unique tracked communities, of
     \toprule
     \textbf{Event Type} & \textbf{Count} \\
     \midrule
-    Continuations & 196 \\
-    Births        & 35 \\
-    Deaths        & 20 \\
+    Continuations & 189 \\
+    Births        & 40 \\
+    Deaths        & 23 \\
     Merges        & 0 \\
     Splits        & 0 \\
     \midrule
-    Unique communities tracked & 35 \\
+    Unique communities tracked & 40 \\
     Surviving to final snapshot & 15 \\
     \bottomrule
   \end{tabular}
@@ -369,11 +381,11 @@ Figure~\ref{fig:bridges} tracks the five bridge conversations identified in the 
   \label{fig:bridges}
 \end{figure}
 
-The remaining four bridges enter the connected network in October--November 2024, coinciding with the expansion of the giant component during the Reasoning model era. Once established, each maintains a stable betweenness centrality level: \texttt{mcts-code-analysis-suggestions} and \texttt{loss-in-llm-training} stabilize around 0.35, \texttt{algotree-generate-unit-tests-flattree} around 0.30, and \texttt{compile-cuda-program-linux} around 0.09--0.12.
+The second bridge, \texttt{loss-in-llm-training}, enters the connected network in November 2023---the same month as the primary bridge---but with low initial betweenness centrality (0.006). It achieves bridge status only in September 2024, when its centrality jumps to 0.045 as it begins connecting multiple communities. The remaining three bridges (\texttt{mcts-code-analysis\hyp{}suggestions}, \texttt{algotree-generate-unit-tests\hyp{}flattree}, \texttt{compile-cuda\hyp{}program-linux}) enter in October 2024, coinciding with the expansion of the giant component during the Reasoning model era. Once established, each maintains a stable betweenness centrality level: \texttt{mcts-code-analysis\hyp{}suggestions} and \texttt{loss-in-llm-training} stabilize around 0.35, \texttt{algotree-generate-unit-tests\hyp{}flattree} around 0.30, and \texttt{compile-cuda\hyp{}program-linux} around 0.09--0.12.
 
 The stability of bridge centrality over time --- once established, bridges maintain their structural role --- suggests that the cross-domain connections they provide are not incidental but reflect genuine semantic bridging between knowledge communities.
 
-The bridge conversations span 2--5 neighbor communities each. The \texttt{geometric-mean-calculation} bridge consistently connects 4 communities, confirming its role as a multi-domain integrator. In contrast, \texttt{compile-cuda-program-linux} connects exactly 2 communities throughout its tracked lifetime, exemplifying the ``pure bridge'' type: a minimal but critical link between domains.
+The bridge conversations span 2--5 neighbor communities each. The \texttt{geometric\hyp{}mean\hyp{}calculation} bridge consistently connects 4~communities, confirming its role as a multi-domain integrator. In contrast, \texttt{compile\hyp{}cuda\hyp{}program\hyp{}linux} connects exactly 2~communities throughout its tracked lifetime, exemplifying the ``pure bridge'' type: a minimal but critical link between domains.
 
 \subsection{Model Era Effects}
 \label{sec:era_results}
@@ -406,7 +418,7 @@ Table~\ref{tab:era_metrics} presents sub-network metrics for each model era. The
 
 The Reasoning era (o1/o3 models, 181 conversations, 32 connected) shows notably lower modularity (0.353) than GPT-3.5 or GPT-4o eras. This may reflect the nature of reasoning model usage: these models are often applied to focused, technical problems that span traditional topic boundaries, producing more topically diffuse conversations. Alternatively, the smaller sample size may simply be insufficient for well-defined community structure to emerge.
 
-The GPT-4 and GPT-4.5 eras contain too few connected conversations for meaningful structural analysis (15 and 2, respectively), reflecting their limited availability during the observation period.
+The GPT-4 and GPT-4.5 eras contain too few connected conversations for meaningful structural analysis (15 and 2, respectively). The small GPT-4 sample is a metadata artifact: ChatGPT's export format did not record the model field until approximately March 2024, so earlier GPT-4 conversations appear as \texttt{None} and are grouped with the GPT-3.5 era. The 44 explicitly labeled GPT-4 conversations represent only the brief window (March--May 2024) before GPT-4o became the default. The GPT-4.5 era is small due to low usage by the author.
 
 
 % ============================================================
@@ -431,6 +443,8 @@ The early stabilization of community structure (modularity $\sim$0.75 by mid-202
 Our findings place this personal knowledge network squarely within the family of densifying, preferentially attaching real-world networks documented by~\citet{leskovec2007graph} and~\citet{barabasi1999emergence}. The densification exponent ($\gamma = 1.405$) falls between those of patent citation networks ($\gamma = 1.26$) and arXiv citation networks ($\gamma = 1.69$), suggesting comparable but not identical growth dynamics. The sub-linear preferential attachment ($\beta = 0.763$) is lower than the near-linear values reported for citation networks~\citep{jeong2003measuring}, consistent with the conference paper's observation that hub formation is limited by cognitive specialization constraints.
 
 The community lifecycle patterns --- persistent major communities, gradual births, no merges or splits --- differ from social networks where community fusion and fission are common~\citep{palla2007quantifying}. This distinction likely reflects the fundamental difference between social identity (fluid, negotiated) and knowledge domain identity (more stable, ontologically grounded). A ``machine learning'' community and a ``statistics'' community may grow closer as related conversations accumulate, but they do not merge in the way social groups do.
+
+The temporal analysis also provides a developmental account of the heterogeneous topology described in the conference paper~\citep{towell2025cognitive}, where theoretical domains (ML/AI, Statistics, Philosophy) exhibited dense hub-and-spoke structures while practical domains (Programming) showed sparser, tree-like hierarchies. Community tracking reveals that this heterogeneity has a temporal origin: the theoretical communities are among the earliest born and have the longest growth histories, accumulating dense internal connections through sustained exploration over 20+ months. In contrast, practical communities tend to emerge later and grow through independent, focused conversations that branch rather than cluster. The sub-linear preferential attachment we measure ($\beta = 0.763$) quantifies the mechanism the conference paper observed qualitatively --- hubs form, but their growth is limited by cognitive specialization, producing the moderate degree heterogeneity rather than extreme scale-free structure.
 
 \subsection{The Densification Paradox}
 \label{sec:densification_paradox}
@@ -468,7 +482,7 @@ Several limitations constrain the generalizability of our findings.
 
 \textbf{Single threshold.} We analyze the network at a single similarity threshold ($\theta = 0.9$), validated by the conference paper's ablation study. The temporal patterns at other thresholds remain unexplored.
 
-\textbf{Model era confounds.} Differences between model era sub-networks may reflect temporal trends (topic interests change over time), model capabilities, or both. The small sample sizes for GPT-4 and GPT-4.5 eras preclude meaningful comparison.
+\textbf{Model era confounds.} Differences between model era sub-networks may reflect temporal trends (topic interests change over time), model capabilities, or both. Furthermore, model era classification relies on export metadata that was absent before March 2024; the ``GPT-3.5'' era likely contains an unknown number of GPT-4 conversations. The small labeled GPT-4 and GPT-4.5 samples preclude meaningful comparison for those eras.
 
 
 % ============================================================
@@ -478,11 +492,35 @@ Several limitations constrain the generalizability of our findings.
 
 We have extended the cognitive MRI methodology from static to temporal network analysis, tracking how a personal knowledge network grows over 29~months of AI-assisted conversation. The network exhibits evolution patterns characteristic of real-world complex systems: super-linear densification ($\gamma = 1.405$), sub-linear preferential attachment ($\beta = 0.763$), early community stabilization, and persistent bridge formation.
 
-These findings demonstrate that personal knowledge exploration through conversational AI is not random accumulation but follows lawful growth dynamics. The densification law quantifies how knowledge becomes increasingly interconnected; preferential attachment reveals the balance between deepening existing interests and exploring new ones; community tracking shows how knowledge domains crystallize early and persist; bridge dynamics illuminate how cross-domain connections form and stabilize.
+These findings demonstrate that personal knowledge exploration through conversational AI is not random accumulation but self-organizes according to the same macroscopic laws that govern collective knowledge systems. Densification quantifies how knowledge becomes increasingly interconnected; preferential attachment reveals the balance between deepening existing interests and exploring new ones; community tracking shows how knowledge domains crystallize early and persist; bridge dynamics illuminate how cross-domain connections form and stabilize. That these patterns emerge at the scale of a single individual --- mirroring dynamics previously documented only in multi-agent systems like scientific citation networks and online collaboration platforms --- suggests that the organizational principles of knowledge exploration may be scale-invariant, operating whether the exploring agent is a community of scientists or a single person conversing with an AI.
 
-As conversational AI becomes an increasingly integral part of knowledge work, understanding the temporal dynamics of human-AI knowledge exploration will become essential. Our methodology provides a template for studying these dynamics at scale, and our findings offer a first empirical characterization of how one person's knowledge landscape evolves through sustained AI interaction.
+The mechanism differs: in our network, densification reflects the progressive revelation of latent semantic structure rather than active social tie formation. Yet the resulting growth laws are strikingly similar, raising the question of whether individual and collective knowledge exploration are governed by common underlying dynamics. Multi-user studies will be needed to test this hypothesis. Our methodology provides a template for such investigations, and our findings offer a first empirical characterization of how one person's knowledge landscape evolves through sustained AI interaction.
 
 Code and data for reproducing this analysis are publicly available~\citep{chatgpt-complex-net}.
+
+
+% ============================================================
+% PLOS Required Sections
+% ============================================================
+
+\section*{Data Availability Statement}
+The conversation embedding dataset and analysis code are available at \url{https://github.com/queelius/chatgpt-complex-net} (DOI: 10.5281/zenodo.15314235). Raw conversation content is not shared to protect the privacy of the human participant, but all derived data (embeddings, edges, temporal metrics) needed to reproduce the analyses are included.
+
+\section*{Author Contributions}
+\textbf{Alexander Towell}: Conceptualization, Methodology, Software, Formal Analysis, Data Curation, Writing -- Original Draft, Visualization.
+\textbf{John Matta}: Supervision, Writing -- Review \& Editing.
+
+\section*{Funding}
+This research received no specific funding from any agency in the public, commercial, or not-for-profit sectors.
+
+\section*{Competing Interests}
+The authors declare no competing interests.
+
+\section*{Ethics Statement}
+This study analyzes one author's own ChatGPT conversation archive. No human subjects were recruited, and no personally identifiable information about third parties is included in the dataset or analysis. The conversation data was generated through the author's routine use of a commercially available AI service.
+
+\section*{Acknowledgments}
+The authors thank the organizers of the PLOS Complex Systems special issue on Complex Networks 2025 for the invitation to submit this extended work.
 
 
 % ============================================================
