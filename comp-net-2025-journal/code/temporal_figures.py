@@ -187,120 +187,74 @@ def plot_structural_evolution(metrics_csv: str, output_path: str):
 
 def plot_community_timeline(tracked_json: str, events_json: str, output_path: str):
     """
-    Horizontal swimlane chart showing community lifespans and size evolution.
-    Each significant community (max size >= 10) gets a horizontal ribbon whose
-    height at each month is proportional to community size. Colored by topic.
+    Line plot of community size over time for the largest tracked communities.
+    Visually consistent with the other time-series figures in the paper.
     """
     setup_style()
 
     with open(tracked_json) as f:
         tracked = json.load(f)
 
+    # Descriptive labels derived from inspecting actual conversation content
+    COMMUNITY_LABELS = {
+        21: 'Deep Learning',
+        5:  'Stats & R Packages',
+        25: 'Mixed Topics',
+        31: 'Software Dev',
+        10: 'MLE & Bootstrap',
+        20: 'Casual / Philosophy',
+        33: 'Prog. Languages',
+        7:  'Likelihood Theory',
+    }
+
     # Build per-community monthly data
-    community_data = defaultdict(dict)  # {tid: {month: {size, topic}}}
+    community_data = defaultdict(dict)
     for tc in tracked:
         community_data[tc['tracked_id']][tc['month']] = {
             'size': tc['size'],
             'topic': tc['topic_dominant'],
         }
 
-    # Filter to significant communities (max size >= 10)
-    max_sizes = {}
-    for tid, months in community_data.items():
-        max_sizes[tid] = max(info['size'] for info in months.values())
-    significant = {tid for tid, ms in max_sizes.items() if ms >= 10}
+    # Max size per community
+    max_sizes = {tid: max(d['size'] for d in ms.values())
+                 for tid, ms in community_data.items()}
 
-    if not significant:
-        print("  Warning: no significant communities for timeline")
-        return
+    # Top 8 by max size
+    top_ids = sorted(max_sizes, key=max_sizes.get, reverse=True)[:8]
 
-    # Get dominant topic per community (most common across months)
-    tid_topics = {}
-    for tid in significant:
-        topics = [info['topic'] for info in community_data[tid].values()]
-        tid_topics[tid] = Counter(topics).most_common(1)[0][0]
+    # Distinct colors from tab10 palette
+    palette = plt.cm.tab10.colors
 
-    # Sort by birth date (earliest first at top), then by max size desc
-    def sort_key(tid):
-        birth = min(community_data[tid].keys())
-        return (birth, -max_sizes[tid])
-    sorted_ids = sorted(significant, key=sort_key)
-
-    # All months in the dataset
-    all_months = sorted({m for tc in tracked for m in [tc['month']]})
-    month_dates = [month_to_date(m) for m in all_months]
-
-    # Layout constants
-    row_height = 1.0
-    max_ribbon = 0.42  # max half-height of ribbon (leaves gap between rows)
-    global_max_size = max(max_sizes[tid] for tid in sorted_ids)
-
-    fig, ax = plt.subplots(figsize=(14, 0.7 * len(sorted_ids) + 2))
-
-    # Phase shading first (behind everything)
+    fig, ax = plt.subplots(figsize=(14, 6))
     add_phase_shading(ax)
 
-    for row, tid in enumerate(sorted_ids):
-        y_center = len(sorted_ids) - 1 - row  # earliest at top
+    for i, tid in enumerate(top_ids):
         months_data = community_data[tid]
         active_months = sorted(months_data.keys())
-
-        # Build arrays for the ribbon
         dates = [month_to_date(m) for m in active_months]
         sizes = [months_data[m]['size'] for m in active_months]
 
-        # Scale ribbon height: size -> half-height
-        half_heights = [max_ribbon * (s / global_max_size) for s in sizes]
+        color = palette[i % len(palette)]
+        label = COMMUNITY_LABELS.get(tid, f'C{tid}')
 
-        topic = tid_topics[tid]
-        color = TOPIC_COLORS.get(topic, '#7f7f7f')
+        ax.plot(dates, sizes, '-', color=color, linewidth=2,
+                marker='o', markersize=3, label=label)
 
-        # Draw ribbon as filled area between y_center ± half_height
-        upper = [y_center + h for h in half_heights]
-        lower = [y_center - h for h in half_heights]
-        ax.fill_between(dates, lower, upper, color=color, alpha=0.8,
-                        edgecolor='white', linewidth=0.5)
-
-        # Birth marker
-        ax.plot(dates[0], y_center, '*', color=color, markersize=8,
+        # Mark birth with a star
+        ax.plot(dates[0], sizes[0], '*', color=color, markersize=12,
                 markeredgecolor='black', markeredgewidth=0.5, zorder=5)
 
-        # Right-side label: topic (max size)
-        label = f"{topic} ({max_sizes[tid]})"
-        ax.text(month_to_date('2025-05'), y_center, label,
-                va='center', ha='left', fontsize=8, color=color, fontweight='bold')
-
-    # Configure axes
-    ax.set_yticks(range(len(sorted_ids)))
-    ax.set_yticklabels([f'C{tid}' for tid in reversed(sorted_ids)], fontsize=8)
-    ax.set_ylim(-0.7, len(sorted_ids) - 0.3)
+    ax.set_ylabel('Community Size (nodes)')
+    ax.set_xlabel('Month')
+    ax.set_title('Community Size Trajectories', fontsize=14, fontweight='bold')
 
     ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m'))
     ax.xaxis.set_major_locator(mdates.MonthLocator(interval=3))
     plt.setp(ax.get_xticklabels(), rotation=45, ha='right')
 
-    # Extend x-axis slightly for labels
-    ax.set_xlim(month_to_date('2022-12'), month_to_date('2025-08'))
-
-    # Phase labels at top
     add_phase_labels(ax)
+    ax.legend(loc='upper left', fontsize=9, ncol=2)
 
-    # Topic legend (deduplicated)
-    legend_handles = {}
-    for tid in sorted_ids:
-        topic = tid_topics[tid]
-        if topic not in legend_handles:
-            legend_handles[topic] = mpatches.Patch(
-                color=TOPIC_COLORS.get(topic, '#7f7f7f'), label=topic)
-    # Add birth marker to legend
-    from matplotlib.lines import Line2D
-    birth_handle = Line2D([0], [0], marker='*', color='gray', markersize=8,
-                          markeredgecolor='black', markeredgewidth=0.5,
-                          linestyle='None', label='Birth month')
-    handles = list(legend_handles.values()) + [birth_handle]
-    ax.legend(handles=handles, loc='lower right', fontsize=9, ncol=2)
-
-    ax.set_title('Community Lifecycles', fontsize=14, fontweight='bold')
     plt.tight_layout()
     _save_figure(fig, output_path, 'community_timeline')
 
