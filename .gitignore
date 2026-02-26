@@ -71,3 +71,4 @@ archive/
 
 # Papermill review output
 .papermill/
+.papermill.md
