@@ -231,9 +231,9 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description='Build temporal snapshots')
     parser.add_argument('--embeddings-dir',
-                        default='../../dev/ablation_study/data/embeddings/chatgpt-json-llm-user2.0-ai1.0')
+                        default='../../data/embeddings')
     parser.add_argument('--edges-file',
-                        default='../../dev/ablation_study/data/edges_filtered/edges_chatgpt-json-llm-user2.0-ai1.0_t0.9.json')
+                        default='../../data/network/edges_user2.0-ai1.0_t0.9.json')
     parser.add_argument('--output', default='../data/temporal/temporal_metrics.csv')
     args = parser.parse_args()
 

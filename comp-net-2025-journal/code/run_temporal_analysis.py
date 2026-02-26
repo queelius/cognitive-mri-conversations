@@ -12,8 +12,8 @@ Usage:
 
     # Custom paths
     python run_temporal_analysis.py \
-        --embeddings-dir ../../dev/ablation_study/data/embeddings/chatgpt-json-llm-user2.0-ai1.0 \
-        --edges-file ../../dev/ablation_study/data/edges_filtered/edges_chatgpt-json-llm-user2.0-ai1.0_t0.9.json \
+        --embeddings-dir ../../data/embeddings \
+        --edges-file ../../data/network/edges_user2.0-ai1.0_t0.9.json \
         --output-dir ../paper/figures/temporal \
         --data-output-dir ../data/temporal
 """
@@ -52,10 +52,10 @@ def main():
         epilog=__doc__,
     )
     parser.add_argument('--embeddings-dir',
-                        default='../../dev/ablation_study/data/embeddings/chatgpt-json-llm-user2.0-ai1.0',
+                        default='../../data/embeddings',
                         help='Directory with conversation embedding JSONs')
     parser.add_argument('--edges-file',
-                        default='../../dev/ablation_study/data/edges_filtered/edges_chatgpt-json-llm-user2.0-ai1.0_t0.9.json',
+                        default='../../data/network/edges_user2.0-ai1.0_t0.9.json',
                         help='Filtered edges JSON file')
     parser.add_argument('--output-dir', default='../paper/figures/temporal',
                         help='Directory for figure output')

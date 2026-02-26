@@ -444,9 +444,9 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description='Track communities over time')
     parser.add_argument('--embeddings-dir',
-                        default='../../dev/ablation_study/data/embeddings/chatgpt-json-llm-user2.0-ai1.0')
+                        default='../../data/embeddings')
     parser.add_argument('--edges-file',
-                        default='../../dev/ablation_study/data/edges_filtered/edges_chatgpt-json-llm-user2.0-ai1.0_t0.9.json')
+                        default='../../data/network/edges_user2.0-ai1.0_t0.9.json')
     parser.add_argument('--output-dir', default='../data/temporal')
     args = parser.parse_args()
 
