@@ -208,9 +208,9 @@ if __name__ == '__main__':
     import argparse
     parser = argparse.ArgumentParser(description='Load temporal dataset')
     parser.add_argument('--embeddings-dir',
-                        default='../../dev/ablation_study/data/embeddings/chatgpt-json-llm-user2.0-ai1.0')
+                        default='../../data/embeddings')
     parser.add_argument('--edges-file',
-                        default='../../dev/ablation_study/data/edges_filtered/edges_chatgpt-json-llm-user2.0-ai1.0_t0.9.json')
+                        default='../../data/network/edges_user2.0-ai1.0_t0.9.json')
     args = parser.parse_args()
 
     dataset = build_temporal_dataset(args.embeddings_dir, args.edges_file)
