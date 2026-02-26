@@ -1,6 +1,6 @@
 # Cognitive MRI of AI Conversations: Research Compendium
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18778444.svg)](https://doi.org/10.5281/zenodo.18778444)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18778376.svg)](https://doi.org/10.5281/zenodo.18778376)
 
 Applying complex network analysis to ChatGPT conversation archives to reveal knowledge organization, community structure, and temporal evolution patterns.
 
