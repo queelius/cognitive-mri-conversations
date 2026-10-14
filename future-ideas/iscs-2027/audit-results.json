@@ -1,0 +1,121 @@
+{
+  "checked_at_utc": "2026-10-14T15:37:26.473886+00:00",
+  "scope": "Synthetic fixtures and stored-output checks; no full pipeline rerun.",
+  "temporal_git_head": "13e3a4745ca7b35a93d7fc4775dd5a5dc9566762",
+  "versions": {
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "networkx": "3.4.2",
+    "python-louvain": "0.16"
+  },
+  "source_sha256": {
+    "papers/temporal-networks/code/temporal_community_tracker.py": "7e094773ce77f279344ec1b603659448e4b8728e3f15db540ed06a3f2f455ea7",
+    "papers/temporal-networks/code/exploration_index.py": "2adcb48a59245f9039adb39626941791a8bcf7d1caa4281de2ac30bb93e36563",
+    "papers/temporal-networks/code/temporal_permutation_null.py": "a82b627b5777684837575a4aea2307c6d33518bfa60c6c557334de115192ca2c",
+    "papers/temporal-networks/data/temporal/permutation_null.json": "85166225f02e7cc935c42dc987c06c1b9379b4b5ee2039ab80e131fb88d2c07f",
+    "papers/temporal-networks/data/wildchat/multiuser_summary.csv": "b3a1e165227831a89a8480b030a03669b740650a79b6fa43fb27c8fccec63501",
+    "papers/temporal-networks/data/wildchat/exploration_index.csv": "33aeee0d21bec3a6ccf62881836afe4387ab212bf6816fa917d1bdcf2178be8c",
+    "papers/temporal-networks/paper/PLOS/paper.tex": "63062a2e24384ca6d9b793bdb4a39aece0c53395b91937366907457eb7e7f129"
+  },
+  "community_fixtures": {
+    "continuation": {
+      "expected_event": "continuation",
+      "observed_counts": {
+        "continuation": 2
+      },
+      "expected_event_detected": true
+    },
+    "merge": {
+      "expected_event": "merge",
+      "observed_counts": {
+        "continuation": 1
+      },
+      "expected_event_detected": false
+    },
+    "split": {
+      "expected_event": "split",
+      "observed_counts": {
+        "continuation": 1,
+        "birth": 1
+      },
+      "expected_event_detected": false
+    }
+  },
+  "sequence_fixtures": {
+    "recent": {
+      "topic_order": [
+        0,
+        0,
+        1,
+        1,
+        2,
+        2
+      ],
+      "step_index": 0.4,
+      "revisit_index": 0.6
+    },
+    "delayed": {
+      "topic_order": [
+        0,
+        1,
+        2,
+        0,
+        1,
+        2
+      ],
+      "step_index": 1.0,
+      "revisit_index": 0.6
+    }
+  },
+  "stored_index_correlations": {
+    "n_archives": 10,
+    "step_index": {
+      "spearman_rho": 0.406060606060606,
+      "p_value": 0.24428229408662638
+    },
+    "revisit_index": {
+      "spearman_rho": -0.735565707852878,
+      "p_value": 0.01532345637780498
+    }
+  },
+  "stored_multiarchive_summary": {
+    "n_archives": 11,
+    "gamma_range": [
+      1.09,
+      1.499
+    ],
+    "gamma_p_above_0_05": 11,
+    "degenerate_beta_count": 1
+  },
+  "stored_case_permutation_null": {
+    "meta": {
+      "n_shuffles": 10000,
+      "random_state": 42,
+      "louvain_seed": 42,
+      "null_design": "permute conversation-to-timestamp assignment; monthly arrival counts preserved; final network fixed",
+      "path_estimator": "exact below 150 giant nodes, 50-source BFS sample above"
+    },
+    "scalars": {
+      "gamma": {
+        "observed": 1.405037198723012,
+        "null_mean": 1.3479539502587279,
+        "null_std": 0.051658996263565016,
+        "null_p2.5": 1.2536672031872096,
+        "null_p50": 1.342406337639094,
+        "null_p97.5": 1.4632931800576228,
+        "z": 1.1050011148696037,
+        "p_empirical": 0.26817318268173185
+      },
+      "beta": {
+        "observed": 0.7631733299299224,
+        "null_mean": 0.8798206425973498,
+        "null_std": 0.04991886327742629,
+        "null_p2.5": 0.7803063252067175,
+        "null_p50": 0.8802355432767577,
+        "null_p97.5": 0.9781036117183733,
+        "z": -2.3367381588630103,
+        "p_empirical": 0.024197580241975804
+      }
+    }
+  }
+}
