@@ -1,6 +1,12 @@
 # ISCS 2027 research directions and decision history
 
-## Current recommendation — October 15, 2026
+## Current recommendation — October 15 public validation result
+
+**Stop full-paper expansion of the semantic reported-purpose retrieval pilot; prioritize the bounded temporal-network calibration fallback.** The [completed public pilot](../../papers/semantic-measurement/REPORT.md) compares 21 baselines with six fixed sequence alternatives on 140 held-out participants in 28 candidate-sharing blocks. The selected sequence method trails the baseline by 4.89 percentage points, selection-aware 95% interval [−8.58,+4.76]. This narrowly meets its primary practical-negative rule, but the other encoder/context panels do not bound a five-point gain. There is no supported incremental order or matched-donor benefit. It neither establishes universal futility of semantic dynamics nor supplies a sufficiently consequential replicated failure for a negative paper. Cached-input reproduction matches exactly; 148 tests and final independent review pass. Full verification and limitations are linked from the report.
+
+The calibration tools remain reusable; this evaluated sample must not be recycled as fresh validation after tuning. The concrete next `/goal` is the [temporal fallback](research-deep-dive/NEXT-GOAL.md#credible-research-fallback). That remains a decision pilot, not a commitment to a submission. The selective-forgetting stopping decision is unchanged. The pre-pilot recommendation below is preserved to show what evidence changed the ranking.
+
+## October 15 deep-dive recommendation — before executing public validation
 
 **Pursue a bounded public measurement-validity pilot combining cross-sectional sampling with temporal controls; keep the corrected temporal-network extension as the fallback.** The broader [research deep dive](research-deep-dive/README.md) audited the nested projects, current primary literature and public datasets, and ran small falsification checks. It does not yet justify a full new paper. The temporal extension remains the most mature manuscript, while semantic-motion calibration offers the strongest new question if it can demonstrate a consequential public result.
 

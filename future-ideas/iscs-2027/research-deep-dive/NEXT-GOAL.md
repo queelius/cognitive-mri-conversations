@@ -1,6 +1,15 @@
 # Recommended next goal and fallback
 
-These commands describe subsequent work. The deep-dive goal does not authorize treating these proposed experiments as already completed. Choose the recommended bounded validation project first; use the fallback if its feasibility/novelty gate fails. A negative result is a successful decision outcome.
+Execution follow-up (October 15, 2026): the Recommended goal below is the historical command
+for the completed public validation pilot. Its [results](../../../papers/semantic-measurement/REPORT.md)
+do not support full-paper expansion. The **next candidate is the Credible research fallback**
+below. The original command is preserved unchanged for provenance; this note does not launch
+the fallback or alter the completed pilot's objective.
+
+The commands and selection order below were proposed by the completed deep dive. The first
+was subsequently activated and executed as a separate goal; the temporal fallback is still
+proposed work. A negative result is a successful decision outcome, and neither command implies
+that a full paper is justified.
 
 ## Recommended
 

@@ -60,3 +60,34 @@ Critically assess the CMRI research program and select the strongest next resear
 - [x] Proposal updates, limitations and final verification
 
 The authorized research assessment is complete. The unrelated paused goal-tracker entry was not changed or falsely marked complete. The next experiments are proposed in NEXT-GOAL.md, not silently launched as an extension of this discovery task.
+
+## 2026-10-15 — recommended pilot execution checkpoint (historical)
+
+The user activated the Recommended goal in NEXT-GOAL.md. Execution lives in the new independent
+repository [papers/semantic-measurement](../../../papers/semantic-measurement/README.md), branch
+`pilot/public-validation`. The earlier deep-dive findings remain unchanged.
+
+Public ThoughtTrace release is pinned and audited; development has195 dependency components
+with >=4-user eligible reports, producing503 distinct anchor cases. Many reports are retrospective,
+so the experiment is limited to reported-purpose recovery. Synthetic calibration and its review
+are complete; public outcome evaluation has not begun. Protocol/config/source/model hashes were
+frozen at child commit2cf3b1d after independent methodological review. Detailed progress and
+verification are in the child's PROGRESS.md, PROTOCOL.md and audits/REVIEW-RESOLUTIONS.md.
+
+Remaining: finish feature/inference implementation and review, run the frozen public pilot with
+both CPU encoders, assess uncertainty and controls, then update the research recommendation.
+
+## Public validation follow-up — 2026-10-15
+
+The independent `papers/semantic-measurement` pilot has executed frozen public preparation,
+calibration and scoring. Primary gain −4.8937 pp, selection-aware CI [−8.5845,+4.7630], 140
+evaluation participants/28 blocks. All fixed-pair encoder/context point gains are negative;
+order/donor increments lack support. The primary practical-negative criterion is narrowly met,
+not robust across sensitivities. Recommendation: abandon full-paper expansion of this particular
+retrieval pilot; preserve calibration assets and prioritize the bounded temporal fallback.
+All three stages now reproduce exactly on the same machine after excluding documented timing,
+cache and provenance fields; 106 checks and 148 passing tests are saved. Final broad review
+passed, independently confirming 16 inference outputs and 553 candidate sets. The pilot is
+complete. See its REPORT.md/VERIFICATION.md and committed ledger for evidence. Existing
+deep-dive checks and earlier decisions remain preserved; the temporal fallback remains a
+proposed next goal, not a silently launched continuation.

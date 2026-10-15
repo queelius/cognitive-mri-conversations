@@ -1,6 +1,10 @@
 # Pilot plans and stopping rules
 
-## October 15 update: next pilot selected after the deep dive
+## October 15 execution update
+
+The recommended public semantic-measurement pilot is complete: [report](../../papers/semantic-measurement/REPORT.md), [reproduction and verification](../../papers/semantic-measurement/VERIFICATION.md). Its selected-pair primary gain is −4.89 pp [−8.58,+4.76] with development-selection uncertainty. The practical-negative boundary is only narrowly met, lacks cross-panel confirmation, and does not justify a full negative paper. No positive sequence/order claim survives. Stop expansion of this retrieval experiment and use the temporal measurement gate below as the next candidate. Exact cached-input reproduction, 148 passing tests and final independent review are recorded; no temporal experiment has been newly executed in this pilot.
+
+## October 15 update: pilot selected after the deep dive (historical)
 
 The [deep-dive assessment](research-deep-dive/README.md) is complete. Its bounded dynamics, projection-null, public-data and external-metric checks are recorded separately with protocols, tests, runtime, uncertainty and review corrections. They do **not** constitute execution of the full temporal or transit plans below.
 
