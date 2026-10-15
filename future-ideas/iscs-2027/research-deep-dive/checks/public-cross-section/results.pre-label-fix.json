@@ -1,0 +1,338 @@
+{
+  "eligibility": {
+    "physical_rows": 37208,
+    "unique_content_hashes": 36821,
+    "duplicate_content_rows": 387,
+    "content_hashes_with_repeats": 96,
+    "maximum_content_multiplicity": 63,
+    "proxy_count": 9645,
+    "missing_proxy_rows": 0,
+    "date_min": "2023-04-09",
+    "date_max": "2023-04-27",
+    "models": {
+      "gpt-4-0314": 12387,
+      "gpt-3.5-turbo-0301": 24821
+    },
+    "languages": {
+      "Spanish": 690,
+      "English": 16373,
+      "Catalan": 25,
+      "Russian": 3533,
+      "Latin": 152,
+      "French": 861,
+      "Chinese": 11468,
+      "Nolang": 168,
+      "Yoruba": 42,
+      "Turkish": 271,
+      "Italian": 467,
+      "Hungarian": 25,
+      "Maori": 188,
+      "Sotho": 128,
+      "Estonian": 33,
+      "Portuguese": 722,
+      "Esperanto": 46,
+      "Korean": 51,
+      "German": 613,
+      "Tswana": 45,
+      "Dutch": 103,
+      "Vietnamese": 105,
+      "Bulgarian": 16,
+      "Greek": 12,
+      "Indonesian": 119,
+      "Swahili": 39,
+      "Ganda": 42,
+      "Bokmal": 9,
+      "Slovene": 12,
+      "Polish": 88,
+      "Persian": 123,
+      "Tagalog": 45,
+      "Kazakh": 2,
+      "Albanian": 8,
+      "Malay": 19,
+      "Japanese": 96,
+      "Swedish": 25,
+      "Arabic": 85,
+      "Ukrainian": 29,
+      "Somali": 30,
+      "Mongolian": 3,
+      "Romanian": 34,
+      "Nynorsk": 6,
+      "Afrikaans": 8,
+      "Serbian": 12,
+      "Danish": 17,
+      "Bosnian": 22,
+      "Azerbaijani": 2,
+      "Croatian": 41,
+      "Welsh": 26,
+      "Slovak": 9,
+      "Shona": 6,
+      "Hebrew": 5,
+      "Tsonga": 7,
+      "Macedonian": 4,
+      "Lithuanian": 3,
+      "Basque": 8,
+      "Irish": 3,
+      "Icelandic": 5,
+      "Czech": 11,
+      "Xhosa": 12,
+      "Zulu": 6,
+      "Belarusian": 1,
+      "Finnish": 47,
+      "Urdu": 1,
+      "Bengali": 1
+    },
+    "proxy_content_quantiles": {
+      "min": 1.0,
+      "median": 1.0,
+      "p90": 7.0,
+      "p99": 41.0,
+      "max": 726.0
+    },
+    "single_content_proxies": 5114,
+    "single_date_proxies": 7451,
+    "proxy_screen_failures": {
+      "over_161_rows": 8,
+      "over_3_country": 0,
+      "over_3_state": 0,
+      "over_3_language": 53
+    },
+    "archive_thresholds": {
+      "20_conversations_5_dates": 177,
+      "50_conversations_5_dates": 51,
+      "100_conversations_5_dates": 16
+    },
+    "archive_thresholds_after_within_shard_screen": {
+      "20_conversations_5_dates": 144,
+      "50_conversations_5_dates": 30,
+      "100_conversations_5_dates": 4
+    },
+    "uncertainty": "A census of one preselected shard, with incomplete histories and unvalidated IP linkage; no population CI or full-release extrapolation is valid."
+  },
+  "annotation_keys": {
+    "domain": {
+      "rows": 37208,
+      "unique_keys": 37208,
+      "duplicate_keys": 0
+    },
+    "intent": {
+      "rows": 37208,
+      "unique_keys": 37208,
+      "duplicate_keys": 0
+    }
+  },
+  "content_sample": {
+    "physical_rows": 2000,
+    "label_matched_rows": 2000,
+    "date_min": "2023-04-09",
+    "date_max": "2023-04-10"
+  },
+  "selection": {
+    "eligible_distinct_content_rows": 1024,
+    "leakage_components": 422,
+    "component_size_max": 40,
+    "selected_rows": 422,
+    "rows_in_multi_record_components": 760,
+    "development_rows": 252,
+    "evaluation_rows": 170
+  },
+  "encoder": {
+    "sha256": {
+      "tokenizer.json": "be50c3628f2bf5bb5e3a7f17b1f74611b2561a3a27eeab05e5aa30f411572037",
+      "onnx/model.onnx": "6fd5d72fe4589f189f8ebc006442dbb529bb7ce38f8082112682524616046452"
+    },
+    "caps": {
+      "user": {
+        "capped_conversations": 46,
+        "chunks": 655
+      },
+      "assistant": {
+        "capped_conversations": 120,
+        "chunks": 1111
+      }
+    },
+    "threads": 4
+  },
+  "representation_status": "completed",
+  "representation": {
+    "conversation_domain": {
+      "evaluation_rows": 167,
+      "unseen_label_rows": 3,
+      "development_classes": 28,
+      "evaluation_classes": 26,
+      "majority_label": "DomainLabel.PROGRAMMING_AND_SCRIPTING",
+      "majority_accuracy": 0.20359281437125748,
+      "development_label_counts": {
+        "DomainLabel.HEALTH_AND_MEDICINE": 11,
+        "DomainLabel.PROGRAMMING_AND_SCRIPTING": 56,
+        "DomainLabel.TRANSLATION_AND_LANGUAGE": 5,
+        "DomainLabel.EDUCATION_AND_LEARNING": 9,
+        "DomainLabel.ENGINEERING_AND_DESIGN": 11,
+        "DomainLabel.TRAVEL_AND_TOURISM": 10,
+        "DomainLabel.PHYSICS_AND_CHEMISTRY": 10,
+        "DomainLabel.ENTERTAINMENT": 17,
+        "DomainLabel.BUSINESS_AND_FINANCE": 13,
+        "DomainLabel.CREATIVE_WRITING_AND_EDITING": 13,
+        "DomainLabel.MACHINE_LEARNING_AND_AI": 17,
+        "DomainLabel.MATHEMATICS_AND_LOGIC": 7,
+        "DomainLabel.SMALL_TALK_AND_CHATBOT": 12,
+        "DomainLabel.LAW_AND_POLITICS": 6,
+        "DomainLabel.SPORTS_AND_FITNESS": 2,
+        "DomainLabel.RELIGION_AND_PHILOSOPHY": 5,
+        "DomainLabel.ADULT": 5,
+        "DomainLabel.DATA_ANALYSIS_AND_VISUALIZATION": 5,
+        "DomainLabel.COMPUTERS_AND_ELECTRONICS": 9,
+        "DomainLabel.HISTORY_AND_CULTURE": 5,
+        "DomainLabel.FASHION_AND_BEAUTY": 4,
+        "DomainLabel.BIOLOGY": 3,
+        "DomainLabel.MARKETING_AND_SALES": 3,
+        "DomainLabel.JOBS_AND_EMPLOYMENT": 5,
+        "DomainLabel.FOOD_AND_DRINK": 1,
+        "DomainLabel.GAMING": 5,
+        "DomainLabel.HOME_AND_AUTO": 1,
+        "DomainLabel.OTHER": 2
+      },
+      "evaluation_label_counts": {
+        "DomainLabel.SMALL_TALK_AND_CHATBOT": 10,
+        "DomainLabel.EDUCATION_AND_LEARNING": 10,
+        "DomainLabel.BUSINESS_AND_FINANCE": 8,
+        "DomainLabel.PHYSICS_AND_CHEMISTRY": 4,
+        "DomainLabel.TRANSLATION_AND_LANGUAGE": 6,
+        "DomainLabel.PROGRAMMING_AND_SCRIPTING": 34,
+        "DomainLabel.GAMING": 7,
+        "DomainLabel.HISTORY_AND_CULTURE": 5,
+        "DomainLabel.ENGINEERING_AND_DESIGN": 5,
+        "DomainLabel.RELIGION_AND_PHILOSOPHY": 5,
+        "DomainLabel.MARKETING_AND_SALES": 2,
+        "DomainLabel.LAW_AND_POLITICS": 5,
+        "DomainLabel.HEALTH_AND_MEDICINE": 4,
+        "DomainLabel.COMPUTERS_AND_ELECTRONICS": 10,
+        "DomainLabel.CREATIVE_WRITING_AND_EDITING": 13,
+        "DomainLabel.FASHION_AND_BEAUTY": 2,
+        "DomainLabel.TRAVEL_AND_TOURISM": 6,
+        "DomainLabel.ENTERTAINMENT": 8,
+        "DomainLabel.MACHINE_LEARNING_AND_AI": 10,
+        "DomainLabel.HOME_AND_AUTO": 2,
+        "DomainLabel.BIOLOGY": 3,
+        "DomainLabel.DATA_ANALYSIS_AND_VISUALIZATION": 3,
+        "None": 1,
+        "DomainLabel.SPORTS_AND_FITNESS": 2,
+        "DomainLabel.FOOD_AND_DRINK": 1,
+        "DomainLabel.MATHEMATICS_AND_LOGIC": 1,
+        "DomainLabel.PROFESSIONAL_WRITING_AND_EDITING": 2,
+        "DomainLabel.JOBS_AND_EMPLOYMENT": 1
+      },
+      "models": {
+        "user": {
+          "accuracy": 0.437125748502994,
+          "macro_recall": 0.39670806192299407
+        },
+        "assistant": {
+          "accuracy": 0.4251497005988024,
+          "macro_recall": 0.40928202642003547
+        },
+        "equal_role_mean": {
+          "accuracy": 0.47305389221556887,
+          "macro_recall": 0.49198365736827276
+        }
+      },
+      "assistant_minus_user": {
+        "n": 167,
+        "difference": -0.011976047904191617,
+        "ci95": [
+          -0.08982035928143713,
+          0.06601796407185548
+        ],
+        "p_sign_flip": 0.8834233153369326
+      },
+      "mixed_minus_user": {
+        "n": 167,
+        "difference": 0.03592814371257485,
+        "ci95": [
+          -0.023952095808383235,
+          0.09580838323353294
+        ],
+        "p_sign_flip": 0.34133173365326935
+      }
+    },
+    "user_intent": {
+      "evaluation_rows": 170,
+      "unseen_label_rows": 0,
+      "development_classes": 9,
+      "evaluation_classes": 8,
+      "majority_label": "IntentLabel.TEXT_GENERATION",
+      "majority_accuracy": 0.2823529411764706,
+      "development_label_counts": {
+        "IntentLabel.INFORMATION_GATHERING": 66,
+        "IntentLabel.TRANSLATION_OR_CONVERSION": 9,
+        "IntentLabel.INFORMATION_LOOKUP": 67,
+        "IntentLabel.TEXT_GENERATION": 69,
+        "IntentLabel.IMAGE_CREATION": 2,
+        "IntentLabel.ANALYSIS": 22,
+        "IntentLabel.OPEN_ENDED_DISCOVERY": 12,
+        "IntentLabel.SUMMARIZATION": 4,
+        "None": 1
+      },
+      "evaluation_label_counts": {
+        "IntentLabel.INFORMATION_LOOKUP": 51,
+        "IntentLabel.ANALYSIS": 8,
+        "IntentLabel.TRANSLATION_OR_CONVERSION": 5,
+        "IntentLabel.TEXT_GENERATION": 48,
+        "IntentLabel.INFORMATION_GATHERING": 42,
+        "IntentLabel.OPEN_ENDED_DISCOVERY": 9,
+        "IntentLabel.SUMMARIZATION": 5,
+        "IntentLabel.IMAGE_CREATION": 2
+      },
+      "models": {
+        "user": {
+          "accuracy": 0.37058823529411766,
+          "macro_recall": 0.24959150326797386
+        },
+        "assistant": {
+          "accuracy": 0.3941176470588235,
+          "macro_recall": 0.4507863562091503
+        },
+        "equal_role_mean": {
+          "accuracy": 0.40588235294117647,
+          "macro_recall": 0.31228991596638656
+        }
+      },
+      "assistant_minus_user": {
+        "n": 170,
+        "difference": 0.023529411764705882,
+        "ci95": [
+          -0.052941176470588235,
+          0.09411764705882353
+        ],
+        "p_sign_flip": 0.6490701859628074
+      },
+      "mixed_minus_user": {
+        "n": 170,
+        "difference": 0.03529411764705882,
+        "ci95": [
+          -0.01764705882352941,
+          0.08823529411764706
+        ],
+        "p_sign_flip": 0.2579484103179364
+      }
+    }
+  },
+  "runtime": {
+    "seconds": 64.61439269600669,
+    "python": "3.11.15",
+    "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
+    "packages": {
+      "numpy": "2.2.6",
+      "pyarrow": "21.0.0",
+      "onnxruntime": "1.23.2",
+      "tokenizers": "0.22.2",
+      "pytest": "9.1.1",
+      "coverage": "7.16.2"
+    }
+  },
+  "provenance": {
+    "config.json": "d904e83a6f5e0a8f85848e504ff56498b65570c9a6988b04853aca5650801582",
+    "PROTOCOL.md": "f3800573b73d8fb10950dcf79f2759fd7881c72c7d107b6dbb3a68c5ddf64fe4",
+    "audit.py": "8586e494a1896b061ed46b1eba355275d5edb1959efbf57c128ad98f7259bd27",
+    "acquire.py": "7a46244291d21f6e90b3a2b1509267e3c916c878c7d5f3785d34de0cfcb82ecc"
+  }
+}

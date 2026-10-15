@@ -1,4 +1,16 @@
-# Three paper directions for ISCS 2027
+# ISCS 2027 research directions and decision history
+
+## Current recommendation — October 15, 2026
+
+**Pursue a bounded public measurement-validity pilot combining cross-sectional sampling with temporal controls; keep the corrected temporal-network extension as the fallback.** The broader [research deep dive](research-deep-dive/README.md) audited the nested projects, current primary literature and public datasets, and ran small falsification checks. It does not yet justify a full new paper. The temporal extension remains the most mature manuscript, while semantic-motion calibration offers the strongest new question if it can demonstrate a consequential public result.
+
+The new evidence changes the earlier ranking: several motion summaries collapse to construction effects; a projection-aware hierarchy null changes the clustering interpretation; prefix gains have selection-sensitive uncertainty; and the corrected public role check is inconclusive. Cross-sectional validation is worth doing, but long IP-linked archives cannot be treated as verified people. The completed selective-forgetting stop/narrow decision stands.
+
+See the [audited inventory](research-deep-dive/INVENTORY.md), [candidate comparison](research-deep-dive/CANDIDATES.md), [five briefs](research-deep-dive/BRIEFS.md), [bibliography](research-deep-dive/BIBLIOGRAPHY.md), and copyable [next goal plus fallback](research-deep-dive/NEXT-GOAL.md). A negative calibration result can justify a paper only with adequate controls, precision and a substantive contribution; an inconclusive pilot cannot.
+
+## October 14 decision record — earlier three-direction comparison
+
+The memo below is preserved as the historical recommendation after the forgetting pilot. The October 15 decision above supersedes its ranking; its completed evidence, proposed experiments and effort estimates remain available for comparison.
 
 Research decision memo for Alexander Richard Towell and John Matta. Prepared and updated October 14, 2026. Assumes existing data and computational experiments, with no participant recruitment. The selective-forgetting pilot has now been executed; temporal and transit experiments remain proposed. Completed checks and results are documented in [EVIDENCE.md](EVIDENCE.md).
 

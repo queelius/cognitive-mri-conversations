@@ -1,0 +1,11 @@
+...........                                                              [100%]
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.10.20-final-0 _______________
+
+Name                       Stmts   Miss  Cover   Missing
+--------------------------------------------------------
+selection_uncertainty.py      66     24    64%   31, 33, 37, 56, 70, 74-121, 125-128
+--------------------------------------------------------
+TOTAL                         66     24    64%
+Coverage JSON written to file coverage-selection-tests.json
+11 passed in 0.79s

@@ -1,0 +1,72 @@
+[
+  {
+    "path": "/home/spinoza/github/cmri",
+    "head": "980a530e055d20575c96428b3b3cd24daf7a296a",
+    "branch": "master",
+    "dirty_paths": "M .gitignore\n M CLAUDE.md\n?? future-ideas/iscs-2027/research-deep-dive/",
+    "remote": "https://github.com/queelius/cognitive-mri-conversations.git"
+  },
+  {
+    "path": "/home/spinoza/github/cmri/papers/embedding-dynamics",
+    "head": "e11a30a963ce69bdd4e0e08d151abb8e9a602f83",
+    "branch": "main",
+    "dirty_paths": "",
+    "remote": "https://github.com/queelius/cmri-embedding-dynamics.git"
+  },
+  {
+    "path": "/home/spinoza/github/cmri/papers/hierarchical-memory",
+    "head": "78aaeee6e17ac49e9be3a70667672fee172629ed",
+    "branch": "main",
+    "dirty_paths": "?? paper/slides/39_Alexander_Towell.mkv",
+    "remote": "https://github.com/queelius/cmri-hierarchical-memory.git"
+  },
+  {
+    "path": "/home/spinoza/github/cmri/papers/knowledge-networks",
+    "head": "f02c8b6ed42044b3af2fe5489f2f96819fb36b93",
+    "branch": "main",
+    "dirty_paths": "D slides/slide-pretty.pdf\n D slides/slide-pretty.tex",
+    "remote": "https://github.com/queelius/cmri-knowledge-networks.git"
+  },
+  {
+    "path": "/home/spinoza/github/cmri/papers/operational-memex",
+    "head": "738a79f5e6fb0b03a2b282dc38dcf79b0b91a255",
+    "branch": "main",
+    "dirty_paths": "",
+    "remote": "https://github.com/queelius/cmri-operational-memex.git"
+  },
+  {
+    "path": "/home/spinoza/github/cmri/papers/selective-forgetting",
+    "head": "1f3b482b33484b213180d7635487fce824e6aaf2",
+    "branch": "main",
+    "dirty_paths": "",
+    "remote": null
+  },
+  {
+    "path": "/home/spinoza/github/cmri/papers/semantic-dynamics",
+    "head": "4dcaa1144e0e9d6fd7c25709413833374bd03542",
+    "branch": "main",
+    "dirty_paths": "",
+    "remote": "https://github.com/queelius/cmri-semantic-dynamics.git"
+  },
+  {
+    "path": "/home/spinoza/github/cmri/papers/temporal-networks",
+    "head": "13e3a4745ca7b35a93d7fc4775dd5a5dc9566762",
+    "branch": "main",
+    "dirty_paths": "M paper/figures/temporal/permutation_null_bands.pdf",
+    "remote": "https://github.com/queelius/cmri-temporal-networks.git"
+  },
+  {
+    "path": "/home/spinoza/github/cmri/chatgpt-conversation-corpus",
+    "head": "daf4bbf61bd157bae82224d234f3f5afaae9c951",
+    "branch": "main",
+    "dirty_paths": "",
+    "remote": "https://github.com/queelius/chatgpt-conversation-corpus.git"
+  },
+  {
+    "path": "/home/spinoza/github/beta/embflow",
+    "head": "c6f0937b563f80b10b1cba16430d9765dc7dc20f",
+    "branch": "master",
+    "dirty_paths": "",
+    "remote": "https://github.com/queelius/embflow.git"
+  }
+]

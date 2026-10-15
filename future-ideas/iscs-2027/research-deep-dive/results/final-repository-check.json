@@ -1,0 +1,56 @@
+[
+  {
+    "path": "/home/spinoza/github/cmri/papers/embedding-dynamics",
+    "head_unchanged": true,
+    "status_unchanged": true,
+    "current_status": ""
+  },
+  {
+    "path": "/home/spinoza/github/cmri/papers/hierarchical-memory",
+    "head_unchanged": true,
+    "status_unchanged": true,
+    "current_status": "?? paper/slides/39_Alexander_Towell.mkv"
+  },
+  {
+    "path": "/home/spinoza/github/cmri/papers/knowledge-networks",
+    "head_unchanged": true,
+    "status_unchanged": true,
+    "current_status": "D slides/slide-pretty.pdf\n D slides/slide-pretty.tex"
+  },
+  {
+    "path": "/home/spinoza/github/cmri/papers/operational-memex",
+    "head_unchanged": true,
+    "status_unchanged": true,
+    "current_status": ""
+  },
+  {
+    "path": "/home/spinoza/github/cmri/papers/selective-forgetting",
+    "head_unchanged": true,
+    "status_unchanged": true,
+    "current_status": ""
+  },
+  {
+    "path": "/home/spinoza/github/cmri/papers/semantic-dynamics",
+    "head_unchanged": true,
+    "status_unchanged": true,
+    "current_status": ""
+  },
+  {
+    "path": "/home/spinoza/github/cmri/papers/temporal-networks",
+    "head_unchanged": true,
+    "status_unchanged": true,
+    "current_status": "M paper/figures/temporal/permutation_null_bands.pdf"
+  },
+  {
+    "path": "/home/spinoza/github/cmri/chatgpt-conversation-corpus",
+    "head_unchanged": true,
+    "status_unchanged": true,
+    "current_status": ""
+  },
+  {
+    "path": "/home/spinoza/github/beta/embflow",
+    "head_unchanged": true,
+    "status_unchanged": true,
+    "current_status": ""
+  }
+]

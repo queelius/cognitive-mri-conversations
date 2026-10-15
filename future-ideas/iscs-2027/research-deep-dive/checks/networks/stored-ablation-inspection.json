@@ -1,0 +1,147 @@
+{
+  "source_sha256": {
+    "papers/knowledge-networks/data/ablation/ablation_2d_results.csv": "72ce9091ef1f734064b348e40292c635630156f989d255a975df6843fe21abc3"
+  },
+  "rows": 63,
+  "top_modularity_at_point9": [
+    {
+      "ratio": "2.0",
+      "threshold": "0.9",
+      "modularity": "0.7499243122864158",
+      "num_nodes": "601",
+      "num_edges": "1718",
+      "giant_component_size": "453",
+      "giant_component_fraction": "0.7537437603993344"
+    },
+    {
+      "ratio": "4.0",
+      "threshold": "0.9",
+      "modularity": "0.7451740068981024",
+      "num_nodes": "544",
+      "num_edges": "1578",
+      "giant_component_size": "431",
+      "giant_component_fraction": "0.7922794117647058"
+    },
+    {
+      "ratio": "100.0",
+      "threshold": "0.9",
+      "modularity": "0.7316120369949692",
+      "num_nodes": "443",
+      "num_edges": "1265",
+      "giant_component_size": "364",
+      "giant_component_fraction": "0.8216704288939052"
+    },
+    {
+      "ratio": "1.618",
+      "threshold": "0.9",
+      "modularity": "0.7304801334875939",
+      "num_nodes": "618",
+      "num_edges": "1727",
+      "giant_component_size": "415",
+      "giant_component_fraction": "0.6715210355987055"
+    }
+  ],
+  "top_modularity_global": [
+    {
+      "ratio": "2.0",
+      "threshold": "0.9",
+      "modularity": "0.7499243122864158",
+      "num_nodes": "601",
+      "num_edges": "1718",
+      "giant_component_size": "453",
+      "giant_component_fraction": "0.7537437603993344"
+    },
+    {
+      "ratio": "4.0",
+      "threshold": "0.9",
+      "modularity": "0.7451740068981024",
+      "num_nodes": "544",
+      "num_edges": "1578",
+      "giant_component_size": "431",
+      "giant_component_fraction": "0.7922794117647058"
+    },
+    {
+      "ratio": "100.0",
+      "threshold": "0.9",
+      "modularity": "0.7316120369949692",
+      "num_nodes": "443",
+      "num_edges": "1265",
+      "giant_component_size": "364",
+      "giant_component_fraction": "0.8216704288939052"
+    },
+    {
+      "ratio": "1.618",
+      "threshold": "0.9",
+      "modularity": "0.7304801334875939",
+      "num_nodes": "618",
+      "num_edges": "1727",
+      "giant_component_size": "415",
+      "giant_component_fraction": "0.6715210355987055"
+    }
+  ],
+  "weight_2to1_thresholds": [
+    {
+      "ratio": "2.0",
+      "threshold": "0.8",
+      "modularity": "0.35772044996469055",
+      "num_nodes": "1607",
+      "num_edges": "78582",
+      "giant_component_size": "1559",
+      "giant_component_fraction": "0.970130678282514"
+    },
+    {
+      "ratio": "2.0",
+      "threshold": "0.825",
+      "modularity": "0.446325400925075",
+      "num_nodes": "1435",
+      "num_edges": "37365",
+      "giant_component_size": "1388",
+      "giant_component_fraction": "0.9672473867595819"
+    },
+    {
+      "ratio": "2.0",
+      "threshold": "0.85",
+      "modularity": "0.5461840381596536",
+      "num_nodes": "1210",
+      "num_edges": "15523",
+      "giant_component_size": "1132",
+      "giant_component_fraction": "0.9355371900826446"
+    },
+    {
+      "ratio": "2.0",
+      "threshold": "0.875",
+      "modularity": "0.6482597365301094",
+      "num_nodes": "934",
+      "num_edges": "5675",
+      "giant_component_size": "833",
+      "giant_component_fraction": "0.8918629550321199"
+    },
+    {
+      "ratio": "2.0",
+      "threshold": "0.9",
+      "modularity": "0.7499243122864158",
+      "num_nodes": "601",
+      "num_edges": "1718",
+      "giant_component_size": "453",
+      "giant_component_fraction": "0.7537437603993344"
+    },
+    {
+      "ratio": "2.0",
+      "threshold": "0.925",
+      "modularity": "0.5130084586872106",
+      "num_nodes": "284",
+      "num_edges": "375",
+      "giant_component_size": "59",
+      "giant_component_fraction": "0.20774647887323944"
+    },
+    {
+      "ratio": "2.0",
+      "threshold": "0.95",
+      "modularity": "0.2176958121971489",
+      "num_nodes": "66",
+      "num_edges": "45",
+      "giant_component_size": "5",
+      "giant_component_fraction": "0.07575757575757576"
+    }
+  ]
+}

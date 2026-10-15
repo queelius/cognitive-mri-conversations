@@ -1,0 +1,5 @@
+{"stage": "turning", "failed": false, "runtime_seconds": 0.06841825100127608}
+{"stage": "calculus", "failed": false, "runtime_seconds": 0.0015913759998511523}
+{"stage": "prefix", "failed": false, "runtime_seconds": 0.015551604010397568}
+{"stage": "prediction", "failed": false, "runtime_seconds": 4.609896108988323}
+{"all_source_hashes_unchanged": true, "runtime_seconds": 5.170310554996831}

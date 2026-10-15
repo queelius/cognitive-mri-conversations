@@ -1,0 +1,203 @@
+{
+  "files": {
+    "/home/spinoza/github/cmri/CLAUDE.md": {
+      "sha256": "eff9742413e3f4b63885480c04e95d85803096960a54305bdbcb505cfc9e3165",
+      "bytes": 8185
+    },
+    "/home/spinoza/github/cmri/papers/embedding-dynamics/CLAUDE.md": {
+      "sha256": "9bd08ac00fecbbdad3920cdfa8f1a3a74eda588cbd781147c9639f2e55458bc6",
+      "bytes": 4763
+    },
+    "/home/spinoza/github/cmri/papers/embedding-dynamics/paper/SPEC.md": {
+      "sha256": "bbe6b5b46d52720b9b10c1c6df35951bd0a8b8d6bf560880a73770e81302e6d6",
+      "bytes": 24119
+    },
+    "/home/spinoza/github/cmri/papers/embedding-dynamics/paper/main.tex": {
+      "sha256": "7309b63ac3e969a2e31e451430dc0ff32f85830241a118495b538439da598e74",
+      "bytes": 2546
+    },
+    "/home/spinoza/github/cmri/papers/embedding-dynamics/paper/sections/04_validation.tex": {
+      "sha256": "8a3337af3f25cf6200c929fb55c3d85bc36958353ade930ef1ab300eced75676",
+      "bytes": 12329
+    },
+    "/home/spinoza/github/cmri/papers/embedding-dynamics/.papermill/state.md": {
+      "sha256": "9897daa7e055cc9f6e7caf3c3a2820025c3c9909b6e19dcadc776c22cfda2625",
+      "bytes": 8396
+    },
+    "/home/spinoza/github/cmri/papers/embedding-dynamics/experiments/EXPERIMENTS.md": {
+      "sha256": "011fd2fd10453e8bb3c5a8c1f6c2a96b10e15ac3b87a8ba257dc7f788f74a9a5",
+      "bytes": 13165
+    },
+    "/home/spinoza/github/cmri/papers/embedding-dynamics/experiments/motionlib.py": {
+      "sha256": "1bc75cafe7db847be91f91ae1324c8aa486a77a001b7165074bad792dddfded8",
+      "bytes": 7149
+    },
+    "/home/spinoza/github/cmri/papers/embedding-dynamics/experiments/exp01_shuffle_validation.py": {
+      "sha256": "7d2f7b6a70fa458a73650dbaa2ac72fda587aff1380a688d1bbce6feeb39e8cf",
+      "bytes": 6643
+    },
+    "/home/spinoza/github/cmri/papers/embedding-dynamics/experiments/exp02_platform_separability.py": {
+      "sha256": "62f7132110ecae8c482c83d5a70f71e5e38c4a25f94a4eb71139caf1bc0af5b9",
+      "bytes": 8902
+    },
+    "/home/spinoza/github/cmri/papers/embedding-dynamics/experiments/exp03_motion_motifs.py": {
+      "sha256": "24cbc39136d08a5f2a6da46a7241e9a598f064e2f249b24632308831de040da4",
+      "bytes": 6220
+    },
+    "/home/spinoza/github/cmri/papers/embedding-dynamics/experiments/exp04_prefix_experiment.py": {
+      "sha256": "550e55ed9dbc4d2f502312ed2cc3dcd947c5c8bb1530bb2bcf6a7c3298810247",
+      "bytes": 15605
+    },
+    "/home/spinoza/github/cmri/papers/embedding-dynamics/experiments/results/SUMMARY.md": {
+      "sha256": "cca563b7d88a6be8adb22be6c25ed4440a1ed6c9be1b63cad92656c1efcca7d8",
+      "bytes": 3870
+    },
+    "/home/spinoza/github/cmri/papers/embedding-dynamics/experiments/results/exp01_shuffle_validation.json": {
+      "sha256": "a053cd7ee041c35b2c6cb5e7cceb034ad7772d14abe229150dd80aeeee304387",
+      "bytes": 2525
+    },
+    "/home/spinoza/github/cmri/papers/embedding-dynamics/experiments/results/exp02_platform_separability.json": {
+      "sha256": "f41da4e31cc04ef522c1f2d67d13683884d07fc6b51217438131ac7ffc41b5fc",
+      "bytes": 1807
+    },
+    "/home/spinoza/github/cmri/papers/embedding-dynamics/experiments/results/exp03_motifs.json": {
+      "sha256": "dfecbad266700c061f22123452cc63b9a2484b2b334839de3654088876a81150",
+      "bytes": 12584
+    },
+    "/home/spinoza/github/cmri/papers/embedding-dynamics/experiments/results/exp04_prefix.json": {
+      "sha256": "07e956e6685f069bdd9d3ca4070a09837c01c250b0c8c78c698bc6102ab86745",
+      "bytes": 304283
+    },
+    "/home/spinoza/github/cmri/papers/semantic-dynamics/CLAUDE.md": {
+      "sha256": "fc92e552d5a6f08b4e7c7bfed4d44686241d398ca144039a4b7c84af219e3d22",
+      "bytes": 1100
+    },
+    "/home/spinoza/github/cmri/papers/semantic-dynamics/paper/paper.md": {
+      "sha256": "71888bf710cf57c357110ef8e3299433181cb9ee029cd02f8076bc6cf129204e",
+      "bytes": 29218
+    },
+    "/home/spinoza/github/cmri/papers/semantic-dynamics/paper/paper.tex": {
+      "sha256": "c1864a1854d97bcb615433bea889ee668d03e887397c8c977248fbd4bf901813",
+      "bytes": 34654
+    },
+    "/home/spinoza/github/cmri/papers/semantic-dynamics/experiments/exp01_velocity_graph.py": {
+      "sha256": "ca415371dc34eb654ad0e57825f5eeac00ad7ea702169c8627367db806c553d9",
+      "bytes": 13829
+    },
+    "/home/spinoza/github/cmri/papers/semantic-dynamics/experiments/exp03_strengthen.py": {
+      "sha256": "e69cbd22a4c01dc800af39da8cf98a434009232b7f6f080b2a93fecb6c19d75c",
+      "bytes": 12418
+    },
+    "/home/spinoza/github/cmri/papers/semantic-dynamics/experiments/results/velocity_graph.json": {
+      "sha256": "977f525f66866cb209b64883e7a1053ce156ba7b6a7b71394109c55596528074",
+      "bytes": 1058
+    },
+    "/home/spinoza/github/cmri/papers/semantic-dynamics/experiments/results/exp03_strengthen.json": {
+      "sha256": "6444b59f491b909a906cd8e99447918c03f7ac1ad8855900f633b9b514ef7a16",
+      "bytes": 857
+    },
+    "/home/spinoza/github/cmri/papers/operational-memex/CLAUDE.md": {
+      "sha256": "17beb698d4f5f2cd30e115e2a0b9a4343a2cdb489f5fd7f45c8d506ca564225b",
+      "bytes": 4361
+    },
+    "/home/spinoza/github/cmri/papers/operational-memex/experiments/exp17_exp_embedding_deep.py": {
+      "sha256": "35fef9764703fd9cfc0c6a44bbaf3734aa2bf417a2dd6483d08dbc707a4cdeba",
+      "bytes": 12303
+    },
+    "/home/spinoza/github/cmri/papers/operational-memex/experiments/exp19_changepoints.py": {
+      "sha256": "3ce6a1e8e25f151f9b89142fbed69f6f568b568b01e369299a2737bbfcc6fd8a",
+      "bytes": 14571
+    },
+    "/home/spinoza/github/cmri/papers/operational-memex/data/analysis.db": {
+      "sha256": "d3ec613dda2f133488a72e582f6fbf19c3759ddd6f22c628a672f36b0fb947fc",
+      "bytes": 281899008
+    },
+    "/home/spinoza/github/beta/embflow/CLAUDE.md": {
+      "sha256": "552f98396fc19552fa30cdf78ea164b095329c9d15832d7ddcf21f97eca16779",
+      "bytes": 16482
+    },
+    "/home/spinoza/github/beta/embflow/pyproject.toml": {
+      "sha256": "29aa1ed5c275d51bb6537628ea2004ff5d4c0f9346b1695302e2ebc0344f7d3f",
+      "bytes": 1231
+    },
+    "/home/spinoza/github/beta/embflow/embflow/__init__.py": {
+      "sha256": "34c241eee7f33c3d7b4352488fe772454c01adf31ac471f11b67f94c15e6398a",
+      "bytes": 2818
+    },
+    "/home/spinoza/github/beta/embflow/embflow/backends.py": {
+      "sha256": "dd4cc59ac0cbe94d00c885b17bd9bf50f3290ae9978039feab679ffd0c3819c2",
+      "bytes": 6145
+    },
+    "/home/spinoza/github/beta/embflow/embflow/compare.py": {
+      "sha256": "e8c6c01dae3da7ae761b46909656fc6ce65ed2fb2428521492b8bfc75efdbc15",
+      "bytes": 6678
+    },
+    "/home/spinoza/github/beta/embflow/embflow/nulls.py": {
+      "sha256": "a18e0641773c34bb31154429a633cecb168c77ae49bea1b500bad59b70282170",
+      "bytes": 5176
+    },
+    "/home/spinoza/github/beta/embflow/embflow/ops.py": {
+      "sha256": "5711daa542fb9e1f2ce22d54531d421c54f1409fa8dccbb24fcd201cf71ac562",
+      "bytes": 24081
+    },
+    "/home/spinoza/github/beta/embflow/embflow/smooth.py": {
+      "sha256": "048869694275da43af705b55f0313d925649cc88a8c838d9d9a901a06bf58bde",
+      "bytes": 5006
+    },
+    "/home/spinoza/github/beta/embflow/embflow/state.py": {
+      "sha256": "aea408903d6f589e20156ce0d3f348ce99a94eb2c1bdd0f54ba1d95591efe6e9",
+      "bytes": 4795
+    },
+    "/home/spinoza/github/beta/embflow/embflow/validate.py": {
+      "sha256": "8a149f5a4337da6c8535b5c9670aaff05b7a2add18b9c4a7be0cc44becca1c73",
+      "bytes": 11646
+    },
+    "/home/spinoza/github/beta/embflow/embflow/weights.py": {
+      "sha256": "ca5d945020e0cc4c2f612f32d435d1b318c40fcdb055447bfc6ef82d8b1231be",
+      "bytes": 4998
+    },
+    "/home/spinoza/github/beta/embflow/tests/test_backends.py": {
+      "sha256": "b91177326976c3bc4454a8a62aa3fcd68ebaddc3288f8ddc9913299a97a1387a",
+      "bytes": 5858
+    },
+    "/home/spinoza/github/beta/embflow/tests/test_core.py": {
+      "sha256": "1891a25502efdc39880116728ef30aaa0e77fa497d14592fb6082c1a1e96cb22",
+      "bytes": 25149
+    },
+    "/home/spinoza/github/beta/embflow/tests/test_motion.py": {
+      "sha256": "91cbc58cd6dbd9cb31911e6670d920130ff4675c033f1c1ed58d62b212939b06",
+      "bytes": 6819
+    },
+    "/home/spinoza/github/beta/embflow/tests/test_nulls.py": {
+      "sha256": "a2809f44b2aef09610083fa0442f64c68126061ed52d4dcff33c5f0de9aea57a",
+      "bytes": 5778
+    },
+    "/home/spinoza/github/beta/embflow/tests/test_state.py": {
+      "sha256": "9a36a726f6dc3bbbc2f8d6ceb7c63373825b59e2bd8caf23d0b8d95f14480012",
+      "bytes": 6030
+    },
+    "/home/spinoza/github/beta/embflow/tests/test_validate.py": {
+      "sha256": "ac3870698bd234ef9a2cbdfef10aa0293aca63acd16e28c9fa3779521425e9c5",
+      "bytes": 6850
+    }
+  },
+  "repos": {
+    "/home/spinoza/github/cmri/papers/embedding-dynamics": {
+      "head": "e11a30a963ce69bdd4e0e08d151abb8e9a602f83",
+      "status_porcelain": []
+    },
+    "/home/spinoza/github/cmri/papers/semantic-dynamics": {
+      "head": "4dcaa1144e0e9d6fd7c25709413833374bd03542",
+      "status_porcelain": []
+    },
+    "/home/spinoza/github/cmri/papers/operational-memex": {
+      "head": "738a79f5e6fb0b03a2b282dc38dcf79b0b91a255",
+      "status_porcelain": []
+    },
+    "/home/spinoza/github/beta/embflow": {
+      "head": "c6f0937b563f80b10b1cba16430d9765dc7dc20f",
+      "status_porcelain": []
+    }
+  },
+  "protocol_sha256": "f75b07ca04f906353e452bc4466c3750af14c674f21fc52dc9e238dfde6b60e6"
+}

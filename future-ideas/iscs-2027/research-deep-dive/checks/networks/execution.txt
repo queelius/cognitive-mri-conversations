@@ -1,0 +1,116 @@
+Completed projection-null seed 114001
+Completed projection-null seed 114002
+Completed projection-null seed 114003
+Completed projection-null seed 114004
+Completed projection-null seed 114005
+Completed projection-null seed 114006
+Completed projection-null seed 114007
+Completed projection-null seed 114008
+Completed projection-null seed 114009
+Completed projection-null seed 114010
+Completed projection-null seed 114011
+Completed projection-null seed 114012
+Completed projection-null seed 114013
+Completed projection-null seed 114014
+Completed projection-null seed 114015
+Completed projection-null seed 114016
+{
+  "elapsed_seconds": 231.27619477300323,
+  "observed": {
+    "total_nodes": 500,
+    "total_edges": 5935,
+    "giant_nodes": 499,
+    "giant_edges": 5935,
+    "clustering": 0.32873007746932537,
+    "transitivity": 0.21920492721164614,
+    "mean_path": 2.368785764299684
+  },
+  "projection_null": {
+    "10": {
+      "total_edges": {
+        "mean": 8948.375,
+        "min": 8887.0,
+        "max": 9005.0,
+        "sd": 33.31040878364199
+      },
+      "giant_nodes": {
+        "mean": 500.0,
+        "min": 500.0,
+        "max": 500.0,
+        "sd": 0.0
+      },
+      "clustering": {
+        "mean": 0.39685866179203455,
+        "min": 0.3880981931820681,
+        "max": 0.4047593287633006,
+        "sd": 0.005398866179570346
+      },
+      "transitivity": {
+        "mean": 0.22645387869589004,
+        "min": 0.22440523843330362,
+        "max": 0.2299098991229383,
+        "sd": 0.0015606737797240811
+      },
+      "mean_path": {
+        "mean": 2.0144228456913824,
+        "min": 2.0073827655310623,
+        "max": 2.0205931863727455,
+        "sd": 0.004163406467204976
+      },
+      "relative_sigma": 0.7044147353664643,
+      "clustering_null_ge_observed": 16
+    },
+    "40": {
+      "total_edges": {
+        "mean": 8943.125,
+        "min": 8887.0,
+        "max": 9002.0,
+        "sd": 30.949151846213816
+      },
+      "giant_nodes": {
+        "mean": 500.0,
+        "min": 500.0,
+        "max": 500.0,
+        "sd": 0.0
+      },
+      "clustering": {
+        "mean": 0.39651300161263825,
+        "min": 0.39067389407971764,
+        "max": 0.40038102710125817,
+        "sd": 0.0028399709361711803
+      },
+      "transitivity": {
+        "mean": 0.22615047250823306,
+        "min": 0.22305050259512846,
+        "max": 0.2282429426347996,
+        "sd": 0.0013684424305966446
+      },
+      "mean_path": {
+        "mean": 2.0117515030060122,
+        "min": 2.006685370741483,
+        "max": 2.015943887775551,
+        "sd": 0.002645718068330752
+      },
+      "relative_sigma": 0.7040938643634863,
+      "clustering_null_ge_observed": 16
+    }
+  },
+  "vocabulary": {
+    "recomputed_saved_order_beta": 0.3198432303853174,
+    "stored_saved_order_beta": 0.3198,
+    "exact_random_order_mean_curve_beta": 0.2397047246417326,
+    "note": "Fit to expected curve is not the expectation of fitted exponents",
+    "stored_chronology_not_rerun": {
+      "alphabetical": 0.3198,
+      "chronological": 0.3279,
+      "reverse_chronological": 0.3045,
+      "random_mean": 0.2482,
+      "random_std": 0.008,
+      "random_ci_95": [
+        0.233,
+        0.2634
+      ],
+      "chrono_vs_random_z": 9.99
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "analysis_status": "post-review sensitivity; reviewer result known before local reproduction",
+  "config": {
+    "analysis_status": "post-review sensitivity; reviewer result known before local reproduction",
+    "seed": 20261015,
+    "valid_bootstrap_draws": 20000,
+    "sampling": "multinomial conversation multiplicities",
+    "baseline_lens": "uniform+mass",
+    "training_exclusion": "all copies of held-out original conversation identity",
+    "held_out_aggregation": "resample-multiplicity-weighted mean",
+    "singleton_policy": "reject and redraw; count rejected draws",
+    "tie_breaking": "first maximum in original saved lens order",
+    "interval": "percentile 0.025 and 0.975; post-review within-cohort sensitivity",
+    "source_root": "/home/spinoza/github/cmri",
+    "prefix_result_relative_path": "papers/embedding-dynamics/experiments/results/exp04_prefix.json"
+  },
+  "python": "3.10.20",
+  "numpy": "2.2.6",
+  "n_conversations": 12,
+  "n_candidate_lenses": 26,
+  "unresampled_loocv_mean_gain": 0.01766023053492242,
+  "original_point_estimate_discrepancy": 0.0,
+  "fixed_loss_bootstrap_ci95_preserved": [
+    0.004830172306970831,
+    0.03381057829463882
+  ],
+  "selection_aware_bootstrap": {
+    "valid_draws": 20000,
+    "rejected_single_identity_draws": 0,
+    "maximum_observed_multiplicity": 8,
+    "gain_mean": 0.016202331421893933,
+    "gain_std": 0.008999552713084386,
+    "percentile_interval95": [
+      -0.0012236841878018898,
+      0.034807393938891235
+    ],
+    "nonpositive_fraction": 0.0331,
+    "interval_contains_zero": true
+  },
+  "interpretation": "Point estimate remains positive, but lens-reselection sensitivity spans zero; no robust positive interval or population effect is established.",
+  "limitations": [
+    "post-review sensitivity with reviewer result known before reproduction",
+    "12 selected conversations from one user; model, study design and archetype selection remain conditioned upon",
+    "overlapping LOOCV folds; refitting is included in this empirical bootstrap, but this is not a population confidence guarantee",
+    "nonpositive bootstrap fraction is descriptive, not a formal null-hypothesis p-value"
+  ],
+  "input_sha256_before": {
+    "/home/spinoza/github/cmri/papers/embedding-dynamics/experiments/results/exp04_prefix.json": "07e956e6685f069bdd9d3ca4070a09837c01c250b0c8c78c698bc6102ab86745",
+    "/home/spinoza/github/cmri/future-ideas/iscs-2027/research-deep-dive/checks/dynamics/results.json": "2613202af03bf57d163fc69c0e395a1d2686ac02de92feda6a1a53228d01b965"
+  },
+  "input_hashes_unchanged": {
+    "/home/spinoza/github/cmri/papers/embedding-dynamics/experiments/results/exp04_prefix.json": true,
+    "/home/spinoza/github/cmri/future-ideas/iscs-2027/research-deep-dive/checks/dynamics/results.json": true
+  },
+  "implementation_sha256": "c80b91713b16905614d02e7b906159f0575b3d5605819195d515491ead147f55",
+  "config_sha256": "5d501c8e3b855ceedcfd883f40df79d3ea0febc204b7e454ac2afd382e5798ff",
+  "protocol_sha256": "1fbb3680ec4b30ed8450fdc092ad8317b602717f779fce3319cc05b116ec5ecb",
+  "runtime_seconds": 0.054589024002780207
+}

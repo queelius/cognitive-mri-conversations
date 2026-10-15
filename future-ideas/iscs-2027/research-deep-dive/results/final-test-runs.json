@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-15",
+  "runs": [
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "metric",
+        "cmd": "/home/spinoza/github/cmri/papers/selective-forgetting/.venv/bin/python -m pytest -q -p no:cacheprovider test_audit.py",
+        "workdir": "/home/spinoza/github/cmri/future-ideas/iscs-2027/research-deep-dive/checks/metric-calibration",
+        "chunk_id": "6b3085",
+        "wall_time_seconds": 1.001147107,
+        "original_token_count": 2,
+        "output": ".........                                                                [100%]\n9 passed in 1.33s\n",
+        "exit_code": 0
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "dynamics",
+        "cmd": "/tmp/cmri-dynamics-audit-env/bin/python -m pytest -q -p no:cacheprovider test_audit_dynamics.py test_shape_counterexample.py test_selection_uncertainty.py",
+        "workdir": "/home/spinoza/github/cmri/future-ideas/iscs-2027/research-deep-dive/checks/dynamics",
+        "chunk_id": "14e869",
+        "wall_time_seconds": 1.001046195,
+        "original_token_count": 25,
+        "output": ".........................                                                [100%]\n25 passed in 0.80s\n",
+        "exit_code": 0
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "networks",
+        "cmd": "python -m pytest -q -p no:cacheprovider test_audit_checks.py",
+        "workdir": "/home/spinoza/github/cmri/future-ideas/iscs-2027/research-deep-dive/checks/networks",
+        "chunk_id": "2d6d53",
+        "wall_time_seconds": 0.841368411,
+        "exit_code": 0,
+        "original_token_count": 25,
+        "output": ".........                                                                [100%]\n9 passed in 0.54s\n"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "public",
+        "cmd": "PYTHONPATH=/home/spinoza/github/cmri/future-ideas/iscs-2027/research-deep-dive/checks/public-cross-section/.deps /home/spinoza/github/cmri/papers/selective-forgetting/.venv/bin/python -m pytest -q -p no:cacheprovider test_audit.py test_acquire.py",
+        "workdir": "/home/spinoza/github/cmri/future-ideas/iscs-2027/research-deep-dive/checks/public-cross-section",
+        "chunk_id": "71c67d",
+        "wall_time_seconds": 1.001559968,
+        "original_token_count": 6,
+        "output": ".........................                                                [100%]\n25 passed in 1.73s\n",
+        "exit_code": 0
+      }
+    }
+  ]
+}

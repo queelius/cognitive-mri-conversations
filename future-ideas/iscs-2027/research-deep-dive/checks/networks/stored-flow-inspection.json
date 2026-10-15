@@ -1,0 +1,98 @@
+{
+  "checked_at": "2026-10-15",
+  "scope": "Stored aggregate inspection; generation code not found; no raw-data reconstruction",
+  "source_sha256": {
+    "papers/hierarchical-memory/experiments/results/hierarchy_v2/domain_flow_analysis.json": "57a3c565716a171754e3cb95f5452976be7998b7f7eeb462e8eba1275ae4d312"
+  },
+  "assigned_episode_total": 1908,
+  "domains": [
+    {
+      "domain_label": "Software Engineering",
+      "own_episodes": 602,
+      "saved_porosity": 0.15068818224964403,
+      "mean_incoming_fraction": 0.15068818224964403,
+      "lower_bound_any_foreign": 0.25249169435215946,
+      "saved_import_rate": 0.7142857142857143,
+      "saved_broadcast_reach": 0.40400032878079534,
+      "mean_outgoing_fraction": 0.40400032878079534,
+      "pooled_outgoing_fraction": 0.39509954058192953
+    },
+    {
+      "domain_label": "Math & Optimization",
+      "own_episodes": 226,
+      "saved_porosity": 0.1713021491782554,
+      "mean_incoming_fraction": 0.1713021491782554,
+      "lower_bound_any_foreign": 0.3938053097345133,
+      "saved_import_rate": 0.7831858407079646,
+      "saved_broadcast_reach": 0.24099679825647918,
+      "mean_outgoing_fraction": 0.24099679825647918,
+      "pooled_outgoing_fraction": 0.2859690844233056
+    },
+    {
+      "domain_label": "Statistical Methods",
+      "own_episodes": 425,
+      "saved_porosity": 0.1667226890756303,
+      "mean_incoming_fraction": 0.1667226890756303,
+      "lower_bound_any_foreign": 0.4211764705882353,
+      "saved_import_rate": 0.7858823529411765,
+      "saved_broadcast_reach": 0.21362441719843997,
+      "mean_outgoing_fraction": 0.21362441719843997,
+      "pooled_outgoing_fraction": 0.23870532703978423
+    },
+    {
+      "domain_label": "ML & Network Science",
+      "own_episodes": 185,
+      "saved_porosity": 0.2988416988416988,
+      "mean_incoming_fraction": 0.2988416988416988,
+      "lower_bound_any_foreign": 0.5297297297297298,
+      "saved_import_rate": 0.9783783783783784,
+      "saved_broadcast_reach": 0.16506208228418012,
+      "mean_outgoing_fraction": 0.16506208228418012,
+      "pooled_outgoing_fraction": 0.134648868253047
+    },
+    {
+      "domain_label": "Philosophy & AI Theory",
+      "own_episodes": 209,
+      "saved_porosity": 0.18728639781271358,
+      "mean_incoming_fraction": 0.18728639781271358,
+      "lower_bound_any_foreign": 0.3253588516746411,
+      "saved_import_rate": 0.7751196172248804,
+      "saved_broadcast_reach": 0.20443894786241487,
+      "mean_outgoing_fraction": 0.20443894786241487,
+      "pooled_outgoing_fraction": 0.18540317834020012
+    },
+    {
+      "domain_label": "DevOps & Integration",
+      "own_episodes": 109,
+      "saved_porosity": 0.1349934469200524,
+      "mean_incoming_fraction": 0.1349934469200524,
+      "lower_bound_any_foreign": 0.5412844036697247,
+      "saved_import_rate": 0.7155963302752294,
+      "saved_broadcast_reach": 0.07684435705155523,
+      "mean_outgoing_fraction": 0.07684435705155523,
+      "pooled_outgoing_fraction": 0.08893829905503058
+    },
+    {
+      "domain_label": "AI Safety & Research",
+      "own_episodes": 92,
+      "saved_porosity": 0.16304347826086957,
+      "mean_incoming_fraction": 0.16304347826086957,
+      "lower_bound_any_foreign": 0.30434782608695654,
+      "saved_import_rate": 0.6956521739130435,
+      "saved_broadcast_reach": 0.10647400743159327,
+      "mean_outgoing_fraction": 0.10647400743159327,
+      "pooled_outgoing_fraction": 0.0947136563876652
+    },
+    {
+      "domain_label": "LLM Engineering",
+      "own_episodes": 60,
+      "saved_porosity": 0.2285714285714286,
+      "mean_incoming_fraction": 0.2285714285714286,
+      "lower_bound_any_foreign": 0.4,
+      "saved_import_rate": 0.8833333333333333,
+      "saved_broadcast_reach": 0.09000853204483465,
+      "mean_outgoing_fraction": 0.09000853204483465,
+      "pooled_outgoing_fraction": 0.07413419913419914
+    }
+  ]
+}

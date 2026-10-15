@@ -1,0 +1,140 @@
+{
+  "source_commit": "7506e25c03036909ab1ad381c678c7b45d19e50e",
+  "seed": 20261015,
+  "interpretation": "Exact formula check; synthetic illustrations, no population inference",
+  "length_checks": [
+    {
+      "n": 4,
+      "draws": 100,
+      "expected": 0.25,
+      "observed_min": 0.25,
+      "observed_max": 0.25,
+      "maximum_error": 0.0
+    },
+    {
+      "n": 5,
+      "draws": 100,
+      "expected": 0.1941901188909337,
+      "observed_min": 0.1941901188909337,
+      "observed_max": 0.1941901188909337,
+      "maximum_error": 0.0
+    },
+    {
+      "n": 8,
+      "draws": 100,
+      "expected": 0.125,
+      "observed_min": 0.125,
+      "observed_max": 0.125,
+      "maximum_error": 0.0
+    },
+    {
+      "n": 16,
+      "draws": 100,
+      "expected": 0.0625,
+      "observed_min": 0.0625,
+      "observed_max": 0.0625,
+      "maximum_error": 0.0
+    },
+    {
+      "n": 32,
+      "draws": 100,
+      "expected": 0.03125,
+      "observed_min": 0.03125,
+      "observed_max": 0.03125,
+      "maximum_error": 0.0
+    },
+    {
+      "n": 64,
+      "draws": 100,
+      "expected": 0.015625,
+      "observed_min": 0.015625,
+      "observed_max": 0.015625,
+      "maximum_error": 0.0
+    },
+    {
+      "n": 128,
+      "draws": 100,
+      "expected": 0.0078125,
+      "observed_min": 0.0078125,
+      "observed_max": 0.0078125,
+      "maximum_error": 0.0
+    }
+  ],
+  "order_examples": [
+    {
+      "ordering": "ascending",
+      "distances": [
+        0.1,
+        0.21999999999999997,
+        0.33999999999999997,
+        0.45999999999999996,
+        0.58,
+        0.6999999999999998,
+        0.8199999999999998,
+        0.9399999999999998,
+        1.0599999999999998,
+        1.18,
+        1.2999999999999998,
+        1.42,
+        1.5399999999999998,
+        1.66,
+        1.7799999999999998,
+        1.9
+      ],
+      "entropy": 0.0625,
+      "lag1": 0.9999999999999998,
+      "geometry_max_error": 6.661338147750939e-16
+    },
+    {
+      "ordering": "alternating",
+      "distances": [
+        0.1,
+        1.0599999999999998,
+        0.21999999999999997,
+        1.18,
+        0.33999999999999997,
+        1.2999999999999998,
+        0.45999999999999996,
+        1.42,
+        0.58,
+        1.5399999999999998,
+        0.6999999999999998,
+        1.66,
+        0.8199999999999998,
+        1.7799999999999998,
+        0.9399999999999998,
+        1.9
+      ],
+      "entropy": 0.0625,
+      "lag1": -0.4999999999999999,
+      "geometry_max_error": 1.1102230246251565e-15
+    },
+    {
+      "ordering": "permuted",
+      "distances": [
+        1.66,
+        0.8199999999999998,
+        0.58,
+        1.9,
+        0.9399999999999998,
+        0.33999999999999997,
+        0.6999999999999998,
+        1.0599999999999998,
+        1.5399999999999998,
+        1.18,
+        0.21999999999999997,
+        0.1,
+        1.7799999999999998,
+        1.42,
+        0.45999999999999996,
+        1.2999999999999998
+      ],
+      "entropy": 0.0625,
+      "lag1": -0.07389421686412188,
+      "geometry_max_error": 1.7763568394002505e-15
+    }
+  ],
+  "maximum_identity_error": 0.0,
+  "constant_case": 0.0,
+  "small_sample_case": null
+}

@@ -1,0 +1,555 @@
+[
+  {
+    "dataset": "allenai/WildChat",
+    "url": "https://huggingface.co/api/datasets/allenai/WildChat",
+    "revision": "f66566ceaaeb619dd98ffb0f3bf3ce1f86775ac4",
+    "gated": false,
+    "license": "odc-by",
+    "splits": [
+      {
+        "name": "train",
+        "num_bytes": 2949464505.6494355,
+        "num_examples": 529428
+      }
+    ],
+    "download_size": 1586548072,
+    "file_count": 9,
+    "metadata_snapshot_sha256": "dfdbfee300babf2b2253079c48ac6caa18173e43c82d4bfb6b70f509614fae50"
+  },
+  {
+    "dataset": "allenai/WildChat-1M",
+    "url": "https://huggingface.co/api/datasets/allenai/WildChat-1M",
+    "revision": "7d6490e462285cf85d91eabea0f9a954fbddcd1f",
+    "gated": false,
+    "license": "odc-by",
+    "splits": [
+      {
+        "name": "train",
+        "num_bytes": 6844366367.030628,
+        "num_examples": 837989
+      }
+    ],
+    "download_size": 3360836020,
+    "file_count": 17,
+    "metadata_snapshot_sha256": "3e5fd02234fbf16443f7553bc17648ab8aa83257222d73f4b1bb27566ded1b94"
+  },
+  {
+    "dataset": "allenai/WildChat-4.8M",
+    "url": "https://huggingface.co/api/datasets/allenai/WildChat-4.8M",
+    "revision": "c827c6df8fcf008219ffaffa4d1dd77491099367",
+    "gated": false,
+    "license": "odc-by",
+    "splits": [
+      {
+        "name": "train",
+        "num_bytes": 42645714270.23995,
+        "num_examples": 3199860
+      }
+    ],
+    "download_size": 15282293424,
+    "file_count": 89,
+    "metadata_snapshot_sha256": "f83af577028634835a393da0e5d4e4b9219a9b92bf715ffe43d56c0445cfac0a"
+  },
+  {
+    "dataset": "allenai/WildChat-4.8M-Full",
+    "url": "https://huggingface.co/api/datasets/allenai/WildChat-4.8M-Full",
+    "revision": "9643ce21f5e808c8b9cf682d8385f28850397c09",
+    "gated": "manual",
+    "license": "odc-by",
+    "splits": [
+      {
+        "name": "train",
+        "num_bytes": 63216188128.15026,
+        "num_examples": 4743336
+      }
+    ],
+    "download_size": 21434739663,
+    "file_count": 130,
+    "metadata_snapshot_sha256": "7dc8d65dc042013640631e310ae85f964ac10c905fea312a20e5a35c578d0c03"
+  },
+  {
+    "dataset": "lmsys/lmsys-chat-1m",
+    "url": "https://huggingface.co/api/datasets/lmsys/lmsys-chat-1m",
+    "revision": "200748d9d3cddcc9d782887541057aca0b18c5da",
+    "gated": "auto",
+    "license": null,
+    "splits": [
+      {
+        "name": "train",
+        "num_bytes": 2626438904,
+        "num_examples": 1000000
+      }
+    ],
+    "download_size": 1488850250,
+    "file_count": 8,
+    "metadata_snapshot_sha256": "f8d558648f327433f580ca3e7d09a9f4727fcba6f8b04e71d7723ac10f43bdb4"
+  },
+  {
+    "dataset": "SCAI-JHU/ThoughtTrace",
+    "url": "https://huggingface.co/api/datasets/SCAI-JHU/ThoughtTrace",
+    "revision": "0420f3d8499e477098aac7771fe9c066f2340fb3",
+    "gated": false,
+    "license": "cc-by-4.0",
+    "splits": null,
+    "download_size": null,
+    "file_count": 3,
+    "metadata_snapshot_sha256": "92499f872d37b8793965ded6a31c882905e43fd479b987a778f6e7836df95f1c",
+    "readme_sha256": "b52cbeae62e3c3e8a716d570ceef141a90035b4cb12d0e6f9e4579ddbdf203be",
+    "files": [
+      {
+        "type": "file",
+        "oid": "31561d4228fd662fcd01a10894ee93a9785c0b10",
+        "size": 2559,
+        "path": ".gitattributes"
+      },
+      {
+        "type": "file",
+        "oid": "378f32b974c42899fc55c783b6d3d4eb8827312a",
+        "size": 5630,
+        "path": "README.md"
+      },
+      {
+        "type": "file",
+        "oid": "09c2f3c495b3d65c5029b00095b38a0d057f75e6",
+        "size": 29915720,
+        "lfs": {
+          "oid": "6ee409aeb6e9523c551452fd9ed5b0ffbdd999fe59f9f333c296ab9b97b80dab",
+          "size": 29915720,
+          "pointerSize": 133
+        },
+        "xetHash": "6a2a99943ff0e9a66e78b5b20774d506c5b55df82e0bef2f52059eef73471592",
+        "path": "ThoughtTrace.jsonl"
+      }
+    ]
+  },
+  {
+    "dataset": "leczhang/recenter-personalization",
+    "url": "https://huggingface.co/api/datasets/leczhang/recenter-personalization",
+    "revision": "9835f6a335ecbc0673186b37a62a240512ad1e30",
+    "gated": false,
+    "license": "cc-by-sa-4.0",
+    "splits": null,
+    "download_size": null,
+    "file_count": 60,
+    "metadata_snapshot_sha256": "ac527603828ad3ec70260af3bb9013c04e0c4ff36c6e1f0e378daf20880ba187",
+    "readme_sha256": "31b488306f2a52d99eca98202399a8df1bd1f1f48441f4e14f5d794e56f78c88",
+    "files": [
+      {
+        "type": "file",
+        "oid": "7eba7dee56c916d9bbe2d7969dfbeddfe79f413d",
+        "size": 2734,
+        "path": ".gitattributes"
+      },
+      {
+        "type": "file",
+        "oid": "110f72b704496a9a61e1bed9566cc7c5c9a4ae76",
+        "size": 7718,
+        "path": "README.md"
+      },
+      {
+        "type": "file",
+        "oid": "01eeadf8869ccecbe7a3bd76c79578c9af042256",
+        "size": 1229453,
+        "path": "corpus/synthetic/cupid_attributes_raw.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "f3b9b6a8176ce4b49669c6150d21f870aaddf001",
+        "size": 4874543,
+        "path": "corpus/synthetic/cupid_conversations.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "d91b6e12d181b0367576dd11c989aa8917e455f3",
+        "size": 816410,
+        "path": "corpus/synthetic/personalens_attributes_raw.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "f9624d42f291c0ca4afadc8485fde4c53c4d556f",
+        "size": 2051415,
+        "path": "corpus/synthetic/personalens_conversations.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "d4a2166db91826aab85c4647e49ecbe390061aa2",
+        "size": 1156251,
+        "path": "corpus/synthetic/prefeval_attributes_raw.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "7d57bf5f35158a6d3d778ed353e980428ff2f769",
+        "size": 2849489,
+        "path": "corpus/synthetic/prefeval_conversations.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "0ab4e2b08185ceebf75298acecf8b89d0a4c6d60",
+        "size": 14837163,
+        "lfs": {
+          "oid": "ff268d09dd938507699696c6d39eb7090e44f8f55256a5f339d4900b6f238b35",
+          "size": 14837163,
+          "pointerSize": 133
+        },
+        "xetHash": "400a1ce6aca5845f67d4c9598075a4ac36ed0a2426ee228cf2e33d187466e5f4",
+        "path": "corpus/wildchat_assistant_usage_scores.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "15566144093c4338c70b4c0a2694fe49dc7826b2",
+        "size": 414829,
+        "path": "corpus/wildchat_sampled_user_ids.json"
+      },
+      {
+        "type": "file",
+        "oid": "e2adf96b57ebdd9aee820f384a377acfcd79a90f",
+        "size": 346593046,
+        "lfs": {
+          "oid": "86180f2cec902dd8428979173f45ee6a1cd049ae0d6564978985bbb6ed75d8c8",
+          "size": 346593046,
+          "pointerSize": 134
+        },
+        "xetHash": "dc7e1e8c88eed1d2ba967d5545d9019dc69e8077cf3e567da9f9b01fbcf30b71",
+        "path": "corpus/wildchat_user_attributes.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "b5e5671eb79a6c162a1785258ca05eead636fdf7",
+        "size": 47912,
+        "path": "stage1/annotations/ann01.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "9b7d87b3f8bdb8ef11dfccd044a5fd9f6d4b8429",
+        "size": 46155,
+        "path": "stage1/annotations/ann02.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "774b4660e3ada9665aa64a2dbfaf0161e76d1b40",
+        "size": 45215,
+        "path": "stage1/annotations/ann03.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "cf2f051fbb9a52ecafb6f9928ebcb01957aa398f",
+        "size": 86586,
+        "path": "stage1/attr_evidence_cache.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "fec24f10e7e4c5758ef04f60ff0492cb3b5c71c2",
+        "size": 5750312,
+        "path": "stage1/items.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "1d285ab532c80877d6d4741bcbf229821c8e9181",
+        "size": 471112,
+        "path": "stage1/verifier_predictions/claude-sonnet-4-6_optimized.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "7876550e71f2eeef9aa21e0eea71190c526ae110",
+        "size": 361980,
+        "path": "stage1/verifier_predictions/claude-sonnet-4-6_zeroshot.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "4f63d77ef09f9c15a5c4ab032482a14e720c6cba",
+        "size": 425245,
+        "path": "stage1/verifier_predictions/gemma-4-31b-it_optimized.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "3ee7d5ed01201190c425b9ff84998788e6e5a9c5",
+        "size": 409930,
+        "path": "stage1/verifier_predictions/gemma-4-31b-it_zeroshot.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "c2716f71f027e1bb01f164722ddb99e872e2ba9e",
+        "size": 378159,
+        "path": "stage1/verifier_predictions/gpt-5.4_optimized.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "ae1e1e3e959d53233e05db3840753b5b2b065462",
+        "size": 305296,
+        "path": "stage1/verifier_predictions/gpt-5.4_zeroshot.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "386504356066280fe61dac3fcd5844a7a30bdd96",
+        "size": 447427,
+        "path": "stage1/verifier_predictions/llama-3.3-70b_optimized.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "40dee0d6e909d81c0a208d3ee5dce5e49439b0c7",
+        "size": 430643,
+        "path": "stage1/verifier_predictions/llama-3.3-70b_zeroshot.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "0857e893a058ef975d8eda50fafa0efa585c798b",
+        "size": 1886561,
+        "path": "stage1/verifier_predictions/qwen3.5-27b_optimized.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "32f9a87769a4611e813d1edbb659033758031107",
+        "size": 1682889,
+        "path": "stage1/verifier_predictions/qwen3.5-27b_zeroshot.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "f7c26ad1773bb4daeedfe577a55b6120c934c581",
+        "size": 435590,
+        "path": "stage2/annotations/ann04.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "73a4bb3431ab74732085f70390282e3546f4bab5",
+        "size": 435606,
+        "path": "stage2/annotations/ann05.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "7653b6125f2ea2df569a5c4e9e50439c46b2403b",
+        "size": 435664,
+        "path": "stage2/annotations/ann06.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "d5b65e760bbeca24afc8a5a88355a78f3e79c57d",
+        "size": 505305,
+        "lfs": {
+          "oid": "3738e456975c38c7b5aa54815fd7eef67b1251b70eb3e2204398a1ae0b68e3a4",
+          "size": 505305,
+          "pointerSize": 131
+        },
+        "xetHash": "dc06f3901e29baa09d9451042458c87f8a23f229b710be99b8f38b692f828b74",
+        "path": "stage2/grpo/test.parquet"
+      },
+      {
+        "type": "file",
+        "oid": "e909c526bd3d820ecad91ba9906f1fac74480337",
+        "size": 3841767,
+        "lfs": {
+          "oid": "b8faa5200b4f993f110e65ef33f59aac6c7e8253a3c87826a9c932cb4cef2207",
+          "size": 3841767,
+          "pointerSize": 132
+        },
+        "xetHash": "eccab69f93893093718494e3c57a1caf423fb46a66524eb687eb194d84fc3132",
+        "path": "stage2/grpo/train.parquet"
+      },
+      {
+        "type": "file",
+        "oid": "0d2af447bb320e9db040b6f0bca2cd6db7a2d580",
+        "size": 603280,
+        "lfs": {
+          "oid": "a082f6891edcfa76f1e4883a16e764579a8338c3844f8a1045176682e1c148e9",
+          "size": 603280,
+          "pointerSize": 131
+        },
+        "xetHash": "0ae1b102f7425c295ecf85bef4c0e8ed78653ddfab51ec57855efa2144b045d0",
+        "path": "stage2/grpo/val.parquet"
+      },
+      {
+        "type": "file",
+        "oid": "0bdea4073d0a4d4a17704ff146e0915c4ddaea1d",
+        "size": 2830847,
+        "path": "stage2/items.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "339c26f39a9ddf7b51c6f44a08614cfd56a384b9",
+        "size": 5513790,
+        "path": "stage2/llm_judgments/claude-sonnet-4-6.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "165c4cdb616ff52bef450499e9b8472c5d2627e2",
+        "size": 3152601,
+        "path": "stage2/llm_judgments/gemma-4-31b-it.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "40fc3ae7df12ee707812c5119f5a46b77358506b",
+        "size": 1592753,
+        "path": "stage2/llm_judgments/gpt-5.4.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "dbeb822bf933df1670181cedc47072f99ec1ec1f",
+        "size": 4799872,
+        "path": "stage2/llm_judgments/llama-3.3-70b.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "4e01433d770f9a0c051276fbf7e7b7adab3799e4",
+        "size": 35230999,
+        "lfs": {
+          "oid": "702bc2afd302f014ffe0634d019fdb12db1a14bd1e3e75456b5964b52cd26f04",
+          "size": 35230999,
+          "pointerSize": 133
+        },
+        "xetHash": "644fd25a6ad7dfab708e873d2eea72ee50094adfbb8f518459b40f546f3a0906",
+        "path": "stage2/llm_judgments/qwen3.5-27b.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "dc7628865f5a1635efecb8a50c0ddaa5f44f28a5",
+        "size": 86746,
+        "path": "stage2/sentence_embedding_scores.json"
+      },
+      {
+        "type": "file",
+        "oid": "db106914f8987922a78c44a471bf76f3ad9d547c",
+        "size": 50675,
+        "path": "stage3/annotations/ann04.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "f6cb4a4eb821ad0079e05011a22005c08ee67ed2",
+        "size": 50675,
+        "path": "stage3/annotations/ann05.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "56eb8d9d4c36bc6772c2ec52c50e9f5f440f58f2",
+        "size": 50675,
+        "path": "stage3/annotations/ann06.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "2029e0859409cc6a19aada037e04101bbbfa1ed0",
+        "size": 3256170,
+        "path": "stage3/generations/gt_attributes_claude-sonnet-4-6.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "a6a929f35704bd1350ee9edef9e3a8aad393fda6",
+        "size": 3301446,
+        "path": "stage3/generations/gt_attributes_gemma-4-31b-it.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "236c5f0d3691abab9160e693168fdb0affe301fe",
+        "size": 3586688,
+        "path": "stage3/generations/gt_attributes_gpt-5.4.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "c9426745ff3554f0324b5af8f9d1b4c493c8628b",
+        "size": 3209595,
+        "path": "stage3/generations/gt_attributes_llama-3.3-70b.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "5f3538f4fd0aa240481b42c2413458ca3453090a",
+        "size": 4328280,
+        "path": "stage3/generations/gt_attributes_qwen3.5-27b.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "ff254cc87d76e709a2a100fb55bddac9f8b6ab33",
+        "size": 3149524,
+        "path": "stage3/generations/no_context_claude-sonnet-4-6.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "3f67831a11f5f1cb05b3a04392161f7932a1bbf4",
+        "size": 3294094,
+        "path": "stage3/generations/no_context_gemma-4-31b-it.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "e5c72517950f84d2a8e3d8888848c23f612a08ba",
+        "size": 3324343,
+        "path": "stage3/generations/no_context_gpt-5.4.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "937959f8e52c7adb3c54dc6355686292cb9a81ed",
+        "size": 3199537,
+        "path": "stage3/generations/no_context_llama-3.3-70b.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "47b2a631fe1cbc8cfa316b3dd5f0573387d644ce",
+        "size": 4258927,
+        "path": "stage3/generations/no_context_qwen3.5-27b.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "accd9837a38ace3fc1e88b650705b5527cffab80",
+        "size": 6786485,
+        "path": "stage3/items.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "9eec1d85a603c00071fffd466415a3172c589df2",
+        "size": 1010916,
+        "path": "stage3/items_gt.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "9883d9312477ae69e2a79b4b469b6dd348ad5ebd",
+        "size": 124674,
+        "path": "stage3/llm_judgments/claude-sonnet-4-6.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "c50e285598b8b3cf03a6a5f495b1bfa6dd5e59ae",
+        "size": 619650,
+        "path": "stage3/llm_judgments/gemma-4-31b-it.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "8258299b1fc1722ac53cffc87ff4dd7baca9fe2d",
+        "size": 80434,
+        "path": "stage3/llm_judgments/gpt-5.4.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "fc49b98195d27e6bf36b823fb8c07366da139f6e",
+        "size": 1127996,
+        "path": "stage3/llm_judgments/llama-3.3-70b.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "3d5a08506eba9897d01a2059bb8487fa952a51d7",
+        "size": 5539675,
+        "path": "stage3/llm_judgments/qwen3.5-27b.jsonl"
+      },
+      {
+        "type": "file",
+        "oid": "08991bf728d0554e56268e89c38c3fa6ca0f090a",
+        "size": 133354,
+        "path": "stage3/mention_check/gpt-5.4.jsonl"
+      }
+    ]
+  },
+  {
+    "dataset": "Anthropic/EconomicIndex",
+    "url": "https://huggingface.co/api/datasets/Anthropic/EconomicIndex",
+    "revision": "4e5f69fab13a9c3f7d0dcc31a6f893a9818738f6",
+    "gated": false,
+    "license": "mit",
+    "splits": null,
+    "download_size": null,
+    "file_count": 86,
+    "metadata_snapshot_sha256": "24c1fd3b0e036a84e1c98d5bc9463e7d4fc1dd4526e5e3d339266aa29742c7ee"
+  },
+  {
+    "dataset": "HannahRoseKirk/prism-alignment",
+    "url": "https://huggingface.co/api/datasets/HannahRoseKirk/prism-alignment",
+    "revision": "18ab5cfb37456f4ec8cbc00212ce54cf7b1239f6",
+    "gated": false,
+    "license": "cc",
+    "file_count": 6,
+    "readme_sha256": "5cfc798de48c958f16605743101c9aee4fc52a5c45a591eed2bb09b417349199"
+  }
+]

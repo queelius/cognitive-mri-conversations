@@ -1,0 +1,14 @@
+{
+  "analysis_status": "post-review sensitivity; reviewer result known before local reproduction",
+  "seed": 20261015,
+  "valid_bootstrap_draws": 20000,
+  "sampling": "multinomial conversation multiplicities",
+  "baseline_lens": "uniform+mass",
+  "training_exclusion": "all copies of held-out original conversation identity",
+  "held_out_aggregation": "resample-multiplicity-weighted mean",
+  "singleton_policy": "reject and redraw; count rejected draws",
+  "tie_breaking": "first maximum in original saved lens order",
+  "interval": "percentile 0.025 and 0.975; post-review within-cohort sensitivity",
+  "source_root": "/home/spinoza/github/cmri",
+  "prefix_result_relative_path": "papers/embedding-dynamics/experiments/results/exp04_prefix.json"
+}

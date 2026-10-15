@@ -1,0 +1,42 @@
+[
+  {
+    "path": "papers/operational-memex/CLAUDE.md",
+    "bytes": 4361,
+    "sha256": "17beb698d4f5f2cd30e115e2a0b9a4343a2cdb489f5fd7f45c8d506ca564225b"
+  },
+  {
+    "path": "papers/operational-memex/paper/outline.md",
+    "bytes": 6746,
+    "sha256": "d48e770ffef24bd7824407e3bbe1b27abc2701779d8e2add86a340fd59cb9145"
+  },
+  {
+    "path": "papers/operational-memex/.papermill/state.md",
+    "bytes": 5677,
+    "sha256": "91db8b319d527c1531599e0094fb30158dc4694425b05cd6b2c572ecc9ec4b52"
+  },
+  {
+    "path": "papers/operational-memex/analyze_marginalia.py",
+    "bytes": 8683,
+    "sha256": "2cb49596347e20fa9bfc3ddd7a742044a997ec1d6392f6dd270d07f00664b9c0"
+  },
+  {
+    "path": "papers/operational-memex/experiments/results/marginalia_analysis.json",
+    "bytes": 1528,
+    "sha256": "5abaa8b00b58a3a0e115563aa6a39a5e62058289cd8421fe2bc7ebedc07d7fe2"
+  },
+  {
+    "path": "papers/operational-memex/experiments/results/full_corpus.json",
+    "bytes": 666,
+    "sha256": "c7808f13d2c9859f79ab607ab70ab348d596bde253daa7a1d393cbe5cfa48d3a"
+  },
+  {
+    "path": "papers/operational-memex/experiments/results/per_source.json",
+    "bytes": 1927,
+    "sha256": "f087aa1ada99476ce617050264ffab84118b4fd5734fe92f30558ef6c7834000"
+  },
+  {
+    "path": "papers/operational-memex/experiments/results/findings_summary.json",
+    "bytes": 1525,
+    "sha256": "ca62943be86a07d74b69d790819d15db0b18cdfa07805f66a129c1d05ad9312d"
+  }
+]

@@ -1,0 +1,701 @@
+{
+  "executed_at_utc": "2026-10-15T06:02:40.981561+00:00",
+  "scope": "Prewritten diagnostic audit; finite-chain null is exploratory; no raw outputs",
+  "versions": {
+    "python": "3.10.20",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "networkx": "3.4.2"
+  },
+  "source_sha256": {
+    "future-ideas/iscs-2027/EVIDENCE.md": "1edd485f0b3251e34aa12dfc36d8fcde7136c4f6fb29fb425a2fdd22f16253f9",
+    "future-ideas/iscs-2027/audit-results.json": "00eb400e51b8fbebad2f8793d4ca10ccac3db59da5d5c3d4135df3398e50fc64",
+    "future-ideas/iscs-2027/audit_existing_results.py": "a0767ab91fcc4145609221ca3bfac31cb54377886d5a8ecf8f88aec8216cafa8",
+    "future-ideas/percolation-thresholds.md": "16ea62ba3331212bb0988068b5a275daffb056755535f3595e3812ad739fd93d",
+    "future-ideas/turn-taking-motifs.md": "149b26184592842cfc9126f27487d963e8ef30cf793d9f9e9ad99706e125d0dc",
+    "future-ideas/compsac-2026/OUTLINE.md": "aea00d81b8f4b565f805a8b3e02372809dba49a154d2cf43b873421d658f6eac",
+    "future-ideas/compsac-2026/paper/paper.tex": "f2338e1fc628bb16fa8d71ea0b30775dbf23f195c7dac1d755add6959c0b66ed",
+    "papers/knowledge-networks/README.md": "c31d0866b33ea5ceb1e54221eafe91d574bebd5dcc3d42566c2b09991c949cac",
+    "papers/knowledge-networks/paper/paper.tex": "e5713b7ee5f4fac47cedd02ac385017292146199c61267182c0bc1e75290cb1b",
+    "papers/temporal-networks/README.md": "7c6e9bd5137bea9b1a3540c22e90b512c03500d520db2fb35835707a38ee6278",
+    "papers/temporal-networks/paper/PLOS/paper.tex": "63062a2e24384ca6d9b793bdb4a39aece0c53395b91937366907457eb7e7f129",
+    "papers/temporal-networks/code/temporal_permutation_null.py": "a82b627b5777684837575a4aea2307c6d33518bfa60c6c557334de115192ca2c",
+    "papers/temporal-networks/code/temporal_preferential_attachment.py": "c38de8ba27b0793871a51a1db2135097f966d29d9e8f66e9b13a9b63a080b46f",
+    "papers/temporal-networks/code/temporal_community_tracker.py": "7e094773ce77f279344ec1b603659448e4b8728e3f15db540ed06a3f2f455ea7",
+    "papers/temporal-networks/code/exploration_index.py": "2adcb48a59245f9039adb39626941791a8bcf7d1caa4281de2ac30bb93e36563",
+    "papers/hierarchical-memory/CLAUDE.md": "075426f5b50aadafadb21dbdd1c399a39b891fc0bb108b5a12f9efa923d6b45b",
+    "papers/hierarchical-memory/paper/paper.tex": "0a602828f60898fc03b4119c17e6b540271b9737ba2b1ac51c597b3d2d60c103",
+    "papers/hierarchical-memory/hierarchy_semantic.py": "a8b4878e78830ea5595049f11f6961ffc278d88420d6449838ce6220ab7dbb44",
+    "papers/hierarchical-memory/concept_extraction_v2.py": "270468dfb7ac2276daf9773ab0faf19e9358abc0e6c37c419df7407880b7901a",
+    "papers/hierarchical-memory/experiments/figures/heaps_null_model.py": "278d77304d730278405654e7f399cd7b547eec82757594592137bd59229c307a",
+    "papers/hierarchical-memory/experiments/figures/cls_exploration.py": "911cb4c4cdafda4e1b775450b1c5dccb59e289f1e141140bc6bd7fa3e6753170",
+    "papers/hierarchical-memory/experiments/figures/domain_flow.py": "afd3ad362fd97cef0eef451cb2037e88c5bdddd34280e535fc9377b92a9c669f",
+    "papers/selective-forgetting/REPORT.md": "a2c41a01c04ef19255ca88be8c2fb18208206198dfd5b95ccb22fb89bde8f253",
+    "papers/selective-forgetting/REVIEW.md": "bcbccf619a6dd4493065ea8d8afa3b0ecb66aa6adf7f15a03c4fff2e181de4ca",
+    "papers/selective-forgetting/LITERATURE.md": "e002cbc08fc2734a8c55e6733e239e40db13fa751fa141cd82bcd82745478887",
+    "papers/hierarchical-memory/experiments/results/hierarchy_v2/extraction_state.json": "916cffc2ddaafd8cd292631d9e3fc4d83dcea27b7bbf78a92b7efd85d193a807",
+    "papers/hierarchical-memory/experiments/results/hierarchy_v2/hierarchy_semantic.json": "8c8a1c9235bc1267a2b0707efb6de9e9aa2755d6b656186dc4ad80c2a15814e5",
+    "papers/hierarchical-memory/experiments/results/hierarchy_v2/concept_embeddings.npy": "258278184ba973b6cc9546b45f75da27de58d9caf84abb5e234aeb48aba22df8",
+    "papers/hierarchical-memory/experiments/results/hierarchy_v2/heaps_null_model.json": "bc1e291d183709c7fa91ba9f64cceb29aeda845e3f075362764a09bd285f1b4a",
+    "papers/hierarchical-memory/experiments/results/hierarchy_v2/cls_exploration.json": "d47ed09a0b0a42b47631ed4d5909aff35b1d2efa613de4c67cf1783a20f8b6d5",
+    "papers/hierarchical-memory/experiments/results/hierarchy_v2/clustering_sensitivity.json": "dcbbbeedcc3c2d73e4ca5d8d9bb366ba9b6edaf9559c9f43bc1772134b2b2f31",
+    "papers/hierarchical-memory/experiments/results/hierarchy_v2/flow_normalization.json": "af7f5422f0524297540cb7452ff5ba3ce5ddc88bfad30987af7e5326d2171b5e",
+    "papers/hierarchical-memory/experiments/results/hierarchy_v2/domain_flow_analysis.json": "57a3c565716a171754e3cb95f5452976be7998b7f7eeb462e8eba1275ae4d312",
+    "future-ideas/iscs-2027/research-deep-dive/checks/networks/PROTOCOL.md": "02a93060eeffbf8b00603ed71edb448737cfae43922b4a33bd95647ac944f4e1",
+    "future-ideas/iscs-2027/research-deep-dive/checks/networks/audit_checks.py": "f999f472793e2ae44572d7687d43b601a2b6b1f6c5517deb1ceac1ad50669d5b",
+    "future-ideas/iscs-2027/research-deep-dive/checks/networks/test_audit_checks.py": "e7304808d8d4d5649ed0adea6668378a767f99ee19868aed3a2c8eac37bb9e1f"
+  },
+  "git_heads": {
+    "knowledge-networks": "f02c8b6ed42044b3af2fe5489f2f96819fb36b93",
+    "temporal-networks": "13e3a4745ca7b35a93d7fc4775dd5a5dc9566762",
+    "hierarchical-memory": "78aaeee6e17ac49e9be3a70667672fee172629ed",
+    "selective-forgetting": "1f3b482b33484b213180d7635487fce824e6aaf2"
+  },
+  "prior_temporal_source_identity": {
+    "papers/temporal-networks/code/temporal_community_tracker.py": true,
+    "papers/temporal-networks/code/exploration_index.py": true,
+    "papers/temporal-networks/code/temporal_permutation_null.py": true,
+    "papers/temporal-networks/data/temporal/permutation_null.json": true,
+    "papers/temporal-networks/data/wildchat/multiuser_summary.csv": true,
+    "papers/temporal-networks/data/wildchat/exploration_index.csv": true,
+    "papers/temporal-networks/paper/PLOS/paper.tex": true
+  },
+  "hierarchy_provenance": {
+    "n_episodes": 1908,
+    "n_meta_concepts": 500,
+    "n_raw_concept_members": 3517,
+    "bipartite_edges": 7153,
+    "unmapped_mentions": 0,
+    "ids_in_lexicographic_order": true
+  },
+  "observed_projection": {
+    "total_nodes": 500,
+    "total_edges": 5935,
+    "giant_nodes": 499,
+    "giant_edges": 5935,
+    "clustering": 0.32873007746932537,
+    "transitivity": 0.21920492721164614,
+    "mean_path": 2.368785764299684
+  },
+  "vocabulary": {
+    "recomputed_saved_order_beta": 0.3198432303853174,
+    "stored_saved_order_beta": 0.3198,
+    "exact_random_order_mean_curve_beta": 0.2397047246417326,
+    "note": "Fit to expected curve is not the expectation of fitted exponents",
+    "stored_chronology_not_rerun": {
+      "alphabetical": 0.3198,
+      "chronological": 0.3279,
+      "reverse_chronological": 0.3045,
+      "random_mean": 0.2482,
+      "random_std": 0.008,
+      "random_ci_95": [
+        0.233,
+        0.2634
+      ],
+      "chrono_vs_random_z": 9.99
+    }
+  },
+  "projection_null": {
+    "summary": {
+      "10": {
+        "total_edges": {
+          "mean": 8948.375,
+          "min": 8887.0,
+          "max": 9005.0,
+          "sd": 33.31040878364199
+        },
+        "giant_nodes": {
+          "mean": 500.0,
+          "min": 500.0,
+          "max": 500.0,
+          "sd": 0.0
+        },
+        "clustering": {
+          "mean": 0.39685866179203455,
+          "min": 0.3880981931820681,
+          "max": 0.4047593287633006,
+          "sd": 0.005398866179570346
+        },
+        "transitivity": {
+          "mean": 0.22645387869589004,
+          "min": 0.22440523843330362,
+          "max": 0.2299098991229383,
+          "sd": 0.0015606737797240811
+        },
+        "mean_path": {
+          "mean": 2.0144228456913824,
+          "min": 2.0073827655310623,
+          "max": 2.0205931863727455,
+          "sd": 0.004163406467204976
+        },
+        "relative_sigma": 0.7044147353664643,
+        "clustering_null_ge_observed": 16
+      },
+      "40": {
+        "total_edges": {
+          "mean": 8943.125,
+          "min": 8887.0,
+          "max": 9002.0,
+          "sd": 30.949151846213816
+        },
+        "giant_nodes": {
+          "mean": 500.0,
+          "min": 500.0,
+          "max": 500.0,
+          "sd": 0.0
+        },
+        "clustering": {
+          "mean": 0.39651300161263825,
+          "min": 0.39067389407971764,
+          "max": 0.40038102710125817,
+          "sd": 0.0028399709361711803
+        },
+        "transitivity": {
+          "mean": 0.22615047250823306,
+          "min": 0.22305050259512846,
+          "max": 0.2282429426347996,
+          "sd": 0.0013684424305966446
+        },
+        "mean_path": {
+          "mean": 2.0117515030060122,
+          "min": 2.006685370741483,
+          "max": 2.015943887775551,
+          "sd": 0.002645718068330752
+        },
+        "relative_sigma": 0.7040938643634863,
+        "clustering_null_ge_observed": 16
+      }
+    },
+    "draws": [
+      {
+        "seed": 114001,
+        "trades_per_episode": 10,
+        "total_nodes": 500,
+        "total_edges": 8972,
+        "giant_nodes": 500,
+        "giant_edges": 8972,
+        "clustering": 0.4001375462591307,
+        "transitivity": 0.22671845281476083,
+        "mean_path": 2.008312625250501
+      },
+      {
+        "seed": 114001,
+        "trades_per_episode": 40,
+        "total_nodes": 500,
+        "total_edges": 8965,
+        "giant_nodes": 500,
+        "giant_edges": 8965,
+        "clustering": 0.397913944389833,
+        "transitivity": 0.226039188150622,
+        "mean_path": 2.0084088176352703
+      },
+      {
+        "seed": 114002,
+        "trades_per_episode": 10,
+        "total_nodes": 500,
+        "total_edges": 8887,
+        "giant_nodes": 500,
+        "giant_edges": 8887,
+        "clustering": 0.40053945428166576,
+        "transitivity": 0.2256893139546338,
+        "mean_path": 2.011543086172345
+      },
+      {
+        "seed": 114002,
+        "trades_per_episode": 40,
+        "total_nodes": 500,
+        "total_edges": 9002,
+        "giant_nodes": 500,
+        "giant_edges": 9002,
+        "clustering": 0.39962131202405765,
+        "transitivity": 0.2256390946598528,
+        "mean_path": 2.006685370741483
+      },
+      {
+        "seed": 114003,
+        "trades_per_episode": 10,
+        "total_nodes": 500,
+        "total_edges": 8951,
+        "giant_nodes": 500,
+        "giant_edges": 8951,
+        "clustering": 0.4022423944119656,
+        "transitivity": 0.22894699679909622,
+        "mean_path": 2.01576753507014
+      },
+      {
+        "seed": 114003,
+        "trades_per_episode": 40,
+        "total_nodes": 500,
+        "total_edges": 8947,
+        "giant_nodes": 500,
+        "giant_edges": 8947,
+        "clustering": 0.39972145914458124,
+        "transitivity": 0.2279122439970057,
+        "mean_path": 2.012585170340681
+      },
+      {
+        "seed": 114004,
+        "trades_per_episode": 10,
+        "total_nodes": 500,
+        "total_edges": 8990,
+        "giant_nodes": 500,
+        "giant_edges": 8990,
+        "clustering": 0.4025423939857122,
+        "transitivity": 0.22479219688877752,
+        "mean_path": 2.0124248496993986
+      },
+      {
+        "seed": 114004,
+        "trades_per_episode": 40,
+        "total_nodes": 500,
+        "total_edges": 8930,
+        "giant_nodes": 500,
+        "giant_edges": 8930,
+        "clustering": 0.39704802044177845,
+        "transitivity": 0.22693824715685154,
+        "mean_path": 2.0135711422845692
+      },
+      {
+        "seed": 114005,
+        "trades_per_episode": 10,
+        "total_nodes": 500,
+        "total_edges": 8912,
+        "giant_nodes": 500,
+        "giant_edges": 8912,
+        "clustering": 0.40393709672383127,
+        "transitivity": 0.22699729585002723,
+        "mean_path": 2.0117194388777557
+      },
+      {
+        "seed": 114005,
+        "trades_per_episode": 40,
+        "total_nodes": 500,
+        "total_edges": 8932,
+        "giant_nodes": 500,
+        "giant_edges": 8932,
+        "clustering": 0.3973183286023544,
+        "transitivity": 0.22715530582605176,
+        "mean_path": 2.0125130260521042
+      },
+      {
+        "seed": 114006,
+        "trades_per_episode": 10,
+        "total_nodes": 500,
+        "total_edges": 8932,
+        "giant_nodes": 500,
+        "giant_edges": 8932,
+        "clustering": 0.3880981931820681,
+        "transitivity": 0.22440523843330362,
+        "mean_path": 2.0167134268537072
+      },
+      {
+        "seed": 114006,
+        "trades_per_episode": 40,
+        "total_nodes": 500,
+        "total_edges": 8915,
+        "giant_nodes": 500,
+        "giant_edges": 8915,
+        "clustering": 0.3991310554414814,
+        "transitivity": 0.22635442974000242,
+        "mean_path": 2.0112064128256515
+      },
+      {
+        "seed": 114007,
+        "trades_per_episode": 10,
+        "total_nodes": 500,
+        "total_edges": 8935,
+        "giant_nodes": 500,
+        "giant_edges": 8935,
+        "clustering": 0.39751185175614784,
+        "transitivity": 0.2249274103984883,
+        "mean_path": 2.0121843687374747
+      },
+      {
+        "seed": 114007,
+        "trades_per_episode": 40,
+        "total_nodes": 500,
+        "total_edges": 8992,
+        "giant_nodes": 500,
+        "giant_edges": 8992,
+        "clustering": 0.3956224132590013,
+        "transitivity": 0.22771960674606345,
+        "mean_path": 2.0127054108216433
+      },
+      {
+        "seed": 114008,
+        "trades_per_episode": 10,
+        "total_nodes": 500,
+        "total_edges": 8895,
+        "giant_nodes": 500,
+        "giant_edges": 8895,
+        "clustering": 0.39227217474026915,
+        "transitivity": 0.22816207196024135,
+        "mean_path": 2.0200561122244487
+      },
+      {
+        "seed": 114008,
+        "trades_per_episode": 40,
+        "total_nodes": 500,
+        "total_edges": 8928,
+        "giant_nodes": 500,
+        "giant_edges": 8928,
+        "clustering": 0.40038102710125817,
+        "transitivity": 0.22714434324903457,
+        "mean_path": 2.0125931863727455
+      },
+      {
+        "seed": 114009,
+        "trades_per_episode": 10,
+        "total_nodes": 500,
+        "total_edges": 9005,
+        "giant_nodes": 500,
+        "giant_edges": 9005,
+        "clustering": 0.39523827788851407,
+        "transitivity": 0.22620676263691647,
+        "mean_path": 2.012889779559118
+      },
+      {
+        "seed": 114009,
+        "trades_per_episode": 40,
+        "total_nodes": 500,
+        "total_edges": 8983,
+        "giant_nodes": 500,
+        "giant_edges": 8983,
+        "clustering": 0.39067389407971764,
+        "transitivity": 0.22501895375284306,
+        "mean_path": 2.0088496993987977
+      },
+      {
+        "seed": 114010,
+        "trades_per_episode": 10,
+        "total_nodes": 500,
+        "total_edges": 8953,
+        "giant_nodes": 500,
+        "giant_edges": 8953,
+        "clustering": 0.3937367114312111,
+        "transitivity": 0.2253900508129323,
+        "mean_path": 2.0205931863727455
+      },
+      {
+        "seed": 114010,
+        "trades_per_episode": 40,
+        "total_nodes": 500,
+        "total_edges": 8950,
+        "giant_nodes": 500,
+        "giant_edges": 8950,
+        "clustering": 0.3950612355533692,
+        "transitivity": 0.2247801905757359,
+        "mean_path": 2.0120801603206413
+      },
+      {
+        "seed": 114011,
+        "trades_per_episode": 10,
+        "total_nodes": 500,
+        "total_edges": 8937,
+        "giant_nodes": 500,
+        "giant_edges": 8937,
+        "clustering": 0.40015228091485433,
+        "transitivity": 0.22517019608308148,
+        "mean_path": 2.0098517034068135
+      },
+      {
+        "seed": 114011,
+        "trades_per_episode": 40,
+        "total_nodes": 500,
+        "total_edges": 8958,
+        "giant_nodes": 500,
+        "giant_edges": 8958,
+        "clustering": 0.39588795933752635,
+        "transitivity": 0.22597577609171945,
+        "mean_path": 2.011607214428858
+      },
+      {
+        "seed": 114012,
+        "trades_per_episode": 10,
+        "total_nodes": 500,
+        "total_edges": 8982,
+        "giant_nodes": 500,
+        "giant_edges": 8982,
+        "clustering": 0.4047593287633006,
+        "transitivity": 0.22595123558389124,
+        "mean_path": 2.0073827655310623
+      },
+      {
+        "seed": 114012,
+        "trades_per_episode": 40,
+        "total_nodes": 500,
+        "total_edges": 8914,
+        "giant_nodes": 500,
+        "giant_edges": 8914,
+        "clustering": 0.3972901170326789,
+        "transitivity": 0.2262199969151549,
+        "mean_path": 2.0148617234468937
+      },
+      {
+        "seed": 114013,
+        "trades_per_episode": 10,
+        "total_nodes": 500,
+        "total_edges": 8931,
+        "giant_nodes": 500,
+        "giant_edges": 8931,
+        "clustering": 0.3965612791885823,
+        "transitivity": 0.2299098991229383,
+        "mean_path": 2.0168416833667333
+      },
+      {
+        "seed": 114013,
+        "trades_per_episode": 40,
+        "total_nodes": 500,
+        "total_edges": 8939,
+        "giant_nodes": 500,
+        "giant_edges": 8939,
+        "clustering": 0.39889114568336576,
+        "transitivity": 0.2247645758815646,
+        "mean_path": 2.012088176352705
+      },
+      {
+        "seed": 114014,
+        "trades_per_episode": 10,
+        "total_nodes": 500,
+        "total_edges": 8954,
+        "giant_nodes": 500,
+        "giant_edges": 8954,
+        "clustering": 0.3893464534986742,
+        "transitivity": 0.2255123749026188,
+        "mean_path": 2.018509018036072
+      },
+      {
+        "seed": 114014,
+        "trades_per_episode": 40,
+        "total_nodes": 500,
+        "total_edges": 8917,
+        "giant_nodes": 500,
+        "giant_edges": 8917,
+        "clustering": 0.39304568174961224,
+        "transitivity": 0.22305050259512846,
+        "mean_path": 2.007623246492986
+      },
+      {
+        "seed": 114015,
+        "trades_per_episode": 10,
+        "total_nodes": 500,
+        "total_edges": 8981,
+        "giant_nodes": 500,
+        "giant_edges": 8981,
+        "clustering": 0.3914978754198471,
+        "transitivity": 0.2272342871340924,
+        "mean_path": 2.0175230460921845
+      },
+      {
+        "seed": 114015,
+        "trades_per_episode": 40,
+        "total_nodes": 500,
+        "total_edges": 8931,
+        "giant_nodes": 500,
+        "giant_edges": 8931,
+        "clustering": 0.3933061920584887,
+        "transitivity": 0.2282429426347996,
+        "mean_path": 2.015943887775551
+      },
+      {
+        "seed": 114016,
+        "trades_per_episode": 10,
+        "total_nodes": 500,
+        "total_edges": 8957,
+        "giant_nodes": 500,
+        "giant_edges": 8957,
+        "clustering": 0.391165276226778,
+        "transitivity": 0.2272482757584409,
+        "mean_path": 2.0184529058116234
+      },
+      {
+        "seed": 114016,
+        "trades_per_episode": 40,
+        "total_nodes": 500,
+        "total_edges": 8887,
+        "giant_nodes": 500,
+        "giant_edges": 8887,
+        "clustering": 0.3932942399031077,
+        "transitivity": 0.22545216215929853,
+        "mean_path": 2.014701402805611
+      }
+    ],
+    "all_margins_preserved": true,
+    "limitation": "16 draws; 10/40-sweep stability is not a mixing proof"
+  },
+  "synthetic_role_checks": [
+    {
+      "length": 2,
+      "conditional_entropy": -0.0,
+      "distinct_role_windows": {
+        "3": 0,
+        "4": 0,
+        "5": 0
+      }
+    },
+    {
+      "length": 3,
+      "conditional_entropy": -0.0,
+      "distinct_role_windows": {
+        "3": 1,
+        "4": 0,
+        "5": 0
+      }
+    },
+    {
+      "length": 4,
+      "conditional_entropy": -0.0,
+      "distinct_role_windows": {
+        "3": 2,
+        "4": 1,
+        "5": 0
+      }
+    },
+    {
+      "length": 5,
+      "conditional_entropy": -0.0,
+      "distinct_role_windows": {
+        "3": 2,
+        "4": 2,
+        "5": 1
+      }
+    },
+    {
+      "length": 6,
+      "conditional_entropy": -0.0,
+      "distinct_role_windows": {
+        "3": 2,
+        "4": 2,
+        "5": 2
+      }
+    },
+    {
+      "length": 7,
+      "conditional_entropy": -0.0,
+      "distinct_role_windows": {
+        "3": 2,
+        "4": 2,
+        "5": 2
+      }
+    },
+    {
+      "length": 8,
+      "conditional_entropy": -0.0,
+      "distinct_role_windows": {
+        "3": 2,
+        "4": 2,
+        "5": 2
+      }
+    },
+    {
+      "length": 9,
+      "conditional_entropy": -0.0,
+      "distinct_role_windows": {
+        "3": 2,
+        "4": 2,
+        "5": 2
+      }
+    },
+    {
+      "length": 10,
+      "conditional_entropy": -0.0,
+      "distinct_role_windows": {
+        "3": 2,
+        "4": 2,
+        "5": 2
+      }
+    },
+    {
+      "length": 11,
+      "conditional_entropy": -0.0,
+      "distinct_role_windows": {
+        "3": 2,
+        "4": 2,
+        "5": 2
+      }
+    },
+    {
+      "length": 12,
+      "conditional_entropy": -0.0,
+      "distinct_role_windows": {
+        "3": 2,
+        "4": 2,
+        "5": 2
+      }
+    },
+    {
+      "length": 13,
+      "conditional_entropy": -0.0,
+      "distinct_role_windows": {
+        "3": 2,
+        "4": 2,
+        "5": 2
+      }
+    },
+    {
+      "length": 14,
+      "conditional_entropy": -0.0,
+      "distinct_role_windows": {
+        "3": 2,
+        "4": 2,
+        "5": 2
+      }
+    },
+    {
+      "length": 15,
+      "conditional_entropy": -0.0,
+      "distinct_role_windows": {
+        "3": 2,
+        "4": 2,
+        "5": 2
+      }
+    },
+    {
+      "length": 16,
+      "conditional_entropy": -0.0,
+      "distinct_role_windows": {
+        "3": 2,
+        "4": 2,
+        "5": 2
+      }
+    },
+    {
+      "length": 17,
+      "conditional_entropy": -0.0,
+      "distinct_role_windows": {
+        "3": 2,
+        "4": 2,
+        "5": 2
+      }
+    },
+    {
+      "length": 18,
+      "conditional_entropy": -0.0,
+      "distinct_role_windows": {
+        "3": 2,
+        "4": 2,
+        "5": 2
+      }
+    },
+    {
+      "length": 19,
+      "conditional_entropy": -0.0,
+      "distinct_role_windows": {
+        "3": 2,
+        "4": 2,
+        "5": 2
+      }
+    },
+    {
+      "length": 20,
+      "conditional_entropy": -0.0,
+      "distinct_role_windows": {
+        "3": 2,
+        "4": 2,
+        "5": 2
+      }
+    }
+  ],
+  "elapsed_seconds": 231.27619477300323,
+  "peak_rss_mib": 109.296875
+}

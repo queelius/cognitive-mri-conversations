@@ -1,0 +1,26 @@
+{
+  "checked_at": "2026-10-15",
+  "all_recorded_sources_unchanged": true,
+  "original_source_count": 36,
+  "artifacts": {
+    "future-ideas/iscs-2027/research-deep-dive/audits/networks-memory.md": "8d7f8d77dd2f621bb29eedc4f780843fc8dad0b5afe3b0d62123ddf16383011a",
+    "future-ideas/iscs-2027/research-deep-dive/checks/networks/PROTOCOL.md": "02a93060eeffbf8b00603ed71edb448737cfae43922b4a33bd95647ac944f4e1",
+    "future-ideas/iscs-2027/research-deep-dive/checks/networks/README.md": "b1d827a0603738b356cd3503238f22c265abaa081a9509253948b01378845715",
+    "future-ideas/iscs-2027/research-deep-dive/checks/networks/audit-coverage.json": "454f792a49e9d260699106415a6a5967827dda34782e278018ae6a872a4faa12",
+    "future-ideas/iscs-2027/research-deep-dive/checks/networks/audit-tests.txt": "806a52535a3475470520bc6a2f4523af2a1d8618996340457805eebfa00f8214",
+    "future-ideas/iscs-2027/research-deep-dive/checks/networks/audit_checks.py": "f999f472793e2ae44572d7687d43b601a2b6b1f6c5517deb1ceac1ad50669d5b",
+    "future-ideas/iscs-2027/research-deep-dive/checks/networks/execution.txt": "53634637abbe1e91dea8ca415ae0c8caae90d712bc2ac575cc0c00be5773fe90",
+    "future-ideas/iscs-2027/research-deep-dive/checks/networks/hierarchy-coverage.json": "5875dc81d0c71e028d3a9239cf2d0d82b0dda348a2d2c1c078f6519703a3ce1d",
+    "future-ideas/iscs-2027/research-deep-dive/checks/networks/hierarchy-suite.txt": "a32fbf1d43d731c8ed525c2ec98c6b027e41fb514be437d2f0f2ed3a76274bad",
+    "future-ideas/iscs-2027/research-deep-dive/checks/networks/hierarchy-targeted.txt": "b300eb4aa9b55b438c6e7de604d179ea8661428e453b19049e0ba6a7cace5d50",
+    "future-ideas/iscs-2027/research-deep-dive/checks/networks/plot_projection_null.py": "c15e1244efd45a22a218e451629714bfdc3917ff0d513167ead2ab9d62b16b7e",
+    "future-ideas/iscs-2027/research-deep-dive/checks/networks/projection-null.png": "8ddbccaf3f3e5736e8573aa5692f4447bc2f17cd9ec011f558172aff97e59d92",
+    "future-ideas/iscs-2027/research-deep-dive/checks/networks/projection-null.svg": "21d5b83fcde35caae4f1e486ada465ffc4e30abc9be2b45c83451b85285394d5",
+    "future-ideas/iscs-2027/research-deep-dive/checks/networks/results.json": "20816b556949a063e55dbfa2f9fd2e05e95dec6685f53889d29db47f54266e5d",
+    "future-ideas/iscs-2027/research-deep-dive/checks/networks/stored-ablation-inspection.json": "d619e543ee7ff2df0d8924fc204d66def3f96d24fbd361cdb2d2b1315f71ee04",
+    "future-ideas/iscs-2027/research-deep-dive/checks/networks/stored-flow-inspection.json": "c9152e706357b7649a5560baf93f0e80e5ea41724bd9971251859caf8101b4ac",
+    "future-ideas/iscs-2027/research-deep-dive/checks/networks/test_audit_checks.py": "e7304808d8d4d5649ed0adea6668378a767f99ee19868aed3a2c8eac37bb9e1f",
+    "future-ideas/iscs-2027/research-deep-dive/checks/networks/verification.json": "8236485f675fe19c8bc698096124bf9344383a124cf0c740d907fe07af81d1a5",
+    "future-ideas/iscs-2027/research-deep-dive/literature/networks-memory.md": "00b8252b5b61a51716588aeb514b50eab077ed5df6d6ce76109e3a2dc96a1497"
+  }
+}

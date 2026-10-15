@@ -1,0 +1,450 @@
+{
+  "config": {
+    "seed": 20261015,
+    "circle_triples": 200000,
+    "prefix_bootstrap_draws": 20000,
+    "prediction_bootstrap_draws": 5000,
+    "max_conversations_per_source": 80,
+    "min_messages": 40,
+    "max_messages": 80,
+    "train_fraction": 0.5,
+    "alpha_grid": [
+      0.05,
+      0.1,
+      0.15,
+      0.2,
+      0.25,
+      0.3,
+      0.35,
+      0.4,
+      0.45,
+      0.5,
+      0.55,
+      0.6,
+      0.65,
+      0.7,
+      0.75,
+      0.8,
+      0.85,
+      0.9,
+      0.95,
+      0.999
+    ],
+    "fixed_alpha": 0.85,
+    "normalization_epsilon": 1e-08,
+    "source_root": "/home/spinoza/github/cmri",
+    "embflow_root": "/home/spinoza/github/beta/embflow"
+  },
+  "python": "3.10.20",
+  "dependencies": {
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "scikit-learn": "1.7.2",
+    "sqlite-vec": "0.1.6",
+    "pytest": "9.1.1",
+    "pytest-cov": "7.1.0"
+  },
+  "turning": {
+    "exact_exchangeable_unit_triangle": {
+      "n_permutations": 6,
+      "mean_turning_cosine": -0.4714045207910316,
+      "ratio_of_expectations": -0.5
+    },
+    "same_triangle_embedded_in_256_dimensions": {
+      "n_permutations": 6,
+      "mean_turning_cosine": -0.4714045207910316,
+      "ratio_of_expectations": -0.5
+    },
+    "iid_circle": {
+      "n_independent_triples": 200000,
+      "mean": -0.40499135370747763,
+      "monte_carlo_se": 0.0012960660640297897,
+      "monte_carlo_ci95": [
+        -0.407531643192976,
+        -0.40245106422197924
+      ],
+      "analytic_expectation": -0.4052847345693511
+    },
+    "universal_minus_half_claim_falsified": true,
+    "runtime_seconds": 0.06841825100127608
+  },
+  "calculus": {
+    "alpha": 0.85,
+    "leaky_recurrence_identity_error": 1.1102230246251565e-16,
+    "leaky_force_equals_increment_error": 0.23709607235609725,
+    "pure_sum_force_equals_increment_error": 1.5265566588595902e-16,
+    "normalized_force_equals_increment_error": 0.5655448909506294,
+    "mean_velocity_endpoint_identity_error": 4.163336342344337e-17,
+    "mean_second_difference_boundary_identity_error": 2.0816681711721685e-17,
+    "unit_adjacent_cosine_identity_error": 8.881784197001252e-16,
+    "velocity_gram_rigid_transform_error": 8.881784197001252e-16,
+    "normalized_trajectory_translation_error": 1.4642396422824904,
+    "straight_path_second_difference_norm": 1.0,
+    "straight_path_curvature_radius_is_infinite": true,
+    "uniform_reordering_error": 1.1102230246251565e-16,
+    "mass_weighted_reordering_error": 8.326672684688674e-17,
+    "exponential_reordering_error": 0.3973848464432141,
+    "decay_at_lambda_dt_one": {
+      "exact": 0.36787944117144233,
+      "explicit_euler": 0.0
+    },
+    "half_lives": {
+      "0.5": 1.0,
+      "0.76": 2.525707431112262,
+      "0.782": 2.8188111541611,
+      "0.83": 3.7200061701829665,
+      "0.84": 3.975530340482441,
+      "0.85": 4.265024281798726,
+      "0.95": 13.513407333964874,
+      "0.999": 692.8005491785002
+    },
+    "runtime_seconds": 0.0015913759998511523
+  },
+  "prefix": {
+    "n_real_conversations": 12,
+    "n_eligible_prefixes": 305,
+    "n_lenses_selected_over": 26,
+    "max_discrepancy_from_archived_lens_means": 2.220446049250313e-16,
+    "best_lens": "exp0.85+mass",
+    "best_mean": 0.8966676641563193,
+    "uniform_mean": 0.8695386745999021,
+    "uniform_mass_mean": 0.8773194030428044,
+    "gain_over_uniform": {
+      "n": 12,
+      "mean": 0.02712898955641711,
+      "ci95": [
+        0.0077165199016840744,
+        0.04774238257342939
+      ],
+      "positive_fraction": 0.9166666666666666
+    },
+    "gain_over_uniform_mass": {
+      "n": 12,
+      "mean": 0.01934826111351483,
+      "ci95": [
+        0.004790009723325139,
+        0.03903601220717276
+      ],
+      "positive_fraction": 0.75
+    },
+    "loocv": {
+      "selected_lens_counts": {
+        "exp0.85+mass": 11,
+        "exp0.9+mass": 1
+      },
+      "mean": 0.8949796335777269,
+      "gain_over_uniform_mass": {
+        "n": 12,
+        "mean": 0.01766023053492242,
+        "ci95": [
+          0.004830172306970831,
+          0.03381057829463882
+        ],
+        "positive_fraction": 0.75
+      },
+      "in_sample_minus_loocv_mean": 0.0016880305785923477
+    },
+    "by_archetype": {
+      "return": {
+        "n": 3,
+        "best_global_lens_mean": 0.9212216839251487,
+        "uniform_mass_mean": 0.9033673396384003,
+        "paired_gain": 0.017854344286748442
+      },
+      "pivot": {
+        "n": 3,
+        "best_global_lens_mean": 0.8736226775824587,
+        "uniform_mass_mean": 0.8765416680673552,
+        "paired_gain": -0.002918990484896559
+      },
+      "drifting": {
+        "n": 3,
+        "best_global_lens_mean": 0.8861819007004653,
+        "uniform_mass_mean": 0.825083067713427,
+        "paired_gain": 0.061098832987038366
+      },
+      "focused": {
+        "n": 3,
+        "best_global_lens_mean": 0.9056443944172047,
+        "uniform_mass_mean": 0.9042855367520355,
+        "paired_gain": 0.0013588576651690776
+      }
+    },
+    "alpha_coherence": {
+      "n": 12,
+      "reconstruction_mean": 0.8816666666666667,
+      "prediction_mean": 0.7208333333333333,
+      "reconstruction_range": [
+        0.75,
+        0.99
+      ],
+      "reconstruction_minus_prediction": {
+        "n": 12,
+        "mean": 0.16083333333333324,
+        "ci95": [
+          0.11249999999999986,
+          0.20999999999999985
+        ],
+        "positive_fraction": 1.0
+      },
+      "pearson_r": 0.6278937205038249,
+      "spearman_r": 0.6599653166639079,
+      "spearman_p": 0.01952228812603895,
+      "n_reconstruction_alphas_above_095": 2
+    },
+    "archived_null_mismatched_mean": 0.31496740210865154,
+    "archived_null_crossprefix_mean": 0.4049021092057228,
+    "archived_retrieval_top1_exact": 0.4557377049180328,
+    "archived_retrieval_top1_conversation": 1.0,
+    "exact_retrieval_prediction_met": false,
+    "archived_gate": {
+      "best_lens_mean": 0.8966676641563193,
+      "criterion": "mean >= 0.8 and mean >= mismatched_null + 0.25",
+      "passed": true
+    },
+    "uniform_mass_also_clears_numeric_gate_using_archived_best_lens_null": true,
+    "uniform_null_caveat": "Comparator uses the saved best-lens null; lens-specific nulls are unavailable.",
+    "order_sensitivity_tested": false,
+    "runtime_seconds": 0.015551604010397568
+  },
+  "prediction": {
+    "metadata": {
+      "conversation_rows": 3144,
+      "message_embedding_rows": 149623,
+      "n_models_with_embeddings": 1,
+      "selected_model": {
+        "provider": "openai",
+        "model": "text-embedding-3-small",
+        "dimensions": 256
+      },
+      "embedding_rows_per_source": {
+        "anthropic": 2443,
+        "claude_code": 91950,
+        "openai": 55230
+      },
+      "distinct_embedded_timestamps": 3
+    },
+    "n_selected": 177,
+    "n_loaded": 177,
+    "cohort_digest_sha256": "e3895a9b5b985790fa6aa42ad04061e79b36e606cd0e697c42901c3d2745aa6d",
+    "by_source": {
+      "claude_code": {
+        "n": 80,
+        "eligible_pool": 323,
+        "train_selected_alpha_mean": 0.8175000000000001,
+        "train_selected_alpha_median": 0.85,
+        "upper_alpha_boundary_fraction": 0.0,
+        "mean_user_fraction": 0.17995849997702762,
+        "mean_role_transition_fraction": 0.27241572974768474,
+        "mean_unique_embedded_timestamp_fraction": 0.01426649942943414,
+        "held_out_mean_scores": {
+          "held_out_selected": 0.5889774518807378,
+          "held_out_fixed": 0.59123583995387,
+          "held_out_running_mean": 0.557975004860155,
+          "held_out_last_message": 0.4786343327501039,
+          "held_out_full_sequence_oracle": 0.5923133377541964
+        },
+        "paired_differences": {
+          "held_out_fixed": {
+            "n": 80,
+            "mean": -0.002258388073132263,
+            "ci95": [
+              -0.0032968061123743327,
+              -0.0012646559743686738
+            ],
+            "positive_fraction": 0.225
+          },
+          "held_out_running_mean": {
+            "n": 80,
+            "mean": 0.031002447020582802,
+            "ci95": [
+              0.02611850427672862,
+              0.036305833274655155
+            ],
+            "positive_fraction": 0.9625
+          },
+          "held_out_last_message": {
+            "n": 80,
+            "mean": 0.11034311913063384,
+            "ci95": [
+              0.10340822545168199,
+              0.11708587400793039
+            ],
+            "positive_fraction": 1.0
+          },
+          "held_out_full_sequence_oracle": {
+            "n": 80,
+            "mean": -0.0033358858734587036,
+            "ci95": [
+              -0.004295091663963339,
+              -0.002500836773162884
+            ],
+            "positive_fraction": 0.0
+          }
+        }
+      },
+      "anthropic": {
+        "n": 17,
+        "eligible_pool": 17,
+        "train_selected_alpha_mean": 0.8147058823529411,
+        "train_selected_alpha_median": 0.85,
+        "upper_alpha_boundary_fraction": 0.0,
+        "mean_user_fraction": 0.499264705882353,
+        "mean_role_transition_fraction": 0.7719953911510945,
+        "mean_unique_embedded_timestamp_fraction": 0.017150383862729126,
+        "held_out_mean_scores": {
+          "held_out_selected": 0.6654962023406853,
+          "held_out_fixed": 0.665855160900357,
+          "held_out_running_mean": 0.6297313042866294,
+          "held_out_last_message": 0.5426718314564604,
+          "held_out_full_sequence_oracle": 0.668814000064322
+        },
+        "paired_differences": {
+          "held_out_fixed": {
+            "n": 17,
+            "mean": -0.00035895855967165943,
+            "ci95": [
+              -0.0023424332233886007,
+              0.0018069328537607921
+            ],
+            "positive_fraction": 0.4117647058823529
+          },
+          "held_out_running_mean": {
+            "n": 17,
+            "mean": 0.03576489805405596,
+            "ci95": [
+              0.025159461681912673,
+              0.04749206735664701
+            ],
+            "positive_fraction": 1.0
+          },
+          "held_out_last_message": {
+            "n": 17,
+            "mean": 0.122824370884225,
+            "ci95": [
+              0.10528003245617591,
+              0.13894043252727079
+            ],
+            "positive_fraction": 1.0
+          },
+          "held_out_full_sequence_oracle": {
+            "n": 17,
+            "mean": -0.003317797723636652,
+            "ci95": [
+              -0.006170369450785465,
+              -0.0012084547427879757
+            ],
+            "positive_fraction": 0.0
+          }
+        }
+      },
+      "openai": {
+        "n": 80,
+        "eligible_pool": 349,
+        "train_selected_alpha_mean": 0.771875,
+        "train_selected_alpha_median": 0.75,
+        "upper_alpha_boundary_fraction": 0.0,
+        "mean_user_fraction": 0.47967078314039757,
+        "mean_role_transition_fraction": 0.9256994028696379,
+        "mean_unique_embedded_timestamp_fraction": 0.01706219733458717,
+        "held_out_mean_scores": {
+          "held_out_selected": 0.6649120149484691,
+          "held_out_fixed": 0.6661131999310891,
+          "held_out_running_mean": 0.6178708979199536,
+          "held_out_last_message": 0.5346036004950112,
+          "held_out_full_sequence_oracle": 0.6696964368280017
+        },
+        "paired_differences": {
+          "held_out_fixed": {
+            "n": 80,
+            "mean": -0.0012011849826199517,
+            "ci95": [
+              -0.0038749225598829332,
+              0.0012744101484627164
+            ],
+            "positive_fraction": 0.4375
+          },
+          "held_out_running_mean": {
+            "n": 80,
+            "mean": 0.0470411170285155,
+            "ci95": [
+              0.03986278010436413,
+              0.05479435502707773
+            ],
+            "positive_fraction": 0.9625
+          },
+          "held_out_last_message": {
+            "n": 80,
+            "mean": 0.13030841445345792,
+            "ci95": [
+              0.12175789137882685,
+              0.13918467511783392
+            ],
+            "positive_fraction": 1.0
+          },
+          "held_out_full_sequence_oracle": {
+            "n": 80,
+            "mean": -0.004784421879532671,
+            "ci95": [
+              -0.007169166575161198,
+              -0.003027938146192029
+            ],
+            "positive_fraction": 0.0
+          }
+        }
+      }
+    },
+    "private_identifiers_exported": false,
+    "order_provenance": "message_embeddings.rowid; insertion order, not verified event time",
+    "sampling_limitation": "Within-user, selected long-conversation diagnostic; source effects are confounded.",
+    "runtime_seconds": 4.609896108988323
+  },
+  "runtime_seconds": 5.170310554996831,
+  "source_integrity_after": {
+    "/home/spinoza/github/cmri/CLAUDE.md": true,
+    "/home/spinoza/github/cmri/papers/embedding-dynamics/CLAUDE.md": true,
+    "/home/spinoza/github/cmri/papers/embedding-dynamics/paper/SPEC.md": true,
+    "/home/spinoza/github/cmri/papers/embedding-dynamics/paper/main.tex": true,
+    "/home/spinoza/github/cmri/papers/embedding-dynamics/paper/sections/04_validation.tex": true,
+    "/home/spinoza/github/cmri/papers/embedding-dynamics/.papermill/state.md": true,
+    "/home/spinoza/github/cmri/papers/embedding-dynamics/experiments/EXPERIMENTS.md": true,
+    "/home/spinoza/github/cmri/papers/embedding-dynamics/experiments/motionlib.py": true,
+    "/home/spinoza/github/cmri/papers/embedding-dynamics/experiments/exp01_shuffle_validation.py": true,
+    "/home/spinoza/github/cmri/papers/embedding-dynamics/experiments/exp02_platform_separability.py": true,
+    "/home/spinoza/github/cmri/papers/embedding-dynamics/experiments/exp03_motion_motifs.py": true,
+    "/home/spinoza/github/cmri/papers/embedding-dynamics/experiments/exp04_prefix_experiment.py": true,
+    "/home/spinoza/github/cmri/papers/embedding-dynamics/experiments/results/SUMMARY.md": true,
+    "/home/spinoza/github/cmri/papers/embedding-dynamics/experiments/results/exp01_shuffle_validation.json": true,
+    "/home/spinoza/github/cmri/papers/embedding-dynamics/experiments/results/exp02_platform_separability.json": true,
+    "/home/spinoza/github/cmri/papers/embedding-dynamics/experiments/results/exp03_motifs.json": true,
+    "/home/spinoza/github/cmri/papers/embedding-dynamics/experiments/results/exp04_prefix.json": true,
+    "/home/spinoza/github/cmri/papers/semantic-dynamics/CLAUDE.md": true,
+    "/home/spinoza/github/cmri/papers/semantic-dynamics/paper/paper.md": true,
+    "/home/spinoza/github/cmri/papers/semantic-dynamics/paper/paper.tex": true,
+    "/home/spinoza/github/cmri/papers/semantic-dynamics/experiments/exp01_velocity_graph.py": true,
+    "/home/spinoza/github/cmri/papers/semantic-dynamics/experiments/exp03_strengthen.py": true,
+    "/home/spinoza/github/cmri/papers/semantic-dynamics/experiments/results/velocity_graph.json": true,
+    "/home/spinoza/github/cmri/papers/semantic-dynamics/experiments/results/exp03_strengthen.json": true,
+    "/home/spinoza/github/cmri/papers/operational-memex/CLAUDE.md": true,
+    "/home/spinoza/github/cmri/papers/operational-memex/experiments/exp17_exp_embedding_deep.py": true,
+    "/home/spinoza/github/cmri/papers/operational-memex/experiments/exp19_changepoints.py": true,
+    "/home/spinoza/github/cmri/papers/operational-memex/data/analysis.db": true,
+    "/home/spinoza/github/beta/embflow/CLAUDE.md": true,
+    "/home/spinoza/github/beta/embflow/pyproject.toml": true,
+    "/home/spinoza/github/beta/embflow/embflow/__init__.py": true,
+    "/home/spinoza/github/beta/embflow/embflow/backends.py": true,
+    "/home/spinoza/github/beta/embflow/embflow/compare.py": true,
+    "/home/spinoza/github/beta/embflow/embflow/nulls.py": true,
+    "/home/spinoza/github/beta/embflow/embflow/ops.py": true,
+    "/home/spinoza/github/beta/embflow/embflow/smooth.py": true,
+    "/home/spinoza/github/beta/embflow/embflow/state.py": true,
+    "/home/spinoza/github/beta/embflow/embflow/validate.py": true,
+    "/home/spinoza/github/beta/embflow/embflow/weights.py": true,
+    "/home/spinoza/github/beta/embflow/tests/test_backends.py": true,
+    "/home/spinoza/github/beta/embflow/tests/test_core.py": true,
+    "/home/spinoza/github/beta/embflow/tests/test_motion.py": true,
+    "/home/spinoza/github/beta/embflow/tests/test_nulls.py": true,
+    "/home/spinoza/github/beta/embflow/tests/test_state.py": true,
+    "/home/spinoza/github/beta/embflow/tests/test_validate.py": true
+  }
+}

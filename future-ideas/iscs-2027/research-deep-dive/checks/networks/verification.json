@@ -1,0 +1,44 @@
+{
+  "audit_python": "/home/spinoza/venv/bin/python",
+  "audit_versions": {
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "networkx": "3.4.2",
+    "pytest": "9.1.1",
+    "pytest-cov": "7.1.0",
+    "coverage": "7.15.0"
+  },
+  "audit_tests": {
+    "exit_code": 0,
+    "passed": 9,
+    "seconds": 0.87,
+    "unit_only_statement_coverage_percent": 59,
+    "unit_plus_empirical_execution_statement_coverage_percent": 100
+  },
+  "original_hierarchy_suite": {
+    "exit_code": 2,
+    "collection_errors": 9,
+    "reason": "Legacy imports from absent agentic package"
+  },
+  "targeted_hierarchy_tests": {
+    "exit_code": 0,
+    "passed": 48,
+    "seconds": 1.65,
+    "statement_coverage_percent": 62
+  },
+  "new_check_execution": {
+    "exit_code": 0,
+    "elapsed_seconds": 231.27619477300323
+  },
+  "figure_visual_inspection": "PNG inspected; spacing and labels checked; final title/footer narrowed without geometry change",
+  "hierarchy_and_plot_versions": {
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "networkx": "3.4.2",
+    "scikit-learn": "1.7.2",
+    "matplotlib": "3.10.7",
+    "pytest": "9.1.1",
+    "pytest-cov": "7.1.0",
+    "coverage": "7.16.2"
+  }
+}

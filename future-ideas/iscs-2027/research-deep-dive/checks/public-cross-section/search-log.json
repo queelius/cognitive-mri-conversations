@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-15",
+  "scope": "Focused primary-source search for public conversation data, purpose/use studies, role attribution, and independent human targets; not a systematic review.",
+  "queries": [
+    "site.arxiv.org WildChat use role conversation purpose user behavior study",
+    "site.arxiv.org How People Use ChatGPT 2025",
+    "site.arxiv.org Anthropic Economic Index 2025 usage",
+    "site.arxiv.org WildChat user intent roles 2026",
+    "site.arxiv.org ChatGPT wrapped Karny",
+    "site.arxiv.org Karnam conversations 2026",
+    "site.arxiv.org WildChat personalization users role analysis",
+    "ThoughtTrace dataset public ChatGPT 2026",
+    "ChatGPT wrapped Fang 2026 data",
+    "Re-Centering Humans in LLM Personalization",
+    "site.arxiv.org PRISM 1,500 conversations dataset",
+    "site.huggingface.co/datasets/HannahRoseKirk/prism-alignment"
+  ],
+  "primary_sources_read": [
+    {"title": "Adopt != Adapt", "url": "https://arxiv.org/html/2605.29018v1", "use": "Direct novelty comparator, IP screening, activity/intent/domain baselines, weak completion validation"},
+    {"title": "Adopt != Adapt release", "url": "https://github.com/microsoft/adopt-adapt-wildchat/tree/b4e77e44b62ba2ddd0f7b53667b218e345faba09", "use": "Pinned code, no-content labels, LFS content hashes, source-key join; code MIT, annotation-specific terms not separately stated"},
+    {"title": "WildChat-4.8M", "url": "https://huggingface.co/datasets/allenai/WildChat-4.8M/tree/c827c6df8fcf008219ffaffa4d1dd77491099367", "use": "Source metadata, exact non-toxic count, schema, byte-range sample"},
+    {"title": "A paradox of AI fluency", "url": "https://arxiv.org/html/2604.25905v1", "use": "Interaction-mode/task-complexity comparator; automation/template confounds"},
+    {"title": "AI fluency release", "url": "https://github.com/bigspinai/bigspin-fluency-outcomes", "use": "Release metadata and 88,255,733-byte LFS artifact; not downloaded"},
+    {"title": "Bowling with ChatGPT", "url": "https://arxiv.org/html/2602.01114v1", "use": "Purpose, social framing and steering in linked donated histories"},
+    {"title": "Bowling release", "url": "https://github.com/saikeerthana00/Bowling_with_ChatGPT", "use": "Code and prompts only; no open history corpus identified"},
+    {"title": "Navigating Rifts in Human-LLM Grounding", "url": "https://aclanthology.org/2025.acl-long.1016/", "use": "Turn-level grounding comparator and external failure construct"},
+    {"title": "ThoughtTrace", "url": "https://arxiv.org/html/2605.20087v1", "use": "Independent raw self-reports, study design, already published embedding/stage findings, LLM-derived type labels"},
+    {"title": "ThoughtTrace release", "url": "https://huggingface.co/datasets/SCAI-JHU/ThoughtTrace/tree/0420f3d8499e477098aac7771fe9c066f2340fb3", "use": "Ungated CC-BY-4.0, schema and size; no second experiment"},
+    {"title": "Re-Centering Humans in LLM Personalization", "url": "https://arxiv.org/html/2606.06614v1", "use": "Human validation, attribute relevance beyond semantic similarity, filtered IP histories"},
+    {"title": "Re-Centering Humans release", "url": "https://huggingface.co/datasets/leczhang/recenter-personalization/tree/9835f6a335ecbc0673186b37a62a240512ad1e30", "use": "Public files, effective profile/prompt unit counts, layered licenses"},
+    {"title": "How People Use ChatGPT in Australia", "url": "https://arxiv.org/html/2609.28990v1", "use": "Closest geographic work/intent/topic HCI comparison"},
+    {"title": "How People Use ChatGPT: Four Countries", "url": "https://arxiv.org/html/2609.38279v1", "use": "Donated-history comparator; restricted data-release policy"},
+    {"title": "TnT-LLM", "url": "https://arxiv.org/html/2403.12173", "use": "Taxonomy/annotation provenance for Adopt != Adapt; underlying Bing data not public"},
+    {"title": "PRISM", "url": "https://arxiv.org/abs/2404.16019", "use": "Participant-grounded external ratings; detailed method claims limited to primary card/paper abstract"},
+    {"title": "PRISM release", "url": "https://huggingface.co/datasets/HannahRoseKirk/prism-alignment/tree/18ab5cfb37456f4ec8cbc00212ce54cf7b1239f6", "use": "Actual contributor counts, conversation trees, distinct human/model content licenses"}
+  ],
+  "screened_out": [
+    "Secondary news, Reddit and automatically generated paper summaries were used only as discovery leads, not as evidence.",
+    "Product-scale OpenAI/Anthropic aggregate usage studies do not supply the raw linked histories needed here; their taxonomies are adjacent rather than a substitute for public validation.",
+    "Life-planning interview studies require recruited samples and are less direct than the released self-report and grounding datasets for this no-recruitment task."
+  ],
+  "coverage_limits": [
+    "Searches prioritize the direct WildChat comparator and citation-connected primary studies; no completeness or first-ever claim is made.",
+    "Only one WildChat shard and its first 2,000 content rows were acquired; larger eligibility counts are not inferred.",
+    "ThoughtTrace, PRISM and Re-Centering Humans were audited for metadata and release design, not fully recounted or empirically validated."
+  ]
+}

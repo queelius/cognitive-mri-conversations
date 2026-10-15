@@ -1,0 +1,12 @@
+{
+  "runtime_seconds": 1.054490000999067,
+  "python": "3.11.15",
+  "packages": {
+    "numpy": "2.2.6",
+    "matplotlib": "3.10.7",
+    "pytest": "9.1.1"
+  },
+  "config_sha256": "07d2ed427bc4bcdd2a6af2bc813290245ab3a1e1742690f125f96f311c69c9b3",
+  "script_sha256": "b60d3b8402a5483425725a5df7f1795f3149cdc03ceeff6d8aa078f883773285",
+  "source_sha256": "63f776ab45069bdfc6d8f3141edbc61d49e7af4bff8521444f4044f6d0859733"
+}

@@ -1,0 +1,31 @@
+{
+  "angles_a": [
+    0.0,
+    0.1,
+    0.2,
+    0.3
+  ],
+  "angles_b": [
+    0.0,
+    0.6,
+    1.8,
+    2.0
+  ],
+  "profile_a": [
+    0.0049958347219741794,
+    0.0049958347219741794,
+    0.0049958347219742905
+  ],
+  "profile_b": [
+    0.17466438509032167,
+    0.6376422455233266,
+    0.019933422158758374
+  ],
+  "profile_euclidean_difference": 0.6551732821188312,
+  "all_profile_values_strictly_positive": true,
+  "maximum_absolute_scalar_cosine_cost": 0.0,
+  "library_shape_distance": 0.0,
+  "source_sha256": "e8c6c01dae3da7ae761b46909656fc6ce65ed2fb2428521492b8bfc75efdbc15",
+  "protocol_with_addendum_sha256": "bfee9ad862ee3fecafbaa2a2e63da6e4234e11d376bb30d5cba5478ccbc482ff",
+  "runtime_seconds": 0.006095679011195898
+}

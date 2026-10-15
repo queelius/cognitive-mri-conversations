@@ -1,0 +1,11 @@
+............                                                             [100%]
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.10.20-final-0 _______________
+
+Name                Stmts   Miss  Cover   Missing
+-------------------------------------------------
+audit_dynamics.py     183     82    55%   53-60, 219-292, 300-304, 308-342, 352-375, 379
+-------------------------------------------------
+TOTAL                 183     82    55%
+Coverage JSON written to file coverage-local.json
+12 passed in 1.01s

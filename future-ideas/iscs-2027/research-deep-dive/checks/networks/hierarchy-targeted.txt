@@ -1,0 +1,26 @@
+................................................                         [100%]
+=============================== warnings summary ===============================
+tests/test_hierarchy.py::test_analyze_hierarchy
+tests/test_hierarchy.py::test_analyze_hierarchy
+  /home/spinoza/github/cmri/papers/selective-forgetting/.venv/lib/python3.11/site-packages/networkx/readwrite/json_graph/node_link.py:142: FutureWarning: 
+  The default value will be `edges="edges" in NetworkX 3.6.
+  
+  To make this warning go away, explicitly set the edges kwarg, e.g.:
+  
+    nx.node_link_data(G, edges="links") to preserve current behavior, or
+    nx.node_link_data(G, edges="edges") for forward compatibility.
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.11.15-final-0 _______________
+
+Name                       Stmts   Miss  Cover   Missing
+--------------------------------------------------------
+concept_extraction_v2.py     161     49    70%   121, 126, 232-233, 241-247, 275-339, 344
+hierarchy.py                 283    120    58%   28, 51-76, 155, 162, 165-166, 174, 226-227, 253, 318, 324, 411-415, 494-585, 593-652, 656
+hierarchy_semantic.py        224     85    62%   34, 50-51, 97-119, 147, 187, 209, 414-491, 499-537, 541
+--------------------------------------------------------
+TOTAL                        668    254    62%
+Coverage JSON written to file /home/spinoza/github/cmri/future-ideas/iscs-2027/research-deep-dive/checks/networks/hierarchy-coverage.json
+48 passed, 2 warnings in 1.65s

@@ -1,0 +1,104 @@
+
+==================================== ERRORS ====================================
+______________ ERROR collecting tests/test_concept_extraction.py _______________
+ImportError while importing test module '/home/spinoza/github/cmri/papers/hierarchical-memory/tests/test_concept_extraction.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+../../../../.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_concept_extraction.py:7: in <module>
+    from agentic.concept_extraction import (
+E   ModuleNotFoundError: No module named 'agentic'
+__________________ ERROR collecting tests/test_delegation.py ___________________
+ImportError while importing test module '/home/spinoza/github/cmri/papers/hierarchical-memory/tests/test_delegation.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+../../../../.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_delegation.py:3: in <module>
+    from agentic.extract import Session
+E   ModuleNotFoundError: No module named 'agentic'
+__________________ ERROR collecting tests/test_export_json.py __________________
+ImportError while importing test module '/home/spinoza/github/cmri/papers/hierarchical-memory/tests/test_export_json.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+../../../../.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_export_json.py:3: in <module>
+    from agentic.extract import Session, Message
+E   ModuleNotFoundError: No module named 'agentic'
+____________________ ERROR collecting tests/test_extract.py ____________________
+ImportError while importing test module '/home/spinoza/github/cmri/papers/hierarchical-memory/tests/test_extract.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+../../../../.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_extract.py:8: in <module>
+    from agentic.extract import extract_sessions, Session
+E   ModuleNotFoundError: No module named 'agentic'
+__________________ ERROR collecting tests/test_multilayer.py ___________________
+ImportError while importing test module '/home/spinoza/github/cmri/papers/hierarchical-memory/tests/test_multilayer.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+../../../../.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_multilayer.py:3: in <module>
+    from agentic.multilayer import (
+E   ModuleNotFoundError: No module named 'agentic'
+__________________ ERROR collecting tests/test_null_models.py __________________
+ImportError while importing test module '/home/spinoza/github/cmri/papers/hierarchical-memory/tests/test_null_models.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+../../../../.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_null_models.py:4: in <module>
+    from agentic.null_models import (
+E   ModuleNotFoundError: No module named 'agentic'
+__________________ ERROR collecting tests/test_preprocess.py ___________________
+ImportError while importing test module '/home/spinoza/github/cmri/papers/hierarchical-memory/tests/test_preprocess.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+../../../../.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_preprocess.py:2: in <module>
+    from agentic.extract import Message
+E   ModuleNotFoundError: No module named 'agentic'
+___________________ ERROR collecting tests/test_semantic.py ____________________
+ImportError while importing test module '/home/spinoza/github/cmri/papers/hierarchical-memory/tests/test_semantic.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+../../../../.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_semantic.py:4: in <module>
+    from agentic.semantic import compute_network_metrics
+E   ModuleNotFoundError: No module named 'agentic'
+___________________ ERROR collecting tests/test_temporal.py ____________________
+ImportError while importing test module '/home/spinoza/github/cmri/papers/hierarchical-memory/tests/test_temporal.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+../../../../.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_temporal.py:2: in <module>
+    from agentic.extract import Session
+E   ModuleNotFoundError: No module named 'agentic'
+=========================== short test summary info ============================
+ERROR tests/test_concept_extraction.py
+ERROR tests/test_delegation.py
+ERROR tests/test_export_json.py
+ERROR tests/test_extract.py
+ERROR tests/test_multilayer.py
+ERROR tests/test_null_models.py
+ERROR tests/test_preprocess.py
+ERROR tests/test_semantic.py
+ERROR tests/test_temporal.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 9 errors during collection !!!!!!!!!!!!!!!!!!!!
+9 errors in 1.29s

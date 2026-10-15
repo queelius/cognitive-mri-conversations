@@ -1,0 +1,91 @@
+# Five candidate briefs
+
+2026-10-15. These are proposed next experiments, **not experiments executed in this deep dive**. Estimates are focused researcher time, excluding unpredictable access delays; no recruitment or paid model budget is assumed. Every study needs a frozen data/configuration manifest, development-only decisions, meaningful tests and runtime reporting. The [decision](README.md) chooses one next investment, not five parallel full projects.
+
+## A. What does semantic motion measure?
+
+**Question.** Which measures of conversational semantic motion retain sequence information beyond endpoints, filter construction, roles, length and topic—and does any surviving information help identify an independently reported purpose?
+
+**Contribution.** A calibrated measurement study with explicit invariance/counterexample tests and independent public validation. It would connect CMRI's static and dynamic work through a shared question about measurement. It must go beyond correcting our code: demonstrate a consequential, reproducible failure or incremental validity across public data and encoders. [VECTOR](https://arxiv.org/abs/2509.14455), [cumulative-prefix trajectories](https://arxiv.org/abs/2602.05971), [semantic timescales](https://arxiv.org/abs/2606.11371), and older conceptual recurrence already occupy the general trajectory framing.
+
+**Hypotheses.** A1: endpoint/length/filter controls account for purported motion information in some existing summaries. A2: at least one genuinely order-sensitive representation improves a prespecified external task over direct text and fixed EMA. A3: that gain survives role-preserving order controls and a second encoder. A1 can hold while A2 fails. Neither establishes a physical force law or access to cognition.
+
+**Data.** Public ThoughtTrace is the preferred external-report source, subject to an actual schema/eligibility check. Its participant IDs support grouping; its short, prompted tasks limit transport to natural archives. Raw reports supply an external criterion; LLM-derived category labels are secondary. WildChat can supply unlabeled measurement replication, not a substitute for independent reports. The private CMRI case is illustrative only. [Access and label-context audit](audits/public-data.md)
+
+**Baselines and controls.** Mean, token-weighted mean, last user message, role-separated pooled embeddings, rolling mean and fixed EMA; lexical matching and topic/stage/length/model controls. Only add a fitted decay, lagged/state-space predictor or low-order path feature if development data support its complexity. Compare under equal text visibility and matched tuning capacity. Include endpoint-preserving and role-preserving permutations, same-content text order changes when prefix embeddings are recomputed, duplicated turns, truncation, and fixed-length subsets. An order effect relative to an unrestricted shuffle alone is insufficient.
+
+**Smallest decisive experiment.** First run an exact synthetic calibration suite with positive controls and a prespecified small set of metrics. Then use participant-disjoint public development/evaluation to identify a user's actual reported reason among fixed same-topic/stage distractors. Dialogue features see only the prefix at that report; the current assistant response is unavailable for a reason attached to the current user turn. All reports, category labels and retrospective fields are quarantined from feature construction. A scorer may compare all candidate report texts symmetrically; the identity of the correct candidate remains evaluator-only. Select any supervised mapping on development participants only. Freeze distractor construction before scoring outcomes. Examine verbatim prompt/report overlap, task length and role truncation separately.
+
+**Confounds.** Very short prefixes can make trajectory statistics undefined; abstain/report coverage rather than silently change eligibility. Reports may paraphrase prompts and reflect collection reactivity. Shared encoder similarity is not independent behavioral validity; use lexical/direct-text controls and encoder sensitivity. Participants, duplicate templates and repeated candidate reports create dependence; keep linked units on one split and bootstrap participants, rebuilding derived matching/selection when required. A target with no validated discriminating baseline cannot support a meaningful null conclusion.
+
+**Decision criteria.** A practical positive gate is ≥5 percentage points added primary held-out accuracy with a participant-level interval above zero, consistent across two encoders and absent for the matched null feature. This is a chosen threshold, not an expected effect or power calculation. A publishable negative route needs calibrated positive controls, uncertainty narrow enough to bound a prespecified practically useful gain, and a consequential failure demonstrated beyond the private case. Stop the paper proposal if all that remains is elementary algebra, isolated software bugs, an unusable external target or wide inconclusive intervals. Do not swap outcomes after failure.
+
+**Effort.** 1–2 researcher-weeks for the decision pilot; roughly 5–7 further weeks for a compact full study/writing if the gate passes. Start with cached/local CPU encoders and small samples; profile before increasing compute. An 8-page calibration paper is more plausible than a broad theory paper.
+
+## B. Cross-sectional structure and attribution
+
+**Question.** Across independently grouped public conversations or participants, does semantic graph organization provide useful information beyond activity, topic composition, purpose and direct text? How much apparent structure comes from user text, assistant text, task, model and representation choices?
+
+**Contribution.** Incremental validity or a calibrated limit on validity, with the unit of observation explicit. [Adopt ≠ Adapt](https://arxiv.org/html/2605.29018v1), [Bowling with ChatGPT](https://arxiv.org/html/2602.01114v1), [ThoughtTrace](https://arxiv.org/html/2605.20087v1), and [Re-Centering Humans](https://arxiv.org/html/2606.06614v1) make another topic/usage cross-section weak novelty. CMRI's own role-weight sweeps already cover the basic ablation. Graphs transform the input embeddings; any gain is an inductive-bias advantage, not new observed information.
+
+**Hypotheses.** B1: much between-group modularity/bridge variation disappears after conditioning on length, topic proportions and graph density. B2: residual structure has stable held-out association with an external report/annotation. B3: adding assistant material can change inferred purpose even under topic-matched assistant substitutions. B3 is a representation intervention, not a causal intervention on the human.
+
+**Data.** Start with ThoughtTrace or PRISM participant groups for external validity. An archive-level WildChat extension is conditional on a full metadata/duplication audit; IP groups remain archive-linkage proxies regardless of size. PRISM branches and ratings must be grouped by participant/tree. Re-Centering Humans offers third-party judgments over a much smaller number of profiles than ratings; do not count ratings as independent people. Existing ten WildChat archives are development evidence, not a new holdout. [Dataset audit](audits/public-data.md)
+
+**Baselines/confounds.** Direct user, assistant and joint representations; activity/length/topic/task/model/calendar variables; threshold-matched versus density-matched graphs; matched text budgets; degree/topic-preserving nulls. Capacity-matched models must test added structure, not a weak classifier chosen to make graphs win. Full-history embeddings dated at the first turn are invalid online predictors. Whole-dialogue model labels inherit the assistant's wording; role-asymmetric annotation prompts can manufacture apparent attribution differences. No demographic or platform effect is causal here.
+
+**Smallest decisive experiment.** Reuse A's independently reported-purpose task to compare one prespecified graph representation against strong text baselines. Do not launch a large archive collection first. Freeze graph construction on development groups. For scalar graph features in a candidate-ranking model, specify valid candidate interactions: adding a query-only scalar to every candidate score cancels and cannot improve the rank. Run assistant swaps within development-defined topic/model/length strata, matched-shuffled topology and a held-out-topic sensitivity. Report participant-level paired effects and eligibility coverage.
+
+**Failure criteria.** Stop the graph-specific claim if direct text erases the gain, shuffled topology performs similarly, reasonable construction choices reverse it, or label-context controls explain the result. The present small WildChat role experiment is inconclusive; it neither warrants a role advantage nor demonstrates equivalence. Rich-archive person-level inference remains deferred without reliable linkage.
+
+**Effort.** 1–2 weeks for a conversation-level validation gate; 6–9 weeks for a broader study if data and novelty gates pass. Separate rich-archive work may exceed the March deadline. A and B should share a pilot rather than duplicate spending.
+
+## C. Geometry or sequence? Calibrated temporal networks
+
+**Question.** Which growing-network statistics distinguish meaningful ordering from fixed endpoint geometry, unequal archive sizes, active-node counting and local topic persistence?
+
+**Contribution.** A corrected observation model and calibrated empirical result in the existing temporal manuscript. [Gauvin et al.](https://doi.org/10.1137/19M1242252) already establish constrained temporal null methodology; the exact finite-population identities in this audit are explanatory tools, not a new theory of randomization. Contribution beyond the published static CMRI case must be independent order evidence or a consequential, power-calibrated negative result.
+
+**Hypotheses.** C1: apparent densification under all-node/active-node denominators often follows conditional revelation geometry. C2: any attachment departure survives local-run-preserving nulls. C3: a directly defined return lag explains residual sequence effects on new archives. Failure to reject a null does not prove C1, and the current maximum-prior-similarity statistic cannot test C3.
+
+**Data/assets.** Existing eleven-archive results and current PLOS draft, followed by independently selected public proxy archives if justified. The author's archive remains one case. Audit conversation completion/message times before any online interpretation. Report all eligible archives, including degenerate kernels and sparse graphs.
+
+**Baselines/confounds.** Uniform timestamp assignment; contiguous-block shuffles remapped to original time slots; topic-persistence-preserving controls; all-arrived versus positive-degree nodes; threshold and density sensitivity. Heuristic community seeds and endpoint invariants must not masquerade as temporal variation. Nested snapshots are not independent observations. Archive linkage and selection constrain population claims.
+
+**Smallest decisive experiment.** Calibrate 50 independent fixed geometric graphs (N=400; isotropic/topic-mixture designs) under uniform revelation and planted persistence levels. Check exact edge/active-node expectations, null false-positive rate and detection of planted alternatives; freeze the statistic and finite-sample uncertainty first. Validate return lag and elementary community transitions before using them. Then run the already specified three-archive/limited-shuffle diagnostic in [PILOTS.md](../PILOTS.md#temporal-extension), explicitly developmental. Lifecycle claims can be omitted if unnecessary; known-invalid counts cannot be retained.
+
+**Failure criteria.** Stop a new behavioral interpretation if it depends on mislabeled statistics, changes sign across sensible thresholds, or disappears under local persistence. A negative calibration paper needs demonstrated sensitivity to effects of interest. If the result is only a familiar shuffle on the old data, pursue a revision/extended abstract rather than claiming a separate novel full paper.
+
+**Effort.** Approximately one week for measurement/calibration gates; 4–6 further researcher-weeks for revision and independent robustness. Highest manuscript maturity; strongest fallback if A fails early. Confirm proceedings/journal reuse terms before allocating the extension to this venue.
+
+## D. Prefix representations as an approximation problem
+
+**Question.** When can cheap causal aggregation of message embeddings approximate an embedding of the concatenated prefix, and does that approximation preserve useful retrieval/prediction at lower cost?
+
+**Contribution.** A measured error–cost–utility tradeoff with explicit failure conditions, rather than a force interpretation. Weighted pooling, EMA and learned sequence representations are established ([Arora et al.](https://openreview.net/forum?id=SyK00v5xx), [MEGA](https://arxiv.org/abs/2209.10655)); cumulative-prefix embeddings are already central to the ICLR trajectory comparator. Existing CMRI Exp04 is the starting point, not independent confirmation.
+
+**Hypotheses.** D1: fixed EMA/token-mass weighting helps mainly under gradual drift and can hurt abrupt pivots. D2: a development-selected aggregator has a meaningful held-out cost-adjusted advantage. D3: same-content reordering exposes semantic differences that simple pooling cannot recover. A large cosine alone is insufficient; compare absolute error, hard same-conversation confusions and downstream rank/accuracy.
+
+**Data.** Saved twelve-case prefix scores permit cheap audit but are selected and private. Acquire a public, participant/proxy-disjoint cohort with a pinned open encoder; choose no archetypes by evaluation outcomes. Keep prefix text and isolated-message preprocessing/role tags consistent. Exact full-prefix encoding must declare context truncation. Prefixes within a conversation are dependent.
+
+**Smallest decisive experiment/baselines.** On a fixed small public cohort, compare mean, token-weighted mean, last-message/window, fixed .85 EMA, development-selected EMA and one capacity-appropriate learned baseline. Evaluate both natural and same-multiset reordered prefixes, including pivot/return controls. Hold out entire conversations/participants; tune only development cases, and resample the selection process for uncertainty. Record token operations, wall time, memory and retrieval usefulness, not just vector cosine. A fixed-length subset separates accumulation from length effects.
+
+**Failure criteria.** Stop the method claim if the matched simple baseline is within a prespecified useful margin, benefits vanish under held-out selection, retrieval does not improve, or the approximation cost is dominated by a better direct encoder/window strategy. The audit's completed selection-aware sensitivity gives interval [−.00122,+.03481] around point gain .01766; current evidence is exploratory. A predictive alpha is not necessarily a reconstruction alpha or a cognitive half-life.
+
+**Effort.** 1–2 weeks for a clean public benchmark, 6–8 further weeks for a convincing methods paper. Lower ISCS priority than A/C unless the empirical result becomes unusually clear.
+
+## E. What structure remains after projecting episodes into concepts?
+
+**Question.** Which apparent hierarchy, clustering and vocabulary-growth effects exceed those mechanically induced by incidence frequencies, episode sizes, finite vocabulary and retrospective clustering?
+
+**Contribution.** A public multi-corpus measurement result about residual associations. Projection effects and hierarchical document–word models are established ([Newman et al.](https://doi.org/10.1103/PhysRevE.64.026118), [Fujiki & Mizutaka](https://doi.org/10.1007/s41109-024-00664-w), [Gerlach et al.](https://doi.org/10.1126/sciadv.aaq1360)). The new local null reversal is a diagnostic that motivates a better comparison, not proof of no structure or a novel memory mechanism.
+
+**Hypotheses.** E1: degree-preserving bipartite constraints account for much ER-relative clustering. E2: residual repeated associations/compartmentalization survive appropriate density and topic controls and predict held-out incidence. E3: vocabulary-growth differences depend on order and category granularity beyond the exact finite-incidence expectation.
+
+**Data/baselines.** Local fixed extraction for diagnosis; small public conversation corpora with pinned reproducible extraction for external evidence. Compare episode–concept incidence directly, its projection, unipartite degree/density controls, bipartite fixed-margin nulls and an appropriate topic/SBM baseline. Compare data-driven hierarchy selection with fixed cuts. Fit concept vocabulary only on development data for prospective prediction; full-corpus vocabulary is permissible only for explicitly retrospective description.
+
+**Smallest decisive experiment.** Extend the existing 16-chain check with mixing diagnostics and nulls that answer separately stated questions; do not force one null to preserve incompatible properties without explanation. Replicate the projection effect in public incidence data and test held-out association prediction. Compare chronological, reverse and shuffled vocabulary curves at multiple predefined vocabulary cuts, using conversation/archive-level units rather than independent prefixes. Audit the actual union definition of porosity separately.
+
+**Failure criteria.** Defer a paper if extraction provenance remains untraceable, the result is solely the known clique effect, public replications are unstable, or no useful residual organization remains. Neither a null departure nor automatic hierarchical clustering establishes consolidation, transfer or human memory.
+
+**Effort.** 1–2 weeks for public feasibility/provenance; 6–9 further weeks for full evidence. Valuable correction work regardless of selection, but not the best new ISCS investment today.

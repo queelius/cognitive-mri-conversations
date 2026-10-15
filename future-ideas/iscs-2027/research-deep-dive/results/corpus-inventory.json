@@ -1,0 +1,45 @@
+{
+  "audit_date": "2026-10-15",
+  "repository": "chatgpt-conversation-corpus",
+  "commit": "daf4bbf61bd157bae82224d234f3f5afaae9c951",
+  "actual_conversation_json_files": 1888,
+  "stored_statistics": {
+    "corpus": {
+      "total_conversations": 1888,
+      "total_messages": 35244,
+      "user_messages": 16440,
+      "assistant_messages": 18804,
+      "total_characters": 60602159,
+      "estimated_tokens": 15150539,
+      "excluded_conversations": 9,
+      "excluded_breakdown": {
+        "privacy": 2,
+        "academic_integrity": 7
+      }
+    },
+    "date_range": {
+      "earliest": "2022-12-22",
+      "latest": "2025-04-10"
+    },
+    "conversation_length": {
+      "min": 0,
+      "max": 416,
+      "mean": 18.7,
+      "median": 10,
+      "p25": 4,
+      "p75": 22,
+      "p95": 67
+    }
+  },
+  "original_archive_reported_count": 1908,
+  "unreconciled_gap_after_declared_exclusions": 11,
+  "source_sha256": {
+    "README.md": "52b713f3a70600e953e9465f76b3f56cf0b0a8d8c1b63c994f5d4b17d2b89ee2",
+    "paper/paper.tex": "a44daa9b4e4eb4c79f7bfab7086bd3d46042d5dc32a42eede42ddfde896932fe",
+    "metadata/corpus-statistics.json": "3f755a040595ae60d3f14e3da288d94b0493af94860b63a36e6935bbe168f382",
+    "metadata/generate_statistics.py": "92c17553c124fb72855939a30729dc97124986ce47c094ce0146005106bc6b66",
+    "sanitization/README.md": "f3dee5ae2ece6caad1af1aa6a9b070031929b6c30c1b7b620d3bab41f71041a8",
+    "sanitization/sanitize_conversations.py": "ae04e1996e1a41a3591ac16f200c28cca220870eac7bcc88f8d578d43a29a14e"
+  },
+  "scope": "File count and stored aggregate metadata inspected; message counts not recounted; no source text exported, privacy certification or current public-release verification."
+}

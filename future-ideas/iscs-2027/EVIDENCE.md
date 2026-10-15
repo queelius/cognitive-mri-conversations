@@ -1,5 +1,17 @@
 # Evidence, limits, and reproducible checks
 
+## October 15 deep-dive evidence
+
+The broader [assessment](research-deep-dive/README.md) supersedes the earlier ranking without erasing the evidence below. New audited artifacts cover all seven paper projects, embflow, corpus/reorganization history, public datasets, current primary literature, a sixteen-direction longlist and five detailed briefs.
+
+The most discriminating new checks are exact counterexamples to the universal turning-cosine claim and degenerate shape comparator; endpoint/length identities for motion summaries; a hierarchy projection null yielding observed/null ratio .704 instead of the stored ER-relative 6.57; and a public role comparison with no decisive contrast. These address specific definitions/nulls, not all semantic structure or all graph-memory methods. [Local inventory](research-deep-dive/INVENTORY.md), [network/memory audit](research-deep-dive/audits/networks-memory.md), [dynamics audit](research-deep-dive/audits/dynamics.md).
+
+Final corrected public results use 406 observable dependency components (245 development/161 evaluation). Assistant-minus-user intent accuracy is +2.48 percentage points, 95% interval [−4.97,+9.94]. Prefix LOOCV point gain is +.01766 cosine, but resampling lens selection gives [−.00122,+.03481]. Earlier technical errors and superseded outputs are preserved; the current conclusions use corrected grouping/tokenization/labels and selection-aware sensitivity. [Public report](research-deep-dive/checks/public-cross-section/REPORT.md), [verification](research-deep-dive/VERIFICATION.md).
+
+Exact formulas, diagnostic null draws, selected private-conversation bootstrap intervals and a small public convenience slice support different levels of inference. Full public generalization, reliable rich-person linkage and cognitive mechanisms remain unestablished. See the [literature maps and bibliography](research-deep-dive/BIBLIOGRAPHY.md), [venue audit](research-deep-dive/VENUE.md), and [specific decision-changing evidence](research-deep-dive/BRIEFS.md).
+
+## October 14 evidence record
+
 Checked October 14, 2026. This file distinguishes existing results from computations performed for the proposal comparison. It is a targeted research audit, not a complete review or reproduction of any manuscript.
 
 ## Evidence status

@@ -1,0 +1,23 @@
+{
+  "seed": 20261015,
+  "dataset": "allenai/WildChat-4.8M",
+  "dataset_revision": "c827c6df8fcf008219ffaffa4d1dd77491099367",
+  "source_path": "data/train-00000-of-00086.parquet",
+  "annotation_repo": "microsoft/adopt-adapt-wildchat",
+  "annotation_revision": "b4e77e44b62ba2ddd0f7b53667b218e345faba09",
+  "annotation_shard": "00000",
+  "content_row_cap": 2000,
+  "content_byte_cap": 31457280,
+  "total_byte_cap": 62914560,
+  "conversation_cap": 600,
+  "minimum_conversations": 200,
+  "cutoff": "2024-09-01",
+  "language": "English",
+  "prompt_prefix_characters": 200,
+  "development_fraction": 0.6,
+  "max_role_chunks": 4,
+  "chunk_tokens": 254,
+  "bootstrap_replicates": 2000,
+  "permutation_replicates": 5000,
+  "encoder_directory": "papers/selective-forgetting/cache/model"
+}

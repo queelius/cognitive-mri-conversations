@@ -1,5 +1,15 @@
 # Pilot plans and stopping rules
 
+## October 15 update: next pilot selected after the deep dive
+
+The [deep-dive assessment](research-deep-dive/README.md) is complete. Its bounded dynamics, projection-null, public-data and external-metric checks are recorded separately with protocols, tests, runtime, uncertainty and review corrections. They do **not** constitute execution of the full temporal or transit plans below.
+
+The recommended next experiment is [candidate A](research-deep-dive/BRIEFS.md#a-what-does-semantic-motion-measure): calibrate a small set of semantic-motion measures, then test incremental value on a participant-disjoint public external-report task. Use cross-sectional sampling for generalization and temporal/role controls for measurement. The full [copyable next goal](research-deep-dive/NEXT-GOAL.md) specifies leakage controls and positive/negative decision gates. The corrected temporal plan below is the fallback; a rich-personal-archive comparison is deferred pending linkage evidence. The selective-forgetting stopping decision remains unchanged.
+
+The new public check exposed an operational rule for all future studies: construct dependency components over the complete available linkage universe **before** language, label or other eligibility filtering. The dynamics reanalysis also requires resampling fitted selection, not only bootstrapping fixed cross-validation losses. See [verification and correction history](research-deep-dive/VERIFICATION.md).
+
+## Original pilot plans and completed memory decision
+
 The selective-forgetting plan below was executed on October 14, 2026; temporal and transit remain plans. The source review, initial diagnostic audit, and completed memory results are indexed in [EVIDENCE.md](EVIDENCE.md). Effort estimates assume one researcher with focused time, a CPU workstation, and no participant recruitment. No GPU allocation or paid model budget is assumed.
 
 The purpose of each pilot is to decide whether a larger study is justified. Pilot thresholds below are practical decision criteria; they are not power calculations, promises of statistical significance, or estimates of expected effects. Save configuration, dataset revision, hashes, seeds, model/tokenizer revision, failures, runtime, and peak memory with every run. Keep development choices separate from held-out evaluation.
