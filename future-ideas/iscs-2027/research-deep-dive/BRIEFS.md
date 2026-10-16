@@ -42,6 +42,8 @@
 
 ## C. Geometry or sequence? Calibrated temporal networks
 
+**Execution update, October 16:** this pilot is complete; [report](../../../papers/temporal-networks-calibration/pilot/RESULTS.md). Narrow rather than expand to a full paper: 72% synthetic beta detection fails the frozen 80% gate, all .95 fits are undefined, and selected archives cannot confirm a population effect. A positive beta residual and direct recurrence effects remain as developmental evidence. [Corrected claims](../../../papers/temporal-networks-calibration/pilot/CLAIMS.md) replace similarity-as-recency, lifecycle and null-equivalence interpretations. The following brief is the preserved pre-pilot rationale.
+
 **Question.** Which growing-network statistics distinguish meaningful ordering from fixed endpoint geometry, unequal archive sizes, active-node counting and local topic persistence?
 
 **Contribution.** A corrected observation model and calibrated empirical result in the existing temporal manuscript. [Gauvin et al.](https://doi.org/10.1137/19M1242252) already establish constrained temporal null methodology; the exact finite-population identities in this audit are explanatory tools, not a new theory of randomization. Contribution beyond the published static CMRI case must be independent order evidence or a consequential, power-calibrated negative result.

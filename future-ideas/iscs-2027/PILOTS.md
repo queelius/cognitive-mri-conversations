@@ -1,5 +1,9 @@
 # Pilot plans and stopping rules
 
+## October 16 temporal execution update
+
+The temporal plan below has now been executed as a separate bounded goal: [protocol and frozen hashes](../../papers/temporal-networks-calibration/pilot/PROTOCOL.md), [results/decision](../../papers/temporal-networks-calibration/pilot/RESULTS.md), [corrected claims](../../papers/temporal-networks-calibration/pilot/CLAIMS.md). Recommendation: **narrow, no full paper yet**. Primary beta power was 18/25 rather than the required ≥20/25; .95 fits were undefined in all three selected archives. A positive public residual and direct recurrence effects survive descriptively, so this is not a universal negative. Uniform/block10/20/40, .85/.90/.95 and both timing conventions were retained. All synthetic and archive results reproduce exactly. No lifecycle repair or manuscript/submission occurred. The historical plans and earlier stopping decisions remain below.
+
 ## October 15 execution update
 
 The recommended public semantic-measurement pilot is complete: [report](../../papers/semantic-measurement/REPORT.md), [reproduction and verification](../../papers/semantic-measurement/VERIFICATION.md). Its selected-pair primary gain is −4.89 pp [−8.58,+4.76] with development-selection uncertainty. The practical-negative boundary is only narrowly met, lacks cross-panel confirmation, and does not justify a full negative paper. No positive sequence/order claim survives. Stop expansion of this retrieval experiment and use the temporal measurement gate below as the next candidate. Exact cached-input reproduction, 148 passing tests and final independent review are recorded; no temporal experiment has been newly executed in this pilot.

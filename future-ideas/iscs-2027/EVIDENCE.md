@@ -1,5 +1,11 @@
 # Evidence, limits, and reproducible checks
 
+## October 16: completed temporal calibration
+
+[Full report](../../papers/temporal-networks-calibration/pilot/RESULTS.md) and [reproduction evidence](../../papers/temporal-networks-calibration/pilot/verification/archive-reproduction.json): 50 independent synthetic graphs; 1/50 uniform beta rejections; 18/25 strong-persistence detections, failing the frozen 80% gate; 72 archive cells / 14,400 threshold-specific null rows exactly reproduced. At .90/block20, beta differences are author −.141, public-low −.285, public-high +.980; Holm p=.139/.299/.0299, descriptive after calibration failure. All .95 beta observations are undefined. Return-lag effects remain, but do not establish the draft's signed age axis or cognitive mechanism.
+
+Author update moves 391 monthly memberships; message completion is unidentified. Public dates are last response times, and first-response sensitivity moves no monthly memberships. [Audit](../../papers/temporal-networks-calibration/pilot/audits/LOCAL-AUDIT.md). [Claim ledger](../../papers/temporal-networks-calibration/pilot/CLAIMS.md) supersedes earlier “inside null proves geometry”, recency-similarity and zero-lifecycle interpretations. The earlier eleven archives are not new confirmation. Recommendation: narrow, preserve corrections and signals, no full-paper allocation. Historical evidence below remains available.
+
 ## October 15 deep-dive evidence
 
 The broader [assessment](research-deep-dive/README.md) supersedes the earlier ranking without erasing the evidence below. New audited artifacts cover all seven paper projects, embflow, corpus/reorganization history, public datasets, current primary literature, a sixteen-direction longlist and five detailed briefs.

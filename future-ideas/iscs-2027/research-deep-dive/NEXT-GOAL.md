@@ -1,5 +1,27 @@
 # Recommended next goal and fallback
 
+## October 16: current decision and conditional next goal
+
+The semantic-measurement and temporal-fallback goals below are both completed historical commands. The [temporal result](../../../papers/temporal-networks-calibration/pilot/RESULTS.md) recommends **narrow, not a full paper**. The proposed command below has not been launched; its first novelty/calibration gate may stop further experimentation. A lower-cost conference fallback is a co-author brief and a 2–4-page abstract outline based on supported published work and clearly labeled corrections, subject to [publication terms](VENUE.md).
+
+```text
+/goal Determine whether directly measured semantic recurrence, separated from representation and local persistence, supports a new CMRI research contribution.
+
+Work in /home/spinoza/github/cmri, starting from papers/temporal-networks-calibration/pilot/RESULTS.md and CLAIMS.md. Preserve independent repositories and previous negative findings. Do not revive beta as an age or cognitive-style measure, or reinterpret the failed temporal pilot as proof that order is irrelevant.
+
+First identify one distinctive, falsifiable question beyond established semantic foraging, temporal contiguity and constrained network nulls. Compare the closest primary work and define what a positive or negative result would change. Stop with a documented no-paper decision if the contribution reduces to another recurrence plot or a known measurement identity.
+
+If that gate passes, freeze a bounded protocol for direct nearest-match age and attached-edge age as separate observables. Calibrate opportunity/censoring effects, exact and near ties, duplicates, bursty unequal activity, long-lived hubs with recent nearest neighbors, and planted long-gap returns. Use independent new synthetic seeds, uniform and local-persistence/renewal controls, and meaningful effect/power thresholds for the actual primary control. Treat the old synthetic graphs as development; do not tune on a new evaluation bank after inspecting it.
+
+Only after calibration, audit and select at most twenty new public archive proxies using metadata alone, excluding every previously inspected archive. Establish duplicate/continuation linkage before eligibility or splitting, keep linked archives in one split, and freeze the development/evaluation split before semantic measurements. Verify timestamp semantics and licensing. These proxies are not verified people. Compare user-only, assistant-only and joint representations with pinned encoders and identical visibility; use a second encoder only as a prespecified sensitivity. Keep thresholds, baselines, role comparisons and aggregation fixed on development. Use archive-level effects and uncertainty, preserve sparse/undefined cases, and do not treat messages or null draws as independent archives.
+
+Favor existing public data and local computational resources. Keep the study small, reproducible and tested; record runtime, peak memory, data/model/configuration pins and failures. No participant recruitment or paid model calls. Recommend a full paper only if independent evidence answers the distinctive question robustly or a calibrated negative result materially changes a substantive inference. Otherwise stop or narrow. Update ISCS notes and do not write or submit a full manuscript in this goal.
+```
+
+## Historical October 15 goal selection
+
+The following text is preserved as the decision record before executing the temporal calibration.
+
 Execution follow-up (October 15, 2026): the Recommended goal below is the historical command
 for the completed public validation pilot. Its [results](../../../papers/semantic-measurement/REPORT.md)
 do not support full-paper expansion. The **next candidate is the Credible research fallback**

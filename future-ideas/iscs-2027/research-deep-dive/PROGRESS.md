@@ -91,3 +91,7 @@ passed, independently confirming 16 inference outputs and 553 candidate sets. Th
 complete. See its REPORT.md/VERIFICATION.md and committed ledger for evidence. Existing
 deep-dive checks and earlier decisions remain preserved; the temporal fallback remains a
 proposed next goal, not a silently launched continuation.
+
+## October 16: temporal calibration follow-up
+
+Separate authorized temporal goal executed in isolated child worktree `papers/temporal-networks-calibration`, branch `pilot/iscs-2027-calibration`, from 13e3a47. Source and literature audits, frozen protocol, 50-graph calibration, 72-cell archive diagnostic, exact replays and corrected claims saved under its `pilot/`. Decision NARROW; no full paper allocation. Original child PDF and umbrella dirty .gitignore/CLAUDE.md protected by hashes. Private author arrays remain ignored; numeric public arrays are releasable with attribution. No paper/submission or lifecycle repair. See [report](../../../papers/temporal-networks-calibration/pilot/RESULTS.md) and [durable execution record](../../../papers/temporal-networks-calibration/pilot/PROGRESS.md). The semantic pilot's negative result was not generalized to temporal networks.

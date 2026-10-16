@@ -1,6 +1,14 @@
 # ISCS 2027 research directions and decision history
 
-## Current recommendation — October 15 public validation result
+## Current recommendation — October 16 temporal calibration
+
+**Narrow the temporal extension; do not expand this pilot into a full ISCS paper.** The [completed calibration](../../papers/temporal-networks-calibration/pilot/RESULTS.md) corrects observation times, node denominators, attachment exposure/fit validity and direct return age. Beta detected 18/25 strong synthetic persistence cases (72%, Wilson 95% 52–86%), below its frozen 80% power gate. One selected public proxy retains a large beta residual (+0.980 versus block-20, conditional Holm p=.0299), but all three archives have undefined beta at .95 and the low public case changes sign across thresholds. No broad absence-of-sequence claim is justified.
+
+Direct return age and whole-trajectory diagnostics retain order structure. They do not validate cognitive style or verified individuals; the old eleven archives remain development evidence. All 50 synthetic graphs and 72 archive cells reproduce exactly. The [claim ledger](../../papers/temporal-networks-calibration/pilot/CLAIMS.md) supersedes earlier inferential approvals while preserving original manuscripts/results. The conditional [next research goal](research-deep-dive/NEXT-GOAL.md) starts with a novelty/calibration gate for direct recurrence and representation dependence. A 2–4-page abstract grounded in supported work is the cheaper conference fallback. [Updated venue terms and unresolved reuse conditions](research-deep-dive/VENUE.md).
+
+The recommendations below are dated historical records.
+
+## October 15 public validation result (before temporal calibration)
 
 **Stop full-paper expansion of the semantic reported-purpose retrieval pilot; prioritize the bounded temporal-network calibration fallback.** The [completed public pilot](../../papers/semantic-measurement/REPORT.md) compares 21 baselines with six fixed sequence alternatives on 140 held-out participants in 28 candidate-sharing blocks. The selected sequence method trails the baseline by 4.89 percentage points, selection-aware 95% interval [−8.58,+4.76]. This narrowly meets its primary practical-negative rule, but the other encoder/context panels do not bound a five-point gain. There is no supported incremental order or matched-donor benefit. It neither establishes universal futility of semantic dynamics nor supplies a sufficiently consequential replicated failure for a negative paper. Cached-input reproduction matches exactly; 148 tests and final independent review pass. Full verification and limitations are linked from the report.
 
