@@ -47,6 +47,10 @@ had become unreadable. Nothing in the linked reports changed.
 Nine pilots ran between October 14 and 18 (see the pilot table in the umbrella `CLAUDE.md`
 and the per-pilot `REPORT.md` files). The findings that survived every control:
 
+- **Reserve confirmation passed.** Under a frozen protocol on the held-out 248-component
+  PRISM reserve (233 components, 775 conversations scored), uniform history minus last-two
+  pooling: +.02546 [.01853, .03247] MiniLM, +.01801 [.01650, .01943] E5; the interval lower
+  bound is above zero in both encoders. [Report](../../papers/iscs-2027/REPORT.md).
 - **History pooling helps predict the next user turn.** On 1,191 public PRISM conversations,
   uniform history minus last-two pooling: +.034 [.023, .049] MiniLM, +.019 [.016, .023] E5;
   stable across four observation views.
@@ -70,7 +74,8 @@ the bridge-retention hypothesis was never actually tested.
 The campaign set its "full paper" bar at journal-of-record level (novelty beyond the closest
 prior work, independent confirmation on an unopened reserve, and a human-labeled behavioral
 outcome), so every pilot was recorded as "narrow" or "no-go". Treat those verdicts as
-conservative. The 248-component PRISM reserve remains unopened.
+conservative. The 248-component PRISM reserve was opened once, on 2026-10-18, under the
+frozen protocol in `papers/iscs-2027/`.
 
 ## Updating these records
 

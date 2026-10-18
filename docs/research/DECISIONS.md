@@ -2,7 +2,14 @@
 
 Current priorities and candidate status are in the [registry](registry.yaml). This history records decisions without converting proposals into completed findings.
 
-**Current assessment, October 18, grounded-dependency follow-up:** the
+**Current assessment, October 18, reserve confirmation:** the frozen
+[reserve confirmation](../../papers/iscs-2027/REPORT.md) passed in both encoders
+(MiniLM +.02546 [.01853, .03247], E5 +.01801 [.01650, .01943]), so the history-pooling
+gain is confirmed on held-out data and the ISCS 2027 short paper proceeds per the
+design. The reserve has now been opened once and must not be reused for further
+confirmation; earlier assessments below remain historical.
+
+**Prior assessment, October 18, grounded-dependency follow-up:** the
 [executed training-only pilot](../../papers/grounded-dependencies/REPORT.md) passes
 source/mapping/support gates but fails the joint baseline-resistant recovery and
 state criteria. Narrow the substantive question; stop scaling these automatic
@@ -57,6 +64,7 @@ the first wave's conditional confirmation recommendation. The original
 
 | Date | Basis | Decision or evidence | Current consequence |
 |---|---|---|---|
+| October 18, 2026 | Frozen reserve confirmation executed in papers/iscs-2027 (cmri-iscs-2027) | Primary contrast (uniform history minus last-two, next-user raw cosine) on 233 reserve components / 775 conversations: MiniLM +.02546 [.01853, .03247], E5 +.01801 [.01650, .01943], against pre-registered development values +.03440 / +.01919. Frozen rule (lower bound > 0 in both encoders) passes; both also clear the .01 practical floor. | Primary confirmed on held-out data; proceed with the ISCS 2027 short paper per the design; F2 heterogeneity descriptive. [Report](../../papers/iscs-2027/REPORT.md), [claims](../../papers/iscs-2027/CLAIMS.md), [verification](../../papers/iscs-2027/VERIFICATION.md). |
 | October 18, 2026, final technical review correction | Reviewer identified future-continuation conditioning in caliper calibration and an unnamed intersection-support sensitivity | Restore all 722 fit prefixes (716 matched); report 84-query anchor sensitivity separately from 70-query intersection. Corrected public run preserves every primary estimate and selected model; original attempts retained. | Decision unchanged. [Correction evidence](../../papers/history-specificity/audits/correction-impact.json), [review and repairs](../../papers/history-specificity/audits/final-review.md). |
 | October 18, 2026, full-paper development wave executed | Frozen protocol, two encoders, strong full-dimensional/lexical controls, 500 synthetic datasets | Primary support passes, but long-short ranking increments are −.00987/−.00177 MRR. Stable-topic/style counterexamples and exact-topic donor calibration failure are retained. Order/horizon/role do not justify substitution; privacy probe deferred prospectively. | **Stop promotion of this operationalization; narrow to grounded dependencies.** Positive cosine remains; no independent confirmation or full paper. [Report](../../papers/history-specificity/REPORT.md), [claims](../../papers/history-specificity/CLAIMS.md), [verification](../../papers/history-specificity/VERIFICATION.md). |
 | October 18, 2026, full-paper lead endorsed | User confirms full-paper priority, continued breadth and a promising lead after the history-specificity proposal | Prioritize whether older turns contribute interaction-specific information beyond topic/recent context/style; develop related order, horizon and role questions. Keep independent portfolio probes and prior negative results. | Original planning state preserved in the [executed goal snapshot](../../papers/history-specificity/audits/EXECUTED-GOAL.md); subsequently frozen and executed as recorded above. |

@@ -70,11 +70,12 @@ report, not the surrounding planning prose, for the numbers.
 | `papers/integration-measurement/` | cmri-integration-measurement (`pilot/integration-measurement`; worktree `papers/integration-events-worktree/` on `pilot/event-centered-revision`) | Zero clear same-premise revisions in 100 PRISM windows; no-go on this source. |
 | `papers/semantic-measurement/` | cmri-semantic-measurement (`pilot/public-validation`) | ThoughtTrace: sequence-trajectory features are reliably worse than pooling. |
 | `papers/selective-forgetting/` | cmri-selective-forgetting (`main`) | LongMemEval: benchmark had no cross-topic cases, so the bridge hypothesis went untested. |
+| `papers/iscs-2027/` | cmri-iscs-2027 (`main`) | Frozen reserve confirmation of the history-pooling gain passed in both encoders (MiniLM +.025, E5 +.018); home of the ISCS 2027 paper. |
 
 The PRISM pilots share one 1,191-conversation development partition and a **248-component
-reserve that has never been opened**; keep it that way until a confirmatory protocol is
-frozen. The pilots' large data directories are gitignored; cloning a pilot repo gives you
-code, reports and small result tables, not the embeddings.
+reserve that was opened on 2026-10-18 under the frozen protocol in cmri-iscs-2027**; it must
+not be reused for further confirmation. The pilots' large data directories are gitignored;
+cloning a pilot repo gives you code, reports and small result tables, not the embeddings.
 
 ## Program planning layer (docs/research/)
 

@@ -53,6 +53,10 @@ records:
   grounded_dependency_data: papers/grounded-dependencies/DATA.md
   grounded_dependency_verification: papers/grounded-dependencies/VERIFICATION.md
   grounded_dependency_literature: papers/grounded-dependencies/audits/literature.md
+  reserve_confirmation_report: papers/iscs-2027/REPORT.md
+  reserve_confirmation_claims: papers/iscs-2027/CLAIMS.md
+  reserve_confirmation_verification: papers/iscs-2027/VERIFICATION.md
+  reserve_confirmation_gate: papers/iscs-2027/results/report/gate.json
   next_goal: docs/research/NEXT-GOAL.md
 
 constraints:
