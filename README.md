@@ -53,11 +53,17 @@ repository under `papers/` with a `REPORT.md` and claim ledger:
 [cmri-grounded-dependencies](https://github.com/queelius/cmri-grounded-dependencies),
 [cmri-integration-measurement](https://github.com/queelius/cmri-integration-measurement),
 [cmri-semantic-measurement](https://github.com/queelius/cmri-semantic-measurement),
-[cmri-selective-forgetting](https://github.com/queelius/cmri-selective-forgetting),
-[cmri-wildchat-replication](https://github.com/queelius/cmri-wildchat-replication), plus the
+[cmri-selective-forgetting](https://github.com/queelius/cmri-selective-forgetting), plus the
 temporal calibration on the `pilot/iscs-2027-calibration` branch of
 [cmri-temporal-networks](https://github.com/queelius/cmri-temporal-networks). The
 [decision history](docs/research/DECISIONS.md) records what each one established.
+
+Two confirmatory studies followed the pilots, each a frozen single-shot run of the same
+primary contrast (uniform history pooling against the last two messages, next user message):
+[cmri-iscs-2027](https://github.com/queelius/cmri-iscs-2027) on the held-out PRISM reserve,
+and [cmri-wildchat-replication](https://github.com/queelius/cmri-wildchat-replication) on
+English WildChat-4.8M conversations. Both passed in both encoders; neither held-out sample may
+be reused for further confirmation.
 
 The published conference paper and the shared analysis pipeline (`code/` and `data/`) live
 in the `knowledge-networks` repository; the temporal-evolution journal extension is

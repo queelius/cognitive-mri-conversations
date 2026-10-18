@@ -70,6 +70,13 @@ report, not the surrounding planning prose, for the numbers.
 | `papers/integration-measurement/` | cmri-integration-measurement (`pilot/integration-measurement`; worktree `papers/integration-events-worktree/` on `pilot/event-centered-revision`) | Zero clear same-premise revisions in 100 PRISM windows; no-go on this source. |
 | `papers/semantic-measurement/` | cmri-semantic-measurement (`pilot/public-validation`) | ThoughtTrace: sequence-trajectory features are reliably worse than pooling. |
 | `papers/selective-forgetting/` | cmri-selective-forgetting (`main`) | LongMemEval: benchmark had no cross-topic cases, so the bridge hypothesis went untested. |
+
+### Confirmatory studies (not counted among the nine pilots)
+
+Two frozen single-shot confirmations of the history-pooling contrast, run after the pilots.
+
+| Local path | Repo (branch) | One-line result |
+|------------|---------------|-----------------|
 | `papers/iscs-2027/` | cmri-iscs-2027 (`main`) | Frozen reserve confirmation of the history-pooling gain passed in both encoders (MiniLM +.025, E5 +.018); home of the ISCS 2027 paper. |
 | `papers/wildchat-replication/` | cmri-wildchat-replication (`main`) | Frozen cross-collection replication on WildChat-4.8M passed in both encoders (MiniLM +.021, E5 +.016; 482 IP components, 801 conversations). |
 
