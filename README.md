@@ -43,9 +43,20 @@ links the manuscripts and publication evidence.
 | Sanitized ChatGPT Conversation Corpus | Unpublished data-paper draft; release status unresolved | `chatgpt-conversation-corpus/paper/` | [chatgpt-conversation-corpus](https://github.com/queelius/chatgpt-conversation-corpus) |
 | Operational Memex | Outline and working infrastructure | `papers/operational-memex/` | [cmri-operational-memex](https://github.com/queelius/cmri-operational-memex) |
 
-Selective forgetting, semantic measurement and temporal calibration have completed pilot
-reports. They are tracked in the [research catalog](future-ideas/iscs-2027/research-deep-dive/PAPER-CATALOG-AND-OPTIONS.md)
-separately from the seven manuscript lines and the Memex outline.
+### Pilot studies (October 2026)
+
+Nine bounded pilots, mostly on public multi-participant data, each in its own private
+repository under `papers/` with a `REPORT.md` and claim ledger:
+[cmri-portfolio-wave1](https://github.com/queelius/cmri-portfolio-wave1),
+[cmri-history-falsification](https://github.com/queelius/cmri-history-falsification),
+[cmri-history-specificity](https://github.com/queelius/cmri-history-specificity),
+[cmri-grounded-dependencies](https://github.com/queelius/cmri-grounded-dependencies),
+[cmri-integration-measurement](https://github.com/queelius/cmri-integration-measurement),
+[cmri-semantic-measurement](https://github.com/queelius/cmri-semantic-measurement),
+[cmri-selective-forgetting](https://github.com/queelius/cmri-selective-forgetting), plus the
+temporal calibration on the `pilot/iscs-2027-calibration` branch of
+[cmri-temporal-networks](https://github.com/queelius/cmri-temporal-networks). The
+[decision history](docs/research/DECISIONS.md) records what each one established.
 
 The published conference paper and the shared analysis pipeline (`code/` and `data/`) live
 in the `knowledge-networks` repository; the temporal-evolution journal extension is

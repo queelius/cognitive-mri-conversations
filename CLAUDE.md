@@ -42,16 +42,49 @@ Consequences:
 
 | Local path | Repo | Status |
 |------------|------|--------|
-| `papers/knowledge-networks/` | cmri-knowledge-networks | Published (Complex Networks 2025, Springer). Holds the conference paper plus the shared pipeline (`code/`) and reproducibility data (`data/`). |
-| `papers/temporal-networks/` | cmri-temporal-networks | Rejected at PLOS Complex Systems 2026-04-27, seeking a venue. Temporal-evolution extension. |
-| `papers/hierarchical-memory/` | cmri-hierarchical-memory | ISCS 2026. Latent hierarchical memory (episodic/concept layers). Formerly `agentic/`. |
-| `papers/embedding-dynamics/` | cmri-embedding-dynamics | In progress (spec stage). |
-| `papers/semantic-dynamics/` | cmri-semantic-dynamics | In progress. |
-| `papers/operational-memex/` | cmri-operational-memex | Early draft. |
+| `papers/knowledge-networks/` | cmri-knowledge-networks | Published: Complex Networks 2025, Springer chapter online 2026-02-25. Holds the conference paper plus the shared pipeline (`code/`) and reproducibility data (`data/`). |
+| `papers/temporal-networks/` | cmri-temporal-networks | Rejected at PLOS Complex Systems 2026-04-27. Branch `pilot/iscs-2027-calibration` (checked out as the worktree `papers/temporal-networks-calibration/`) holds the October 2026 calibration that supersedes the old growth/beta claims. |
+| `papers/hierarchical-memory/` | cmri-hierarchical-memory | Accepted at ISCS 2026; Springer SSDC 709 proceedings forthcoming. Formerly `agentic/`. |
+| `papers/embedding-dynamics/` | cmri-embedding-dynamics | Partial draft (abstract + validation section). Proposed consolidation with Semantic Dynamics; see `docs/research/DYNAMICS-CONSOLIDATION.md`. |
+| `papers/semantic-dynamics/` | cmri-semantic-dynamics | Full draft (LaTeX is more complete than the Markdown). Several of its mathematical claims failed the October 2026 audit. |
+| `papers/operational-memex/` | cmri-operational-memex | Outline plus working infrastructure. |
 
 Build instructions, pipeline usage, and per-paper notes live in each child repo's README and
 CLAUDE.md. The shared embedding/network pipeline is in `papers/knowledge-networks/code/` (a
 working mirror of the standalone `chatgpt-complex-net`).
+
+## Pilot repos (October 2026 campaign, also under papers/)
+
+Between 2026-10-14 and 2026-10-18 an autonomous research campaign ran nine bounded pilots,
+mostly on **public multi-participant data** (PRISM, ThoughtTrace, CGDIALOG, LongMemEval)
+rather than the private archive. Each is its own private `cmri-*` repo, gitignored here like
+the papers. Each has a `REPORT.md`, a `CLAIMS.md` ledger and a `VERIFICATION.md`; read the
+report, not the surrounding planning prose, for the numbers.
+
+| Local path | Repo (branch) | One-line result |
+|------------|---------------|-----------------|
+| `papers/portfolio-wave1/` | cmri-portfolio-wave1 (`pilot/first-wave`) | Six PRISM experiments; uniform history pooling beats last-two for next-user prediction (+.034 MiniLM, +.019 E5). |
+| `papers/history-falsification/` | cmri-history-falsification (`pilot/history-falsification`) | Pooling gain survives four views; the user/assistant asymmetry reverses under a common prefix (horizon artifact). |
+| `papers/history-specificity/` | cmri-history-specificity (`development-wave`) | HS01–HS04: no ranking gain over strong short-context controls; cosine gain persists. |
+| `papers/grounded-dependencies/` | cmri-grounded-dependencies (`development-pilot`) | CGDIALOG human labels: recency alone matches embedding augmentations. |
+| `papers/integration-measurement/` | cmri-integration-measurement (`pilot/integration-measurement`; worktree `papers/integration-events-worktree/` on `pilot/event-centered-revision`) | Zero clear same-premise revisions in 100 PRISM windows; no-go on this source. |
+| `papers/semantic-measurement/` | cmri-semantic-measurement (`pilot/public-validation`) | ThoughtTrace: sequence-trajectory features are reliably worse than pooling. |
+| `papers/selective-forgetting/` | cmri-selective-forgetting (`main`) | LongMemEval: benchmark had no cross-topic cases, so the bridge hypothesis went untested. |
+
+The PRISM pilots share one 1,191-conversation development partition and a **248-component
+reserve that has never been opened**; keep it that way until a confirmatory protocol is
+frozen. The pilots' large data directories are gitignored; cloning a pilot repo gives you
+code, reports and small result tables, not the embeddings.
+
+## Program planning layer (docs/research/)
+
+`docs/research/` is the umbrella-tracked record of priorities and decisions. Start with
+`DECISIONS.md` (dated table separating the owner's decisions from assistant recommendations)
+and `registry.yaml` (structured index of every report/claim file). `EXPERIMENT-PORTFOLIO.md`
+is the P01–P12 question map; `DYNAMICS-CONSOLIDATION.md` is the plan to merge the two
+dynamics drafts. `future-ideas/iscs-2027/` holds the conference history, the research
+deep-dive, and a finished four-page extended abstract (`extended-abstract/`) that is the
+skeleton for the planned ISCS 2027 full paper.
 
 ## Umbrella layout
 
