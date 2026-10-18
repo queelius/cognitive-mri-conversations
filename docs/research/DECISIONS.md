@@ -2,7 +2,17 @@
 
 Current priorities and candidate status are in the [registry](registry.yaml). This history records decisions without converting proposals into completed findings.
 
-**Current assessment, October 18, reserve confirmation:** the frozen
+**Current assessment, October 18, next experiment:** with the reserve spent, the
+assistant recommends, as the next confirmatory step for the ISCS 2027 paper, a
+cross-collection replication of the frozen primary contrast on WildChat-4.8M
+([design](../superpowers/specs/2026-10-18-wildchat-replication-design.md), follow-up F6).
+A metadata-only audit of the local mirror
+([script and output](audits/)) found 152,730 eligible English conversations with at
+least three rounds across 52,203 hashed IPs; no conversation text was read. The design
+is a recommendation pending the owner's decision; nothing has been built. Earlier
+assessments below remain historical.
+
+**Prior assessment, October 18, reserve confirmation:** the frozen
 [reserve confirmation](../../papers/iscs-2027/REPORT.md) passed in both encoders
 (MiniLM +.02546 [.01853, .03247], E5 +.01801 [.01650, .01943]), so the history-pooling
 gain is confirmed on held-out data. Proceeding with the ISCS 2027 short paper per the
