@@ -146,6 +146,15 @@ says what this design accepts, and why that is the right bar for a conference sh
   theorem, endpoint-collapsing derivatives, degenerate shape distance). Sections 3.3/4.1 of
   the ISCS paper become its empirical anchor.
 
+### F6. Cross-collection replication on WildChat (executed 2026-10-18)
+
+- The frozen F1 primary contrast was run once on a confirmation sample of English
+  WildChat-4.8M conversations (482 hashed-IP components, 801 conversations) under the
+  [WildChat design](2026-10-18-wildchat-replication-design.md), in
+  `papers/wildchat-replication/` (`cmri-wildchat-replication`). It passed in both encoders
+  (MiniLM +.02134 [.01358, .02897], E5 +.01562 [.01388, .01736]); see
+  `papers/wildchat-replication/REPORT.md` for the pre-freeze amendment and other limitations.
+
 ## New directions (brainstorm; none scheduled)
 
 Ideas that are related but not rescues of existing pilots. Each is one line of what it

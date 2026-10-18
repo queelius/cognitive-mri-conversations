@@ -57,6 +57,10 @@ records:
   reserve_confirmation_claims: papers/iscs-2027/CLAIMS.md
   reserve_confirmation_verification: papers/iscs-2027/VERIFICATION.md
   reserve_confirmation_gate: papers/iscs-2027/results/report/gate.json
+  wildchat_replication_report: papers/wildchat-replication/REPORT.md
+  wildchat_replication_claims: papers/wildchat-replication/CLAIMS.md
+  wildchat_replication_verification: papers/wildchat-replication/VERIFICATION.md
+  wildchat_replication_gate: papers/wildchat-replication/results/report/gate.json
   next_goal: docs/research/NEXT-GOAL.md
 
 constraints:
@@ -259,6 +263,20 @@ experiment_portfolio:
       minilm_gain_ci: [0.02546, 0.01853, 0.03247]
       e5_gain_ci: [0.01801, 0.01650, 0.01943]
       reserve_reuse: forbidden_spent
+    - id: wildchat-cross-collection-replication
+      status: executed_2026-10-18_under_frozen_protocol
+      repository: papers/wildchat-replication
+      report: papers/wildchat-replication/REPORT.md
+      gate: papers/wildchat-replication/results/report/gate.json
+      outcome: passed_both_encoders
+      primary: uniform history mean minus last-two pooling, next-user raw cosine, native128, natural origin
+      source: allenai/WildChat-4.8M local mirror, English, hashed-IP components
+      confirmation_components: 482
+      confirmation_conversations: 801
+      minilm_gain_ci: [0.02134, 0.01358, 0.02897]
+      e5_gain_ci: [0.01562, 0.01388, 0.01736]
+      protocol_amendment: before_freeze_after_development_halt_disclosed
+      confirmation_reuse: forbidden_spent
   proposed_followup:
     status: executed_development_no_confirmation_promotion
     outline: docs/research/HISTORY-SPECIFICITY-LEAD.md

@@ -53,7 +53,8 @@ repository under `papers/` with a `REPORT.md` and claim ledger:
 [cmri-grounded-dependencies](https://github.com/queelius/cmri-grounded-dependencies),
 [cmri-integration-measurement](https://github.com/queelius/cmri-integration-measurement),
 [cmri-semantic-measurement](https://github.com/queelius/cmri-semantic-measurement),
-[cmri-selective-forgetting](https://github.com/queelius/cmri-selective-forgetting), plus the
+[cmri-selective-forgetting](https://github.com/queelius/cmri-selective-forgetting),
+[cmri-wildchat-replication](https://github.com/queelius/cmri-wildchat-replication), plus the
 temporal calibration on the `pilot/iscs-2027-calibration` branch of
 [cmri-temporal-networks](https://github.com/queelius/cmri-temporal-networks). The
 [decision history](docs/research/DECISIONS.md) records what each one established.

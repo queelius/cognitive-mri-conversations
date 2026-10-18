@@ -2,7 +2,25 @@
 
 Current priorities and candidate status are in the [registry](registry.yaml). This history records decisions without converting proposals into completed findings.
 
-**Current assessment, October 18, next experiment:** with the reserve spent, the
+**Current assessment, October 18, WildChat replication:** the frozen
+[WildChat replication](../../papers/wildchat-replication/REPORT.md) (follow-up F6) passed in
+both encoders. On the confirmation sample (482 hashed-IP components, 801 conversations),
+uniform history minus last-two pooling for the next user turn: MiniLM +.02134
+[.01358, .02897], E5 +.01562 [.01388, .01736]; the lower bound is above zero in both, which
+is the frozen rule. This is a result: the history-pooling gain has now passed two frozen
+single-shot confirmations on two separately collected corpora (PRISM reserve and WildChat).
+The estimates are smaller than both the WildChat development and the PRISM reserve values,
+and the PRISM reserve's positive common-prefix role interaction did not replicate (the
+WildChat interval covers zero). The protocol was amended once before the freeze, after a
+development-stage halt at 12.7% text-check loss; the report discloses this and eighteen other
+limitations. The assistant recommends, pending the owner's decision, that the ISCS 2027 paper
+report the two confirmations side by side as a cross-collection replication, with the
+WildChat model-family and year panels as descriptive heterogeneity and the amendment and the
+non-replicated sign reversal stated in the paper. The WildChat confirmation sample has been
+opened once and must not be reused for further confirmation. Earlier assessments below remain
+historical.
+
+**Prior assessment, October 18, next experiment:** with the reserve spent, the
 assistant recommends, as the next confirmatory step for the ISCS 2027 paper, a
 cross-collection replication of the frozen primary contrast on WildChat-4.8M
 ([design](../superpowers/specs/2026-10-18-wildchat-replication-design.md), follow-up F6).

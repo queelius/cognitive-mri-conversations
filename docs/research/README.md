@@ -51,6 +51,11 @@ and the per-pilot `REPORT.md` files). The findings that survived every control:
   PRISM reserve (233 components, 775 conversations scored), uniform history minus last-two
   pooling: +.02546 [.01853, .03247] MiniLM, +.01801 [.01650, .01943] E5; the interval lower
   bound is above zero in both encoders. [Report](../../papers/iscs-2027/REPORT.md).
+- **WildChat replication passed.** The same frozen contrast on a second collection (English
+  WildChat-4.8M, 482 hashed-IP components, 801 conversations scored): +.02134 [.01358, .02897]
+  MiniLM, +.01562 [.01388, .01736] E5; lower bound above zero in both encoders. Smaller than
+  the PRISM reserve, and the common-prefix role-interaction reversal did not replicate.
+  [Report](../../papers/wildchat-replication/REPORT.md).
 - **History pooling helps predict the next user turn.** On 1,191 public PRISM conversations,
   uniform history minus last-two pooling: +.034 [.023, .049] MiniLM, +.019 [.016, .023] E5;
   stable across four observation views.
