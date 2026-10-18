@@ -91,7 +91,7 @@ tracks:
       publication_and_reuse_terms: live_2027_page_advertises_springer_ssdc_and_selected_applied_network_science_invitations_detailed_extension_and_companion_rules_unresolved
     discussion_order: [observation-boundary-methods, grounded-conversational-dependencies, integration-versus-switching, anonymization-distortion, development-and-application]
     fallback_directions: [long-gap-reuse, anonymization-distortion]
-    next_action: The CGDIALOG training pilot supplies usable human relevance labels but fails joint incremental recovery/state gates. Do not scale it or prepare PRISM validation packets. Assess a bounded methods-paper feasibility goal with one independent application and novelty gate; see papers/grounded-dependencies/NEXT-GOAL.md. Preserve positive findings, all 248 reserve components and the broader relational question. Abstract remains a conditional separate companion.
+    next_action: The CGDIALOG training pilot supplies usable human relevance labels but fails joint incremental recovery/state gates. Do not scale it or prepare PRISM validation packets. Assess a bounded methods-paper feasibility goal with one independent application and novelty gate; see papers/grounded-dependencies/NEXT-GOAL.md. Preserve positive findings, all 248 reserve components and the broader relational question (reserve opened 2026-10-18; no further confirmation use). Abstract remains a conditional separate companion.
 
   - id: semantic-embedding-dynamics
     priority: secondary
@@ -246,9 +246,19 @@ experiment_portfolio:
     selected_development_conversations: 1191
     selected_development_components: 360
     reserve_components: 248
-    reserve_status: structurally_inventoried_unencoded_unscored
+    reserve_status: opened_2026-10-18_under_frozen_protocol_in_cmri-iscs-2027_spent_do_not_reuse
     full_paper_recommended: false
-  current_confirmation_candidates: []
+  current_confirmation_candidates:
+    - id: iscs-2027-reserve-confirmation
+      status: executed_2026-10-18_under_frozen_protocol
+      repository: papers/iscs-2027
+      report: papers/iscs-2027/REPORT.md
+      gate: papers/iscs-2027/results/report/gate.json
+      outcome: passed_both_encoders
+      primary: uniform history mean minus last-two pooling, next-user raw cosine, native128, natural origin
+      minilm_gain_ci: [0.02546, 0.01853, 0.03247]
+      e5_gain_ci: [0.01801, 0.01650, 0.01943]
+      reserve_reuse: forbidden_spent
   proposed_followup:
     status: executed_development_no_confirmation_promotion
     outline: docs/research/HISTORY-SPECIFICITY-LEAD.md

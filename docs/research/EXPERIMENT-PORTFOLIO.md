@@ -5,11 +5,13 @@ Human source annotations and nonlocal support are usable, but current-similarity
 and state increments fail the frozen two-source/two-encoder gates. Positive
 MiniLM observations remain scoped secondary/development findings. Do not equate
 response relevance with necessary fact use. No optional PRISM packet or new
-confirmation; all 248 reserve components preserved. [Next proposed goal](NEXT-GOAL.md):
+confirmation from this pilot. The 248 reserve components were later opened once on
+2026-10-18 under the frozen protocol in cmri-iscs-2027
+([report](../../papers/iscs-2027/REPORT.md)) and are spent. [Next proposed goal](NEXT-GOAL.md):
 methods-paper feasibility with an independent application, not an automatic
 promotion of accumulated negative pilots. P01–P12 remain preserved below.
 
-October 18 executed HS01–HS04 follow-up (corrected after technical review): [report](../../papers/history-specificity/REPORT.md). **No full-paper or confirmation promotion.** Long minus strong short MRR is −.00987 MiniLM and −.00177 E5; matched-donor criteria and exact-topic calibration fail. Order, horizon and role comparisons remain bounded secondary evidence; cosine gains persist. The [ledger](../../papers/history-specificity/LEDGER.md) retains every question, unsupported horizon and privacy deferral. P01–P12 remain intact. All 248 reserve components stay closed. [Next goal](NEXT-GOAL.md): grounded dependencies, conditional on suitable independent annotations and novelty. Earlier proposal statements below are historical.
+October 18 executed HS01–HS04 follow-up (corrected after technical review): [report](../../papers/history-specificity/REPORT.md). **No full-paper or confirmation promotion.** Long minus strong short MRR is −.00987 MiniLM and −.00177 E5; matched-donor criteria and exact-topic calibration fail. Order, horizon and role comparisons remain bounded secondary evidence; cosine gains persist. The [ledger](../../papers/history-specificity/LEDGER.md) retains every question, unsupported horizon and privacy deferral. P01–P12 remain intact. The 248 reserve components stayed closed through this follow-up; they were opened once on 2026-10-18 under the frozen protocol in cmri-iscs-2027 and are spent. [Next goal](NEXT-GOAL.md): grounded dependencies, conditional on suitable independent annotations and novelty. Earlier proposal statements below are historical.
 
 October 18 user-endorsed lead: **full-paper research is primary, with continued
 breadth across questions and experiments**. The
@@ -20,7 +22,8 @@ secondary questions, not independent replications or replacements chosen after
 a negative primary result. A limited de-identification/network-structure probe
 remains separate. The [next goal](NEXT-GOAL.md) proposes an executed development
 wave; no new protocol is frozen or new outcome calculated yet. P01–P12 and their
-results below remain intact. All 248 reserve components remain closed.
+results below remain intact. The 248 reserve components stayed closed at that point; they
+were opened once on 2026-10-18 under the frozen protocol in cmri-iscs-2027 and are spent.
 
 October 18 event-centered follow-up: [P04's bounded assessment](../../papers/integration-measurement/events/REPORT.md)
 is complete. **No-go for scaling the joint revision/later-use question on the

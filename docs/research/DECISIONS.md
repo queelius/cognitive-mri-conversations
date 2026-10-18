@@ -5,8 +5,8 @@ Current priorities and candidate status are in the [registry](registry.yaml). Th
 **Current assessment, October 18, reserve confirmation:** the frozen
 [reserve confirmation](../../papers/iscs-2027/REPORT.md) passed in both encoders
 (MiniLM +.02546 [.01853, .03247], E5 +.01801 [.01650, .01943]), so the history-pooling
-gain is confirmed on held-out data and the ISCS 2027 short paper proceeds per the
-design. The reserve has now been opened once and must not be reused for further
+gain is confirmed on held-out data. Proceeding with the ISCS 2027 short paper per the
+design is the assistant's recommendation, pending the owner's decision. The reserve has now been opened once and must not be reused for further
 confirmation; earlier assessments below remain historical.
 
 **Prior assessment, October 18, grounded-dependency follow-up:** the
