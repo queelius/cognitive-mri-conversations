@@ -1,5 +1,24 @@
 # CMRI research decision: calibrate the measurements, then test their value
 
+Latest follow-up, October 17: the [first exploratory portfolio wave](../../../papers/portfolio-wave1/REPORT.md)
+is complete. Its [ledger](../../../papers/portfolio-wave1/LEDGER.md) updates all
+twelve experiments; the [next goal](../../../papers/portfolio-wave1/NEXT-GOAL.md)
+nominates one narrow role/history confirmation after development falsification.
+No full-paper recommendation has been made. The original deep-dive decisions
+below remain historical evidence rather than the current execution status.
+
+## October 17 current program planning
+
+The [program-level research records](../../../docs/research/README.md) now organize the catalog, current priorities, future options and decisions. ISCS is the user's immediate priority; semantic/embedding dynamics remain a second track. The [draft consolidation assessment](../../../docs/research/DYNAMICS-CONSOLIDATION.md) compares both manuscripts and the June merged outline. The source inventory and completed evidence below remain historical records; the new registry distinguishes discussion candidates from selected experiments.
+
+## October 16 renewed brainstorming: paper catalog and closer prior work
+
+The [paper catalog and research comparison](PAPER-CATALOG-AND-OPTIONS.md) now separates seven manuscript lines, an outline and three pilot/report lines, and verifies one published conference chapter plus one accepted paper with forthcoming proceedings. New competitors include CoAuthor's existing idea-reuse analysis, temporal writing studies, KITE (NeurIPS 2025) and Bridging Talk and Thought (SIGDIAL 2026). The first discussion candidate is a public cross-sectional test of **conceptual integration versus topic switching**, extending the original bridge taxonomy rather than claiming to invent it. An independent-application outcome is an alternative if KITE's data/linkage/license can be verified. These are research options; no new pilot is launched and previous completed decisions remain unchanged.
+
+## October 16 exploratory follow-up: observable idea development
+
+The user now prioritizes a new empirical finding about human–AI conversation for ISCS. [Targeted log mining and paper options](EMPIRICAL-PAPER-OPTIONS.md) identify a candidate: whether connections developed through elaboration and revision subsequently get applied, beyond similarity and repetition. The search found concrete private cases, provenance counterexamples and newer agent logs; private evidence remains outside this repository. Existing hierarchy/temporal outputs supply descriptive leads, not new confirmation. The next proposed investment is a bounded public-data and annotation feasibility check. No new full experiment or manuscript has been launched, and the completed pilots' conclusions below remain unchanged.
+
 ## October 16 follow-up: temporal fallback completed
 
 The [temporal calibration report](../../../papers/temporal-networks-calibration/pilot/RESULTS.md) now supersedes the fallback's proposed status. **Narrow; no full ISCS paper yet.** Beta's frozen power gate failed (18/25 strong cases), and all .95 fits were undefined. A selected positive residual and direct-return/trajectory effects remain; this is an inconclusive paper-selection outcome, not universal futility of order measures. Exact synthetic and all-archive reproduction is complete. The new [claim ledger](../../../papers/temporal-networks-calibration/pilot/CLAIMS.md) also corrects earlier manuscript reviews that had accepted stronger interpretations. See [next goal](NEXT-GOAL.md) for a conditional independent recurrence study and a lower-cost extended-abstract fallback. The deep-dive ranking below records the earlier decision, not a renewed full-paper recommendation.

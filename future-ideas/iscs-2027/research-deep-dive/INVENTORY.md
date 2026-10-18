@@ -2,6 +2,8 @@
 
 Assessment date: 2026-10-15. This inventory distinguishes inspected evidence from plans and interpretation. It is a substantive, targeted audit, not a line-by-line certification of every file. The [repository snapshot](results/repository-snapshot.json) records independent Git repositories and pre-existing changes. Source-level hashes and exact anchors are in the linked audits.
 
+**October 16 publication/catalog update:** the [complete manuscript catalog and renewed options](PAPER-CATALOG-AND-OPTIONS.md) identifies seven distinct manuscript lines, an additional outline and three completed pilot/report lines. The Complex Networks chapter was published February 25, **2026** (conference year 2025). The hierarchy paper is accepted/program-listed at ISCS 2026; Springer now lists its proceedings as forthcoming, with no individual published chapter verified. The publisher listing improves the evidence behind the earlier status without converting acceptance into publication. Earlier audit limitations below remain in force.
+
 ## Research and publication lineage
 
 | Project | Substantive artifacts inspected | Evidence status and reusable assets | Limits / action before reuse |

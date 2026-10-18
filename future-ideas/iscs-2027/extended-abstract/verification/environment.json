@@ -1,0 +1,15 @@
+{
+  "python": "3.11.15",
+  "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
+  "packages": {
+    "numpy": "2.2.6",
+    "matplotlib": "3.10.7",
+    "pytest": "9.1.1",
+    "pytest-cov": "7.1.0",
+    "coverage": "7.16.2",
+    "pillow": "12.3.0"
+  },
+  "source_date_epoch": 1792310633,
+  "blas_threads": 1,
+  "new_package_installs": 0
+}

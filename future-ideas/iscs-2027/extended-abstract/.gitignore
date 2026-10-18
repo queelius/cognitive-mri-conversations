@@ -1,0 +1,8 @@
+__pycache__/
+.pytest_cache/
+.coverage*
+build/
+external/
+template/main.tex
+template/biblio.bib
+!verification/initial-build-failure.log

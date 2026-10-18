@@ -1,0 +1,7 @@
+# Numerical/figure/test replay; existing environment, no installation performed
+numpy==2.2.6
+matplotlib==3.10.7
+pytest==9.1.1
+pytest-cov==7.1.0
+coverage==7.16.2
+pillow==12.3.0

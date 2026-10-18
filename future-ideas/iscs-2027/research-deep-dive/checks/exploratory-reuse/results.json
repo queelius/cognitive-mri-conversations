@@ -1,0 +1,74 @@
+{
+  "scope": "Post-pilot exploratory descriptive mining; no fresh holdout or significance test",
+  "queried_at_utc": "2026-10-16T06:32:49.721214+00:00",
+  "versions": {
+    "python": "3.11.15",
+    "numpy": "2.2.6"
+  },
+  "hierarchy": {
+    "episodes": 1908,
+    "pair_occurrences": 11457,
+    "distinct_pairs": 5935,
+    "pairs_seen_once": 4309,
+    "pairs_seen_at_least_twice": 1626,
+    "extra_pair_occurrences_beyond_first": 5522,
+    "repeat_occurrence_fraction": 0.48197608448983154,
+    "saved_fixed_margin_null_mean_distinct_pairs": 8943.125,
+    "null_implied_mean_repeat_fraction": 0.2194182595792965,
+    "existing_hierarchy_domain_split": {
+      "within_domain": {
+        "distinct_pairs": 1981,
+        "pair_occurrences": 4466,
+        "pairs_seen_at_least_twice": 635,
+        "repeat_occurrence_fraction": 0.5564263322884013
+      },
+      "cross_domain": {
+        "distinct_pairs": 3954,
+        "pair_occurrences": 6991,
+        "pairs_seen_at_least_twice": 991,
+        "repeat_occurrence_fraction": 0.4344156772993849
+      }
+    },
+    "no_chronological_reuse_claim": true
+  },
+  "public_nearest_returns": {
+    "23736046cf70": {
+      "returns": 130,
+      "calendar_days_quantiles": {
+        "q25": 0.0025289351851851853,
+        "median": 0.011603009259259259,
+        "q75": 2.762841435185185,
+        "q90": 28.0905439814815
+      },
+      "within_one_day": 95,
+      "over_30_days": 12,
+      "within_20_arrivals": 105,
+      "over_100_arrivals": 9,
+      "near_identical_vector_matches": 0,
+      "reference_metrics_agree": true
+    },
+    "9342eba92593": {
+      "returns": 107,
+      "calendar_days_quantiles": {
+        "q25": 0.23478009259259258,
+        "median": 10.057152777777778,
+        "q75": 58.54147569444444,
+        "q90": 112.15547685185187
+      },
+      "within_one_day": 31,
+      "over_30_days": 42,
+      "within_20_arrivals": 53,
+      "over_100_arrivals": 31,
+      "near_identical_vector_matches": 1,
+      "reference_metrics_agree": true
+    }
+  },
+  "input_sha256": {
+    "papers/hierarchical-memory/experiments/results/hierarchy_v2/extraction_state.json": "916cffc2ddaafd8cd292631d9e3fc4d83dcea27b7bbf78a92b7efd85d193a807",
+    "papers/hierarchical-memory/experiments/results/hierarchy_v2/hierarchy_semantic.json": "8c8a1c9235bc1267a2b0707efb6de9e9aa2755d6b656186dc4ad80c2a15814e5",
+    "papers/temporal-networks-calibration/pilot/public-data/23736046cf70.npz": "d2d54a3f4c982b38eb93fbbae74e15907cd0e4865e5ce5bab7296ea3cf86f7f3",
+    "papers/temporal-networks-calibration/pilot/public-data/9342eba92593.npz": "034e346d6485984ef618d14f555e4f7e45ff69a6909ac298953851db78205bf4"
+  },
+  "elapsed_seconds": 0.6456567520217504,
+  "probe_sha256": "b82c9f2e3a9e318c13d86d635a446a99ee6434fed739c6b0de21989f9cb9d8fb"
+}

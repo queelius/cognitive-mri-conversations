@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "assessment_date": "2026-10-16",
+  "scope": "Manuscript entry points, outline and completed pilot reports; no claim of complete code or data audit",
+  "counts": {
+    "manuscript_lines": 7,
+    "outline_lines": 1,
+    "pilot_reports": 3
+  },
+  "items": [
+    {
+      "id": "knowledge-networks",
+      "kind": "manuscript",
+      "status": "published",
+      "path": "papers/knowledge-networks/paper/paper.tex",
+      "sha256": "e5713b7ee5f4fac47cedd02ac385017292146199c61267182c0bc1e75290cb1b"
+    },
+    {
+      "id": "hierarchical-memory",
+      "kind": "manuscript",
+      "status": "accepted_proceedings_forthcoming",
+      "path": "papers/hierarchical-memory/paper/paper.tex",
+      "sha256": "0a602828f60898fc03b4119c17e6b540271b9737ba2b1ac51c597b3d2d60c103"
+    },
+    {
+      "id": "temporal-networks",
+      "kind": "manuscript",
+      "status": "unpublished_revised_after_rejection",
+      "path": "papers/temporal-networks/paper/PLOS/paper.tex",
+      "sha256": "63062a2e24384ca6d9b793bdb4a39aece0c53395b91937366907457eb7e7f129"
+    },
+    {
+      "id": "embedding-dynamics",
+      "kind": "manuscript",
+      "status": "unpublished_partial",
+      "path": "papers/embedding-dynamics/paper/main.tex",
+      "sha256": "7309b63ac3e969a2e31e451430dc0ff32f85830241a118495b538439da598e74"
+    },
+    {
+      "id": "semantic-dynamics",
+      "kind": "manuscript",
+      "status": "unpublished_draft",
+      "path": "papers/semantic-dynamics/paper/paper.tex",
+      "sha256": "c1864a1854d97bcb615433bea889ee668d03e887397c8c977248fbd4bf901813"
+    },
+    {
+      "id": "compsac-synthesis",
+      "kind": "manuscript",
+      "status": "unsubmitted_unverified",
+      "path": "future-ideas/compsac-2026/paper/paper.tex",
+      "sha256": "f2338e1fc628bb16fa8d71ea0b30775dbf23f195c7dac1d755add6959c0b66ed"
+    },
+    {
+      "id": "conversation-corpus",
+      "kind": "manuscript",
+      "status": "unpublished_data_paper",
+      "path": "chatgpt-conversation-corpus/paper/paper.tex",
+      "sha256": "a44daa9b4e4eb4c79f7bfab7086bd3d46042d5dc32a42eede42ddfde896932fe"
+    },
+    {
+      "id": "operational-memex",
+      "kind": "outline",
+      "status": "outline_and_infrastructure",
+      "path": "papers/operational-memex/paper/outline.md",
+      "sha256": "d48e770ffef24bd7824407e3bbe1b27abc2701779d8e2add86a340fd59cb9145"
+    },
+    {
+      "id": "selective-forgetting",
+      "kind": "pilot_report",
+      "status": "completed",
+      "path": "papers/selective-forgetting/REPORT.md",
+      "sha256": "a2c41a01c04ef19255ca88be8c2fb18208206198dfd5b95ccb22fb89bde8f253"
+    },
+    {
+      "id": "semantic-measurement",
+      "kind": "pilot_report",
+      "status": "completed",
+      "path": "papers/semantic-measurement/REPORT.md",
+      "sha256": "5925c90dab35ff01d64b9c3a37cbef8a48003c65a38bda378bae87104af87009"
+    },
+    {
+      "id": "temporal-calibration",
+      "kind": "pilot_report",
+      "status": "completed_same_manuscript_lineage",
+      "path": "papers/temporal-networks-calibration/pilot/RESULTS.md",
+      "sha256": "63267f657eac6fb4c2b1b57cfa90eeb0de52ce3400fe990843570436ae6eeb0c"
+    }
+  ],
+  "publication_evidence": [
+    {
+      "id": "knowledge-networks",
+      "url": "https://doi.org/10.1007/978-3-032-16723-1_27",
+      "first_online": "2026-02-25",
+      "conference_year": 2025
+    },
+    {
+      "id": "hierarchical-memory",
+      "program_url": "https://iutdijon.u-bourgogne.fr/ccs-france/wp-content/uploads/2026/05/PROGRAM-ISCS-2026-V2.pdf",
+      "proceedings_url": "https://link.springer.com/book/9783032396464",
+      "chapter_publication_verified": false,
+      "publisher_header": "Nov 2026",
+      "ebook_due": "2026-12-05",
+      "hardcover_due": "2027-02-24"
+    }
+  ],
+  "external_repository_check": {
+    "repository": "https://github.com/benshi34/q-knowledge-transfer",
+    "tree_sha": "25b528ae45c7207c50e4ccc0f98c054a409810f5",
+    "entries": 82,
+    "truncated": false,
+    "participant_linked_export_verified": false,
+    "dataset_license_verified": false,
+    "note": "Complete tree inspected; website viewer advertised. This does not establish that no export exists elsewhere."
+  }
+}

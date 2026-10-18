@@ -85,3 +85,7 @@ archive/
 # Independent repos that live in the cluster but are not tracked by the umbrella
 papers/
 chatgpt-conversation-corpus/
+
+# local secret rotation list - never commit
+cmri-secrets-to-rotate.txt
+*secret*.txt

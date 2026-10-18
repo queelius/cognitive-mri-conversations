@@ -1,0 +1,49 @@
+{
+  "assessment_date": "2026-10-17",
+  "scope": "Program metadata and source comparison; no new scientific experiment, implementation change or manuscript merge",
+  "source_snapshot": {
+    "files": {
+      ".gitignore": "b395b5317bd25f5ddaf1dcbba9fc09d182f0049b979b5f21c4c076c5239cc0df",
+      "CLAUDE.md": "eff9742413e3f4b63885480c04e95d85803096960a54305bdbcb505cfc9e3165",
+      "papers/embedding-dynamics/paper/main.tex": "7309b63ac3e969a2e31e451430dc0ff32f85830241a118495b538439da598e74",
+      "papers/embedding-dynamics/paper/sections/04_validation.tex": "8a3337af3f25cf6200c929fb55c3d85bc36958353ade930ef1ab300eced75676",
+      "papers/embedding-dynamics/paper/SPEC.md": "bbe6b5b46d52720b9b10c1c6df35951bd0a8b8d6bf560880a73770e81302e6d6",
+      "papers/embedding-dynamics/paper/OUTLINE.md": "f1c8ac9617820e4650b7c6c2406db43e36456159a5fb50b4d71b790068e333e1",
+      "papers/embedding-dynamics/experiments/EXPERIMENTS.md": "011fd2fd10453e8bb3c5a8c1f6c2a96b10e15ac3b87a8ba257dc7f788f74a9a5",
+      "papers/semantic-dynamics/paper/paper.md": "71888bf710cf57c357110ef8e3299433181cb9ee029cd02f8076bc6cf129204e",
+      "papers/semantic-dynamics/paper/paper.tex": "c1864a1854d97bcb615433bea889ee668d03e887397c8c977248fbd4bf901813",
+      "future-ideas/iscs-2027/research-deep-dive/audits/dynamics.md": "31894bb17e843141a2f9e422843f759d65ee72a04cd00661730bf01a63018de6",
+      "future-ideas/iscs-2027/research-deep-dive/results/paper-catalog-2026-10-16.json": "f6700490bbac14b0edb7bc636af005be6d2ce6fd8d0f86d5fcab406ce0712901"
+    },
+    "repositories": {
+      "papers/embedding-dynamics": {
+        "head": "e11a30a963ce69bdd4e0e08d151abb8e9a602f83",
+        "status": ""
+      },
+      "papers/semantic-dynamics": {
+        "head": "4dcaa1144e0e9d6fd7c25709413833374bd03542",
+        "status": ""
+      }
+    }
+  },
+  "checks": {
+    "status": "passed",
+    "protected_source_hashes": 11,
+    "child_repository_states_unchanged": 2,
+    "yaml_parsed": true,
+    "catalog_work_references_valid": true,
+    "directions": 6,
+    "tracks": 2,
+    "markdown_files": 7,
+    "local_links_checked": 95,
+    "missing_links": [],
+    "git_diff_check": "passed",
+    "implementation_tests": "not_applicable_documentation_only",
+    "scientific_results": "reused_existing_audits_not_rerun",
+    "coverage_limits": [
+      "No manuscript builds or dataset/API experiments.",
+      "Source preservation checks cover the listed files and two Git states, not a full filesystem hash.",
+      "Local link checks validate target existence, not every fragment or external URL."
+    ]
+  }
+}

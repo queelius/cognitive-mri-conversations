@@ -18,19 +18,34 @@ knowledge exploration. The program analyzes 1,908 ChatGPT conversations spanning
 2022 to April 2025. This repository is a landing page: it indexes the individual paper
 repositories and points to the shared data and pipeline.
 
+For current priorities, existing work and future options, start with the
+[research plans and metadata](docs/research/README.md). The immediate priority is an
+empirical ISCS 2027 paper, with semantic/embedding dynamics retained as a second track.
+The [dynamics consolidation assessment](docs/research/DYNAMICS-CONSOLIDATION.md) compares
+the two related drafts; their manuscripts and repositories remain separate.
+
 ## Papers
 
-Each paper is its own independent git repository under `papers/` (not tracked by this
-umbrella). Clone them individually.
+Most paper projects are independent Git repositories under `papers/` (not tracked by this
+umbrella). The synthesis draft and data-paper manuscript live in the additional locations
+listed below. Clone child repositories individually. Statuses below reflect the October 16–17,
+2026 review; the [full catalog](future-ideas/iscs-2027/research-deep-dive/PAPER-CATALOG-AND-OPTIONS.md)
+links the manuscripts and publication evidence.
 
 | Paper | Venue / status | Path | Repository |
 |-------|----------------|------|------------|
-| Cognitive MRI of AI Conversations (semantic embedding networks) | Complex Networks 2025, Springer (published) | `papers/knowledge-networks/` | [cmri-knowledge-networks](https://github.com/queelius/cmri-knowledge-networks) |
+| Cognitive MRI of AI Conversations (semantic embedding networks) | Complex Networks 2025; Springer chapter published February 2026 | `papers/knowledge-networks/` | [cmri-knowledge-networks](https://github.com/queelius/cmri-knowledge-networks) |
 | Temporal Evolution of Cognitive Knowledge Networks | PLOS Complex Systems (rejected 2026-04-27, seeking venue) | `papers/temporal-networks/` | [cmri-temporal-networks](https://github.com/queelius/cmri-temporal-networks) |
-| From Episodes to Abstractions: Latent Hierarchical Memory | ISCS 2026 | `papers/hierarchical-memory/` | [cmri-hierarchical-memory](https://github.com/queelius/cmri-hierarchical-memory) |
-| Embedding Dynamics | in progress | `papers/embedding-dynamics/` | [cmri-embedding-dynamics](https://github.com/queelius/cmri-embedding-dynamics) |
-| Semantic Dynamics | in progress | `papers/semantic-dynamics/` | [cmri-semantic-dynamics](https://github.com/queelius/cmri-semantic-dynamics) |
-| Operational Memex | early draft | `papers/operational-memex/` | [cmri-operational-memex](https://github.com/queelius/cmri-operational-memex) |
+| From Episodes to Abstractions: Latent Hierarchical Memory | ISCS 2026 accepted; full proceedings forthcoming | `papers/hierarchical-memory/` | [cmri-hierarchical-memory](https://github.com/queelius/cmri-hierarchical-memory) |
+| Embedding Dynamics | Partial draft; proposed consolidation with Semantic Dynamics | `papers/embedding-dynamics/` | [cmri-embedding-dynamics](https://github.com/queelius/cmri-embedding-dynamics) |
+| Semantic Dynamics | Draft; proposed consolidation with Embedding Dynamics | `papers/semantic-dynamics/` | [cmri-semantic-dynamics](https://github.com/queelius/cmri-semantic-dynamics) |
+| Multi-Scale Network Organization in AI-Assisted Knowledge Exploration | Unsubmitted synthesis draft | `future-ideas/compsac-2026/paper/` | This umbrella repository |
+| Sanitized ChatGPT Conversation Corpus | Unpublished data-paper draft; release status unresolved | `chatgpt-conversation-corpus/paper/` | [chatgpt-conversation-corpus](https://github.com/queelius/chatgpt-conversation-corpus) |
+| Operational Memex | Outline and working infrastructure | `papers/operational-memex/` | [cmri-operational-memex](https://github.com/queelius/cmri-operational-memex) |
+
+Selective forgetting, semantic measurement and temporal calibration have completed pilot
+reports. They are tracked in the [research catalog](future-ideas/iscs-2027/research-deep-dive/PAPER-CATALOG-AND-OPTIONS.md)
+separately from the seven manuscript lines and the Memex outline.
 
 The published conference paper and the shared analysis pipeline (`code/` and `data/`) live
 in the `knowledge-networks` repository; the temporal-evolution journal extension is

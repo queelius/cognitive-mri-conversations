@@ -1,6 +1,206 @@
 # ISCS 2027 research directions and decision history
 
-## Current recommendation — October 16 temporal calibration
+## October 18 grounded-dependency pilot — current decision
+
+**Narrow the question; no full paper or human–AI confirmation from this measurement.**
+The [executed CGDIALOG training pilot](../../papers/grounded-dependencies/REPORT.md)
+finds usable human relevance annotations in 68 conversation-linkage groups, but
+the joint embedding and history-state increment criteria fail. Positive MiniLM
+findings remain in the claim ledger; response-visible recovery is a different
+task and does not identify necessary fact use. No new PRISM packets or reserve
+access. The [next proposed goal](../../papers/grounded-dependencies/NEXT-GOAL.md)
+assesses methods-paper feasibility with one independent application and a remedy;
+it does not automatically promote our collected negative results.
+
+New close prior work, CIG 2026, already connects semantic-memory updates with
+informational progress. Its annotation-information conditions are a possible
+external audit target, not an established error. Full paper stays primary, with
+an abstract only as a substantively separate companion if appropriate.
+
+Venue refresh: the live 2027-branded [publication page](https://iutdijon.u-bourgogne.fr/ccs-france/publication/)
+advertises Springer SSDC proceedings and selected Applied Network Science
+invitations. The book-of-abstracts paragraph still describes 2026. Detailed
+journal-extension and companion-submission rules remain unspecified; the old
+blanket unresolved-publication statement below is superseded to this extent.
+
+## October 18 full-paper development wave — prior decision
+
+**Stop promoting this ranking operationalization; preserve full-paper research as the priority.** The [executed HS01–HS04 wave](../../papers/history-specificity/REPORT.md) finds no older-history ranking gain beyond strong opening/recent controls in either encoder. Positive cosine survives, while synthetic controls expose latent-topic and fixed-bank ambiguities. No full paper or confirmation is recommended from this wave. The independent privacy probe is deferred for valid substantive relation controls. All 248 reserve components and prior source repositories remain unchanged.
+
+The [next proposed goal](../../papers/history-specificity/NEXT-GOAL.md) tests whether independently grounded dependencies offer a better outcome. Earlier recommendations below are dated history. The optional abstract remains conditional on a substantively separate full paper; main-track 2027 publication/reuse and multiple-submission details remain unresolved.
+
+## October 18 full-paper lead endorsed — prior planning state
+
+The user confirms the full-paper priority and continued exploration across
+multiple questions and experiments. The
+[history-specificity outline](../../docs/research/HISTORY-SPECIFICITY-LEAD.md)
+prioritizes what earlier turns predict beyond topic and recent context, with
+connected order, horizon and role questions. An independent privacy/structure
+probe remains available alongside the broader portfolio. The
+[proposed next goal](../../docs/research/NEXT-GOAL.md) develops that lead on
+exposed data while preserving all 248 reserve components. No new experiment,
+confirmation or full-paper finding is established by this planning update.
+
+## October 18 publication priority clarified
+
+The user wants a **full paper**, with an extended abstract acceptable only as a
+separate companion submission. This supersedes the abstract-only revision route.
+Keep the completed package below as a reusable artifact. A combined ISCS strategy
+requires distinct contributions and verification of author/presentation limits;
+the current call lists both categories but does not explicitly settle that point.
+The full-paper research question is under discussion. No new experiment, reserve
+opening or submission has been activated.
+
+## October 18 working extended abstract — preparation before clarification
+
+**Review a methodological extended abstract; no new full paper is promoted.**
+The [four-page draft](extended-abstract/CMRI-ISCS-2027-working-abstract.pdf),
+*When Observation Choices Resemble Dynamics in AI Conversation Archives*, links
+exact fixed-graph revelation expectations with a quantified change in a
+user–assistant forecasting contrast under different available-information
+boundaries. It preserves the positive next-user history result and the distinction
+between descriptive measurement and cognitive mechanism.
+
+The [evidence package](extended-abstract/README.md) includes the contribution
+decision, primary comparisons, claim ledger, 32 replayed contrasts and verification.
+This uses published/accepted motivation and exposed development evidence; no new
+natural outcome, model or independent confirmation was added. All 248 reserve
+components and the earlier branch decisions remain preserved.
+
+Live official submissions instructions now explicitly confirm the 2027
+2–4-page abstract category for published or unpublished work. Porto, June 2–4,
+2027 and March 1 submission remain current. Some publication/camera-ready text
+still concerns 2026, so the specific 2027 archival/reuse contract and journal
+invitation eligibility remain unverified. The byline is provisional; nothing
+was submitted or sent. [Next goal](extended-abstract/NEXT-GOAL.md): author review
+and resolution of those concrete terms, with a method-note fallback.
+
+## October 18 event-centered assessment — retained branch recommendation
+
+**Stop scaling the current revision/later-use branch; no new full paper or
+independent confirmation is promoted.** The [completed assessment](../../papers/integration-measurement/events/REPORT.md)
+screened 100 windows in the same 36 exposed PRISM components, retaining the prior
+first-exchange analysis unchanged. AI drafts contain no clear same-premise revision.
+Favorable recorded ambiguity gives only three candidate events in two components
+and two possible linked opportunities, below every positive coverage floor.
+Twenty blind packets are prepared; none has independent human labels. All 248
+reserve components remain preserved.
+
+The [source audit](../../papers/integration-measurement/events/LITERATURE.md)
+compares five independently annotated source families and close discourse,
+sycophancy and memory work. Related labels exist, but a ready-made gold standard
+for this exact chain was not verified. More model searches on these texts would
+not cure the validity/coverage problem. A small independent false-negative audit
+could challenge the decision, but it is not the main recommended investment.
+
+Assess a separate synthesis abstract using already verified CMRI evidence; the
+[proposed next goal](../../papers/integration-measurement/events/NEXT-GOAL.md)
+defines that bounded route and its failure criterion. No abstract, manuscript or
+submission was produced. The current 2–4-page abstract option was rechecked;
+archival and journal-extension terms remain unresolved. Earlier recommendations
+below are history, including the previously proposed event assessment, now executed.
+
+## October 18 executed revision pilot — recommendation before event assessment
+
+**Narrow; no new full paper or independent confirmation is recommended.** The
+[completed pilot](../../papers/integration-measurement/pilot/REPORT.md) used 36
+additional public development conversations and 80 controlled scenario families.
+The first-exchange AI audit yielded no definite revised commitments, so revision
+persistence has no estimable denominator. Synthetic geometry did not improve
+later-use detection over a strong token-sequence baseline. Perfect original text
+scores failed paired prior-state controls, exposing shared-template shortcuts.
+
+The [claim ledger](../../papers/integration-measurement/pilot/CLAIMS.md),
+[verification](../../papers/integration-measurement/pilot/VERIFICATION.md) and
+[primary-literature audit](../../papers/integration-measurement/pilot/LITERATURE.md)
+preserve the negative findings and limits. Zero human labels were collected; all
+248 reserve components and the original calibration remain preserved. The next
+empirical investment is [event-centered construct validation](../../papers/integration-measurement/pilot/NEXT-GOAL.md)
+using already exposed cases, before new natural sampling or another model search.
+An independently validated change/opportunity/use relation could still be distinct
+from grounding, uptake and stale-memory work; this pilot does not establish it.
+
+A 2–4-page synthesis abstract from verified work remains the lower-cost conference
+fallback. The official pages were checked October 18: Porto, June 2–4, 2027;
+submission March 1. Publisher, archival status, copyright and journal-extension
+terms remain unresolved. No manuscript, abstract or submission was produced.
+Earlier recommendations below are dated history.
+
+## October 18 assisted calibration — preparation before revision pilot
+
+The user asked the assistant to do most of the labeling work. A frozen six-case
+development batch now has AI draft labels, checked quotations and alternative
+readings, with a [short review guide](../../papers/integration-measurement/annotations/REVIEW-GUIDE.md).
+The [calibration notes](../../papers/integration-measurement/CALIBRATION-NOTES.md)
+identify definition problems: ordinary explanation can satisfy the broad
+integration rubric, while qualification and applying an unchanged rule can look
+like revision. These are issues to refine, not validated empirical findings.
+Zero human labels have been collected. All 248 reserve components remain closed.
+This preparation lowers the clerical burden of author feedback; it does not
+replace independent validation or change the no-full-paper recommendation below.
+
+## October 17 useful-history falsification — recommendation before revision pilot
+
+**Narrow; preserve the independent reserve. No full paper is recommended yet.**
+The [completed follow-up](../../papers/history-falsification/REPORT.md) finds
+that the *development* user-history advantage survives four observation views
+and matched role mixtures in both encoders. The apparent intrinsic role ordering
+does not survive a common prefix: it reverses in MiniLM and is near zero in E5.
+The weak compressed learned controls do not establish recent-context sufficiency.
+All three scientific outputs reproduce exactly; 70 tests pass. These controls
+retain a robust measurement while leaving a distinctive contribution beyond
+existing context-modeling work unestablished. No independent confirmation ran;
+all 248 reserved components remain unencoded, unscored and unannotated.
+
+The next empirical priority is integration/revision measurement using the
+prepared P01/P04 packet, conditional on independent coders. The bounded
+[CoAuthor audit](../../papers/history-falsification/audits/coauthor-feasibility.md)
+found unresolved official data terms and metadata/linkage discrepancies; zero
+session bodies or replays were opened. These are feasibility gates, not negative
+behavioral findings. The [proposed next goal](../../papers/history-falsification/NEXT-GOAL.md)
+offers a reviewable ISCS extended-abstract proposal from verified work as the
+feasible immediate conference route. It does not promote these pilots to a new
+full paper. Publication, overlap and journal-extension terms remain unresolved;
+no manuscript, abstract or submission was made in this goal.
+
+## October 17 first exploratory wave — before falsification
+
+**Pursue one narrow confirmation question; do not start a full paper yet.** The
+[executed portfolio wave](../../papers/portfolio-wave1/REPORT.md) compared six
+public computational questions on 1,191 PRISM development conversations, with
+two fixed encoders, synthetic calibration and prepared annotation materials.
+Uniform history pooling improves next-user-turn embedding forecasts over the
+last two messages by .0344/.0192 raw cosine. The role contrast is a lead, with
+current-request availability, reply selection, truncation and packaging still
+plausible explanations. The [next goal](../../papers/portfolio-wave1/NEXT-GOAL.md)
+tests those explanations before a single frozen confirmation on untouched
+groups; 248 dependence components remain unencoded and unscored.
+
+Added role-history/inertial features and selected prefix reconstruction did not
+clear practical promotion gates. Actual text subdivision materially changes
+embedding states even with a corrected token clock. Preserve those results in
+the planned consolidated dynamics line. Integration/revision remains an
+annotation-gated alternative, and CoAuthor/KITE have specific data/outcome gates.
+The [all-twelve ledger](../../papers/portfolio-wave1/LEDGER.md) records both executed
+and deferred work. This updates the earlier planning-only status and rankings
+without erasing any completed pilot's narrower findings. ISCS publication and
+journal-extension terms remain unresolved on the inspected 2027 pages.
+
+## October 17 program priorities and metadata — before wave execution
+
+**Follow-up:** the user wants multiple research questions and many experiments before narrowing a paper. The [experiment portfolio](../../docs/research/EXPERIMENT-PORTFOLIO.md) proposes six connected families and twelve probes, spanning integration, coupled development, persistence, episodes, state models and reuse. This supersedes the immediate single-question selection step, while preserving ISCS priority, the completed pilot decisions and independent confirmation requirements. The portfolio is proposed; no new experiment has started.
+
+The user confirms ISCS as the immediate research priority and wants continued exploration of semantic/embedding physics, including a possible merger of the two drafts. The [program index](../../docs/research/README.md), [structured registry](../../docs/research/registry.yaml) and [decision history](../../docs/research/DECISIONS.md) now track existing work and future options. The [consolidation assessment](../../docs/research/DYNAMICS-CONSOLIDATION.md) finds complementary material and an earlier June merge plan, with claims requiring correction. The empirical ISCS question and consolidated dynamics thesis remain for discussion; no new experiment or manuscript merge has started. The official call was rechecked October 17: Porto, June 2–4, 2027; deadline March 1.
+
+## October 16 paper inventory and broader brainstorming
+
+The [new catalog and literature comparison](research-deep-dive/PAPER-CATALOG-AND-OPTIONS.md) identifies seven manuscript lines, including one published Springer chapter and the accepted ISCS 2026 hierarchy paper whose full proceedings are forthcoming. It compares six possible extensions. The leading discussion candidate tests whether multi-topic conversations integrate ideas or switch tasks, building on the existing bridge taxonomy. New primary competitors constrain generic reuse, trajectory-clustering and dialogue-taxonomy claims; KITE supplies an independent-outcome lead with unresolved release/linkage/license access. This is a broader reconsideration of options, not a replacement of the completed pilot evidence or authorization to begin another experiment.
+
+## October 16 brainstorming follow-up
+
+The user prioritizes a new empirical human–AI finding and describes useful connections as emerging through back-and-forth. [Local log mining and current paper options](research-deep-dive/EMPIRICAL-PAPER-OPTIONS.md) motivate testing whether elaborated/revised connections get applied later, beyond similarity, repetition and recency. The proposed next investment is a bounded public-data and annotation feasibility check. Private cases remain local; new raw log volume includes substantial subagent activity. No full paper or new evaluation is yet justified. The completed temporal decision and earlier negative findings below remain in force.
+
+## October 16 temporal calibration — historical recommendation
 
 **Narrow the temporal extension; do not expand this pilot into a full ISCS paper.** The [completed calibration](../../papers/temporal-networks-calibration/pilot/RESULTS.md) corrects observation times, node denominators, attachment exposure/fit validity and direct return age. Beta detected 18/25 strong synthetic persistence cases (72%, Wilson 95% 52–86%), below its frozen 80% power gate. One selected public proxy retains a large beta residual (+0.980 versus block-20, conditional Holm p=.0299), but all three archives have undefined beta at .95 and the low public case changes sign across thresholds. No broad absence-of-sequence claim is justified.
 

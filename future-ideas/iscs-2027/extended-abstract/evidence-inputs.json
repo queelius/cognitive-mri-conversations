@@ -1,0 +1,105 @@
+{
+  "configuration": "papers/history-falsification/config.json",
+  "files": {
+    "papers/hierarchical-memory/paper/paper.tex": {
+      "bytes": 28009,
+      "sha256": "0a602828f60898fc03b4119c17e6b540271b9737ba2b1ac51c597b3d2d60c103"
+    },
+    "papers/history-falsification/CLAIMS.md": {
+      "bytes": 4623,
+      "sha256": "f786197d49bbacb2d6f203b249fe6c87ea7cab5ab6308c4655c4b234c9812f12"
+    },
+    "papers/history-falsification/REPORT.md": {
+      "bytes": 16302,
+      "sha256": "a184bf3d2db6f0fd1ea03726c848f4e6ef12b8995846de60a7fff03171a44da1"
+    },
+    "papers/history-falsification/VERIFICATION.md": {
+      "bytes": 9200,
+      "sha256": "82808e88a66a3f47893b2624e9564c37120621a6eed565f902e745093073d95a"
+    },
+    "papers/history-falsification/config.json": {
+      "bytes": 1120,
+      "sha256": "83656ea040bb842f163c014f9f0213cd0d09b144615b805e12fbbda130275f57"
+    },
+    "papers/history-falsification/results/public-e5.json": {
+      "bytes": 20933263,
+      "sha256": "446081c45e26c215d0fe4a334bffb6da0c1fc90d8b5076229e38608b37495824"
+    },
+    "papers/history-falsification/results/public-minilm.json": {
+      "bytes": 20917046,
+      "sha256": "1572f30b40b66419adee4a7dfd6554e53128a6a4b70d826aeb240a238bb5a0fb"
+    },
+    "papers/history-falsification/results/synthetic.json": {
+      "bytes": 26033777,
+      "sha256": "43484911474def81bd14d4427a864e16ea00651acebafd6ec677568e583e9dae"
+    },
+    "papers/history-falsification/src/cmri_history/analysis.py": {
+      "bytes": 18353,
+      "sha256": "274931db6c9830380b35ae0444db41c5df427ddeab54fbf31df3e391619d133c"
+    },
+    "papers/history-falsification/src/cmri_history/synthetic.py": {
+      "bytes": 17907,
+      "sha256": "054e62c84bddc83f382d09c495453592d359c11df29396894c4dd3d020c3158a"
+    },
+    "papers/integration-measurement/events/REPORT.md": {
+      "bytes": 10888,
+      "sha256": "e5ec6514d3a193e1b003b08371d3874023bba31728d31efd5dd3a1494ac58493"
+    },
+    "papers/integration-measurement/pilot/REPORT.md": {
+      "bytes": 17468,
+      "sha256": "0ebf705b54923d1f77e89bf0ea4c63bcd65800eee6f8d610ceaf7ee37f5e2e4c"
+    },
+    "papers/knowledge-networks/paper/paper.tex": {
+      "bytes": 29939,
+      "sha256": "e5713b7ee5f4fac47cedd02ac385017292146199c61267182c0bc1e75290cb1b"
+    },
+    "papers/portfolio-wave1/src/cmri_wave/inference.py": {
+      "bytes": 3288,
+      "sha256": "ff0131575a8f065daa09d64f39741033026003877c7fad2afde259e65d62774b"
+    },
+    "papers/selective-forgetting/REPORT.md": {
+      "bytes": 20812,
+      "sha256": "a2c41a01c04ef19255ca88be8c2fb18208206198dfd5b95ccb22fb89bde8f253"
+    },
+    "papers/semantic-measurement/REPORT.md": {
+      "bytes": 16905,
+      "sha256": "5925c90dab35ff01d64b9c3a37cbef8a48003c65a38bda378bae87104af87009"
+    },
+    "papers/semantic-measurement/audits/e5-model-manifest.json": {
+      "bytes": 2370,
+      "sha256": "69454c70a51bcb48632fa1bc6377d39c577174fb0fbe57b7152fca2206840d14"
+    },
+    "papers/semantic-measurement/audits/minilm-model-manifest.json": {
+      "bytes": 1793,
+      "sha256": "a81b2fefcb18cf6c005bb25db749597173d89b5bc41aff56597d78198ce0f7dc"
+    },
+    "papers/temporal-networks-calibration/pilot/CLAIMS.md": {
+      "bytes": 6993,
+      "sha256": "394798795edab4b6f5cce8baab3bfc30b299a3f09c5c9b18c3b7350a3a34bf1d"
+    },
+    "papers/temporal-networks-calibration/pilot/RESULTS.md": {
+      "bytes": 15471,
+      "sha256": "63267f657eac6fb4c2b1b57cfa90eeb0de52ce3400fe990843570436ae6eeb0c"
+    },
+    "papers/temporal-networks-calibration/temporal_calibration/metrics.py": {
+      "bytes": 9099,
+      "sha256": "e672ca1dfa1a2fa423506c5a52888903bf82158d0f97291a452b070c1f4b3a77"
+    },
+    "papers/temporal-networks-calibration/tests/test_metrics.py": {
+      "bytes": 4300,
+      "sha256": "00bd34022af719d409ef112f913f43cc78bbaafb860df18e5c3e00368294688e"
+    }
+  },
+  "forecast_sources": [
+    {
+      "encoder": "minilm",
+      "path": "papers/history-falsification/results/public-minilm.json"
+    },
+    {
+      "encoder": "e5",
+      "path": "papers/history-falsification/results/public-e5.json"
+    }
+  ],
+  "scope": "Previously exposed aggregate results and inspected code/manuscripts only; no new outcomes",
+  "utc": "2026-10-18T08:13:33.388589+00:00"
+}

@@ -1,0 +1,172 @@
+{
+  "package_files": {
+    ".gitignore": {
+      "bytes": 134,
+      "sha256": "1068d6e1bd17654305757598806df6456b13d8a0757a7e3593e59cd5ce248f02"
+    },
+    "CLAIM-EVIDENCE.md": {
+      "bytes": 5128,
+      "sha256": "dfe6c12d6759b00ce29c506421077ee22060b7e2b7235a68e3ce00f3bc377b3f"
+    },
+    "CMRI-ISCS-2027-working-abstract.pdf": {
+      "bytes": 255448,
+      "sha256": "5a09f0149d444b4cd4aa8eff4a7a7e47fd79b3871726367f58c974f36150e579"
+    },
+    "CONTRIBUTION.md": {
+      "bytes": 4496,
+      "sha256": "d041535b2e07e97360be2518e3b7e1c03655a0af4b7c90e5519d42810a22ff8b"
+    },
+    "LITERATURE-AND-TERMS.md": {
+      "bytes": 7745,
+      "sha256": "a8e3dcc863f902d92957c419a64520fd5f20b0116bb1f367df6eb74e8372f19f"
+    },
+    "NEXT-GOAL.md": {
+      "bytes": 2504,
+      "sha256": "5fe4489acc47b0a8e554d68133f24999ce2b20f48e48223eaf85ca1eb051cd4b"
+    },
+    "PLAN.md": {
+      "bytes": 3273,
+      "sha256": "fd8f00ecc2b045f8b40d502d94d0c2bbe06d0b970348cdf1ee682b367bffca05"
+    },
+    "PROGRESS.md": {
+      "bytes": 5235,
+      "sha256": "a3df33cca4880fb561586c8b6bafeb7e6aa4c71bcc688610c30bc95a73ff74af"
+    },
+    "README.md": {
+      "bytes": 1690,
+      "sha256": "148a161063c8bb33d1df51cf625d61aa77fb6dfb00e66f504f9d01b42ba2c15f"
+    },
+    "REPRODUCIBILITY.md": {
+      "bytes": 5708,
+      "sha256": "8f02b78cf52179122ddca4e5cd9d7f338f961471fbc44fa812db0d495a3a4d84"
+    },
+    "REVIEW.md": {
+      "bytes": 2658,
+      "sha256": "fc8b254d0ef6433edc192685f73cae0f15eabd7077a29b335522162bb370757e"
+    },
+    "VERIFICATION.md": {
+      "bytes": 5472,
+      "sha256": "66ec53656dafb3b967ccee7c64e785270b96721ddb4f7363e24827e98ff464b6"
+    },
+    "checks/build_evidence.py": {
+      "bytes": 6565,
+      "sha256": "8ec722b52abeb7556ee112b5260a5494a58d4b6e9c711f397e2157ffb71d3926"
+    },
+    "checks/test_evidence.py": {
+      "bytes": 3419,
+      "sha256": "6d440921e05b9e53b53565b93e2083efa37604d7ee9b4018bd71a2b74df36141"
+    },
+    "data/forecast-effects.json": {
+      "bytes": 75332,
+      "sha256": "ec430abcc439d412087c933f86ab2cddd24509d0abdf050203a702393c06e20c"
+    },
+    "data/forecast-table.tex": {
+      "bytes": 310,
+      "sha256": "bbd1298e0b1bc309e1389de2d0d9e110531d3cfa94c050e08d32bcb4c393260b"
+    },
+    "evidence-inputs.json": {
+      "bytes": 4240,
+      "sha256": "23018ff1b80330cee7c3df02c3cd7366f22f422ea301b0bc33f77d27342d1de6"
+    },
+    "figures/forecast-origin.png": {
+      "bytes": 48460,
+      "sha256": "10776fcaa70db9522e5de333c5ccf817665180b801b8bd68bd780c24ca4feaa2"
+    },
+    "initial-state.json": {
+      "bytes": 2721,
+      "sha256": "73c1a5891776056ef298c84069ccff545348e14b80b99a87183bbe20c8791a97"
+    },
+    "main.tex": {
+      "bytes": 9087,
+      "sha256": "88117766ed722c497e72f7c989a026a1cb5ca968cdf6825266724ba929747d05"
+    },
+    "references.bib": {
+      "bytes": 2670,
+      "sha256": "4256ae925f40d0d08819676ae0069fbc3e8801373eb7d8af705c22ff2712e148"
+    },
+    "requirements-replay.txt": {
+      "bytes": 176,
+      "sha256": "1d383670f5658efe50e0f17e73ae078328537d1d3dca17d2d08c967dcac7acd6"
+    },
+    "search-log.json": {
+      "bytes": 5529,
+      "sha256": "db485385ddec6ca86075e7888babc4d873e88d8229b273b3926c84ea2ec5d713"
+    },
+    "template/iscs.cls": {
+      "bytes": 3261,
+      "sha256": "ad960c3ded978f2e9393851288e1c38f8a49910333887ca97ee3d141d9e1b156"
+    },
+    "venue-sources.json": {
+      "bytes": 2108,
+      "sha256": "e287d792ff877497d60230624cbdf569d771796da57ea778ff954aef6e50b8fc"
+    },
+    "verification-runs.jsonl": {
+      "bytes": 1011,
+      "sha256": "3573efd96aab25e2e98bcbaaac2bcb1506cd70144a60fece46be548dcd940bf6"
+    },
+    "verification/coverage.json": {
+      "bytes": 7355,
+      "sha256": "0e372a1793478588792b4d7d27d474e121d7bb28845588c8b5754aabe338845b"
+    },
+    "verification/document.json": {
+      "bytes": 405,
+      "sha256": "1906c47cb399cc0f4dbd1313fee2ec51b1e57d9b8865135bccd42b3959eaa40a"
+    },
+    "verification/environment.json": {
+      "bytes": 343,
+      "sha256": "ec65826b920a74795ff8819118e1db30285c87edbe518d61c5b8c97d362196a8"
+    },
+    "verification/initial-build-failure.log": {
+      "bytes": 10731,
+      "sha256": "07964771a4131a1d931508c551f2d53baa2e39d525ca58883fd7de6cc6623643"
+    },
+    "verification/latex-build.txt": {
+      "bytes": 22241,
+      "sha256": "22fc8af04efddc9a73980813c7f265d9fbe5804e7c0e659cec6ddc4ae40fe63e"
+    },
+    "verification/portable-run.json": {
+      "bytes": 119,
+      "sha256": "9fcc2d94bbf69205e54902cffd3b4181436cc189cd68729bee6137d8c859e853"
+    },
+    "verification/portable-tests.txt": {
+      "bytes": 110,
+      "sha256": "5e0a60e6e4443ac3393350c4230abec72eb33a68f6207e4911074a259f1b6e7a"
+    },
+    "verification/preservation.json": {
+      "bytes": 2075,
+      "sha256": "5daa883b12a6e3809f697a8dd5dd79a0595d9d3b2e0f733e9d71c5603c5544c9"
+    },
+    "verification/source-checks.txt": {
+      "bytes": 113,
+      "sha256": "c6153a4a6202e9db27b17f02784e732b44ccd18af289d8f2ea2ba2d2e2655a4a"
+    },
+    "verification/tests.txt": {
+      "bytes": 684,
+      "sha256": "9d10db06ea54b982d95bd637ffd46e005d5779a40bf79287b8deb9d582ed928c"
+    },
+    "verification/umbrella-before-metadata.json": {
+      "bytes": 567,
+      "sha256": "75e0782c69b69663bb8e5a89eb5e35106d8ecccdfeeba9b129627e5bd62f4fcf"
+    }
+  },
+  "scope": "New package files, excluding this self-referential manifest and ignored scratch; root metadata hashes recorded separately. No external release.",
+  "updated_umbrella_metadata": {
+    "docs/research/DECISIONS.md": {
+      "bytes": 12997,
+      "sha256": "9af098df11237cf14bfe557b1d5d000c0740690b97b10f72d85ea2295f995f51"
+    },
+    "docs/research/README.md": {
+      "bytes": 16368,
+      "sha256": "81b332b7329f4b6010a9771de0b0861b2336bff371eec87622486c20cc76db93"
+    },
+    "docs/research/registry.yaml": {
+      "bytes": 19571,
+      "sha256": "eccc438833b151a412af30f107aac7295080bcc6af8d943e437d99c77079c20b"
+    },
+    "future-ideas/iscs-2027/README.md": {
+      "bytes": 40637,
+      "sha256": "493a3ffdb55441296bd8830f5cad66e37ef3d1c9d3c7f7cb7624466da6093faf"
+    }
+  },
+  "utc": "2026-10-18T08:31:57.492208+00:00"
+}

@@ -1,0 +1,66 @@
+{
+  "repositories": {
+    "embedding-dynamics": {
+      "head": "e11a30a963ce69bdd4e0e08d151abb8e9a602f83",
+      "modified_tracked_files": {},
+      "status": ""
+    },
+    "hierarchical-memory": {
+      "head": "78aaeee6e17ac49e9be3a70667672fee172629ed",
+      "modified_tracked_files": {},
+      "status": "?? paper/slides/39_Alexander_Towell.mkv\n"
+    },
+    "history-falsification": {
+      "head": "7a391141f7de3d06aeeca11434baadf6e744a3e0",
+      "modified_tracked_files": {},
+      "status": ""
+    },
+    "integration-measurement": {
+      "head": "bc5163a4e5862c9f56430a5148c43e2dd877fa19",
+      "modified_tracked_files": {},
+      "status": ""
+    },
+    "knowledge-networks": {
+      "head": "f02c8b6ed42044b3af2fe5489f2f96819fb36b93",
+      "modified_tracked_files": {},
+      "status": " D slides/slide-pretty.pdf\n D slides/slide-pretty.tex\n"
+    },
+    "portfolio-wave1": {
+      "head": "e84846590e228fc3457bfd7e8d411118fb6035ae",
+      "modified_tracked_files": {},
+      "status": ""
+    },
+    "selective-forgetting": {
+      "head": "1f3b482b33484b213180d7635487fce824e6aaf2",
+      "modified_tracked_files": {},
+      "status": ""
+    },
+    "semantic-dynamics": {
+      "head": "4dcaa1144e0e9d6fd7c25709413833374bd03542",
+      "modified_tracked_files": {},
+      "status": ""
+    },
+    "semantic-measurement": {
+      "head": "44ab5cc33997b6ce21ecf089729608f410f9ab7a",
+      "modified_tracked_files": {},
+      "status": ""
+    },
+    "temporal-networks": {
+      "head": "13e3a4745ca7b35a93d7fc4775dd5a5dc9566762",
+      "modified_tracked_files": {
+        "paper/figures/temporal/permutation_null_bands.pdf": "ad06153f712fa029fe6f26553c3413a7c278b5152b200d717ed4138a5a2a683e"
+      },
+      "status": " M paper/figures/temporal/permutation_null_bands.pdf\n"
+    },
+    "temporal-networks-calibration": {
+      "head": "d7e0abc69e281c05d5107a7dc135e42ad239981c",
+      "modified_tracked_files": {},
+      "status": ""
+    }
+  },
+  "umbrella": {
+    "head": "3cbb144b9c2ecc43bb4f06452a0be4f5022d4f51",
+    "status": " M .gitignore\n M CLAUDE.md\n M README.md\n M future-ideas/iscs-2027/README.md\n M future-ideas/iscs-2027/research-deep-dive/INVENTORY.md\n M future-ideas/iscs-2027/research-deep-dive/PROGRESS.md\n M future-ideas/iscs-2027/research-deep-dive/README.md\n?? docs/research/\n?? future-ideas/iscs-2027/extended-abstract/\n?? future-ideas/iscs-2027/research-deep-dive/EMPIRICAL-PAPER-OPTIONS.md\n?? future-ideas/iscs-2027/research-deep-dive/PAPER-CATALOG-AND-OPTIONS.md\n?? future-ideas/iscs-2027/research-deep-dive/checks/exploratory-reuse/\n?? future-ideas/iscs-2027/research-deep-dive/results/paper-catalog-2026-10-16.json\n"
+  },
+  "utc": "2026-10-18T08:07:16.316758+00:00"
+}

@@ -1,0 +1,54 @@
+{
+  "date": "2026-10-18",
+  "pages": [
+    {
+      "url": "https://iutdijon.u-bourgogne.fr/ccs-france/submissions/",
+      "retrieved_utc": "2026-10-18T08:06:17.110685+00:00",
+      "status": 200,
+      "final_url": "https://iutdijon.u-bourgogne.fr/ccs-france/submissions/",
+      "content_type": "text/html; charset=UTF-8",
+      "sha256": "d3eed55c197fddc114064ca9f91127935f141561480f33374df7276ed98db6c0",
+      "bytes": 378010
+    },
+    {
+      "url": "https://iutdijon.u-bourgogne.fr/ccs-france/publication/",
+      "retrieved_utc": "2026-10-18T08:06:17.114654+00:00",
+      "status": 200,
+      "final_url": "https://iutdijon.u-bourgogne.fr/ccs-france/publication/",
+      "content_type": "text/html; charset=UTF-8",
+      "sha256": "9811728f13ebeb6a2c5cd263114a12227c419f118e3a9c4cdfad109d24c5f464",
+      "bytes": 379141
+    },
+    {
+      "url": "https://iutdijon.u-bourgogne.fr/ccs-france/camera-ready-extended-abstract/",
+      "retrieved_utc": "2026-10-18T08:06:17.119646+00:00",
+      "status": 200,
+      "final_url": "https://iutdijon.u-bourgogne.fr/ccs-france/camera-ready-extended-abstract/",
+      "content_type": "text/html; charset=UTF-8",
+      "sha256": "11399675ab2fc49d37a66ed36dc51ae4ca3e83225d2a9c303f69867543ff1564",
+      "bytes": 378154
+    }
+  ],
+  "template": {
+    "url": "https://iutdijon.u-bourgogne.fr/ccs-france/wp-content/uploads/2026/02/ISCS_Extended_Abstract_Template.zip",
+    "utc": "2026-10-18T08:08:20.156182+00:00",
+    "sha256": "5399c2f66b909f77a0ad8ee696e625789b2bf41ecb64494d5083d956f2308762",
+    "bytes": 230706,
+    "members": [
+      "main.tex",
+      "iscs.cls",
+      "biblio.bib",
+      "hubble.jpg"
+    ],
+    "class_sha256": "ad960c3ded978f2e9393851288e1c38f8a49910333887ca97ee3d141d9e1b156"
+  },
+  "homepage": {
+    "url": "https://iutdijon.u-bourgogne.fr/ccs-france/",
+    "method": "web browser text; current 2027 dates checked"
+  },
+  "limitations": [
+    "2026 Book of Abstracts terms cannot establish 2027 archival terms",
+    "2026 camera-ready date and CMT link remain legacy instructions",
+    "No account action or organizer contact"
+  ]
+}

@@ -1,0 +1,412 @@
+schema_version: 1
+updated: "2026-10-18"
+path_base: repository_root
+owner:
+  name: Alexander Richard Towell
+  email: lex@metafunctor.com
+  orcid: "0000-0001-6443-9897"
+purpose: Track existing work, research candidates, priorities and consolidation decisions.
+
+work_catalog:
+  snapshot_date: "2026-10-16"
+  manifest: future-ideas/iscs-2027/research-deep-dive/results/paper-catalog-2026-10-16.json
+  narrative: future-ideas/iscs-2027/research-deep-dive/PAPER-CATALOG-AND-OPTIONS.md
+  update_rule: Add a new dated snapshot when publication or manuscript status changes; preserve previous snapshots.
+
+records:
+  overview: docs/research/README.md
+  decisions: docs/research/DECISIONS.md
+  dynamics_consolidation: docs/research/DYNAMICS-CONSOLIDATION.md
+  experiment_portfolio: docs/research/EXPERIMENT-PORTFOLIO.md
+  literature: future-ideas/iscs-2027/research-deep-dive/BIBLIOGRAPHY.md
+  dynamics_audit: future-ideas/iscs-2027/research-deep-dive/audits/dynamics.md
+  conference_history: future-ideas/iscs-2027/README.md
+  first_wave_report: papers/portfolio-wave1/REPORT.md
+  first_wave_ledger: papers/portfolio-wave1/LEDGER.md
+  first_wave_claims: papers/portfolio-wave1/CLAIMS.md
+  history_falsification_report: papers/history-falsification/REPORT.md
+  history_falsification_ledger: papers/history-falsification/LEDGER.md
+  history_falsification_claims: papers/history-falsification/CLAIMS.md
+  history_falsification_verification: papers/history-falsification/VERIFICATION.md
+  integration_calibration: papers/integration-measurement/README.md
+  integration_review_guide: papers/integration-measurement/annotations/REVIEW-GUIDE.md
+  proposed_revision_goal: papers/integration-measurement/NEXT-GOAL.md
+  revision_pilot_report: papers/integration-measurement/pilot/REPORT.md
+  revision_pilot_claims: papers/integration-measurement/pilot/CLAIMS.md
+  revision_pilot_verification: papers/integration-measurement/pilot/VERIFICATION.md
+  revision_pilot_literature: papers/integration-measurement/pilot/LITERATURE.md
+  event_assessment_report: papers/integration-measurement/events/REPORT.md
+  event_assessment_claims: papers/integration-measurement/events/CLAIMS.md
+  event_assessment_verification: papers/integration-measurement/events/VERIFICATION.md
+  event_assessment_sources: papers/integration-measurement/events/LITERATURE.md
+  extended_abstract_package: future-ideas/iscs-2027/extended-abstract/README.md
+  extended_abstract_contribution: future-ideas/iscs-2027/extended-abstract/CONTRIBUTION.md
+  extended_abstract_claims: future-ideas/iscs-2027/extended-abstract/CLAIM-EVIDENCE.md
+  extended_abstract_verification: future-ideas/iscs-2027/extended-abstract/VERIFICATION.md
+  full_paper_lead: docs/research/HISTORY-SPECIFICITY-LEAD.md
+  history_specificity_report: papers/history-specificity/REPORT.md
+  history_specificity_claims: papers/history-specificity/CLAIMS.md
+  history_specificity_verification: papers/history-specificity/VERIFICATION.md
+  history_specificity_correction: papers/history-specificity/audits/correction-impact.json
+  grounded_dependency_report: papers/grounded-dependencies/REPORT.md
+  grounded_dependency_claims: papers/grounded-dependencies/CLAIMS.md
+  grounded_dependency_data: papers/grounded-dependencies/DATA.md
+  grounded_dependency_verification: papers/grounded-dependencies/VERIFICATION.md
+  grounded_dependency_literature: papers/grounded-dependencies/audits/literature.md
+  next_goal: docs/research/NEXT-GOAL.md
+
+constraints:
+  preferred_contribution: New empirical finding about human-AI conversation
+  publication_priority: full_paper
+  research_breadth: Continue multiple research questions while preserving failed promotion gates; assess a bounded methods-paper contribution before another metric search.
+  extended_abstract_condition: User will consider an extended abstract only alongside a separate full-paper submission; not a standalone fallback.
+  prior_next_goal_status: Abstract-only route superseded; specificity and grounded-dependency development waves executed and assessed. Methods-paper feasibility is proposed but not activated; no confirmation activated.
+  participant_recruitment: false
+  preferred_resources: [existing_compute, public_data, reusable_local_results]
+  private_conversation_text: local_only
+  repository_policy: Preserve independent Git histories and existing edits.
+  completed_pilot_decisions: Preserve narrow negative and inconclusive findings; do not generalize them to all dynamics or memory questions.
+
+tracks:
+  - id: iscs-2027
+    priority: primary
+    basis: user_confirmed
+    confirmed: "2026-10-18"
+    status: grounded_dependency_pilot_narrow_no_full_paper_promotion
+    objective: Investigate several empirical questions, then select a defensible coherent contribution for the conference.
+    venue:
+      name: International Symposium on Complex Systems 2027
+      location: Porto, Portugal
+      start: "2027-06-02"
+      end: "2027-06-04"
+      submission_deadline: "2027-03-01"
+      checked: "2026-10-18"
+      call_url: https://iutdijon.u-bourgogne.fr/ccs-france/
+      submissions_url: https://iutdijon.u-bourgogne.fr/ccs-france/submissions/
+      abstract_eligibility: published_or_unpublished_research_2_to_4_pages_latex
+      publication_and_reuse_terms: live_2027_page_advertises_springer_ssdc_and_selected_applied_network_science_invitations_detailed_extension_and_companion_rules_unresolved
+    discussion_order: [observation-boundary-methods, grounded-conversational-dependencies, integration-versus-switching, anonymization-distortion, development-and-application]
+    fallback_directions: [long-gap-reuse, anonymization-distortion]
+    next_action: The CGDIALOG training pilot supplies usable human relevance labels but fails joint incremental recovery/state gates. Do not scale it or prepare PRISM validation packets. Assess a bounded methods-paper feasibility goal with one independent application and novelty gate; see papers/grounded-dependencies/NEXT-GOAL.md. Preserve positive findings, all 248 reserve components and the broader relational question. Abstract remains a conditional separate companion.
+
+  - id: semantic-embedding-dynamics
+    priority: secondary
+    basis: user_confirmed_interest
+    confirmed: "2026-10-17"
+    status: history_specificity_controls_complete_consolidation_remains_planned
+    objective: Investigate complementary draft questions and consolidate the strongest supported findings into a coherent manuscript.
+    directions: [dynamics-and-state-representation]
+    next_action: Retain history-pooling gains, information-boundary and packaging controls, and revision-template counterexamples. Fixed geometric bundles did not improve controlled later-use detection over token sequence; natural revision persistence was unestimable. Do not infer intrinsic role-memory ordering, recent-context sufficiency or validated semantic physics. A distinctive independently useful outcome remains necessary.
+
+directions:
+  - id: grounded-conversational-dependencies
+    status: development_executed_joint_measurement_gates_failed
+    recommendation: narrow_substantive_question_stop_current_automatic_scaling
+    track: iscs-2027
+    source_work_ids: [embedding-dynamics, semantic-dynamics]
+    evidence: papers/grounded-dependencies/REPORT.md
+    question: Can nonlocal fact or constraint relevance be distinguished from recency and topic continuity, and separately from necessity?
+    outcome: Original CGDIALOG human relevance annotations; not intervention-identified necessity or human-AI transfer.
+    sample: 564 public training records in 68 history-linkage components; 559 fully mapped and 300 nonlocal-positive records in 66 components.
+    next_gate: Independently judged fact-specific human-AI relations and baseline-resistant recovery; no reserve use or validation packet is activated.
+    evidence_limit: MiniLM ESConv increment is positive but imprecise; joint two-source/two-encoder and state criteria fail. Positive low-overlap MSC MiniLM contrast remains secondary. Response-visible diagnostics and authored controls cannot establish causal necessity.
+
+  - id: observation-boundary-methods
+    status: proposed_feasibility_not_activated
+    recommendation: assess_one_independent_application_before_paper_promotion
+    track: iscs-2027
+    source_work_ids: [temporal-networks, embedding-dynamics, semantic-dynamics]
+    evidence: papers/grounded-dependencies/audits/literature.md
+    next_goal: papers/grounded-dependencies/NEXT-GOAL.md
+    question: Does a precise observation or information-boundary error change a substantive conclusion, and can a useful remedy survive an independent application?
+    evidence_limit: Existing corrections and elementary counterexamples do not themselves warrant a full methods paper. CIG 2026 is an external audit candidate, not a demonstrated failure; no new source data acquired.
+
+  - id: history-specificity
+    status: development_executed_effect_gates_failed
+    recommendation: stop_current_ranking_route_narrow_to_grounded_dependencies
+    track: iscs-2027
+    source_work_ids: [embedding-dynamics, semantic-dynamics]
+    prior_experiments: [P05, P06, P08, P10]
+    proposed_questions: [HS01, HS02, HS03, HS04]
+    question: What do earlier turns predict about the next user contribution beyond topic, recent context and stable participant/style cues?
+    outline: docs/research/HISTORY-SPECIFICITY-LEAD.md
+    evidence: papers/history-specificity/REPORT.md
+    next_gate: Suitable independently annotated dependency outcomes, adequate nonlocal coverage, baseline-resistant recovery and credible human-AI validation before confirmation.
+    evidence_limit: Positive cosine persists, but selected long fails stronger short-context ranking baselines in both encoders. Exact-topic donor control exceeds rejection gate; stable-topic/style generators can satisfy performance criteria. No mechanism or full-paper finding established.
+
+  - id: substantive-revision-and-reuse
+    status: event_centered_assessment_complete_current_source_no_go
+    recommendation: stop_scaling_current_source_preserve_optional_blind_audit
+    track: iscs-2027
+    source_work_ids: [embedding-dynamics, semantic-dynamics]
+    experiments: [P04]
+    question: Which natural challenges change an expressed commitment under the same premises, and is the changed commitment used when an observable later opportunity exists?
+    outcome: Independently evidenced commitment change and opportunity-conditioned later use
+    evidence: papers/integration-measurement/events/REPORT.md
+    prior_evidence: papers/integration-measurement/pilot/REPORT.md
+    next_gate: Independent judgments would need to identify currently missed revisions and opportunities beyond recorded ambiguity, clear the frozen floors, and support a distinct empirical contrast. No confirmation or reserve activation is authorized.
+    evidence_limit: One hundred windows in the same 36 exposed components yield zero clear same-premise revisions; favorable recorded ambiguity gives three events in two components and two possible linked opportunities. Twenty blind packets are prepared; zero human labels. Prior first-exchange and synthetic negative evidence remains unchanged.
+
+  - id: role-conditioned-history
+    status: development_effect_survives_distinct_contribution_unestablished
+    recommendation: narrow_preserve_reserve
+    track: iscs-2027
+    source_work_ids: [embedding-dynamics, semantic-dynamics]
+    experiments: [P05, P06]
+    question: Does uniform available history improve next user-turn embedding forecasts over the last two messages after information and representation controls?
+    outcome: Fixed raw-cosine gain for user targets in both pinned encoders; role interaction and centered cosine are secondary.
+    evidence: papers/history-falsification/REPORT.md
+    next_gate: Define an independently meaningful outcome or consequential correction beyond established context benefits, then freeze a new development design with strong content controls before considering reserve use.
+    evidence_limit: Primary gain survives all four views and role mixtures in both encoders. Role ordering fails common-prefix comparison; weak compressed readouts do not establish recent-context sufficiency. Same exposed PRISM cohort; no independent confirmation.
+
+  - id: integration-versus-switching
+    status: six_ai_calibration_drafts_prepared_construct_unvalidated
+    recommendation: defer_until_distinct_construct_question_and_independent_coding
+    track: iscs-2027
+    source_work_ids: [knowledge-networks, hierarchical-memory, semantic-dynamics]
+    question: When do multi-topic conversations integrate concepts rather than switch tasks or list subjects?
+    outcome: Independently annotated relational/application evidence within an exchange
+    data_leads: [PRISM, fresh_WildChat_partition]
+    calibration: papers/integration-measurement/CALIBRATION-NOTES.md
+    next_gate: Reliable labels, adequate case coverage and a precise contribution beyond existing bridge taxonomy and discourse analysis
+
+  - id: development-and-application
+    status: coauthor_access_audited_terms_and_linkage_gated
+    recommendation: conditional_alternative
+    track: iscs-2027
+    source_work_ids: [embedding-dynamics, semantic-dynamics, operational-memex]
+    question: Which observable conversational developments precede independently observed application?
+    outcome: Independent problem-solving success or traced incorporation/transformation; select one
+    data_leads: [KITE, CoAuthor]
+    next_gate: Verify linkage, release/license and outcome suitability; distinguish from existing reuse and transfer findings
+    access_note: CoAuthor official v1.0 acquired; 1445 metadata sessions join, 2 logs are orphaned, 61 writer proxies differ from 63 advertised, and explicit official data terms remain unlocated. Zero session bodies or replays opened. KITE's usable linked export remains unverified.
+    access_audit: papers/history-falsification/audits/coauthor-feasibility.md
+
+  - id: long-gap-reuse
+    status: candidate
+    recommendation: conditional
+    track: iscs-2027
+    source_work_ids: [temporal-networks, temporal-calibration, hierarchical-memory]
+    question: Does a return repeat an old task or transform an old relation for a new problem?
+    outcome: Independently coded repeat, revision or application after a directly measured return lag
+    next_gate: Sufficient new held-out histories and defensible archive linkage
+    evidence_limit: The eleven previously selected archives are development evidence, not fresh confirmation.
+
+  - id: anonymization-distortion
+    status: candidate
+    recommendation: methodological_fallback
+    track: iscs-2027
+    source_work_ids: [conversation-corpus, knowledge-networks, hierarchical-memory]
+    question: Do privacy transformations materially change network-based scientific conclusions?
+    outcome: Changes in validated relations, bridge rankings, communities or inference under controlled transformations
+    next_gate: Consequential distortion and mitigation beyond generic privacy/utility tradeoffs
+
+  - id: useful-abstraction
+    status: candidate
+    recommendation: longer_term
+    source_work_ids: [hierarchical-memory, selective-forgetting]
+    question: Which abstraction levels preserve useful relations and rare exceptions?
+    outcome: Independently validated retrieval or application performance
+    next_gate: Validate the information construct before comparing retention or hierarchy methods.
+
+  - id: dynamics-and-state-representation
+    status: first_wave_narrow_negative_and_measurement_findings
+    recommendation: retain_one_planned_lineage_no_broad_physics_claim
+    track: semantic-embedding-dynamics
+    source_work_ids: [embedding-dynamics, semantic-dynamics]
+    question: What conversation-state representation supports reliable reconstruction, development measurement or prediction?
+    outcome: Public next-embedding, common-prefix and observation controls executed; history pooling survives, role ordering changes, and external development labels remain unavailable.
+    next_gate: Establish independently useful prediction beyond strong content/sequence baselines; prefix agreement and construction identities do not suffice.
+
+experiment_portfolio:
+  document: docs/research/EXPERIMENT-PORTFOLIO.md
+  status: first_wave_history_revision_and_event_assessment_complete
+  breadth_basis: user_requested_multiple_questions_and_experiments
+  specific_design_basis: assistant_proposal
+  protocol_status: first_wave_followup_revision_and_event_protocols_frozen_executed
+  first_wave:
+    repository: papers/portfolio-wave1
+    protocol: papers/portfolio-wave1/PROTOCOL.md
+    freeze_commit: 32b3d2239397603418055fdc92f088c2cca0bdcb
+    report: papers/portfolio-wave1/REPORT.md
+    ledger: papers/portfolio-wave1/LEDGER.md
+    confirmation_candidates: [P05]
+    nomination_status: historical_superseded_by_history_falsification
+    encoding_amendment: documented_singleton_e5_boundary_repair
+    supporting_robustness: [P06]
+    public_executed: [P03, P05, P06, P08, P09, P10]
+    synthetic_only: [P07]
+    annotation_prepared: [P01, P04, P07]
+    deferred: [P02, P11, P12]
+    source: PRISM
+    selected_development_conversations: 1191
+    selected_development_components: 360
+    reserve_components: 248
+    reserve_status: structurally_inventoried_unencoded_unscored
+    full_paper_recommended: false
+  current_confirmation_candidates: []
+  proposed_followup:
+    status: executed_development_no_confirmation_promotion
+    outline: docs/research/HISTORY-SPECIFICITY-LEAD.md
+    next_goal: docs/research/NEXT-GOAL.md
+    primary_question: HS01
+    secondary_questions: [HS02, HS03, HS04]
+    independent_probe: anonymization-distortion
+    new_experiments_executed: 4
+    repository: papers/history-specificity
+    report: papers/history-specificity/REPORT.md
+    protocol: papers/history-specificity/PROTOCOL.md
+    verification: papers/history-specificity/VERIFICATION.md
+    current_public_attempt: public-corrected-01
+    superseded_public_attempts: [public-01, public-replay-01]
+    fit_calibration_prefixes: 722
+    fit_calibration_matched_prefixes: 716
+    review_status: corrected_prefix_calibration_and_anchor_denominators
+    synthetic_datasets: 500
+    privacy_probe: deferred_before_outcomes_missing_substantive_relation_controls
+    primary_supported_conversations: 79
+    primary_supported_components: 47
+    primary_coverage: 0.6752136752136753
+    decision: stop_current_ranking_operationalization_narrow_broader_question
+    reserve_activated: false
+    full_paper_result_established: false
+  extended_abstract:
+    type: synthesis_preparation_not_new_experiment
+    package: future-ideas/iscs-2027/extended-abstract
+    title: When Observation Choices Resemble Dynamics in AI Conversation Archives
+    decision: pursue_working_methodological_extended_abstract_for_author_review
+    current_use: historical_working_draft_conditional_companion_to_separate_full_paper
+    pages_including_references: 4
+    source_evidence: published_static_accepted_hierarchy_and_exposed_development
+    retained_forecast_contrasts: 32
+    pinned_input_files: 22
+    new_natural_observations: 0
+    new_model_calls: 0
+    independent_confirmation: false
+    full_paper_recommended: false
+    submitted: false
+    byline_status: provisional_author_decision_pending
+    next_gate: A separate credible full-paper submission, nonoverlapping empirical contributions and verified multiple-submission/publication terms; standalone abstract route superseded by user preference.
+  event_assessment:
+    repository: papers/integration-measurement
+    protocol: papers/integration-measurement/events/PROTOCOL.md
+    freeze_commit: b56eeec
+    report: papers/integration-measurement/events/REPORT.md
+    claims: papers/integration-measurement/events/CLAIMS.md
+    verification: papers/integration-measurement/events/VERIFICATION.md
+    decision: no_go_scaling_current_revision_source
+    exposed_conversations: 36
+    components: 36
+    response_windows: 100
+    additional_natural_outcomes: 0
+    human_labels: 0
+    independent_validation: false
+    ai_answer_change_counts: {"no": 95, uncertain: 4, "yes": 1}
+    definite_answer_change_is_referent_correction: true
+    clear_same_premise_challenge_revisions: 0
+    recorded_ambiguity_upper_revisions: {events: 3, components: 2}
+    recorded_ambiguity_upper_revision_opportunities: {events: 2, components: 2}
+    revision_persistence_rate: null
+    optional_blind_packets: 20
+    selected_components: 20
+    reserve_components: 248
+    reserve_overlap: 0
+    previous_artifacts_preserved: 78
+    confirmation_activated: false
+    full_paper_recommended: false
+    next_gate: Independent false-negative evidence beyond recorded ambiguity plus a distinct empirical contrast; optional, not the next main investment.
+  revision_pilot:
+    repository: papers/integration-measurement
+    protocol: papers/integration-measurement/pilot/PROTOCOL.md
+    freeze_commit: c738ca2
+    report: papers/integration-measurement/pilot/REPORT.md
+    claims: papers/integration-measurement/pilot/CLAIMS.md
+    verification: papers/integration-measurement/pilot/VERIFICATION.md
+    decision: narrow
+    additional_public_cases: 36
+    components: 36
+    synthetic_families: 80
+    synthetic_revision_variants: 720
+    synthetic_continuations: 2160
+    human_labels: 0
+    independent_validation: false
+    ai_draft_changed_counts: {"no": 35, uncertain: 1, "yes": 0}
+    revised_with_opportunity: 0
+    revision_persistence_rate: null
+    reserve_components: 248
+    reserve_overlap: 0
+    calibration_components_excluded: 6
+    calibration_related_cases_excluded: 7
+    confirmation_activated: false
+    full_paper_recommended: false
+    historical_next_gate: Validate challenge events independently using already exposed material before any new outcome sample or reserve use.
+    superseded_by: event_assessment
+  integration_calibration:
+    repository: papers/integration-measurement
+    protocol: papers/integration-measurement/annotations/ASSISTED-CALIBRATION.md
+    freeze_commit: 7ff51f4ec2f53d3d1335f3aff7815a844683ab23
+    verification: papers/integration-measurement/VERIFICATION.md
+    status: ai_drafts_prepared_author_review_pending
+    cases: 6
+    components: 6
+    related_source_packet_cases: 7
+    ai_judgments: 18
+    human_labels: 0
+    independent_validation: false
+    reserve_components: 248
+    reserve_overlap: 0
+    full_paper_recommended: false
+    next_gate: Clarify explanatory relations versus joint development, and revision versus clarification; preserve assisted feedback separately from any later independent labels.
+  history_falsification:
+    repository: papers/history-falsification
+    protocol: papers/history-falsification/PROTOCOL.md
+    freeze_commit: 4f163f805b7da22de75b98296222f14f8523597c
+    report: papers/history-falsification/REPORT.md
+    ledger: papers/history-falsification/LEDGER.md
+    verification: papers/history-falsification/VERIFICATION.md
+    decision: narrow
+    primary_development_gate: passed_all_eight_encoder_view_cells
+    interpretation_gate: unresolved
+    distinct_full_paper_contribution: not_established
+    reserve_components: 248
+    structurally_eligible_reserve_components: 233
+    reserve_status: structurally_inventoried_unencoded_unscored_unannotated
+    confirmation_activated: false
+    full_paper_recommended: false
+    conditional_fallback: coauthor_access_audit_completed_terms_and_linkage_gated
+  confirmation_policy: Reserve independent grouped evaluation before exploratory selection; avoid repeated holdout reuse.
+  families:
+    - id: integration
+      direction_ids: [integration-versus-switching]
+      proposed_experiments: [P01, P02]
+    - id: coupled_development
+      direction_ids: [development-and-application, dynamics-and-state-representation]
+      proposed_experiments: [P03, P04]
+    - id: persistence
+      direction_ids: [dynamics-and-state-representation]
+      proposed_experiments: [P05, P06]
+    - id: episodes_and_paths
+      direction_ids: [dynamics-and-state-representation, integration-versus-switching]
+      proposed_experiments: [P07, P08]
+    - id: state_and_model_comparison
+      direction_ids: [dynamics-and-state-representation]
+      proposed_experiments: [P09, P10]
+    - id: reuse_and_application
+      direction_ids: [development-and-application, long-gap-reuse]
+      proposed_experiments: [P11, P12]
+      prerequisite: Verify source-specific outcomes, access, license and linkage before execution.
+
+consolidations:
+  - id: dynamics-drafts
+    source_work_ids: [embedding-dynamics, semantic-dynamics]
+    status: proposed
+    user_position: Merge if complementary interesting material warrants it.
+    assessment: Complementary material exists; one manuscript lineage is preferable unless distinct independent contributions emerge.
+    historical_plan: papers/embedding-dynamics/paper/OUTLINE.md
+    historical_plan_date: "2026-06-13"
+    current_assessment: docs/research/DYNAMICS-CONSOLIDATION.md
+    new_manuscript_created: false
+    repositories_merged: false
+    sources_retired: false
+    destination_repository: undecided
+    central_thesis: undecided

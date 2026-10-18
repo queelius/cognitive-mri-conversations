@@ -1,0 +1,11 @@
+...........                                                              [100%]
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.11.15-final-0 _______________
+
+Name                       Stmts   Miss Branch BrPart  Cover   Missing
+----------------------------------------------------------------------
+checks/build_evidence.py      96      4     34      4    94%   97, 110->exit, 112, 122-123
+----------------------------------------------------------------------
+TOTAL                         96      4     34      4    94%
+Coverage JSON written to file verification/coverage.json
+11 passed in 1.42s

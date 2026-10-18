@@ -1,0 +1,18 @@
+{
+  "docs/research/registry.yaml": {
+    "sha256": "71b4d46aa968022f5374f96bbb84198b00311e123a190f4784ea4b0fe99b44f9",
+    "bytes": 18220
+  },
+  "docs/research/README.md": {
+    "sha256": "c6ba421f9a8340e10795c820d2551a634b01b3e58cadbabd2f49e03a86e56782",
+    "bytes": 15354
+  },
+  "docs/research/DECISIONS.md": {
+    "sha256": "cce7eff9cb3ae1981145cf6b81d8f6e30c17a62703a28b1dcb25ccc50ab27349",
+    "bytes": 11654
+  },
+  "future-ideas/iscs-2027/README.md": {
+    "sha256": "79281996a1e2d8e7560eeea3c49c29d62d437078433d60749996aa3344a9aa82",
+    "bytes": 39100
+  }
+}

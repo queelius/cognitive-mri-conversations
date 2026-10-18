@@ -1,0 +1,24 @@
+{
+  "assessment_date": "2026-10-17",
+  "scope": "Follow-up documentation for multiple research questions and experiments",
+  "status": "passed",
+  "yaml_parsed": true,
+  "families": 6,
+  "unique_proposed_experiments": 12,
+  "experiment_ids_present_once_in_document": true,
+  "family_direction_references_valid": true,
+  "record_paths_valid": true,
+  "markdown_files": 7,
+  "local_links_checked": 97,
+  "missing_links": [],
+  "protected_source_hashes_unchanged": 11,
+  "child_repository_states_unchanged": 2,
+  "source_snapshot_reference": "docs/research/verification-2026-10-17.json",
+  "git_diff_check": "passed",
+  "limits": [
+    "Documentation-only checks; no new experiment, implementation tests or manuscript build.",
+    "Local links checked for target existence, not every fragment or external URL.",
+    "Source preservation covers the earlier listed files and two child Git states, not a whole-filesystem audit.",
+    "The portfolio is a proposal, not a preregistered or executed study."
+  ]
+}

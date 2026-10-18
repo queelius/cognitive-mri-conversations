@@ -1,0 +1,63 @@
+{
+  "utc": "2026-10-18T08:31:57.448891+00:00",
+  "repositories": {
+    "embedding-dynamics": {
+      "head": "e11a30a963ce69bdd4e0e08d151abb8e9a602f83",
+      "status_unchanged": true,
+      "modified_file_hashes_unchanged": true
+    },
+    "hierarchical-memory": {
+      "head": "78aaeee6e17ac49e9be3a70667672fee172629ed",
+      "status_unchanged": true,
+      "modified_file_hashes_unchanged": true
+    },
+    "history-falsification": {
+      "head": "7a391141f7de3d06aeeca11434baadf6e744a3e0",
+      "status_unchanged": true,
+      "modified_file_hashes_unchanged": true
+    },
+    "integration-measurement": {
+      "head": "bc5163a4e5862c9f56430a5148c43e2dd877fa19",
+      "status_unchanged": true,
+      "modified_file_hashes_unchanged": true
+    },
+    "knowledge-networks": {
+      "head": "f02c8b6ed42044b3af2fe5489f2f96819fb36b93",
+      "status_unchanged": true,
+      "modified_file_hashes_unchanged": true
+    },
+    "portfolio-wave1": {
+      "head": "e84846590e228fc3457bfd7e8d411118fb6035ae",
+      "status_unchanged": true,
+      "modified_file_hashes_unchanged": true
+    },
+    "selective-forgetting": {
+      "head": "1f3b482b33484b213180d7635487fce824e6aaf2",
+      "status_unchanged": true,
+      "modified_file_hashes_unchanged": true
+    },
+    "semantic-dynamics": {
+      "head": "4dcaa1144e0e9d6fd7c25709413833374bd03542",
+      "status_unchanged": true,
+      "modified_file_hashes_unchanged": true
+    },
+    "semantic-measurement": {
+      "head": "44ab5cc33997b6ce21ecf089729608f410f9ab7a",
+      "status_unchanged": true,
+      "modified_file_hashes_unchanged": true
+    },
+    "temporal-networks": {
+      "head": "13e3a4745ca7b35a93d7fc4775dd5a5dc9566762",
+      "status_unchanged": true,
+      "modified_file_hashes_unchanged": true
+    },
+    "temporal-networks-calibration": {
+      "head": "d7e0abc69e281c05d5107a7dc135e42ad239981c",
+      "status_unchanged": true,
+      "modified_file_hashes_unchanged": true
+    }
+  },
+  "registry_parsed_and_record_paths_exist": true,
+  "template_unchanged": true,
+  "reserve_raw_data_read": false
+}

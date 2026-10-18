@@ -1,0 +1,110 @@
+{
+  "checked_date": "2026-10-18",
+  "scope": "Targeted refresh of closest primary precedents and current venue, using completed local audits; not a systematic or exhaustive review.",
+  "queries": [
+    "site:iutdijon.u-bourgogne.fr/ccs-france ISCS 2027 extended abstracts proceedings publication copyright journal",
+    "\"Densification and sparsification scaling laws in dynamical networks\" Kobayashi Génois 2020",
+    "\"Cognitive MRI of AI Conversations\" Towell Matta 2026",
+    "\"PRISM\" Kirk 2024 diverse preferences dataset paper",
+    "site.arxiv.org \"Kobayashi\" \"Génois\" \"Densification\"",
+    "site:link.springer.com \"Densification and sparsification scaling laws\" OR site:journals.aps.org \"Densification and sparsification scaling laws\""
+  ],
+  "query_corrections": [
+    "Initial densification title was misremembered; the primary source establishes Two types of densification scaling in the evolution of temporal networks.",
+    "The site.arxiv.org string was a mistyped search operator; preserved as actually searched, followed by direct primary-source access."
+  ],
+  "sources": [
+    {
+      "url": "https://iutdijon.u-bourgogne.fr/ccs-france/",
+      "purpose": "2027 location and key dates",
+      "depth": "current homepage text"
+    },
+    {
+      "url": "https://iutdijon.u-bourgogne.fr/ccs-france/submissions/",
+      "purpose": "current category eligibility, format, CMT and template",
+      "depth": "live complete page via direct HTTP after browser timeout"
+    },
+    {
+      "url": "https://iutdijon.u-bourgogne.fr/ccs-france/publication/",
+      "purpose": "publication and journal-extension statements, legacy 2026 abstract paragraph",
+      "depth": "live complete page"
+    },
+    {
+      "url": "https://iutdijon.u-bourgogne.fr/ccs-france/camera-ready-extended-abstract/",
+      "purpose": "detect legacy deadline/CMT rather than applying to 2027",
+      "depth": "live complete page"
+    },
+    {
+      "url": "https://link.springer.com/chapter/10.1007/978-3-032-16723-1_27",
+      "purpose": "published static CMRI bibliographic status",
+      "depth": "publisher metadata and substantive local manuscript"
+    },
+    {
+      "url": "https://iutdijon.u-bourgogne.fr/ccs-france/wp-content/uploads/2026/05/PROGRAM-ISCS-2026-V2.pdf",
+      "purpose": "accepted hierarchy contribution",
+      "depth": "existing program audit reused; local manuscript methods inspected"
+    },
+    {
+      "url": "https://link.springer.com/book/9783032396464",
+      "purpose": "forthcoming hierarchy proceedings status",
+      "depth": "current publisher availability metadata"
+    },
+    {
+      "url": "https://arxiv.org/abs/1806.04032",
+      "purpose": "Gauvin et al. temporal reference models; novelty constraint",
+      "depth": "accepted version/publication metadata refresh; substantive completed audit reused"
+    },
+    {
+      "url": "https://arxiv.org/abs/2005.09445",
+      "purpose": "Kobayashi and Genois; population versus activity densification",
+      "depth": "primary abstract and metadata refresh; substantive completed audit reused"
+    },
+    {
+      "url": "https://aclanthology.org/2023.findings-acl.319.pdf",
+      "purpose": "CCL full/recent context and request/inform differences",
+      "depth": "actual PDF section 7.4.2 and Appendix C.2 read"
+    },
+    {
+      "url": "https://arxiv.org/abs/2605.23668v2",
+      "purpose": "OnePred closest next-query/history precedent",
+      "depth": "v2 identity and abstract refreshed; completed source methods audit reused",
+      "status": "August 2026 preprint"
+    },
+    {
+      "url": "https://arxiv.org/abs/2510.06552v2",
+      "purpose": "Flipping the Dialogue user-language-modeling/PRISM precedent",
+      "depth": "author-version identity refreshed; prior methods/publication audit reused"
+    },
+    {
+      "url": "https://arxiv.org/abs/1912.05511",
+      "purpose": "Measurement and Fairness construct-validity precedent",
+      "depth": "primary abstract and FAccT publication identity"
+    },
+    {
+      "url": "https://arxiv.org/abs/2404.16019",
+      "purpose": "PRISM dataset primary paper",
+      "depth": "primary metadata and source design; earlier methods audit reused"
+    },
+    {
+      "url": "https://github.com/HannahKirk/prism-alignment/blob/main/README.md",
+      "purpose": "PRISM provenance and model-response provider terms",
+      "depth": "official documentation"
+    },
+    {
+      "url": "https://www.springernature.com/gp/authors/book-authors-code-of-conduct",
+      "purpose": "general publisher guidance distinct from actual publication/reuse agreement",
+      "depth": "primary general guidance, not an individual rights agreement"
+    }
+  ],
+  "retrieval_failures": [
+    "Two initial web-browser opens of submissions timed out; search snippets retained 2026. Direct public HTTP succeeded and verified 2027 page body and CMT.",
+    "A DOI redirect failed in the browsing tool; direct publisher/arXiv sources supplied metadata.",
+    "Initial TeX search path selected the downloaded example instead of the working source; this was a build failure, preserved separately."
+  ],
+  "limits": [
+    "English-language targeted search; no exhaustive novelty guarantee.",
+    "Prior audited methods were reused rather than rereading every full paper.",
+    "Specific 2027 abstract archival license/copyright/DOI and mixed published/development journal-extension eligibility remain unverified.",
+    "No CMT account access, external contact, new competitor run or outcome dataset acquisition."
+  ]
+}
