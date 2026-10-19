@@ -2,7 +2,25 @@
 
 Current priorities and candidate status are in the [registry](registry.yaml). This history records decisions without converting proposals into completed findings.
 
-**Current assessment, October 18, WildChat replication:** the frozen
+**Current assessment, October 18, ISCS 2027 draft:** an eight-page short-paper draft now
+exists at `papers/iscs-2027/paper/` (`main.tex`, `main.pdf`, official `svproc` class, two
+figures built from committed result files with recorded hashes). It reports the two frozen
+confirmations side by side, the forecast-origin dependence of the role contrast (with PRISM's
+reversal stated as not replicated), the per-component heterogeneity, the packaging and
+revelation identities, and every disclosure the two reports mark as binding. An independent
+review against both `REPORT.md` and `CLAIMS.md` files was applied in full; its two blocking
+findings were that the role contrast had been described as a horizon effect (under the natural
+origin both forecasts are one step ahead and differ in what they see) and that the related-work
+claim rested on that description. Decisions left to the owner: the author list (the draft is
+single-author; the two earlier papers were Towell and Matta); whether to stay with the
+eight-page short paper, whose figures and tables are compressed to fit, or move to the
+twelve-page long paper; the NetSci 2027 one-page abstract due December 1; and the F3
+author-coded study by mid-January. Adding commits to `papers/iscs-2027` makes the WildChat
+replication's commit pin (`ef845c2`) stale, as its limitation 13 anticipates; a re-run of that
+study needs a checkout of `cmri-iscs-2027` at `ef845c2`. Earlier assessments below remain
+historical.
+
+**Prior assessment, October 18, WildChat replication:** the frozen
 [WildChat replication](../../papers/wildchat-replication/REPORT.md) (follow-up F6) passed in
 both encoders. On the confirmation sample (482 hashed-IP components, 801 conversations),
 uniform history minus last-two pooling for the next user turn: MiniLM +.02134

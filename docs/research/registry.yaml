@@ -61,6 +61,8 @@ records:
   wildchat_replication_claims: papers/wildchat-replication/CLAIMS.md
   wildchat_replication_verification: papers/wildchat-replication/VERIFICATION.md
   wildchat_replication_gate: papers/wildchat-replication/results/report/gate.json
+  iscs_2027_paper_draft: papers/iscs-2027/paper/main.tex
+  iscs_2027_paper_plan: docs/superpowers/plans/2026-10-18-iscs-2027-paper-draft.md
   next_goal: docs/research/NEXT-GOAL.md
 
 constraints:

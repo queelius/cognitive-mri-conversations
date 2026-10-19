@@ -27,6 +27,7 @@ had become unreadable. Nothing in the linked reports changed.
    short 8 pp, abstract 2–4 pp; Springer SSDC proceedings). The owner wants a full paper; an
    extended abstract is acceptable only as a companion to a separate full-paper submission.
    Publication/reuse terms for 2027 and companion-submission rules are still unverified.
+   A reviewed eight-page short-paper draft is at `papers/iscs-2027/paper/` (October 18, 2026).
 2. **Semantic/embedding dynamics** as a second track: one consolidated manuscript lineage
    drawing on both drafts, with the audit corrections carried forward.
 

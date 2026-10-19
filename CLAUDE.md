@@ -77,7 +77,7 @@ Two frozen single-shot confirmations of the history-pooling contrast, run after 
 
 | Local path | Repo (branch) | One-line result |
 |------------|---------------|-----------------|
-| `papers/iscs-2027/` | cmri-iscs-2027 (`main`) | Frozen reserve confirmation of the history-pooling gain passed in both encoders (MiniLM +.025, E5 +.018); home of the ISCS 2027 paper. |
+| `papers/iscs-2027/` | cmri-iscs-2027 (`main`) | Frozen reserve confirmation of the history-pooling gain passed in both encoders (MiniLM +.025, E5 +.018); home of the ISCS 2027 paper, whose eight-page draft is in `paper/` (build with `make`). |
 | `papers/wildchat-replication/` | cmri-wildchat-replication (`main`) | Frozen cross-collection replication on WildChat-4.8M passed in both encoders (MiniLM +.021, E5 +.016; 482 IP components, 801 conversations). |
 
 The PRISM pilots share one 1,191-conversation development partition and a **248-component
