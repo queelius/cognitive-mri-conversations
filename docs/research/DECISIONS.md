@@ -2,7 +2,32 @@
 
 Current priorities and candidate status are in the [registry](registry.yaml). This history records decisions without converting proposals into completed findings.
 
-**Current assessment, October 18, ISCS 2027 draft:** an eight-page short-paper draft now
+**Current assessment, October 19, long paper, NetSci and F3:** the owner decided (1) authors
+Towell and Matta on the ISCS 2027 paper; (2) the twelve-page long paper rather than the
+eight-page short paper; (3) a NetSci 2027 one-page abstract (Dresden; due December 1, 2026;
+official article-class template; in-person presentation required) to be submitted; and (4) to
+start F3, the two-coder integration study. The long paper
+(`papers/iscs-2027/paper/`, exactly twelve pages) restores full-size figures (three merged
+panels at 8 pt or larger, including a subgroup forest plot), a samples table, the full
+secondary panel with attenuation, a synthetic-process table generated from the committed
+history-falsification CSV, the HS01 ranking null, three related-work paragraphs and a fuller
+limitations section; every number is traceable to a report or CSV. A second independent
+review (two blocking, six should-fix, twelve minor findings) was applied in full; the one
+wording change of substance is that the role asymmetry "depends on" what each forecast sees
+rather than "is a property of" it, because the common-prefix control also lengthens the
+assistant's horizon. The NetSci abstract
+(`papers/iscs-2027/abstracts/netsci-2027/`) reuses the paper's composite figure and the
+template preamble verbatim. The F3 design
+(`../superpowers/specs/2026-10-19-f3-integration-coding-design.md`) found that 42 of the 60
+prepared packet conversations were AI-labelled in the pilots, so it proposes a fresh 80-item
+draw from the 722 fit conversations with those components excluded, a P01-only rubric v2, a
+binary kappa primary with a frozen decision rule, and a label-blind PRISM network score
+committed before coding; five questions for the owner close the document. Two bibliography
+facts (the Springer chapter's volume, pages and DOI; the Interspeech pages and DOI) could
+not be confirmed from files in the tree and must be checked against the publisher pages
+before submission. Earlier assessments below remain historical.
+
+**Prior assessment, October 18, ISCS 2027 draft:** an eight-page short-paper draft now
 exists at `papers/iscs-2027/paper/` (`main.tex`, `main.pdf`, official `svproc` class, two
 figures built from committed result files with recorded hashes). It reports the two frozen
 confirmations side by side, the forecast-origin dependence of the role contrast (with PRISM's
