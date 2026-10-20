@@ -73,6 +73,9 @@ records:
   reach_diagnostics_wildchat: papers/iscs-2027/results/development/reach-wildchat.md
   choice_diagnostics_prism: papers/iscs-2027/results/development/choice-prism.md
   reach_long_sample: papers/history-reach/results/reach-long.md
+  iscs_2027_protocol2: papers/iscs-2027/PROTOCOL2.md
+  protocol2_prism_result: papers/iscs-2027/results/protocol2/prism.md
+  protocol2_wildchat_result: papers/iscs-2027/results/protocol2/wildchat.md
   next_goal: docs/research/NEXT-GOAL.md
 
 constraints:
