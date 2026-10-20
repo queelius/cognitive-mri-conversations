@@ -66,6 +66,13 @@ records:
   iscs_2027_long_paper_plan: docs/superpowers/plans/2026-10-19-iscs-2027-long-paper-and-netsci.md
   netsci_2027_abstract: papers/iscs-2027/abstracts/netsci-2027/main.tex
   f3_integration_coding_design: docs/superpowers/specs/2026-10-19-f3-integration-coding-design.md
+  editorial_review_2026_10_19: docs/research/audits/2026-10-19-editorial-review/REVIEW.md
+  prior_art_reach_2026_10_19: docs/research/audits/2026-10-19-editorial-review/prior-art-reach.md
+  iscs_2027_reach_revision_design: docs/superpowers/specs/2026-10-19-iscs-2027-reach-revision-design.md
+  reach_diagnostics_prism: papers/iscs-2027/results/development/reach-prism.md
+  reach_diagnostics_wildchat: papers/iscs-2027/results/development/reach-wildchat.md
+  choice_diagnostics_prism: papers/iscs-2027/results/development/choice-prism.md
+  reach_long_sample: papers/history-reach/results/reach-long.md
   next_goal: docs/research/NEXT-GOAL.md
 
 constraints:
