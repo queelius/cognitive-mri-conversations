@@ -1,0 +1,292 @@
+{
+  "version": 1,
+  "owner": "queelius",
+  "remote": "https://github.com/queelius/{name}.git",
+  "repos": [
+    {
+      "name": "cognitive-mri-conversations",
+      "path": ".",
+      "branch": "master",
+      "visibility": "public",
+      "data": "none",
+      "group": "umbrella",
+      "note": "Landing page, planning layer (`docs/research/`) and this manifest; carries the compendium DOI 10.5281/zenodo.18778376."
+    },
+    {
+      "name": "chatgpt-conversation-corpus",
+      "path": "chatgpt-conversation-corpus",
+      "branch": "main",
+      "visibility": "private",
+      "data": "private-archive",
+      "group": "corpus",
+      "note": "The sanitized corpus derived from `dev/`; pre-release, sanitization in progress."
+    },
+    {
+      "name": "cmri-knowledge-networks",
+      "path": "papers/knowledge-networks",
+      "branch": "main",
+      "visibility": "private",
+      "data": "private-archive",
+      "group": "paper",
+      "note": "Published: Complex Networks 2025, Springer chapter online 2026-02-25. Holds the conference paper plus the shared pipeline (`code/`) and reproducibility data (`data/`)."
+    },
+    {
+      "name": "cmri-temporal-networks",
+      "path": "papers/temporal-networks",
+      "branch": "main",
+      "visibility": "private",
+      "data": "private-archive",
+      "group": "paper",
+      "note": "Rejected at PLOS Complex Systems 2026-04-27. Branch `pilot/iscs-2027-calibration` holds the October 2026 calibration that supersedes the old growth/beta claims and supplies the densification exponents the ISCS 2027 paper reports."
+    },
+    {
+      "name": "cmri-hierarchical-memory",
+      "path": "papers/hierarchical-memory",
+      "branch": "main",
+      "visibility": "private",
+      "data": "private-archive",
+      "group": "paper",
+      "note": "Accepted at ISCS 2026; Springer SSDC 709 proceedings forthcoming. Formerly `agentic/`."
+    },
+    {
+      "name": "cmri-embedding-dynamics",
+      "path": "papers/embedding-dynamics",
+      "branch": "main",
+      "visibility": "private",
+      "data": "private-archive",
+      "group": "paper",
+      "note": "Partial draft (abstract + validation section). Proposed consolidation with Semantic Dynamics; see `docs/research/DYNAMICS-CONSOLIDATION.md`."
+    },
+    {
+      "name": "cmri-semantic-dynamics",
+      "path": "papers/semantic-dynamics",
+      "branch": "main",
+      "visibility": "private",
+      "data": "private-archive",
+      "group": "paper",
+      "note": "Full draft (LaTeX is more complete than the Markdown). Several of its mathematical claims failed the October 2026 audit."
+    },
+    {
+      "name": "cmri-operational-memex",
+      "path": "papers/operational-memex",
+      "branch": "main",
+      "visibility": "private",
+      "data": "private-archive",
+      "group": "paper",
+      "note": "Outline plus working infrastructure."
+    },
+    {
+      "name": "cmri-portfolio-wave1",
+      "path": "papers/portfolio-wave1",
+      "branch": "pilot/first-wave",
+      "visibility": "private",
+      "data": "public",
+      "group": "pilot",
+      "note": "Six PRISM experiments; uniform history pooling beats the last two messages for next-user prediction (+.034 MiniLM, +.019 E5, raw cosine). Holds the PRISM development caches, the source manifest and the `cmri_wave` pipeline every study imports."
+    },
+    {
+      "name": "cmri-history-falsification",
+      "path": "papers/history-falsification",
+      "branch": "pilot/history-falsification",
+      "visibility": "private",
+      "data": "public",
+      "group": "pilot",
+      "note": "The pooling gain survives four views of the past; the user/assistant asymmetry depends on the forecast origin, not the roles. Supplies the synthetic processes and the fitted centers."
+    },
+    {
+      "name": "cmri-history-specificity",
+      "path": "papers/history-specificity",
+      "branch": "development-wave",
+      "visibility": "private",
+      "data": "public",
+      "group": "pilot",
+      "note": "HS01 to HS04: no ranking gain over strong short-context controls; the cosine gain persists."
+    },
+    {
+      "name": "cmri-grounded-dependencies",
+      "path": "papers/grounded-dependencies",
+      "branch": "development-pilot",
+      "visibility": "private",
+      "data": "public",
+      "group": "pilot",
+      "archived": true,
+      "note": "CGDIALOG human labels: recency alone matches embedding augmentations."
+    },
+    {
+      "name": "cmri-integration-measurement",
+      "path": "papers/integration-measurement",
+      "branch": "pilot/integration-measurement",
+      "default_branch": "pilot/event-centered-revision",
+      "visibility": "private",
+      "data": "public",
+      "group": "pilot",
+      "archived": true,
+      "note": "Zero clear same-premise revisions in 100 PRISM windows; no-go on this source. Its AI-labelled cases are excluded from the F3 reliability draw."
+    },
+    {
+      "name": "cmri-semantic-measurement",
+      "path": "papers/semantic-measurement",
+      "branch": "pilot/public-validation",
+      "visibility": "private",
+      "data": "public",
+      "group": "pilot",
+      "note": "ThoughtTrace: sequence-trajectory features are reliably worse than pooling. Supplies the pinned ONNX encoders (MiniLM, E5) every study uses."
+    },
+    {
+      "name": "cmri-selective-forgetting",
+      "path": "papers/selective-forgetting",
+      "branch": "main",
+      "visibility": "private",
+      "data": "public",
+      "group": "pilot",
+      "archived": true,
+      "note": "LongMemEval: the benchmark had no cross-topic cases, so the bridge hypothesis went untested."
+    },
+    {
+      "name": "cmri-iscs-2027",
+      "path": "papers/iscs-2027",
+      "branch": "main",
+      "visibility": "private",
+      "data": "public",
+      "group": "study",
+      "note": "Frozen PRISM reserve confirmation of the history-pooling gain (MiniLM +.025, E5 +.018) and Protocol 2, the reach decomposition confirmed on fresh PRISM and WildChat samples. Home of the ISCS 2027 paper (`paper/`, build with `make`), the NetSci 2027 abstract and the locked environment for all study code (`uv sync`)."
+    },
+    {
+      "name": "cmri-wildchat-replication",
+      "path": "papers/wildchat-replication",
+      "branch": "main",
+      "visibility": "private",
+      "data": "public",
+      "group": "study",
+      "note": "Frozen cross-collection replication on WildChat-4.8M passed in both encoders (MiniLM +.021, E5 +.016; 482 IP components, 801 conversations)."
+    },
+    {
+      "name": "cmri-history-reach",
+      "path": "papers/history-reach",
+      "branch": "master",
+      "visibility": "private",
+      "data": "public",
+      "group": "study",
+      "note": "Draws and encodes WildChat samples outside every earlier one: the exploratory long-conversation sample (557 conversations of 20 to 40 messages) and the fresh sample for Protocol 2."
+    }
+  ],
+  "worktrees": [
+    {
+      "path": "papers/temporal-networks-calibration",
+      "repo": "cmri-temporal-networks",
+      "branch": "pilot/iscs-2027-calibration"
+    },
+    {
+      "path": "papers/integration-events-worktree",
+      "repo": "cmri-integration-measurement",
+      "branch": "pilot/event-centered-revision"
+    }
+  ],
+  "snapshots": {
+    "iscs-2027-paper": {
+      "description": "Public-data repositories whose code and results produce the ISCS 2027 paper's numbers; tag these commits and make the repositories public at submission. The densification exponents come from the private single-author archive (cmri-temporal-networks, branch pilot/iscs-2027-calibration), which stays private.",
+      "publish": true,
+      "pins": {
+        "cmri-iscs-2027": "7a1d6327983893d0c872cbf1a8c34014696a03c0",
+        "cmri-wildchat-replication": "04cb09da85bcf8d034d122d05b712e12209e4bd6",
+        "cmri-history-reach": "8203c5eb7681946d04b82c960c12935fcdcc6fc1",
+        "cmri-portfolio-wave1": "e84846590e228fc3457bfd7e8d411118fb6035ae",
+        "cmri-history-falsification": "7a391141f7de3d06aeeca11434baadf6e744a3e0",
+        "cmri-semantic-measurement": "44ab5cc33997b6ce21ecf089729608f410f9ab7a",
+        "cmri-history-specificity": "7a5b048e01b52ddfd17197cd4f3afb63e1ad8f9d"
+      }
+    },
+    "wildchat-replication-frozen": {
+      "description": "The workspace state recorded in cmri-wildchat-replication's audits/dependencies.json; its pin tests pass only with these repositories at these commits.",
+      "publish": false,
+      "pins": {
+        "cmri-wildchat-replication": "04cb09da85bcf8d034d122d05b712e12209e4bd6",
+        "cmri-iscs-2027": "ef845c2a5a6604cec1d0c704e4d53a1145334bcc",
+        "cmri-portfolio-wave1": "e84846590e228fc3457bfd7e8d411118fb6035ae",
+        "cmri-history-falsification": "7a391141f7de3d06aeeca11434baadf6e744a3e0",
+        "cmri-semantic-measurement": "44ab5cc33997b6ce21ecf089729608f410f9ab7a"
+      }
+    }
+  },
+  "publication_policy": {
+    "forbidden_paths": [
+      "*.npz",
+      "*.npy",
+      "*.sqlite",
+      "*.db",
+      "*secret*",
+      "dev/*",
+      "*.mkv",
+      "*.mp4"
+    ],
+    "secret_patterns": {
+      "google_api_key": "AIza[0-9A-Za-z_\\-]{35}",
+      "openai_key": "\\bsk-(?:proj-)?[A-Za-z0-9_\\-]{20,}",
+      "github_token": "\\bgh[pousr]_[A-Za-z0-9]{36,}",
+      "aws_access_key": "\\bAKIA[0-9A-Z]{16}\\b",
+      "private_key": "-----BEGIN [A-Z ]*PRIVATE KEY-----"
+    },
+    "max_blob_bytes": 52428800,
+    "reviewed": [
+      {
+        "repo": "cmri-semantic-measurement",
+        "path": "results/*/*.npz",
+        "reason": "Per-case score tables (553 cases by 27 methods under four conditions, with case ids, participant numbers and component hashes); no embeddings and no text.",
+        "reviewed": "2026-10-21"
+      }
+    ]
+  },
+  "views": [
+    {
+      "file": "CLAUDE.md",
+      "block": "papers",
+      "groups": [
+        "paper"
+      ],
+      "columns": [
+        "path",
+        "repo",
+        "note"
+      ],
+      "headers": [
+        "Local path",
+        "Repo",
+        "Status"
+      ]
+    },
+    {
+      "file": "CLAUDE.md",
+      "block": "pilots",
+      "groups": [
+        "pilot"
+      ],
+      "columns": [
+        "path",
+        "repo_branch",
+        "note"
+      ],
+      "headers": [
+        "Local path",
+        "Repo (branch)",
+        "One-line result"
+      ]
+    },
+    {
+      "file": "CLAUDE.md",
+      "block": "studies",
+      "groups": [
+        "study"
+      ],
+      "columns": [
+        "path",
+        "repo_branch",
+        "note"
+      ],
+      "headers": [
+        "Local path",
+        "Repo (branch)",
+        "Role and result"
+      ]
+    }
+  ]
+}

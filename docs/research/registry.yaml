@@ -76,6 +76,8 @@ records:
   iscs_2027_protocol2: papers/iscs-2027/PROTOCOL2.md
   protocol2_prism_result: papers/iscs-2027/results/protocol2/prism.md
   protocol2_wildchat_result: papers/iscs-2027/results/protocol2/wildchat.md
+  workspace_manifest: workspace.json
+  workspace_tool: tools/workspace.py
   next_goal: docs/research/NEXT-GOAL.md
 
 constraints:

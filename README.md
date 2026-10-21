@@ -58,12 +58,15 @@ temporal calibration on the `pilot/iscs-2027-calibration` branch of
 [cmri-temporal-networks](https://github.com/queelius/cmri-temporal-networks). The
 [decision history](docs/research/DECISIONS.md) records what each one established.
 
-Two confirmatory studies followed the pilots, each a frozen single-shot run of the same
-primary contrast (uniform history pooling against the last two messages, next user message):
-[cmri-iscs-2027](https://github.com/queelius/cmri-iscs-2027) on the held-out PRISM reserve,
-and [cmri-wildchat-replication](https://github.com/queelius/cmri-wildchat-replication) on
-English WildChat-4.8M conversations. Both passed in both encoders; neither held-out sample may
-be reused for further confirmation.
+Confirmatory studies followed the pilots, each a frozen single-shot run on samples no
+analysis had touched. The primary contrast (uniform history pooling against the last two
+messages, next user message) passed in both encoders on the held-out PRISM reserve
+([cmri-iscs-2027](https://github.com/queelius/cmri-iscs-2027)) and on English WildChat-4.8M
+([cmri-wildchat-replication](https://github.com/queelius/cmri-wildchat-replication)). A second
+protocol then confirmed what that gain is, the person's own preceding turn, on fresh PRISM and
+WildChat samples, the latter drawn by
+[cmri-history-reach](https://github.com/queelius/cmri-history-reach). No held-out sample may be
+reused for further confirmation.
 
 The published conference paper and the shared analysis pipeline (`code/` and `data/`) live
 in the `knowledge-networks` repository; the temporal-evolution journal extension is
@@ -71,8 +74,10 @@ in the `knowledge-networks` repository; the temporal-evolution journal extension
 
 ## How this repository is organized
 
-- `papers/`: the independent paper repositories (gitignored here; clone each `cmri-*` repo
-  into place, or work with them separately).
+- `papers/`: the independent paper, pilot and study repositories (gitignored here).
+  `workspace.json` lists every one with its path, branch, visibility and data class, and
+  `python3 tools/workspace.py clone` clones them into place (`status`, `verify` and the
+  other subcommands are described in `tools/workspace.py`).
 - `chatgpt-conversation-corpus/`: the sanitized, publishable conversation dataset, its own git
   repository (gitignored here). Derived from `dev/`; **pre-release, sanitization in progress.**
 - `dev/`: shared working corpus (gitignored; the raw conversation JSON the pipelines read).

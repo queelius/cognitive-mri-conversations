@@ -24,30 +24,44 @@ tracks **only** the landing page and program-level planning: `README.md`, `CLAUD
 `CITATION.cff`, `LICENSE`, `.zenodo.json`, `.gitignore`, plus `docs/` and `future-ideas/`.
 Everything substantive is a *separate, gitignored git repository* nested inside:
 
-- `papers/<name>/`: six independent `cmri-*` repos (their own history, remote, CLAUDE.md).
+- `papers/<name>/`: independent `cmri-*` repos (papers, pilots and studies; their own history,
+  remote and CLAUDE.md), plus two worktrees of them.
 - `chatgpt-conversation-corpus/`: the publishable dataset, its own repo.
+
+`workspace.json` is the single structured list of these repos: path, branch, GitHub
+visibility, data class (`public` or `private-archive`), a one-line note, and named snapshots
+that pin the commits a paper depends on. `tools/workspace.py` derives everything from it:
+`clone` sets up a fresh workspace, `status` reports every checkout, `lock`/`verify`/`checkout`
+manage snapshots, `remote-check` compares GitHub settings, `scan` checks a snapshot for
+forbidden files and secrets before publication, and `render` regenerates the tables below.
+Edit the manifest, then run `python3 tools/workspace.py render`; never edit the tables by hand.
 
 Consequences:
 
 - **A `git commit` at the umbrella level captures none of the paper or corpus work.** To change
   a paper, `cd` into that paper's directory and commit *there*. `git status` at the root will
   never show paper/corpus edits; they are gitignored, not untracked.
-- **There is no umbrella-level build or test.** The root `.pytest_cache/`, `.coverage`, and
-  `.benchmarks/` are stale, gitignored tooling artifacts, not a test suite for this repo. All
-  runnable code, build steps, and tests live inside the child repos (see below).
+- **The only umbrella-level code is `tools/workspace.py`** (standard library only), tested by
+  `cd tools && uv run --no-project --with pytest pytest tests`. All research code, build steps
+  and their tests live inside the child repos. The study code shares one locked environment in
+  `papers/iscs-2027/` (`uv sync` there); `papers/history-reach/` and
+  `papers/wildchat-replication/` run their tests with that `.venv`.
 - When asked to "work on the paper / run the pipeline," operate inside the relevant child repo
   and read its own README and CLAUDE.md first.
 
 ## Papers (each an independent repo under papers/)
 
+<!-- workspace:papers:begin -->
+<!-- Generated from workspace.json by tools/workspace.py render; edit the manifest. -->
 | Local path | Repo | Status |
 |------------|------|--------|
 | `papers/knowledge-networks/` | cmri-knowledge-networks | Published: Complex Networks 2025, Springer chapter online 2026-02-25. Holds the conference paper plus the shared pipeline (`code/`) and reproducibility data (`data/`). |
-| `papers/temporal-networks/` | cmri-temporal-networks | Rejected at PLOS Complex Systems 2026-04-27. Branch `pilot/iscs-2027-calibration` (checked out as the worktree `papers/temporal-networks-calibration/`) holds the October 2026 calibration that supersedes the old growth/beta claims. |
+| `papers/temporal-networks/` | cmri-temporal-networks; worktree `papers/temporal-networks-calibration/` on `pilot/iscs-2027-calibration` | Rejected at PLOS Complex Systems 2026-04-27. Branch `pilot/iscs-2027-calibration` holds the October 2026 calibration that supersedes the old growth/beta claims and supplies the densification exponents the ISCS 2027 paper reports. |
 | `papers/hierarchical-memory/` | cmri-hierarchical-memory | Accepted at ISCS 2026; Springer SSDC 709 proceedings forthcoming. Formerly `agentic/`. |
 | `papers/embedding-dynamics/` | cmri-embedding-dynamics | Partial draft (abstract + validation section). Proposed consolidation with Semantic Dynamics; see `docs/research/DYNAMICS-CONSOLIDATION.md`. |
 | `papers/semantic-dynamics/` | cmri-semantic-dynamics | Full draft (LaTeX is more complete than the Markdown). Several of its mathematical claims failed the October 2026 audit. |
 | `papers/operational-memex/` | cmri-operational-memex | Outline plus working infrastructure. |
+<!-- workspace:papers:end -->
 
 Build instructions, pipeline usage, and per-paper notes live in each child repo's README and
 CLAUDE.md. The shared embedding/network pipeline is in `papers/knowledge-networks/code/` (a
@@ -61,31 +75,42 @@ rather than the private archive. Each is its own private `cmri-*` repo, gitignor
 the papers. Each has a `REPORT.md`, a `CLAIMS.md` ledger and a `VERIFICATION.md`; read the
 report, not the surrounding planning prose, for the numbers.
 
+<!-- workspace:pilots:begin -->
+<!-- Generated from workspace.json by tools/workspace.py render; edit the manifest. -->
 | Local path | Repo (branch) | One-line result |
 |------------|---------------|-----------------|
-| `papers/portfolio-wave1/` | cmri-portfolio-wave1 (`pilot/first-wave`) | Six PRISM experiments; uniform history pooling beats last-two for next-user prediction (+.034 MiniLM, +.019 E5). |
-| `papers/history-falsification/` | cmri-history-falsification (`pilot/history-falsification`) | Pooling gain survives four views; the user/assistant asymmetry reverses under a common prefix (horizon artifact). |
-| `papers/history-specificity/` | cmri-history-specificity (`development-wave`) | HS01–HS04: no ranking gain over strong short-context controls; cosine gain persists. |
-| `papers/grounded-dependencies/` | cmri-grounded-dependencies (`development-pilot`) | CGDIALOG human labels: recency alone matches embedding augmentations. |
-| `papers/integration-measurement/` | cmri-integration-measurement (`pilot/integration-measurement`; worktree `papers/integration-events-worktree/` on `pilot/event-centered-revision`) | Zero clear same-premise revisions in 100 PRISM windows; no-go on this source. |
-| `papers/semantic-measurement/` | cmri-semantic-measurement (`pilot/public-validation`) | ThoughtTrace: sequence-trajectory features are reliably worse than pooling. |
-| `papers/selective-forgetting/` | cmri-selective-forgetting (`main`) | LongMemEval: benchmark had no cross-topic cases, so the bridge hypothesis went untested. |
+| `papers/portfolio-wave1/` | cmri-portfolio-wave1 (`pilot/first-wave`) | Six PRISM experiments; uniform history pooling beats the last two messages for next-user prediction (+.034 MiniLM, +.019 E5, raw cosine). Holds the PRISM development caches, the source manifest and the `cmri_wave` pipeline every study imports. |
+| `papers/history-falsification/` | cmri-history-falsification (`pilot/history-falsification`) | The pooling gain survives four views of the past; the user/assistant asymmetry depends on the forecast origin, not the roles. Supplies the synthetic processes and the fitted centers. |
+| `papers/history-specificity/` | cmri-history-specificity (`development-wave`) | HS01 to HS04: no ranking gain over strong short-context controls; the cosine gain persists. |
+| `papers/grounded-dependencies/` | cmri-grounded-dependencies (`development-pilot`); archived on GitHub | CGDIALOG human labels: recency alone matches embedding augmentations. |
+| `papers/integration-measurement/` | cmri-integration-measurement (`pilot/integration-measurement`); worktree `papers/integration-events-worktree/` on `pilot/event-centered-revision`; archived on GitHub | Zero clear same-premise revisions in 100 PRISM windows; no-go on this source. Its AI-labelled cases are excluded from the F3 reliability draw. |
+| `papers/semantic-measurement/` | cmri-semantic-measurement (`pilot/public-validation`) | ThoughtTrace: sequence-trajectory features are reliably worse than pooling. Supplies the pinned ONNX encoders (MiniLM, E5) every study uses. |
+| `papers/selective-forgetting/` | cmri-selective-forgetting (`main`); archived on GitHub | LongMemEval: the benchmark had no cross-topic cases, so the bridge hypothesis went untested. |
+<!-- workspace:pilots:end -->
 
 ### Confirmatory studies (not counted among the nine pilots)
 
-Two frozen single-shot confirmations of the history-pooling contrast, run after the pilots.
+Frozen single-shot confirmations run after the pilots: the history-pooling contrast on the
+PRISM reserve and on WildChat (2026-10-18), then Protocol 2, the reach decomposition (the
+person's preceding turn carries the gain), on fresh PRISM and WildChat samples (2026-10-20).
 
-| Local path | Repo (branch) | One-line result |
+<!-- workspace:studies:begin -->
+<!-- Generated from workspace.json by tools/workspace.py render; edit the manifest. -->
+| Local path | Repo (branch) | Role and result |
 |------------|---------------|-----------------|
-| `papers/iscs-2027/` | cmri-iscs-2027 (`main`) | Frozen reserve confirmation of the history-pooling gain passed in both encoders (MiniLM +.025, E5 +.018); home of the ISCS 2027 long paper (twelve-page draft in `paper/`, build with `make`) and of the NetSci 2027 one-page abstract (`abstracts/netsci-2027/`). |
+| `papers/iscs-2027/` | cmri-iscs-2027 (`main`) | Frozen PRISM reserve confirmation of the history-pooling gain (MiniLM +.025, E5 +.018) and Protocol 2, the reach decomposition confirmed on fresh PRISM and WildChat samples. Home of the ISCS 2027 paper (`paper/`, build with `make`), the NetSci 2027 abstract and the locked environment for all study code (`uv sync`). |
 | `papers/wildchat-replication/` | cmri-wildchat-replication (`main`) | Frozen cross-collection replication on WildChat-4.8M passed in both encoders (MiniLM +.021, E5 +.016; 482 IP components, 801 conversations). |
+| `papers/history-reach/` | cmri-history-reach (`master`) | Draws and encodes WildChat samples outside every earlier one: the exploratory long-conversation sample (557 conversations of 20 to 40 messages) and the fresh sample for Protocol 2. |
+<!-- workspace:studies:end -->
 
 The PRISM pilots share one 1,191-conversation development partition and a **248-component
 reserve that was opened on 2026-10-18 under the frozen protocol in cmri-iscs-2027**; it must
 not be reused for further confirmation. `papers/wildchat-replication/` (cmri-wildchat-replication)
 re-ran the same frozen primary contrast on a second collection, English WildChat-4.8M from the
 temporal pilot's local mirror, with hashed-IP components; its confirmation sample has also been
-opened once and must not be reused. The pilots' large data directories are gitignored;
+opened once and must not be reused. Protocol 2's fresh samples (250 never-selected PRISM
+components; 478 WildChat IPs outside every other sample, drawn by `papers/history-reach/`) are
+spent the same way. The pilots' large data directories are gitignored;
 cloning a pilot repo gives you code, reports and small result tables, not the embeddings.
 
 ## Program planning layer (docs/research/)
