@@ -79,6 +79,8 @@ records:
   workspace_manifest: workspace.json
   workspace_tool: tools/workspace.py
   study1_person_networks: papers/person-networks/README.md
+  study1_results: papers/person-networks/RESULTS.md
+  study1_protocol: papers/person-networks/PROTOCOL.md
   netsci_2027_abstract: papers/person-networks/abstracts/netsci-2027/main.tex
   next_goal: docs/research/NEXT-GOAL.md
 
