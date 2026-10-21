@@ -7,6 +7,12 @@ inventory of 2026-10-19 (scratchpad; summarised in "What exists" below).
 
 ## Revision history
 
+- 2026-10-21, owner decision: the coders are independent model coders (subagents of different
+  models) instead of the two authors, blinded structurally (packet and codebook only, no file or
+  shell access), with a 30-item human anchor and a control that matches compared items on
+  embedding similarity, so agreement cannot be shared representation alone. The point-estimate
+  kappa gate now applies to agreement between the model majority and the human anchor; agreement
+  among model coders is reported as optimistic. Details live with the re-scoped sample design.
 - 2026-10-21, owner decision: the coding sample is re-scoped from PRISM conversations to
   bridge (connector) and non-bridge conversations drawn from the person-level networks of a new
   study on WildChat person histories, so that the labels validate the construct that study
