@@ -7,6 +7,11 @@ inventory of 2026-10-19 (scratchpad; summarised in "What exists" below).
 
 ## Revision history
 
+- 2026-10-21, owner decision: the coding sample is re-scoped from PRISM conversations to
+  bridge (connector) and non-bridge conversations drawn from the person-level networks of a new
+  study on WildChat person histories, so that the labels validate the construct that study
+  measures. The codebook, the point-estimate kappa gate and the third coder below stand; the
+  re-scoped sample design lives with that study and is published with its frozen protocol.
 - 2026-10-19, after the editorial review (`docs/research/audits/2026-10-19-editorial-review/`,
   `editor-framing.md` Sect. 8 and `REVIEW.md` "F3 and the programme"), five changes:
   1. The cross-participant PRISM network score (betweenness, neighbour-community count) is

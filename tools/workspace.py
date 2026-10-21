@@ -31,7 +31,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / 'workspace.json'
-GROUPS = ('umbrella', 'corpus', 'paper', 'pilot', 'study')
+GROUPS = ('umbrella', 'corpus', 'planning', 'paper', 'pilot', 'study')
 DATA = ('none', 'public', 'private-archive')
 VISIBILITY = ('public', 'private')
 COLUMNS = ('path', 'repo', 'repo_branch', 'note')

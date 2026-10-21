@@ -101,6 +101,7 @@ person's preceding turn carries the gain), on fresh PRISM and WildChat samples (
 | `papers/iscs-2027/` | cmri-iscs-2027 (`main`) | Frozen PRISM reserve confirmation of the history-pooling gain (MiniLM +.025, E5 +.018) and Protocol 2, the reach decomposition confirmed on fresh PRISM and WildChat samples. Home of the ISCS 2027 paper (`paper/`, build with `make`), the NetSci 2027 abstract and the locked environment for all study code (`uv sync`). |
 | `papers/wildchat-replication/` | cmri-wildchat-replication (`main`) | Frozen cross-collection replication on WildChat-4.8M passed in both encoders (MiniLM +.021, E5 +.016; 482 IP components, 801 conversations). |
 | `papers/history-reach/` | cmri-history-reach (`master`) | Draws and encodes WildChat samples outside every earlier one: the exploratory long-conversation sample (557 conversations of 20 to 40 messages) and the fresh sample for Protocol 2. |
+| `papers/person-networks/` | cmri-person-networks (`main`) | Study 1: how personal is a person's knowledge network? Size- and density-matched conversation networks for hundreds of WildChat identities against pool and revelation nulls, with the author's archive placed in the distribution; development partition drives the NetSci 2027 abstract. |
 <!-- workspace:studies:end -->
 
 The PRISM pilots share one 1,191-conversation development partition and a **248-component
@@ -114,6 +115,12 @@ spent the same way. The pilots' large data directories are gitignored;
 cloning a pilot repo gives you code, reports and small result tables, not the embeddings.
 
 ## Program planning layer (docs/research/)
+
+The research agenda of 2026-10-21 (four ranked studies, the data that make them feasible, the
+owner's decisions) and the designs of studies not yet frozen live in the private
+`papers/agenda/` (cmri-agenda), not in this public repository; a study's design is published with
+its frozen protocol. The owner's private-data inventory (counts only) is in the gitignored
+`dev/inventory/`.
 
 `docs/research/` is the umbrella-tracked record of priorities and decisions. Start with
 `DECISIONS.md` (dated table separating the owner's decisions from assistant recommendations)

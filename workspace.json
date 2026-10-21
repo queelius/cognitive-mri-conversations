@@ -22,6 +22,15 @@
       "note": "The sanitized corpus derived from `dev/`; pre-release, sanitization in progress."
     },
     {
+      "name": "cmri-agenda",
+      "path": "papers/agenda",
+      "branch": "main",
+      "visibility": "private",
+      "data": "none",
+      "group": "planning",
+      "note": "The research agenda (2026-10-21), its evidence (questions ledger, public dataset catalog, novelty checks) and the designs of studies not yet frozen; private until each protocol is frozen."
+    },
+    {
       "name": "cmri-knowledge-networks",
       "path": "papers/knowledge-networks",
       "branch": "main",
@@ -168,6 +177,15 @@
       "data": "public",
       "group": "study",
       "note": "Draws and encodes WildChat samples outside every earlier one: the exploratory long-conversation sample (557 conversations of 20 to 40 messages) and the fresh sample for Protocol 2."
+    },
+    {
+      "name": "cmri-person-networks",
+      "path": "papers/person-networks",
+      "branch": "main",
+      "visibility": "private",
+      "data": "public",
+      "group": "study",
+      "note": "Study 1: how personal is a person's knowledge network? Size- and density-matched conversation networks for hundreds of WildChat identities against pool and revelation nulls, with the author's archive placed in the distribution; development partition drives the NetSci 2027 abstract."
     }
   ],
   "worktrees": [
