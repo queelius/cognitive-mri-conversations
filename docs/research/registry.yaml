@@ -78,6 +78,8 @@ records:
   protocol2_wildchat_result: papers/iscs-2027/results/protocol2/wildchat.md
   workspace_manifest: workspace.json
   workspace_tool: tools/workspace.py
+  study1_person_networks: papers/person-networks/README.md
+  netsci_2027_abstract: papers/person-networks/abstracts/netsci-2027/main.tex
   next_goal: docs/research/NEXT-GOAL.md
 
 constraints:
