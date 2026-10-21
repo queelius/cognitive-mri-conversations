@@ -77,7 +77,7 @@ Two frozen single-shot confirmations of the history-pooling contrast, run after 
 
 | Local path | Repo (branch) | One-line result |
 |------------|---------------|-----------------|
-| `papers/iscs-2027/` | cmri-iscs-2027 (`main`) | Frozen reserve confirmation of the history-pooling gain passed in both encoders (MiniLM +.025, E5 +.018); home of the ISCS 2027 paper, whose eight-page draft is in `paper/` (build with `make`). |
+| `papers/iscs-2027/` | cmri-iscs-2027 (`main`) | Frozen reserve confirmation of the history-pooling gain passed in both encoders (MiniLM +.025, E5 +.018); home of the ISCS 2027 long paper (twelve-page draft in `paper/`, build with `make`) and of the NetSci 2027 one-page abstract (`abstracts/netsci-2027/`). |
 | `papers/wildchat-replication/` | cmri-wildchat-replication (`main`) | Frozen cross-collection replication on WildChat-4.8M passed in both encoders (MiniLM +.021, E5 +.016; 482 IP components, 801 conversations). |
 
 The PRISM pilots share one 1,191-conversation development partition and a **248-component
@@ -112,44 +112,6 @@ skeleton for the planned ISCS 2027 full paper.
 
 Child code reads the corpus from `$CMRI_CORPUS_DIR`, which defaults to this repo's `dev/`.
 
-## The shared pipeline (papers/knowledge-networks/code/)
-
-A `python cli.py <subcommand>` toolkit. It is not packaged; run it from inside `code/`.
-
-```bash
-cd papers/knowledge-networks/code
-pip install -r requirements.txt          # networkx, scikit-learn, python-louvain, ...
-cp .env.example .env                      # set OLLAMA_HOST, MODEL_NAME, INPUT_DIR, theta, alpha
-```
-
-The pipeline is staged; each `cli.py` subcommand consumes the previous stage's output:
-
-```bash
-python cli.py node-embeddings --input-dir <dir> --method role-aggregate --embedding-method llm
-python cli.py normalize       --input-dir <dir>                 # L2-normalize node embeddings
-python cli.py edges           --input-dir <dir> --output-file edges.json     # all-pairs cosine
-python cli.py cut-off         --input-file edges.json --output-file filtered.json --cutoff 0.9
-python cli.py export          --nodes-dir <dir> --edges-file filtered.json --format gexf
-```
-
-`edges-gpu` (PyTorch) replaces `edges` for large runs; `validate-json`, `is-normalized`,
-`clean-embeddings`, and `test-chunking` are utilities. The `generate_*.sh` and `run_ablation_*`
-scripts orchestrate full sweeps. **Embedding generation requires a reachable Ollama server**
-(`OLLAMA_HOST`, default model `nomic-embed-text`). There is no local fallback.
-
-## Architecture: the base pipeline (in papers/knowledge-networks/code/)
-
-1. Embedding: per-message embeddings via Ollama, role-aggregated (user and AI separate means),
-   weighted combination, L2-normalized. (`node-embeddings` → `normalize`)
-2. Edge generation: all-pairs cosine similarity, threshold filter (theta = 0.9 optimal).
-   (`edges` / `edges-gpu` → `cut-off`)
-3. Network analysis: Louvain community detection, centrality metrics, core-periphery
-   decomposition. (`networks.py` and the `analyze_*.py` scripts)
-4. Export: GEXF/GraphML for Gephi visualization. (`export`)
-
-Embeddings use the Ollama API (`nomic-embed-text`, 8192 token context). The pipeline weights
-user messages at 2:1 versus AI responses (validated by the ablation study).
-
 ## Key Research Parameters
 
 | Parameter | Optimal Value | Source |
@@ -161,6 +123,8 @@ user messages at 2:1 versus AI responses (validated by the ablation study).
 | Communities | 15 (modularity 0.750) | Louvain method |
 | Embedding model | nomic-embed-text | 768-dim, 8192 token context |
 
+The pipeline lives in `papers/knowledge-networks/code/` (see its README); embedding generation needs a reachable Ollama server (`OLLAMA_HOST`, `nomic-embed-text`) and has no local fallback.
+
 ## Corpus data-safety guardrail
 
 The raw `dev/` conversations and any files carrying embeddings are **not safe to publish**:
@@ -170,15 +134,6 @@ sanitization is still in progress. Before sharing or committing corpus-derived d
 public, run/verify sanitization (`code/sanitize_conversations.py`, itself gitignored and
 published in the dataset repo) and never commit `dev/` content or `*secret*.txt` files. The
 root `cmri-secrets-to-rotate.txt` is a gitignored rotation list, not a fixture.
-
-## Key Dependencies
-
-These belong to the child pipeline, not the umbrella:
-
-- Python: networkx, scikit-learn, numpy (<2), pandas, scipy, python-louvain, requests
-  (Ollama API), python-dotenv, matplotlib, seaborn, tqdm.
-- LaTeX: svproc.cls (Springer), llncs.cls (LNCS), beamer.
-- Ollama running and reachable for embedding generation.
 
 ## External References
 
