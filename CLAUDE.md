@@ -101,7 +101,7 @@ person's preceding turn carries the gain), on fresh PRISM and WildChat samples (
 | `papers/iscs-2027/` | cmri-iscs-2027 (`main`) | Frozen PRISM reserve confirmation of the history-pooling gain (MiniLM +.025, E5 +.018) and Protocol 2, the reach decomposition confirmed on fresh PRISM and WildChat samples. Home of the ISCS 2027 paper (`paper/`, build with `make`), the NetSci 2027 abstract and the locked environment for all study code (`uv sync`). |
 | `papers/wildchat-replication/` | cmri-wildchat-replication (`main`) | Frozen cross-collection replication on WildChat-4.8M passed in both encoders (MiniLM +.021, E5 +.016; 482 IP components, 801 conversations). |
 | `papers/history-reach/` | cmri-history-reach (`master`) | Draws and encodes WildChat samples outside every earlier one: the exploratory long-conversation sample (557 conversations of 20 to 40 messages) and the fresh sample for Protocol 2. |
-| `papers/person-networks/` | cmri-person-networks (`main`) | Study 1: how personal is a person's knowledge network? Frozen confirmation on 250 held-out WildChat identities passed in both encoders (2026-10-21): networks are more fragmented, more clustered and more temporally episodic than size- and density-matched pools of strangers, but strangers' conversations on the same topics reproduce about 90% of it. Home of the NetSci 2027 abstract. |
+| `papers/person-networks/` | cmri-person-networks (`main`) | Study 1: how personal is a person's knowledge network? Frozen confirmation on 250 held-out WildChat identities passed in both encoders (2026-10-21): networks are more fragmented, more clustered and more temporally episodic than size- and density-matched pools of strangers, but strangers' conversations on the same topics reproduce about 90% of it. Study 1b's frozen confirmation on 449 fresh light users passed (2026-10-22): sittings and topic periods account for most of the time locality. Home of the NetSci 2027 abstract. |
 <!-- workspace:studies:end -->
 
 The PRISM pilots share one 1,191-conversation development partition and a **248-component
@@ -112,7 +112,7 @@ temporal pilot's local mirror, with hashed-IP components; its confirmation sampl
 opened once and must not be reused. Protocol 2's fresh samples (250 never-selected PRISM
 components; 478 WildChat IPs outside every other sample, drawn by `papers/history-reach/`) are
 spent the same way, as are Study 1's 150 development and 250 confirmation WildChat identities
-(`papers/person-networks/`). The pilots' large data directories are gitignored;
+and Study 1b's 449 light-user identities (`papers/person-networks/`). The pilots' large data directories are gitignored;
 cloning a pilot repo gives you code, reports and small result tables, not the embeddings.
 
 ## Program planning layer (docs/research/)

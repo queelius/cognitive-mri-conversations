@@ -82,6 +82,8 @@ records:
   study1_results: papers/person-networks/RESULTS.md
   study1_protocol: papers/person-networks/PROTOCOL.md
   netsci_2027_abstract: papers/person-networks/abstracts/netsci-2027/main.tex
+  study1b_results: papers/person-networks/episodes/RESULTS.md
+  study1b_protocol: papers/person-networks/episodes/PROTOCOL.md
   next_goal: docs/research/NEXT-GOAL.md
 
 constraints:
