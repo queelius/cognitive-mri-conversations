@@ -58,6 +58,15 @@
       "note": "Accepted at ISCS 2026; Springer SSDC 709 proceedings forthcoming. Formerly `agentic/`."
     },
     {
+      "name": "cmri-hierarchical-memory-extended",
+      "path": "papers/hierarchical-memory-extended",
+      "branch": "main",
+      "visibility": "private",
+      "data": "private-archive",
+      "group": "paper",
+      "note": "In preparation: the extended journal version of the ISCS 2026 paper for the Applied Network Science ISCS 2026 collection (due 2026-12-04). Pins the camera-ready and the addendum's results; corrects the small-world claim."
+    },
+    {
       "name": "cmri-embedding-dynamics",
       "path": "papers/embedding-dynamics",
       "branch": "main",

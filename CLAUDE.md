@@ -58,6 +58,7 @@ Consequences:
 | `papers/knowledge-networks/` | cmri-knowledge-networks | Published: Complex Networks 2025, Springer chapter online 2026-02-25. Holds the conference paper plus the shared pipeline (`code/`) and reproducibility data (`data/`). |
 | `papers/temporal-networks/` | cmri-temporal-networks; worktree `papers/temporal-networks-calibration/` on `pilot/iscs-2027-calibration` | Rejected at PLOS Complex Systems 2026-04-27. Branch `pilot/iscs-2027-calibration` holds the October 2026 calibration that supersedes the old growth/beta claims and supplies the densification exponents the ISCS 2027 paper reports. |
 | `papers/hierarchical-memory/` | cmri-hierarchical-memory | Accepted at ISCS 2026; Springer SSDC 709 proceedings forthcoming. Formerly `agentic/`. |
+| `papers/hierarchical-memory-extended/` | cmri-hierarchical-memory-extended | In preparation: the extended journal version of the ISCS 2026 paper for the Applied Network Science ISCS 2026 collection (due 2026-12-04). Pins the camera-ready and the addendum's results; corrects the small-world claim. |
 | `papers/embedding-dynamics/` | cmri-embedding-dynamics | Partial draft (abstract + validation section). Proposed consolidation with Semantic Dynamics; see `docs/research/DYNAMICS-CONSOLIDATION.md`. |
 | `papers/semantic-dynamics/` | cmri-semantic-dynamics | Full draft (LaTeX is more complete than the Markdown). Several of its mathematical claims failed the October 2026 audit. |
 | `papers/operational-memex/` | cmri-operational-memex | Outline plus working infrastructure. |
