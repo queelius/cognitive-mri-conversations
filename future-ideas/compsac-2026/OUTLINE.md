@@ -1,3 +1,5 @@
+> **Retired 2026-10-22.** This synthesis draft recycles claims the programme has since withdrawn (super-linear densification as a personal signal, the attachment kernel, zero merges and splits, the small-world comparison against random graphs). It is kept as history; do not submit any version of it. See `docs/research/DECISIONS.md`, entry of October 22, 2026.
+
 # COMPSAC 2026 AIML Workshop Paper: Outline
 
 **Target:** 9th International Workshop on Advances in AI and Machine Learning (AIML 2026)

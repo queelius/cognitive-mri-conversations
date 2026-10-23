@@ -34,6 +34,8 @@ that pin the commits a paper depends on. `tools/workspace.py` derives everything
 `clone` sets up a fresh workspace, `status` reports every checkout, `lock`/`verify`/`checkout`
 manage snapshots, `remote-check` compares GitHub settings, `scan` checks a snapshot for
 forbidden files and secrets before publication, and `render` regenerates the tables below.
+`spent.json` is the ledger of every sample drawn from a shared pool (PRISM, WildChat); `spent --verify`
+checks that each later draw's committed configuration excludes every earlier one.
 Edit the manifest, then run `python3 tools/workspace.py render`; never edit the tables by hand.
 
 Consequences:
@@ -55,13 +57,13 @@ Consequences:
 <!-- Generated from workspace.json by tools/workspace.py render; edit the manifest. -->
 | Local path | Repo | Status |
 |------------|------|--------|
-| `papers/knowledge-networks/` | cmri-knowledge-networks | Published: Complex Networks 2025, Springer chapter online 2026-02-25. Holds the conference paper plus the shared pipeline (`code/`) and reproducibility data (`data/`). |
-| `papers/temporal-networks/` | cmri-temporal-networks; worktree `papers/temporal-networks-calibration/` on `pilot/iscs-2027-calibration` | Rejected at PLOS Complex Systems 2026-04-27. Branch `pilot/iscs-2027-calibration` holds the October 2026 calibration that supersedes the old growth/beta claims and supplies the densification exponents the ISCS 2027 paper reports. |
-| `papers/hierarchical-memory/` | cmri-hierarchical-memory | Accepted at ISCS 2026; Springer SSDC 709 proceedings forthcoming. Formerly `agentic/`. |
+| `papers/knowledge-networks/` | cmri-knowledge-networks | Published: Complex Networks 2025, Springer chapter online 2026-02-25. Holds the conference paper plus the shared pipeline (`code/`) and reproducibility data (`data/`). Status after Study 1 (2026-10-22): the numbers stand; the cognitive gloss is superseded by the population result. |
+| `papers/temporal-networks/` | cmri-temporal-networks; worktree `papers/temporal-networks-calibration/` on `pilot/iscs-2027-calibration` | Rejected at PLOS Complex Systems 2026-04-27; retired as a standalone paper on 2026-10-22 (withdrawal note in the manuscript). Branch `pilot/iscs-2027-calibration` holds the October 2026 calibration whose exact identities, return-lag statistic and densification exponents survive and merge into the person-networks line. |
+| `papers/hierarchical-memory/` | cmri-hierarchical-memory | Accepted at ISCS 2026; Springer SSDC 709 proceedings forthcoming. An addendum correcting the small-world comparison (degree-preserving null) is in `addendum/` (2026-10-22). Formerly `agentic/`. |
 | `papers/hierarchical-memory-extended/` | cmri-hierarchical-memory-extended | In preparation: the extended journal version of the ISCS 2026 paper for the Applied Network Science ISCS 2026 collection (due 2026-12-04). Pins the camera-ready and the addendum's results; corrects the small-world claim. |
-| `papers/embedding-dynamics/` | cmri-embedding-dynamics | Partial draft (abstract + validation section). Proposed consolidation with Semantic Dynamics; see `docs/research/DYNAMICS-CONSOLIDATION.md`. |
-| `papers/semantic-dynamics/` | cmri-semantic-dynamics | Full draft (LaTeX is more complete than the Markdown). Several of its mathematical claims failed the October 2026 audit. |
-| `papers/operational-memex/` | cmri-operational-memex | Outline plus working infrastructure. |
+| `papers/embedding-dynamics/` | cmri-embedding-dynamics | Partial draft; to be folded into a methods note or dissertation chapter (decided 2026-10-22). The false turning-cosine proposition is corrected per the October 2026 audit; see `docs/research/DYNAMICS-CONSOLIDATION.md`. |
+| `papers/semantic-dynamics/` | cmri-semantic-dynamics | Full draft, retired 2026-10-22: its headline claims failed the October 2026 audit; two hypotheses (continuation versus revisitation links; within-conversation episode boundaries) are kept for later studies. |
+| `papers/operational-memex/` | cmri-operational-memex | Infrastructure (the per-message embedding store), not a paper (decided 2026-10-22). |
 <!-- workspace:papers:end -->
 
 Build instructions, pipeline usage, and per-paper notes live in each child repo's README and
@@ -113,7 +115,7 @@ temporal pilot's local mirror, with hashed-IP components; its confirmation sampl
 opened once and must not be reused. Protocol 2's fresh samples (250 never-selected PRISM
 components; 478 WildChat IPs outside every other sample, drawn by `papers/history-reach/`) are
 spent the same way, as are Study 1's 150 development and 250 confirmation WildChat identities
-and Study 1b's 449 light-user identities (`papers/person-networks/`). The pilots' large data directories are gitignored;
+and Study 1b's 449 light-user identities (`papers/person-networks/`); `spent.json` lists them all. The pilots' large data directories are gitignored;
 cloning a pilot repo gives you code, reports and small result tables, not the embeddings.
 
 ## Program planning layer (docs/research/)

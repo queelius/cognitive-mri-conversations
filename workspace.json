@@ -37,7 +37,7 @@
       "visibility": "private",
       "data": "private-archive",
       "group": "paper",
-      "note": "Published: Complex Networks 2025, Springer chapter online 2026-02-25. Holds the conference paper plus the shared pipeline (`code/`) and reproducibility data (`data/`)."
+      "note": "Published: Complex Networks 2025, Springer chapter online 2026-02-25. Holds the conference paper plus the shared pipeline (`code/`) and reproducibility data (`data/`). Status after Study 1 (2026-10-22): the numbers stand; the cognitive gloss is superseded by the population result."
     },
     {
       "name": "cmri-temporal-networks",
@@ -46,7 +46,7 @@
       "visibility": "private",
       "data": "private-archive",
       "group": "paper",
-      "note": "Rejected at PLOS Complex Systems 2026-04-27. Branch `pilot/iscs-2027-calibration` holds the October 2026 calibration that supersedes the old growth/beta claims and supplies the densification exponents the ISCS 2027 paper reports."
+      "note": "Rejected at PLOS Complex Systems 2026-04-27; retired as a standalone paper on 2026-10-22 (withdrawal note in the manuscript). Branch `pilot/iscs-2027-calibration` holds the October 2026 calibration whose exact identities, return-lag statistic and densification exponents survive and merge into the person-networks line."
     },
     {
       "name": "cmri-hierarchical-memory",
@@ -55,7 +55,7 @@
       "visibility": "private",
       "data": "private-archive",
       "group": "paper",
-      "note": "Accepted at ISCS 2026; Springer SSDC 709 proceedings forthcoming. Formerly `agentic/`."
+      "note": "Accepted at ISCS 2026; Springer SSDC 709 proceedings forthcoming. An addendum correcting the small-world comparison (degree-preserving null) is in `addendum/` (2026-10-22). Formerly `agentic/`."
     },
     {
       "name": "cmri-hierarchical-memory-extended",
@@ -73,7 +73,7 @@
       "visibility": "private",
       "data": "private-archive",
       "group": "paper",
-      "note": "Partial draft (abstract + validation section). Proposed consolidation with Semantic Dynamics; see `docs/research/DYNAMICS-CONSOLIDATION.md`."
+      "note": "Partial draft; to be folded into a methods note or dissertation chapter (decided 2026-10-22). The false turning-cosine proposition is corrected per the October 2026 audit; see `docs/research/DYNAMICS-CONSOLIDATION.md`."
     },
     {
       "name": "cmri-semantic-dynamics",
@@ -82,7 +82,7 @@
       "visibility": "private",
       "data": "private-archive",
       "group": "paper",
-      "note": "Full draft (LaTeX is more complete than the Markdown). Several of its mathematical claims failed the October 2026 audit."
+      "note": "Full draft, retired 2026-10-22: its headline claims failed the October 2026 audit; two hypotheses (continuation versus revisitation links; within-conversation episode boundaries) are kept for later studies."
     },
     {
       "name": "cmri-operational-memex",
@@ -91,7 +91,7 @@
       "visibility": "private",
       "data": "private-archive",
       "group": "paper",
-      "note": "Outline plus working infrastructure."
+      "note": "Infrastructure (the per-message embedding store), not a paper (decided 2026-10-22)."
     },
     {
       "name": "cmri-portfolio-wave1",

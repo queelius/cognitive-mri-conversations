@@ -1,0 +1,352 @@
+{
+  "version": 1,
+  "purpose": "One ledger of every sample the programme has drawn from a shared pool, so that a new draw can prove it excluded all earlier ones. `python3 tools/workspace.py spent --verify` checks it. A spent sample is never re-drawn or re-scored; reading it for an analysis labelled exploratory is allowed where the protocol says so.",
+  "rules": [
+    "Every draw from a pool is an entry, including development draws and screening lists, because later draws must exclude them.",
+    "Entries of one pool are ordered by `spent_on`; each entry's `excludes` (plus `siblings`, partitions of one draw) must name every earlier entry of its pool.",
+    "`evidence` points at the committed configuration that performed the exclusion and a string it must contain.",
+    "`record` is the committed file that describes the sample (counts and hashes); the member list itself may be gitignored when it carries IP digests."
+  ],
+  "pools": {
+    "prism": "PRISM (Kirk et al. 2024) conversations, grouped into components by shared participant, opening prompt or candidate set (cmri-portfolio-wave1).",
+    "wildchat": "English WildChat-4.8M from the local mirror of the temporal pilot, grouped by hashed IP (IP digests in configs are sha256 of the hashed IP)."
+  },
+  "samples": [
+    {
+      "id": "prism-development",
+      "pool": "prism",
+      "unit": "component",
+      "status": "development",
+      "spent_on": "2026-10-14",
+      "size": {
+        "components": 360,
+        "conversations": 1191,
+        "probe_components": 72,
+        "probe_conversations": 240
+      },
+      "repo": "cmri-portfolio-wave1",
+      "protocol": null,
+      "freeze": null,
+      "record": "audits/acquisition-manifest.json",
+      "ids_committed": "partition membership in the source manifest of cmri-portfolio-wave1",
+      "excludes": [],
+      "siblings": [
+        "prism-reserve"
+      ],
+      "evidence": [],
+      "note": "The development partition every PRISM pilot used (fit, tune and probe splits). Not frozen; its numbers are development evidence."
+    },
+    {
+      "id": "prism-reserve",
+      "pool": "prism",
+      "unit": "component",
+      "status": "frozen",
+      "spent_on": "2026-10-18",
+      "size": {
+        "components": 248,
+        "components_with_eligible_rows": 233,
+        "conversations_selected": 775
+      },
+      "repo": "cmri-iscs-2027",
+      "protocol": "PROTOCOL.md",
+      "freeze": "FREEZE.json",
+      "record": "results/prepare.json",
+      "ids_committed": "selected_ids_sha256 in results/prepare.json; membership is the reserve partition of the first-wave source manifest",
+      "excludes": [],
+      "siblings": [
+        "prism-development"
+      ],
+      "evidence": [],
+      "note": "Opened once on 2026-10-18 for the history-pooling confirmation; passed. 15 components had no eligible rows."
+    },
+    {
+      "id": "prism-protocol2",
+      "pool": "prism",
+      "unit": "component",
+      "status": "frozen",
+      "spent_on": "2026-10-20",
+      "size": {
+        "components": 250,
+        "conversations": 843,
+        "participants": 264,
+        "user_targets": 1617,
+        "never_selected_pool": 632
+      },
+      "repo": "cmri-iscs-2027",
+      "protocol": "PROTOCOL2.md",
+      "freeze": "FREEZE2.json",
+      "record": "results/protocol2/prism-draw.json",
+      "ids_committed": "not as a list; the draw is the seeded rule of protocol2.json over the never-selected components and the record holds the expected counts it matched (to do: commit the component id list)",
+      "excludes": [
+        "prism-development",
+        "prism-reserve"
+      ],
+      "siblings": [],
+      "evidence": [
+        {
+          "repo": "cmri-iscs-2027",
+          "path": "PROTOCOL2.md",
+          "contains": "never"
+        }
+      ],
+      "note": "250 of the 632 components never selected by any earlier PRISM draw. 382 never-selected components remain unused."
+    },
+    {
+      "id": "wildchat-temporal-screen",
+      "pool": "wildchat",
+      "unit": "ip",
+      "status": "screen",
+      "spent_on": "2026-10-15",
+      "size": {
+        "ips": 141
+      },
+      "repo": "cmri-temporal-networks",
+      "protocol": null,
+      "freeze": null,
+      "record": "data/wildchat/candidates.csv",
+      "ids_committed": "hashed IPs with activity counts (the temporal pilot's candidate archives)",
+      "excludes": [],
+      "siblings": [],
+      "evidence": [],
+      "note": "Not a sample of a study: the heavy-user archives the temporal pilot inspected. Excluded from every later WildChat draw through cmri-wildchat-replication audits/exclusions.json (141 IP digests and 1,989 conversation hashes)."
+    },
+    {
+      "id": "wildchat-development",
+      "pool": "wildchat",
+      "unit": "ip",
+      "status": "development",
+      "spent_on": "2026-10-18",
+      "size": {
+        "components": 360,
+        "conversations": 621
+      },
+      "repo": "cmri-wildchat-replication",
+      "protocol": "PROTOCOL.md",
+      "freeze": "FREEZE.json",
+      "record": "audits/samples.json",
+      "ids_committed": "IP digests and conversation hashes per component in audits/samples.json",
+      "excludes": [
+        "wildchat-temporal-screen"
+      ],
+      "siblings": [
+        "wildchat-confirmation"
+      ],
+      "evidence": [
+        {
+          "repo": "cmri-wildchat-replication",
+          "path": "audits/exclusions.json",
+          "contains": "ip_sha256"
+        }
+      ],
+      "note": "The replication's development sample, drawn with the confirmation sample in one seeded draw."
+    },
+    {
+      "id": "wildchat-confirmation",
+      "pool": "wildchat",
+      "unit": "ip",
+      "status": "frozen",
+      "spent_on": "2026-10-18",
+      "size": {
+        "components_drawn": 500,
+        "conversations_drawn": 828,
+        "components_retained": 482,
+        "conversations_retained": 801
+      },
+      "repo": "cmri-wildchat-replication",
+      "protocol": "PROTOCOL.md",
+      "freeze": "FREEZE.json",
+      "record": "audits/samples.json",
+      "ids_committed": "IP digests and conversation hashes per component in audits/samples.json",
+      "excludes": [
+        "wildchat-temporal-screen"
+      ],
+      "siblings": [
+        "wildchat-development"
+      ],
+      "evidence": [
+        {
+          "repo": "cmri-wildchat-replication",
+          "path": "audits/exclusions.json",
+          "contains": "ip_sha256"
+        }
+      ],
+      "note": "Opened once on 2026-10-18 for the cross-collection replication; passed in both encoders."
+    },
+    {
+      "id": "wildchat-reach-long",
+      "pool": "wildchat",
+      "unit": "ip",
+      "status": "exploratory",
+      "spent_on": "2026-10-19",
+      "size": {
+        "components_drawn": 400,
+        "conversations_drawn": 578,
+        "conversations_encoded": 557,
+        "ips": 384
+      },
+      "repo": "cmri-history-reach",
+      "protocol": null,
+      "freeze": null,
+      "record": "results/sample-audit.json",
+      "ids_committed": "counts and hashes in the audit; member list in the gitignored cache",
+      "excludes": [
+        "wildchat-temporal-screen",
+        "wildchat-development",
+        "wildchat-confirmation"
+      ],
+      "siblings": [],
+      "evidence": [
+        {
+          "repo": "cmri-history-reach",
+          "path": "config.json",
+          "contains": "\"spent_samples\": [\"development\", \"confirmation\"]"
+        }
+      ],
+      "note": "The exploratory long-conversation sample (20 to 40 messages), unfrozen; drawn outside every earlier sample so that it could not contaminate a later draw."
+    },
+    {
+      "id": "wildchat-protocol2",
+      "pool": "wildchat",
+      "unit": "ip",
+      "status": "frozen",
+      "spent_on": "2026-10-20",
+      "size": {
+        "ips_drawn": 500,
+        "conversations_drawn": 855,
+        "ips_retained": 478,
+        "conversations_retained": 818,
+        "user_targets": 1990
+      },
+      "repo": "cmri-history-reach",
+      "protocol": "../iscs-2027/PROTOCOL2.md",
+      "freeze": "../iscs-2027/FREEZE2.json",
+      "record": "results/protocol2-sample-audit.json",
+      "ids_committed": "counts and hashes in the audit; member list in the gitignored cache",
+      "excludes": [
+        "wildchat-temporal-screen",
+        "wildchat-development",
+        "wildchat-confirmation",
+        "wildchat-reach-long"
+      ],
+      "siblings": [],
+      "evidence": [
+        {
+          "repo": "cmri-history-reach",
+          "path": "config-protocol2.json",
+          "contains": "\"exclude_draws\""
+        }
+      ],
+      "note": "Drawn by cmri-history-reach and scored under cmri-iscs-2027's second protocol on 2026-10-20; passed."
+    },
+    {
+      "id": "wildchat-study1-development",
+      "pool": "wildchat",
+      "unit": "identity",
+      "status": "development",
+      "spent_on": "2026-10-21",
+      "size": {
+        "identities": 150,
+        "eligible_identities": 418,
+        "eligible_ips": 415
+      },
+      "repo": "cmri-person-networks",
+      "protocol": null,
+      "freeze": null,
+      "record": "results/draw.json",
+      "ids_committed": "counts only; the partition cache with IP digests is gitignored",
+      "excludes": [
+        "wildchat-temporal-screen",
+        "wildchat-development",
+        "wildchat-confirmation",
+        "wildchat-reach-long",
+        "wildchat-protocol2"
+      ],
+      "siblings": [
+        "wildchat-study1-confirmation"
+      ],
+      "evidence": [
+        {
+          "repo": "cmri-person-networks",
+          "path": "config.json",
+          "contains": "\"screened_ips\""
+        }
+      ],
+      "note": "Study 1's development partition (identities of 50 to 161 non-templated conversations). Spent as development; readable for exploratory analyses."
+    },
+    {
+      "id": "wildchat-study1-confirmation",
+      "pool": "wildchat",
+      "unit": "identity",
+      "status": "frozen",
+      "spent_on": "2026-10-21",
+      "size": {
+        "identities": 250,
+        "conversations": 19673,
+        "ips": 249
+      },
+      "repo": "cmri-person-networks",
+      "protocol": "PROTOCOL.md",
+      "freeze": "FREEZE.json",
+      "record": "results/draw.json",
+      "ids_committed": "counts only; the partition cache with IP digests is gitignored",
+      "excludes": [
+        "wildchat-temporal-screen",
+        "wildchat-development",
+        "wildchat-confirmation",
+        "wildchat-reach-long",
+        "wildchat-protocol2"
+      ],
+      "siblings": [
+        "wildchat-study1-development"
+      ],
+      "evidence": [
+        {
+          "repo": "cmri-person-networks",
+          "path": "config.json",
+          "contains": "\"screened_ips\""
+        }
+      ],
+      "note": "Opened once on 2026-10-21; all three frozen hypotheses held in both encoders."
+    },
+    {
+      "id": "wildchat-study1b-light",
+      "pool": "wildchat",
+      "unit": "identity",
+      "status": "frozen",
+      "spent_on": "2026-10-22",
+      "size": {
+        "identities": 449,
+        "conversations": 17046,
+        "ips": 438
+      },
+      "repo": "cmri-person-networks",
+      "protocol": "episodes/PROTOCOL.md",
+      "freeze": "episodes/FREEZE.json",
+      "record": "results/draw-light.json",
+      "ids_committed": "counts only; the partition cache with IP digests is gitignored",
+      "excludes": [
+        "wildchat-temporal-screen",
+        "wildchat-development",
+        "wildchat-confirmation",
+        "wildchat-reach-long",
+        "wildchat-protocol2",
+        "wildchat-study1-development",
+        "wildchat-study1-confirmation"
+      ],
+      "siblings": [],
+      "evidence": [
+        {
+          "repo": "cmri-person-networks",
+          "path": "episodes/light.json",
+          "contains": "\"candidate_min_ip_conversations\""
+        },
+        {
+          "repo": "cmri-person-networks",
+          "path": "src/cmri_networks/light.py",
+          "contains": "outside_study1"
+        }
+      ],
+      "note": "Identities of 30 to 49 conversations on IPs disjoint from Study 1's; opened once on 2026-10-22; all three frozen hypotheses held."
+    }
+  ]
+}

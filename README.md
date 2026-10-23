@@ -35,14 +35,14 @@ links the manuscripts and publication evidence.
 | Paper | Venue / status | Path | Repository |
 |-------|----------------|------|------------|
 | Cognitive MRI of AI Conversations (semantic embedding networks) | Complex Networks 2025; Springer chapter published February 2026 | `papers/knowledge-networks/` | [cmri-knowledge-networks](https://github.com/queelius/cmri-knowledge-networks) |
-| Temporal Evolution of Cognitive Knowledge Networks | PLOS Complex Systems (rejected 2026-04-27, seeking venue) | `papers/temporal-networks/` | [cmri-temporal-networks](https://github.com/queelius/cmri-temporal-networks) |
-| From Episodes to Abstractions: Latent Hierarchical Memory | ISCS 2026 accepted; full proceedings forthcoming | `papers/hierarchical-memory/` | [cmri-hierarchical-memory](https://github.com/queelius/cmri-hierarchical-memory) |
+| Temporal Evolution of Cognitive Knowledge Networks | PLOS Complex Systems (rejected 2026-04-27); retired as a standalone paper 2026-10-22, methods merged into the person-networks line | `papers/temporal-networks/` | [cmri-temporal-networks](https://github.com/queelius/cmri-temporal-networks) |
+| From Episodes to Abstractions: Latent Hierarchical Memory | ISCS 2026 accepted; proceedings forthcoming; addendum on the small-world comparison in preparation (2026-10-22) | `papers/hierarchical-memory/` | [cmri-hierarchical-memory](https://github.com/queelius/cmri-hierarchical-memory) |
 | From Episodes to Abstractions, extended journal version | In preparation for the Applied Network Science ISCS 2026 collection (due 2026-12-04) | `papers/hierarchical-memory-extended/` | [cmri-hierarchical-memory-extended](https://github.com/queelius/cmri-hierarchical-memory-extended) |
-| Embedding Dynamics | Partial draft; proposed consolidation with Semantic Dynamics | `papers/embedding-dynamics/` | [cmri-embedding-dynamics](https://github.com/queelius/cmri-embedding-dynamics) |
-| Semantic Dynamics | Draft; proposed consolidation with Embedding Dynamics | `papers/semantic-dynamics/` | [cmri-semantic-dynamics](https://github.com/queelius/cmri-semantic-dynamics) |
-| Multi-Scale Network Organization in AI-Assisted Knowledge Exploration | Unsubmitted synthesis draft | `future-ideas/compsac-2026/paper/` | This umbrella repository |
+| Embedding Dynamics | Partial draft; to be folded into a methods note or dissertation chapter (2026-10-22) | `papers/embedding-dynamics/` | [cmri-embedding-dynamics](https://github.com/queelius/cmri-embedding-dynamics) |
+| Semantic Dynamics | Draft; retired 2026-10-22 after audit | `papers/semantic-dynamics/` | [cmri-semantic-dynamics](https://github.com/queelius/cmri-semantic-dynamics) |
+| Multi-Scale Network Organization in AI-Assisted Knowledge Exploration | Unsubmitted synthesis draft; retired 2026-10-22 (recycles withdrawn claims) | `future-ideas/compsac-2026/paper/` | This umbrella repository |
 | Sanitized ChatGPT Conversation Corpus | Unpublished data-paper draft; release status unresolved | `chatgpt-conversation-corpus/paper/` | [chatgpt-conversation-corpus](https://github.com/queelius/chatgpt-conversation-corpus) |
-| Operational Memex | Outline and working infrastructure | `papers/operational-memex/` | [cmri-operational-memex](https://github.com/queelius/cmri-operational-memex) |
+| Operational Memex | Working infrastructure, not a paper (2026-10-22) | `papers/operational-memex/` | [cmri-operational-memex](https://github.com/queelius/cmri-operational-memex) |
 
 ### Pilot studies (October 2026)
 

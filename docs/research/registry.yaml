@@ -1,5 +1,5 @@
 schema_version: 1
-updated: "2026-10-18"
+updated: "2026-10-23"
 path_base: repository_root
 owner:
   name: Alexander Richard Towell
@@ -85,6 +85,11 @@ records:
   study1b_results: papers/person-networks/episodes/RESULTS.md
   study1b_protocol: papers/person-networks/episodes/PROTOCOL.md
   next_goal: docs/research/NEXT-GOAL.md
+  program_review_2026_10_22: papers/agenda/reviews/2026-10-22-program-review.md
+  program_review_decisions_2026_10_22: papers/agenda/reviews/2026-10-22-decisions.md
+  hierarchical_memory_addendum_results: papers/hierarchical-memory/addendum/results/
+  hierarchical_memory_extension_claims: papers/hierarchical-memory-extended/CLAIMS.md
+  hierarchical_memory_extension_plan: papers/hierarchical-memory-extended/PLAN.md
 
 constraints:
   preferred_contribution: New empirical finding about human-AI conversation
@@ -136,6 +141,8 @@ directions:
     track: iscs-2027
     source_work_ids: [embedding-dynamics, semantic-dynamics]
     evidence: papers/grounded-dependencies/REPORT.md
+    verification: papers/grounded-dependencies/VERIFICATION.md
+    verified_on: "2026-10-23"
     question: Can nonlocal fact or constraint relevance be distinguished from recency and topic continuity, and separately from necessity?
     outcome: Original CGDIALOG human relevance annotations; not intervention-identified necessity or human-AI transfer.
     sample: 564 public training records in 68 history-linkage components; 559 fully mapped and 300 nonlocal-positive records in 66 components.
@@ -454,7 +461,7 @@ experiment_portfolio:
 consolidations:
   - id: dynamics-drafts
     source_work_ids: [embedding-dynamics, semantic-dynamics]
-    status: proposed
+    status: retired_2026_10_22_semantic_dynamics_retired_embedding_dynamics_to_methods_note
     user_position: Merge if complementary interesting material warrants it.
     assessment: Complementary material exists; one manuscript lineage is preferable unless distinct independent contributions emerge.
     historical_plan: papers/embedding-dynamics/paper/OUTLINE.md
@@ -462,6 +469,6 @@ consolidations:
     current_assessment: docs/research/DYNAMICS-CONSOLIDATION.md
     new_manuscript_created: false
     repositories_merged: false
-    sources_retired: false
+    sources_retired: true
     destination_repository: undecided
     central_thesis: undecided

@@ -14,6 +14,7 @@ depends on. This tool derives everything else from it:
     python3 tools/workspace.py remote-check            # GitHub visibility, default branch, archive flag
     python3 tools/workspace.py scan SNAPSHOT           # forbidden files and secrets, tree and history
     python3 tools/workspace.py render [--check]        # regenerate the CLAUDE.md tables
+    python3 tools/workspace.py spent [--verify]        # the ledger of spent samples; --verify checks the exclusion chain
 
 Standard library only; git and gh do the work. Secret scans report the pattern name, path and
 blob id of a hit, never the matched text.
@@ -35,6 +36,8 @@ GROUPS = ('umbrella', 'corpus', 'planning', 'paper', 'pilot', 'study')
 DATA = ('none', 'public', 'private-archive')
 VISIBILITY = ('public', 'private')
 COLUMNS = ('path', 'repo', 'repo_branch', 'note')
+LEDGER = ROOT / 'spent.json'
+SAMPLE_STATUS = ('development', 'frozen', 'exploratory', 'screen')
 
 
 class ManifestError(ValueError):
@@ -456,6 +459,111 @@ def cmd_scan(manifest: Manifest, root: Path, snapshot: str, out=sys.stdout) -> i
     return 1 if total else 0
 
 
+# ------------------------------------------------------------------ spent samples
+
+
+@dataclass(frozen=True)
+class Sample:
+    id: str
+    pool: str
+    status: str
+    spent_on: str
+    repo: str
+    record: str
+    excludes: tuple[str, ...]
+    siblings: tuple[str, ...]
+    evidence: tuple[dict, ...]
+    protocol: str | None = None
+    freeze: str | None = None
+
+
+def load_ledger(path: Path = LEDGER) -> list[Sample]:
+    """Parse and validate `spent.json`; every structural rule of the ledger lives here."""
+    raw = json.loads(Path(path).read_text(encoding='utf-8'))
+    _require(raw.get('version') == 1, 'ledger version must be 1')
+    _require(isinstance(raw.get('samples'), list) and raw['samples'], 'ledger lacks samples')
+    pools = raw.get('pools', {})
+    samples = []
+    for entry in raw['samples']:
+        for key in ('id', 'pool', 'status', 'spent_on', 'repo', 'record'):
+            _require(isinstance(entry.get(key), str) and entry[key], f'sample entry lacks {key}: {entry}')
+        _require(entry['status'] in SAMPLE_STATUS, f"unknown sample status {entry['status']!r}")
+        _require(entry['pool'] in pools, f"sample {entry['id']} names an undeclared pool {entry['pool']!r}")
+        _require(re.fullmatch(r'\d{4}-\d{2}-\d{2}', entry['spent_on']) is not None,
+                 f"sample {entry['id']}: spent_on must be an ISO date")
+        for key in ('excludes', 'siblings', 'evidence'):
+            _require(isinstance(entry.get(key, []), list), f"sample {entry['id']}: {key} must be a list")
+        for item in entry.get('evidence', []):
+            _require(all(isinstance(item.get(k), str) and item[k] for k in ('repo', 'path', 'contains')),
+                     f"sample {entry['id']}: evidence needs repo, path and contains")
+        samples.append(Sample(entry['id'], entry['pool'], entry['status'], entry['spent_on'], entry['repo'],
+                              entry['record'], tuple(entry.get('excludes', [])), tuple(entry.get('siblings', [])),
+                              tuple(entry.get('evidence', [])), entry.get('protocol'), entry.get('freeze')))
+    ids = [s.id for s in samples]
+    _require(len(ids) == len(set(ids)), 'duplicate sample ids')
+    for sample in samples:
+        for other in sample.excludes + sample.siblings:
+            _require(other in ids, f'sample {sample.id} names unknown sample {other}')
+        for other in sample.siblings:
+            _require(sample.id in next(s for s in samples if s.id == other).siblings,
+                     f'siblings must be mutual: {sample.id} and {other}')
+    return samples
+
+
+def ledger_problems(samples: list[Sample], manifest: Manifest, root: Path) -> list[str]:
+    """Every way the ledger can fail: an unknown repository, a missing record or protocol file, missing
+    evidence text, or a draw that does not name every earlier draw from the same pool."""
+    problems = []
+    by_pool: dict[str, list[Sample]] = {}
+    for sample in samples:
+        by_pool.setdefault(sample.pool, []).append(sample)
+    for pool, entries in by_pool.items():
+        ordered = sorted(entries, key=lambda s: s.spent_on)
+        for index, sample in enumerate(ordered):
+            for earlier in ordered[:index]:
+                if earlier.spent_on == sample.spent_on and earlier.id in sample.siblings:
+                    continue
+                if earlier.id not in sample.excludes and earlier.id not in sample.siblings:
+                    problems.append(f'{sample.id}: does not exclude the earlier {pool} sample {earlier.id}')
+    for sample in samples:
+        try:
+            where = root / manifest.repo(sample.repo).path
+        except ManifestError:
+            problems.append(f'{sample.id}: unknown repository {sample.repo}')
+            continue
+        if not is_checkout(where):
+            continue  # a missing checkout is reported by `status`, not here
+        for label, rel in (('record', sample.record), ('protocol', sample.protocol), ('freeze', sample.freeze)):
+            if rel and not (where / rel).is_file():
+                problems.append(f'{sample.id}: {label} {rel} is missing in {sample.repo}')
+        for item in sample.evidence:
+            try:
+                target = root / manifest.repo(item['repo']).path / item['path']
+            except ManifestError:
+                problems.append(f"{sample.id}: evidence names unknown repository {item['repo']}")
+                continue
+            if not target.is_file():
+                problems.append(f"{sample.id}: evidence file {item['path']} is missing in {item['repo']}")
+            elif item['contains'] not in target.read_text(encoding='utf-8', errors='replace'):
+                problems.append(f"{sample.id}: evidence file {item['path']} in {item['repo']} lacks {item['contains']!r}")
+    return problems
+
+
+def cmd_spent(manifest: Manifest, root: Path, verify: bool = False, path: Path = LEDGER, out=sys.stdout) -> int:
+    """List the ledger of spent samples; with --verify, check the exclusion chain and the evidence files."""
+    samples = load_ledger(path)
+    for sample in sorted(samples, key=lambda s: (s.pool, s.spent_on, s.id)):
+        gate = sample.protocol or '-'
+        print(f'{sample.pool:9s} {sample.spent_on} {sample.status:11s} {sample.id:30s} {sample.repo:28s} {gate}', file=out)
+    if not verify:
+        return 0
+    problems = ledger_problems(samples, manifest, root)
+    for problem in problems:
+        print(f'problem: {problem}', file=out)
+    print(f'{len(samples)} samples, {len(problems)} problems', file=out)
+    return 1 if problems else 0
+
+
 def render_view(manifest: Manifest, view: View) -> str:
     worktrees = {}
     for wt in manifest.worktrees:
@@ -514,6 +622,7 @@ def main(argv: list[str] | None = None, root: Path = ROOT, manifest_path: Path |
     sub.add_parser('remote-check')
     p = sub.add_parser('scan'); p.add_argument('snapshot')
     p = sub.add_parser('render'); p.add_argument('--check', action='store_true')
+    p = sub.add_parser('spent'); p.add_argument('--verify', action='store_true')
     args = parser.parse_args(argv)
     manifest_path = manifest_path or root / 'workspace.json'
     try:
@@ -534,6 +643,8 @@ def main(argv: list[str] | None = None, root: Path = ROOT, manifest_path: Path |
             return cmd_remote_check(manifest)
         if args.command == 'scan':
             return cmd_scan(manifest, root, args.snapshot)
+        if args.command == 'spent':
+            return cmd_spent(manifest, root, args.verify, root / 'spent.json')
         return cmd_render(manifest, root, args.check)
     except ManifestError as error:
         print(f'workspace.json: {error}', file=sys.stderr)

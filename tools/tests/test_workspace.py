@@ -413,3 +413,112 @@ def test_snapshot_commands_report_missing_checkouts(workspace):
     assert code == 1 and 'run clone first' in out
     with pytest.raises(ws.ManifestError, match='unknown repository'):
         ws.load(root / 'workspace.json').repo('delta')
+
+
+# ----------------------------------------------------------------------------- spent samples
+
+
+def ledger(samples):
+    return {'version': 1, 'pools': {'p': 'pool p'}, 'samples': samples}
+
+
+def sample(id_, spent_on, repo='alpha', record='README.md', excludes=(), siblings=(), evidence=(), **extra):
+    return {'id': id_, 'pool': 'p', 'status': extra.pop('status', 'frozen'), 'spent_on': spent_on, 'repo': repo,
+            'record': record, 'excludes': list(excludes), 'siblings': list(siblings), 'evidence': list(evidence), **extra}
+
+
+def write_ledger(root, samples):
+    path = root / 'spent.json'
+    path.write_text(json.dumps(ledger(samples)) + '\n')
+    return path
+
+
+def spent(root, *samples, verify=True):
+    out = io.StringIO()
+    code = ws.cmd_spent(ws.load(root / 'workspace.json'), root, verify, write_ledger(root, list(samples)), out=out)
+    return code, out.getvalue()
+
+
+def test_the_real_ledger_is_valid_and_its_chain_is_complete():
+    samples = ws.load_ledger(ws.LEDGER)
+    assert len(samples) >= 11
+    problems = ws.ledger_problems(samples, ws.load(ws.MANIFEST), ws.ROOT)
+    assert problems == []
+
+
+@pytest.mark.parametrize('mutate, message', [
+    (lambda s: s[0].update(pool='q'), 'undeclared pool'),
+    (lambda s: s[0].update(status='spent'), 'unknown sample status'),
+    (lambda s: s[0].update(spent_on='yesterday'), 'ISO date'),
+    (lambda s: s[0].update(excludes=['nobody']), 'unknown sample'),
+    (lambda s: s[1].update(siblings=['a']), 'siblings must be mutual'),
+    (lambda s: s.append(dict(s[0])), 'duplicate sample ids'),
+    (lambda s: s[0].update(evidence=[{'repo': 'alpha'}]), 'evidence needs'),
+])
+def test_ledger_rules(tmp_path, mutate, message):
+    samples = [sample('a', '2026-10-01'), sample('b', '2026-10-02', excludes=['a'])]
+    mutate(samples)
+    path = tmp_path / 'spent.json'
+    path.write_text(json.dumps(ledger(samples)))
+    with pytest.raises(ws.ManifestError, match=message):
+        ws.load_ledger(path)
+
+
+def test_spent_verify_reports_a_draw_that_misses_an_earlier_one(workspace):
+    root, _, _ = workspace
+    call(root, 'clone')
+    code, text = spent(root, sample('a', '2026-10-01'), sample('b', '2026-10-02'))
+    assert code == 1 and 'b: does not exclude the earlier p sample a' in text
+    code, text = spent(root, sample('a', '2026-10-01'), sample('b', '2026-10-02', excludes=['a']))
+    assert code == 0 and '2 samples, 0 problems' in text
+
+
+def test_spent_verify_accepts_same_day_siblings_and_still_needs_earlier_draws(workspace):
+    root, _, _ = workspace
+    call(root, 'clone')
+    first = sample('screen', '2026-09-30', status='screen')
+    dev = sample('dev', '2026-10-01', status='development', siblings=['conf'], excludes=['screen'])
+    conf = sample('conf', '2026-10-01', siblings=['dev'], excludes=['screen'])
+    code, text = spent(root, first, dev, conf)
+    assert code == 0, text
+    conf['excludes'] = []
+    code, text = spent(root, first, dev, conf)
+    assert code == 1 and 'conf: does not exclude the earlier p sample screen' in text
+
+
+def test_spent_verify_checks_record_protocol_and_evidence_files(workspace):
+    root, _, _ = workspace
+    call(root, 'clone')
+    commit(root / 'papers' / 'alpha', {'config.json': '{"spent_samples": ["a"]}\n', 'PROTOCOL.md': 'rules\n'})
+    good = sample('b', '2026-10-02', excludes=['a'], protocol='PROTOCOL.md',
+                  evidence=[{'repo': 'alpha', 'path': 'config.json', 'contains': '"spent_samples": ["a"]'}])
+    code, text = spent(root, sample('a', '2026-10-01'), good)
+    assert code == 0, text
+    bad = dict(good, record='results/draw.json', freeze='FREEZE.json',
+               evidence=[{'repo': 'alpha', 'path': 'config.json', 'contains': '"screened"'},
+                         {'repo': 'alpha', 'path': 'missing.json', 'contains': 'x'},
+                         {'repo': 'omega', 'path': 'config.json', 'contains': 'x'}])
+    code, text = spent(root, sample('a', '2026-10-01'), bad)
+    assert code == 1
+    for expected in ('record results/draw.json is missing', 'freeze FREEZE.json is missing',
+                     "lacks '\"screened\"'", 'missing.json is missing', 'unknown repository omega'):
+        assert expected in text, (expected, text)
+    code, text = spent(root, sample('a', '2026-10-01', repo='nowhere'))
+    assert code == 1 and 'unknown repository nowhere' in text
+
+
+def test_spent_lists_without_verifying_and_skips_absent_checkouts(workspace):
+    root, _, _ = workspace
+    code, text = spent(root, sample('a', '2026-10-01', record='nothing.json'), verify=False)
+    assert code == 0 and 'a' in text and 'problems' not in text
+    code, text = spent(root, sample('a', '2026-10-01', record='nothing.json'))
+    assert code == 0 and '0 problems' in text   # alpha is not cloned, so its files are not checked
+
+
+def test_main_runs_spent(workspace):
+    root, _, _ = workspace
+    write_ledger(root, [sample('a', '2026-10-01')])
+    assert ws.main(['spent'], root=root) == 0
+    assert ws.main(['spent', '--verify'], root=root) == 0
+    write_ledger(root, [sample('a', '2026-10-01'), sample('b', '2026-10-02')])
+    assert ws.main(['spent', '--verify'], root=root) == 1
