@@ -1,0 +1,13 @@
+# GitHub Pages: the site is this repository's README only; program documents are linked on GitHub.
+title: Cognitive MRI of AI Conversations
+description: What network analysis of conversations with AI assistants can and cannot reveal about how people explore knowledge.
+theme: jekyll-theme-minimal
+exclude:
+  - CLAUDE.md
+  - docs
+  - future-ideas
+  - tools
+  - workspace.json
+  - spent.json
+  - CITATION.cff
+  - .zenodo.json

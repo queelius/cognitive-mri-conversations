@@ -1,104 +1,81 @@
-# Cognitive MRI of AI Conversations: Research Compendium
+# Cognitive MRI of AI Conversations
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18778376.svg)](https://doi.org/10.5281/zenodo.18778376)
 
-Applying complex network analysis to ChatGPT conversation archives to reveal knowledge
-organization, community structure, and temporal evolution patterns.
-
-**Authors:**
 [Alexander Towell](https://orcid.org/0000-0001-6443-9897) and
-[John Matta](https://orcid.org/0000-0002-7666-1409),
-Southern Illinois University Edwardsville
+[John Matta](https://orcid.org/0000-0002-7666-1409), Southern Illinois University Edwardsville
 
-## Overview
+We study what network analysis of people's conversations with AI assistants can and cannot
+reveal about how they explore knowledge. The program began with one archive, Alex's 1,908
+ChatGPT conversations (December 2022 to April 2025), turned into semantic similarity networks.
+It now tests its claims on public collections with many people (WildChat, PRISM), because one
+archive is a case, not a population.
 
-This is the umbrella for a research program that transforms sequential AI conversation logs
-into semantic similarity networks, revealing latent cognitive structure in AI-assisted
-knowledge exploration. The program analyzes 1,908 ChatGPT conversations spanning December
-2022 to April 2025. This repository is a landing page: it indexes the individual paper
-repositories and points to the shared data and pipeline.
+This repository is the landing page. Each paper and study is its own repository; this page says
+where each one stands.
 
-For current priorities, existing work and future options, start with the
-[research plans and metadata](docs/research/README.md). The immediate priority is an
-empirical ISCS 2027 paper, with semantic/embedding dynamics retained as a second track.
-The [dynamics consolidation assessment](docs/research/DYNAMICS-CONSOLIDATION.md) compares
-the two related drafts; their manuscripts and repositories remain separate.
+## Where things stand (October 2026)
 
-## Papers
+| Work | Status | Repository |
+|---|---|---|
+| Cognitive MRI of AI Conversations: semantic embedding networks | **Published**, Complex Networks 2025 (Springer, February 2026) | [cmri-knowledge-networks](https://github.com/queelius/cmri-knowledge-networks) |
+| From Episodes to Abstractions: Latent Hierarchical Memory in 1,908 AI Conversations | **In press**, ISCS 2026 (Springer proceedings). An addendum corrects its small-world comparison | [cmri-hierarchical-memory](https://github.com/queelius/cmri-hierarchical-memory) |
+| From Episodes to Abstractions, extended journal version | **In preparation** for the Applied Network Science ISCS 2026 collection, due December 4, 2026 | [cmri-hierarchical-memory-extended](https://github.com/queelius/cmri-hierarchical-memory-extended) |
+| How personal is a knowledge network? | **In preparation**, NetSci 2027 abstract, due December 1, 2026 | [cmri-person-networks](https://github.com/queelius/cmri-person-networks) |
+| How far back does a person's next message reach? | **In preparation**, ISCS 2027 full paper, due March 1, 2027 | [cmri-iscs-2027](https://github.com/queelius/cmri-iscs-2027) |
+| Temporal Evolution of Cognitive Knowledge Networks | **Retired** after rejection at PLOS Complex Systems (April 2026); its surviving methods moved into the person-networks study | [cmri-temporal-networks](https://github.com/queelius/cmri-temporal-networks) |
+| Semantic dynamics and embedding dynamics drafts | **Retired** after an internal audit (October 2026); parts may become a methods note | [cmri-semantic-dynamics](https://github.com/queelius/cmri-semantic-dynamics), [cmri-embedding-dynamics](https://github.com/queelius/cmri-embedding-dynamics) |
+| Sanitized ChatGPT conversation corpus | **Not yet released**; sanitization in progress | [chatgpt-conversation-corpus](https://github.com/queelius/chatgpt-conversation-corpus) |
 
-Most paper projects are independent Git repositories under `papers/` (not tracked by this
-umbrella). The synthesis draft and data-paper manuscript live in the additional locations
-listed below. Clone child repositories individually. Statuses below reflect the October 16–17,
-2026 review; the [full catalog](future-ideas/iscs-2027/research-deep-dive/PAPER-CATALOG-AND-OPTIONS.md)
-links the manuscripts and publication evidence.
+Most repositories other than this one are private while the work is unpublished.
 
-| Paper | Venue / status | Path | Repository |
-|-------|----------------|------|------------|
-| Cognitive MRI of AI Conversations (semantic embedding networks) | Complex Networks 2025; Springer chapter published February 2026 | `papers/knowledge-networks/` | [cmri-knowledge-networks](https://github.com/queelius/cmri-knowledge-networks) |
-| Temporal Evolution of Cognitive Knowledge Networks | PLOS Complex Systems (rejected 2026-04-27); retired as a standalone paper 2026-10-22, methods merged into the person-networks line | `papers/temporal-networks/` | [cmri-temporal-networks](https://github.com/queelius/cmri-temporal-networks) |
-| From Episodes to Abstractions: Latent Hierarchical Memory | ISCS 2026 accepted; proceedings forthcoming; addendum on the small-world comparison in preparation (2026-10-22) | `papers/hierarchical-memory/` | [cmri-hierarchical-memory](https://github.com/queelius/cmri-hierarchical-memory) |
-| From Episodes to Abstractions, extended journal version | In preparation for the Applied Network Science ISCS 2026 collection (due 2026-12-04) | `papers/hierarchical-memory-extended/` | [cmri-hierarchical-memory-extended](https://github.com/queelius/cmri-hierarchical-memory-extended) |
-| Embedding Dynamics | Partial draft; to be folded into a methods note or dissertation chapter (2026-10-22) | `papers/embedding-dynamics/` | [cmri-embedding-dynamics](https://github.com/queelius/cmri-embedding-dynamics) |
-| Semantic Dynamics | Draft; retired 2026-10-22 after audit | `papers/semantic-dynamics/` | [cmri-semantic-dynamics](https://github.com/queelius/cmri-semantic-dynamics) |
-| Multi-Scale Network Organization in AI-Assisted Knowledge Exploration | Unsubmitted synthesis draft; retired 2026-10-22 (recycles withdrawn claims) | `future-ideas/compsac-2026/paper/` | This umbrella repository |
-| Sanitized ChatGPT Conversation Corpus | Unpublished data-paper draft; release status unresolved | `chatgpt-conversation-corpus/paper/` | [chatgpt-conversation-corpus](https://github.com/queelius/chatgpt-conversation-corpus) |
-| Operational Memex | Working infrastructure, not a paper (2026-10-22) | `papers/operational-memex/` | [cmri-operational-memex](https://github.com/queelius/cmri-operational-memex) |
+## What we have found so far
 
-### Pilot studies (October 2026)
+Results confirmed by frozen, single-shot tests on samples no earlier analysis had touched:
 
-Nine bounded pilots, mostly on public multi-participant data, each in its own private
-repository under `papers/` with a `REPORT.md` and claim ledger:
-[cmri-portfolio-wave1](https://github.com/queelius/cmri-portfolio-wave1),
-[cmri-history-falsification](https://github.com/queelius/cmri-history-falsification),
-[cmri-history-specificity](https://github.com/queelius/cmri-history-specificity),
-[cmri-grounded-dependencies](https://github.com/queelius/cmri-grounded-dependencies),
-[cmri-integration-measurement](https://github.com/queelius/cmri-integration-measurement),
-[cmri-semantic-measurement](https://github.com/queelius/cmri-semantic-measurement),
-[cmri-selective-forgetting](https://github.com/queelius/cmri-selective-forgetting), plus the
-temporal calibration on the `pilot/iscs-2027-calibration` branch of
-[cmri-temporal-networks](https://github.com/queelius/cmri-temporal-networks). The
-[decision history](docs/research/DECISIONS.md) records what each one established.
+- **A person's recent history predicts their next message better than their last two
+  messages do**, on held-out PRISM data and again on English WildChat-4.8M, in both text
+  encoders we use. A second protocol located the gain: it is carried by the person's own
+  preceding turn, not by deep history.
+- **A person's conversation network is more
+  fragmented, more clustered and more bunched in time than a matched pool of strangers'
+  conversations** (250 held-out WildChat users), but strangers' conversations on the same topics
+  reproduce about 90% of the difference. The bunching in time comes mostly from sittings and
+  topic periods (449 further users).
 
-Confirmatory studies followed the pilots, each a frozen single-shot run on samples no
-analysis had touched. The primary contrast (uniform history pooling against the last two
-messages, next user message) passed in both encoders on the held-out PRISM reserve
-([cmri-iscs-2027](https://github.com/queelius/cmri-iscs-2027)) and on English WildChat-4.8M
-([cmri-wildchat-replication](https://github.com/queelius/cmri-wildchat-replication)). A second
-protocol then confirmed what that gain is, the person's own preceding turn, on fresh PRISM and
-WildChat samples, the latter drawn by
-[cmri-history-reach](https://github.com/queelius/cmri-history-reach). No held-out sample may be
-reused for further confirmation.
+Corrections to our own earlier work, carried by the addendum and the journal extension:
 
-The published conference paper and the shared analysis pipeline (`code/` and `data/`) live
-in the `knowledge-networks` repository; the temporal-evolution journal extension is
-`temporal-networks`.
+- The hierarchy paper's comparison with the small-world topology of human semantic memory does
+  not hold: graphs rebuilt to keep every episode's and every concept's degree already reach most
+  of the observed small-world coefficient. The comparison is withdrawn.
+- Its vocabulary-growth exponent stands, but the sentence calling it robust to ordering does not.
 
-## How this repository is organized
+## Program documents
 
-- `papers/`: the independent paper, pilot and study repositories (gitignored here).
-  `workspace.json` lists every one with its path, branch, visibility and data class, and
-  `python3 tools/workspace.py clone` clones them into place (`status`, `verify` and the
-  other subcommands are described in `tools/workspace.py`).
-- `chatgpt-conversation-corpus/`: the sanitized, publishable conversation dataset, its own git
-  repository (gitignored here). Derived from `dev/`; **pre-release, sanitization in progress.**
-- `dev/`: shared working corpus (gitignored; the raw conversation JSON the pipelines read).
-- `future-ideas/`: early-stage directions not yet promoted to their own repos.
-- `docs/`: program-level design and planning documents.
+- [Research index](https://github.com/queelius/cognitive-mri-conversations/blob/master/docs/research/README.md): current priorities, existing work and what the pilots established.
+- [Decision history](https://github.com/queelius/cognitive-mri-conversations/blob/master/docs/research/DECISIONS.md): what was decided, when, and on what evidence.
+- [Program design](https://github.com/queelius/cognitive-mri-conversations/blob/master/docs/superpowers/specs/2026-10-23-cmri-research-program-design.md): how the program keeps track of its papers, studies, questions and datasets.
+
+## How the work is organized
+
+Each paper and study keeps its own design, dated amendments, claims ledger and generated
+numbers. Every design is reviewed by an independent model before results are read, and every
+manuscript number is generated from committed result files. `workspace.json` lists every
+repository; `python3 tools/workspace.py clone` sets up a full working copy for collaborators
+with access.
 
 ## Shared data and pipeline
 
-- Conversation corpus (dataset): [chatgpt-conversation-corpus](https://github.com/queelius/chatgpt-conversation-corpus), co-located in this cluster at `chatgpt-conversation-corpus/`. The sanitized, publishable version of the corpus (pre-release; sanitization in progress).
-- Analysis pipeline of record: [chatgpt-complex-net](https://github.com/queelius/chatgpt-complex-net) (DOI: [10.5281/zenodo.15314235](https://doi.org/10.5281/zenodo.15314235))
-
-Child code reads the raw corpus from `$CMRI_CORPUS_DIR`, which defaults to this repo's `dev/`.
+- Analysis pipeline of record: [chatgpt-complex-net](https://github.com/queelius/chatgpt-complex-net)
+  (DOI [10.5281/zenodo.15314235](https://doi.org/10.5281/zenodo.15314235)).
+- Conversation corpus: [chatgpt-conversation-corpus](https://github.com/queelius/chatgpt-conversation-corpus)
+  (pre-release).
 
 ## Citation
 
-Cite the specific paper you use (each paper repository has its own `CITATION.cff`). To cite
-the program as a whole, use the compendium DOI:
-[10.5281/zenodo.18778376](https://doi.org/10.5281/zenodo.18778376). See
-[CITATION.cff](CITATION.cff) for machine-readable metadata.
+Cite the specific paper you use; each repository has its own `CITATION.cff`. For the program as a
+whole, use the compendium DOI [10.5281/zenodo.18778376](https://doi.org/10.5281/zenodo.18778376).
 
 ## License
 
-[MIT](LICENSE)
+[MIT](https://github.com/queelius/cognitive-mri-conversations/blob/master/LICENSE)
