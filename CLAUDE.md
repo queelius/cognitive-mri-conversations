@@ -35,14 +35,40 @@ that pin the commits a paper depends on. `tools/workspace.py` derives everything
 manage snapshots, `remote-check` compares GitHub settings, `scan` checks a snapshot for
 forbidden files and secrets before publication, and `render` regenerates the tables below.
 `spent.json` is the ledger of every sample drawn from a shared pool (PRISM, WildChat); `spent --verify`
-checks that each later draw's committed configuration excludes every earlier one.
+checks that each later draw's committed configuration excludes every earlier one. Each sample's
+`dataset` references a dataset id, validated against the manifest's datasets source. Unit and size
+labels are retained from the draw record; counts are never combined across draws or units.
 `board [--as-of YYYY-MM-DD] [--write]` reads the manifest's `sources`: the generated
-`pubs.jsonl`, agenda `studies.json`, and agenda `questions.json`. It keeps publication status,
-study state, and repository role separate. Missing source files are reported; study/question
-cross-references remain unverified until both records are available. Optional publication deadlines
+`pubs.jsonl`, agenda `studies.json`, `questions.json` and `datasets.json`, plus `spent.json` for
+dataset draw counts. It keeps publication status, study state, and repository role separate.
+A manuscript locator inside a repository (for example a paper subdirectory) is attributed to the
+deepest manifest repository containing it; the umbrella matches only its own root.
+Missing source files are reported; cross-references remain unverified until their records are
+available. Missing exposure records show unverified counts, not zero. Optional publication deadlines
 use ISO dates for both `date` and `verified`, with a `source` string. Deadline attention covers
 today through 45 days ahead; follow-up attention includes overdue checks and the next 14 days.
 `--write` saves the private board to gitignored `STATUS.local.md`.
+
+`questions [--write | --check]` prints every question's state, known findings, remaining work,
+study states and candidate datasets with known exposure. `questions --write` regenerates
+`questions-ledger.md` beside the configured questions source; `--check` returns non-zero when
+that file is missing, stale or its required sources are unavailable. Neither mode needs the
+publication index. Writes refuse symlinks, paths outside the workspace and missing required
+sources. Edit the JSON sources, never the generated ledger. The questions source also owns
+the structured `lessons` entries, whose text is preserved verbatim in the ledger.
+
+Dataset ids (`D-...`) are identifiers; `location` and `documentation` are locators, with relative
+paths resolved conceptually from `datasets.json` (the tool does not open them). Dataset records
+require `name`, `provenance`, `version`, `access`, `licence`, `location`, `documentation`,
+`sampling_unit` and `catalog_sections`. JSON `null` explicitly means unknown for provenance,
+version, licence, location, documentation and sampling unit; missing fields are errors.
+Access is one of `public`, `gated`, `controlled`, `private-archive` or `unavailable`.
+Sampling units currently supported are `component`, `ip`, `identity` and `conversation`.
+`catalog_sections` holds stable HTML anchor ids in `public-datasets.md`, whose narrative remains
+authoritative for context and constraints. Questions own candidate `datasets` references;
+these planning links do not attest to eligibility. Samples own the dataset links used to derive
+exposure, so datasets store no duplicate draw lists. Each exposure report says
+"remaining eligibility unverified"; zero draws in the ledger does not establish unused data.
 
 `by-stage` builds gitignored relative links to repository directories and study subpaths. Its
 `.generated-by-workspace` marker designates the whole subtree as disposable generator-owned links.

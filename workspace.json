@@ -320,6 +320,7 @@
   "sources": {
     "pubs": "../pubs/pubs.jsonl",
     "studies": "papers/agenda/studies.json",
-    "questions": "papers/agenda/questions.json"
+    "questions": "papers/agenda/questions.json",
+    "datasets": "papers/agenda/datasets.json"
   }
 }

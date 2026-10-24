@@ -34,7 +34,8 @@
         "prism-reserve"
       ],
       "evidence": [],
-      "note": "The development partition every PRISM pilot used (fit, tune and probe splits). Not frozen; its numbers are development evidence."
+      "note": "The development partition every PRISM pilot used (fit, tune and probe splits). Not frozen; its numbers are development evidence.",
+      "dataset": "D-prism"
     },
     {
       "id": "prism-reserve",
@@ -57,7 +58,8 @@
         "prism-development"
       ],
       "evidence": [],
-      "note": "Opened once on 2026-10-18 for the history-pooling confirmation; passed. 15 components had no eligible rows."
+      "note": "Opened once on 2026-10-18 for the history-pooling confirmation; passed. 15 components had no eligible rows.",
+      "dataset": "D-prism"
     },
     {
       "id": "prism-protocol2",
@@ -89,7 +91,8 @@
           "contains": "never"
         }
       ],
-      "note": "250 of the 632 components never selected by any earlier PRISM draw. 382 never-selected components remain unused."
+      "note": "250 of the 632 components never selected by any earlier PRISM draw. 382 never-selected components remain unused.",
+      "dataset": "D-prism"
     },
     {
       "id": "wildchat-temporal-screen",
@@ -108,7 +111,8 @@
       "excludes": [],
       "siblings": [],
       "evidence": [],
-      "note": "Not a sample of a study: the heavy-user archives the temporal pilot inspected. Excluded from every later WildChat draw through cmri-wildchat-replication audits/exclusions.json (141 IP digests and 1,989 conversation hashes)."
+      "note": "Not a sample of a study: the heavy-user archives the temporal pilot inspected. Excluded from every later WildChat draw through cmri-wildchat-replication audits/exclusions.json (141 IP digests and 1,989 conversation hashes).",
+      "dataset": "D-wildchat-4.8m"
     },
     {
       "id": "wildchat-development",
@@ -138,7 +142,8 @@
           "contains": "ip_sha256"
         }
       ],
-      "note": "The replication's development sample, drawn with the confirmation sample in one seeded draw."
+      "note": "The replication's development sample, drawn with the confirmation sample in one seeded draw.",
+      "dataset": "D-wildchat-4.8m"
     },
     {
       "id": "wildchat-confirmation",
@@ -170,7 +175,8 @@
           "contains": "ip_sha256"
         }
       ],
-      "note": "Opened once on 2026-10-18 for the cross-collection replication; passed in both encoders."
+      "note": "Opened once on 2026-10-18 for the cross-collection replication; passed in both encoders.",
+      "dataset": "D-wildchat-4.8m"
     },
     {
       "id": "wildchat-reach-long",
@@ -202,7 +208,8 @@
           "contains": "\"spent_samples\": [\"development\", \"confirmation\"]"
         }
       ],
-      "note": "The exploratory long-conversation sample (20 to 40 messages), unfrozen; drawn outside every earlier sample so that it could not contaminate a later draw."
+      "note": "The exploratory long-conversation sample (20 to 40 messages), unfrozen; drawn outside every earlier sample so that it could not contaminate a later draw.",
+      "dataset": "D-wildchat-4.8m"
     },
     {
       "id": "wildchat-protocol2",
@@ -236,7 +243,8 @@
           "contains": "\"exclude_draws\""
         }
       ],
-      "note": "Drawn by cmri-history-reach and scored under cmri-iscs-2027's second protocol on 2026-10-20; passed."
+      "note": "Drawn by cmri-history-reach and scored under cmri-iscs-2027's second protocol on 2026-10-20; passed.",
+      "dataset": "D-wildchat-4.8m"
     },
     {
       "id": "wildchat-study1-development",
@@ -271,7 +279,8 @@
           "contains": "\"screened_ips\""
         }
       ],
-      "note": "Study 1's development partition (identities of 50 to 161 non-templated conversations). Spent as development; readable for exploratory analyses."
+      "note": "Study 1's development partition (identities of 50 to 161 non-templated conversations). Spent as development; readable for exploratory analyses.",
+      "dataset": "D-wildchat-4.8m"
     },
     {
       "id": "wildchat-study1-confirmation",
@@ -306,7 +315,8 @@
           "contains": "\"screened_ips\""
         }
       ],
-      "note": "Opened once on 2026-10-21; all three frozen hypotheses held in both encoders."
+      "note": "Opened once on 2026-10-21; all three frozen hypotheses held in both encoders.",
+      "dataset": "D-wildchat-4.8m"
     },
     {
       "id": "wildchat-study1b-light",
@@ -346,7 +356,8 @@
           "contains": "outside_study1"
         }
       ],
-      "note": "Identities of 30 to 49 conversations on IPs disjoint from Study 1's; opened once on 2026-10-22; all three frozen hypotheses held."
+      "note": "Identities of 30 to 49 conversations on IPs disjoint from Study 1's; opened once on 2026-10-22; all three frozen hypotheses held.",
+      "dataset": "D-wildchat-4.8m"
     }
   ]
 }

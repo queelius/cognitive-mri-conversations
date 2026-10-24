@@ -59,7 +59,7 @@ def make_remote(remotes: Path, name: str, branches=('main',)):
 def base_manifest(remotes: Path) -> dict:
     return {
         'sources': {'pubs': '../pubs/pubs.jsonl', 'studies': 'papers/agenda/studies.json',
-                    'questions': 'papers/agenda/questions.json'},
+                    'questions': 'papers/agenda/questions.json', 'datasets': 'records/datasets.json'},
         'version': 1, 'owner': 'tester', 'remote': str(remotes) + '/{name}.git',
         'repos': [
             {'name': 'umbrella', 'path': '.', 'branch': 'main', 'visibility': 'public', 'data': 'none',
@@ -96,7 +96,9 @@ def workspace(tmp_path):
     raw = base_manifest(remotes)
     (root / 'workspace.json').write_text(json.dumps(raw, indent=2) + '\n')
     (root / '.gitignore').write_text('papers/\n')
+    dataset_path = write_datasets(root, raw)
     commit(root, {'.gitignore': 'papers/\n', 'CLAUDE.md': (root / 'CLAUDE.md').read_text(),
+                  raw['sources']['datasets']: dataset_path.read_text(),
                   'workspace.json': (root / 'workspace.json').read_text()}, 'umbrella')
     return root, remotes, raw
 
@@ -426,6 +428,7 @@ def ledger(samples):
 
 def sample(id_, spent_on, repo='alpha', record='README.md', excludes=(), siblings=(), evidence=(), **extra):
     return {'id': id_, 'pool': 'p', 'status': extra.pop('status', 'frozen'), 'spent_on': spent_on, 'repo': repo,
+            'dataset': 'D-one', 'unit': 'component', 'size': {'components': 2},
             'record': record, 'excludes': list(excludes), 'siblings': list(siblings), 'evidence': list(evidence), **extra}
 
 
@@ -532,11 +535,11 @@ def test_main_runs_spent(workspace):
 def program_fixture(root):
     raw = base_manifest(root)
     raw['sources'] = {'pubs': 'records/pubs.jsonl', 'studies': 'records/studies.json',
-                      'questions': 'records/questions.json'}
+                      'questions': 'records/questions.json', 'datasets': 'records/datasets.json'}
     studies = [{'id': 'S-one', 'title': 'Study one', 'state': 'stopped', 'repo': 'alpha',
                 'questions': ['Q1'], 'successor': None, 'path': 'analysis'}]
     questions = [{'id': 'Q1', 'question': 'Does it work?', 'state': 'open', 'studies': ['S-one'],
-                  'known': 'A control', 'remaining': 'A replication'}]
+                  'known': 'A control', 'remaining': 'A replication', 'datasets': ['D-one']}]
     pubs = [{'id': 'paper-one', 'program': 'cognitive-mri', 'title': 'Paper one',
              'repos': {'manuscript': str(root / 'papers/alpha')},
              'derived': {'status': 'under review', 'venue': 'Venue', 'last_event': 'submitted 2026-10-01',
@@ -544,13 +547,16 @@ def program_fixture(root):
              'deadline': {'date': '2026-11-01', 'source': 'https://example.org', 'verified': '2026-10-01'},
              'follow_up': {'check_on': '2026-10-20', 'action': 'Check', 'resume_at': 'notes'}}]
     write_program(root, raw, studies, questions, pubs)
+    write_datasets(root, raw)
+    write_ledger(root, [sample('draw-one', '2026-10-01')])
     return raw, studies, questions, pubs
 
 
 def write_program(root, raw, studies, questions, pubs):
     (root / 'workspace.json').write_text(json.dumps(raw))
     for kind, payload in [('studies', {'version': 1, 'studies': studies}),
-                          ('questions', {'version': 1, 'questions': questions}), ('pubs', pubs)]:
+                          ('questions', {'version': 1, 'questions': questions, 'lessons': [
+                              {'id': 'L-control', 'text': 'Keep **controls**.\n   Preserve their scope.'}]}), ('pubs', pubs)]:
         path = root / raw['sources'][kind]
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text('\n'.join(json.dumps(p) for p in payload) + '\n' if kind == 'pubs'
@@ -561,7 +567,7 @@ def load_program(root):
     return ws.load_program(ws.load(root / 'workspace.json'), root)
 
 
-@pytest.mark.parametrize('kind', ['workspace', 'spent', 'pubs', 'studies', 'questions'])
+@pytest.mark.parametrize('kind', ['workspace', 'spent', 'pubs', 'studies', 'questions', 'datasets'])
 def test_duplicate_keys_rejected_in_every_file_kind(tmp_path, kind):
     raw, _, _, _ = program_fixture(tmp_path)
     path = tmp_path / (raw['sources'][kind] if kind in raw['sources'] else f'{kind}.json')
@@ -644,7 +650,7 @@ def test_missing_sources_are_reported_and_do_not_fail(tmp_path):
         (tmp_path / source).unlink()
     program = load_program(tmp_path)
     assert not program.manuscripts and not program.studies and not program.questions
-    assert sum('absent' in warning for warning in program.warnings) == 3
+    assert sum('absent' in warning for warning in program.warnings) == 4
 
 
 def test_infrastructure_is_a_repository_role(tmp_path):
@@ -975,3 +981,261 @@ def test_generated_view_input_rejected_through_file_symlink(tmp_path):
     (tmp_path / 'workspace.json').write_text(json.dumps(raw))
     with pytest.raises(ws.ManifestError, match='by-stage'):
         load_program(tmp_path)
+
+
+# ----------------------------------------------------------------------------- datasets and questions
+
+
+def dataset(**extra):
+    return {'id': 'D-one', 'name': 'Dataset one', 'provenance': 'Fixture collection',
+            'version': None, 'access': 'public', 'licence': None, 'location': 'https://example.org/data',
+            'documentation': 'public-datasets.md#fixture', 'sampling_unit': 'component',
+            'catalog_sections': ['fixture'], **extra}
+
+
+def write_datasets(root, raw, entries=None):
+    path = root / raw['sources']['datasets']
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps({'version': 1, 'datasets': [dataset()] if entries is None else entries}))
+    return path
+
+
+@pytest.mark.parametrize('mutate, message', [
+    (lambda d: d[0].update(access='open-ish'), 'unknown access class'),
+    (lambda d: d.append(dict(d[0])), 'duplicate dataset ids'),
+    (lambda d: d[0].update(id='one'), 'invalid dataset id'),
+    (lambda d: d[0].update(licence=42), 'licence'),
+    (lambda d: d[0].pop('version'), 'version'),
+    (lambda d: d[0].update(location=''), 'location'),
+    (lambda d: d[0].update(sampling_unit='person-ish'), 'sampling unit'),
+    (lambda d: d[0].update(catalog_sections=['a', 'a']), 'duplicate catalog_sections'),
+    (lambda d: d[0].update(catalog_sections=['not an id']), 'invalid id'),
+    (lambda d: d[0].update(extra='typo'), 'unknown fields'),
+])
+def test_dataset_record_rules(tmp_path, mutate, message):
+    raw, _, _, _ = program_fixture(tmp_path)
+    entries = [dataset()]
+    mutate(entries)
+    write_datasets(tmp_path, raw, entries)
+    with pytest.raises(ws.ManifestError, match=message):
+        load_program(tmp_path)
+
+
+@pytest.mark.parametrize('access', ['public', 'gated', 'controlled', 'private-archive', 'unavailable'])
+def test_dataset_access_and_explicit_unknown_metadata(tmp_path, access):
+    raw, _, _, _ = program_fixture(tmp_path)
+    entry = dataset(access=access)
+    for key in ('provenance', 'version', 'licence', 'location', 'documentation', 'sampling_unit'):
+        entry[key] = None
+    write_datasets(tmp_path, raw, [entry])
+    record = load_program(tmp_path).datasets[0]
+    assert record.access == access and record.version is None and record.sampling_unit is None
+
+
+@pytest.mark.parametrize('kind', ['studies', 'questions', 'datasets'])
+def test_record_unknown_fields_rejected(tmp_path, kind):
+    raw, _, _, _ = program_fixture(tmp_path)
+    path = tmp_path / raw['sources'][kind]
+    document = json.loads(path.read_text())
+    document[kind][0]['typo'] = True
+    path.write_text(json.dumps(document))
+    with pytest.raises(ws.ManifestError, match='unknown fields'):
+        load_program(tmp_path)
+
+
+@pytest.mark.parametrize('kind', ['studies', 'datasets'])
+def test_question_unknown_reference(tmp_path, kind):
+    raw, studies, questions, pubs = program_fixture(tmp_path)
+    questions[0][kind] = ['S-missing' if kind == 'studies' else 'D-missing']
+    write_program(tmp_path, raw, studies, questions, pubs)
+    with pytest.raises(ws.ManifestError, match='unknown study|unknown dataset'):
+        load_program(tmp_path)
+
+
+@pytest.mark.parametrize('command', ['board', 'questions', 'spent'])
+def test_sample_unknown_dataset_rejected_by_commands(tmp_path, capfd, command):
+    program_fixture(tmp_path)
+    write_ledger(tmp_path, [sample('bad-draw', '2026-10-01', dataset='D-missing')])
+    assert ws.main([command], root=tmp_path) == 2
+    assert 'bad-draw: unknown dataset D-missing' in capfd.readouterr().err
+
+
+@pytest.mark.parametrize('extra, message', [
+    ({'unit': 'people-ish'}, 'sampling unit'), ({'size': {'count': -1}}, 'size'),
+    ({'size': {'count': True}}, 'size'), ({'size': []}, 'size'),
+    ({'size': {'count': 1.5}}, 'size'), ({'dataset': None}, 'dataset'),
+])
+def test_sample_exposure_fields_validated(tmp_path, extra, message):
+    path = write_ledger(tmp_path, [sample('draw', '2026-10-01', **extra)])
+    with pytest.raises(ws.ManifestError, match=message):
+        ws.load_ledger(path)
+
+
+@pytest.mark.parametrize('constant', ['NaN', 'Infinity', '-Infinity'])
+def test_non_json_constants_rejected(constant):
+    with pytest.raises(ws.ManifestError, match='non-JSON constant'):
+        ws.strict_json('{"value": ' + constant + '}', 'fixture')
+
+
+def questions_output(root, **kwargs):
+    out = io.StringIO()
+    code = ws.cmd_questions(ws.load(root / 'workspace.json'), root, out=out, **kwargs)
+    return code, out.getvalue()
+
+
+def test_questions_round_trip_stale_check_and_cli(tmp_path, capfd):
+    raw, studies, questions, pubs = program_fixture(tmp_path)
+    code, text = questions_output(tmp_path)
+    assert code == 0
+    assert 'generated' in text and 'must not be edited by hand' in text
+    assert 'Q1' in text and 'Does it work?' in text and 'open' in text
+    assert 'A control' in text and 'A replication' in text
+    assert 'S-one' in text and 'stopped' in text
+    assert '1. Keep **controls**.\n   Preserve their scope.' in text
+    target = tmp_path / 'records/questions-ledger.md'
+    assert not target.exists()
+    assert questions_output(tmp_path, check=True)[0] == 1
+    assert questions_output(tmp_path, write=True)[0] == 0
+    assert target.read_text() == text
+    assert questions_output(tmp_path, check=True)[0] == 0
+    assert ws.main(['questions'], root=tmp_path) == 0
+    assert capfd.readouterr().out == text
+    questions[0]['remaining'] = 'A changed goal'
+    write_program(tmp_path, raw, studies, questions, pubs)
+    assert ws.main(['questions', '--check'], root=tmp_path) == 1
+    assert 'stale' in capfd.readouterr().out
+    assert target.read_text() == text
+    assert ws.main(['questions', '--write'], root=tmp_path) == 0
+    assert ws.main(['questions', '--check'], root=tmp_path) == 0
+    assert 'A changed goal' in target.read_text()
+
+
+def test_exposure_preserves_units_sizes_and_draw_counts(tmp_path):
+    raw, studies, questions, pubs = program_fixture(tmp_path)
+    questions[0]['datasets'].append('D-unused')
+    write_program(tmp_path, raw, studies, questions, pubs)
+    write_datasets(tmp_path, raw, [dataset(), dataset(id='D-unused', name='Unused')])
+    write_ledger(tmp_path, [sample('first', '2026-10-01', unit='ip', size={'ips_drawn': 9, 'ips_retained': 7}),
+                            sample('second', '2026-10-02', unit='identity', size={'identities': 3}, excludes=['first'])])
+    text = questions_output(tmp_path)[1]
+    assert '2 known draws' in text and '0 known draws' in text
+    assert 'first' in text and 'ip' in text and 'ips_drawn=9' in text and 'ips_retained=7' in text
+    assert 'second' in text and 'identity' in text and 'identities=3' in text
+    assert text.count('remaining eligibility unverified') == 2
+    assert '| D-one | public | 2 |' in board(tmp_path)[1]
+    assert '| D-unused | public | 0 |' in board(tmp_path)[1]
+
+
+@pytest.mark.parametrize('source', ['studies', 'questions', 'datasets', 'spent'])
+def test_questions_missing_inputs_reported_and_never_overwrite(tmp_path, source):
+    raw, _, _, _ = program_fixture(tmp_path)
+    target = tmp_path / 'records/questions-ledger.md'
+    target.write_text('keep')
+    (tmp_path / (raw['sources'][source] if source != 'spent' else 'spent.json')).unlink()
+    code, text = questions_output(tmp_path)
+    assert code == 0 and 'absent' in text
+    if source == 'spent':
+        assert 'draws unverified' in text and '0 known draws' not in text
+        assert '| D-one | public | unverified |' in board(tmp_path)[1]
+    with pytest.raises(ws.ManifestError, match='unavailable'):
+        questions_output(tmp_path, write=True)
+    assert questions_output(tmp_path, check=True)[0] != 0
+    assert target.read_text() == 'keep'
+
+
+def test_questions_write_refuses_symlink(tmp_path):
+    program_fixture(tmp_path)
+    target = tmp_path / 'protected.md'
+    target.write_text('keep')
+    (tmp_path / 'records/questions-ledger.md').symlink_to(target)
+    with pytest.raises(ws.ManifestError, match='symlink'):
+        questions_output(tmp_path, write=True)
+    assert target.read_text() == 'keep'
+
+
+@pytest.mark.parametrize('lessons', [None, ['text'], [{'id': 'L-one', 'text': ''}],
+                                    [{'id': 'L-one', 'text': 'a'}, {'id': 'L-one', 'text': 'b'}],
+                                    [{'id': 'L-one', 'text': 'a', 'extra': 1}]])
+def test_lessons_validated(tmp_path, lessons):
+    raw, _, _, _ = program_fixture(tmp_path)
+    path = tmp_path / raw['sources']['questions']
+    document = json.loads(path.read_text())
+    document['lessons'] = lessons
+    path.write_text(json.dumps(document))
+    with pytest.raises(ws.ManifestError, match='lesson|unknown fields'):
+        load_program(tmp_path)
+
+
+def test_question_without_studies_or_candidates_is_not_incomplete(tmp_path):
+    raw, studies, questions, pubs = program_fixture(tmp_path)
+    studies[0]['questions'] = []
+    questions[0].update(studies=[], datasets=[])
+    write_program(tmp_path, raw, studies, questions, pubs)
+    text = questions_output(tmp_path)[1]
+    assert 'No studies recorded.' in text and 'No candidate datasets recorded.' in text
+    assert questions_output(tmp_path, write=True)[0] == 0
+    assert questions_output(tmp_path, check=True)[0] == 0
+
+
+def test_questions_output_cannot_escape_through_parent_symlink(tmp_path):
+    root = tmp_path / 'workspace'
+    root.mkdir()
+    program_fixture(root)
+    outside = tmp_path / 'outside'
+    (root / 'records').rename(outside)
+    (root / 'records').symlink_to(outside, target_is_directory=True)
+    with pytest.raises(ws.ManifestError, match='output must stay inside'):
+        questions_output(root, write=True)
+    assert not (outside / 'questions-ledger.md').exists()
+
+
+def test_questions_cli_rejects_write_and_check_together(tmp_path):
+    program_fixture(tmp_path)
+    with pytest.raises(SystemExit) as error:
+        ws.main(['questions', '--write', '--check'], root=tmp_path)
+    assert error.value.code == 2
+    assert not (tmp_path / 'records/questions-ledger.md').exists()
+
+
+def test_questions_exposure_change_makes_ledger_stale(tmp_path):
+    program_fixture(tmp_path)
+    assert questions_output(tmp_path, write=True)[0] == 0
+    write_ledger(tmp_path, [sample('draw-one', '2026-10-01', size={'components': 3})])
+    assert questions_output(tmp_path, check=True)[0] == 1
+    assert 'components=2' in (tmp_path / 'records/questions-ledger.md').read_text()
+    assert questions_output(tmp_path, write=True)[0] == 0
+    assert 'components=3' in (tmp_path / 'records/questions-ledger.md').read_text()
+
+
+@pytest.mark.parametrize('kind', ['studies', 'questions', 'datasets'])
+def test_unknown_document_fields_rejected(tmp_path, kind):
+    raw, _, _, _ = program_fixture(tmp_path)
+    path = tmp_path / raw['sources'][kind]
+    document = json.loads(path.read_text())
+    document['typo'] = []
+    path.write_text(json.dumps(document))
+    with pytest.raises(ws.ManifestError, match='unknown fields'):
+        load_program(tmp_path)
+
+
+def test_manuscript_locators_match_the_deepest_repository_and_the_umbrella_only_exactly(tmp_path):
+    raw, studies, questions, pubs = program_fixture(tmp_path)
+    pubs += [dict(pubs[0], id='in-subdir', repos={'manuscript': str(tmp_path / 'papers/alpha/paper/abstract')}),
+             dict(pubs[0], id='umbrella-root', repos={'manuscript': str(tmp_path)}),
+             dict(pubs[0], id='unlisted-checkout', repos={'manuscript': str(tmp_path / 'papers/unlisted')})]
+    write_program(tmp_path, raw, studies, questions, pubs)
+    repos = {p.id: (p.repo.name if p.repo else None) for p in load_program(tmp_path).manuscripts}
+    assert repos == {'paper-one': 'alpha', 'in-subdir': 'alpha', 'umbrella-root': 'umbrella',
+                     'unlisted-checkout': None}
+
+
+def test_spent_missing_datasets_are_reported_but_do_not_fail_verification(tmp_path):
+    # Like absent checkouts, absent private records are reported, not failed: a public clone of the
+    # umbrella has spent.json but not the private agenda.
+    raw, _, _, _ = program_fixture(tmp_path)
+    (tmp_path / raw['sources']['datasets']).unlink()
+    out = io.StringIO()
+    assert ws.cmd_spent(ws.load(tmp_path / 'workspace.json'), tmp_path, verify=True,
+                        path=tmp_path / 'spent.json', out=out) == 0
+    text = out.getvalue()
+    assert 'datasets record absent' in text and 'cross-references unverified' in text and '0 problems' in text

@@ -7,6 +7,7 @@ depends on. This tool derives everything else from it:
 
     python3 tools/workspace.py by-stage                # rebuild the private relative-link view
     python3 tools/workspace.py board [--as-of YYYY-MM-DD] [--write]  # private research board
+    python3 tools/workspace.py questions [--write | --check]  # questions, studies and dataset exposure
     python3 tools/workspace.py status                  # local state of every entry
     python3 tools/workspace.py clone [--dry-run]       # clone missing repos and worktrees into place
     python3 tools/workspace.py checkout SNAPSHOT       # detach pinned repos at their pins
@@ -189,6 +190,8 @@ STUDY_STATES = ('idea', 'designed', 'running', 'explored', 'confirmed', 'not-con
 QUESTION_STATES = ('open', 'answered', 'narrowed', 'deferred', 'stopped')
 MANUSCRIPT_STATUSES = ('in preparation', 'revising', 'under review', 'seeking venue', 'in press',
                        'published', 'posted', 'withdrawn', 'retired')
+ACCESS_CLASSES = ('public', 'gated', 'controlled', 'private-archive', 'unavailable')
+SAMPLING_UNITS = ('component', 'ip', 'identity', 'conversation')
 
 
 def no_generated_input(path: Path) -> None:
@@ -218,8 +221,10 @@ def strict_json(text: str, source: str):
             _require(key not in result, f'{source}: duplicate object key {key!r}')
             result[key] = value
         return result
+    def non_json(value):
+        raise ManifestError(f'{source}: non-JSON constant {value}')
     try:
-        return json.loads(text, object_pairs_hook=unique)
+        return json.loads(text, object_pairs_hook=unique, parse_constant=non_json)
     except json.JSONDecodeError as error:
         raise ManifestError(f'{source}: {error}') from error
 
@@ -233,6 +238,22 @@ def read_json(path: Path):
 def required_text(entry: dict, key: str, label: str, empty: bool = False) -> str:
     value = entry.get(key)
     _require(isinstance(value, str) and (empty or bool(value.strip())), f'{label}: invalid {key}')
+    return value
+
+
+def known_fields(entry: dict, fields: tuple[str, ...], label: str) -> None:
+    unknown = set(entry) - set(fields)
+    _require(not unknown, f'{label}: unknown fields: {", ".join(sorted(unknown))}')
+
+
+def nullable_text(entry: dict, key: str, label: str) -> str | None:
+    _require(key in entry, f'{label}: {key} is required (null means unknown)')
+    return None if entry[key] is None else required_text(entry, key, label)
+
+
+def dataset_id(value: str, label: str) -> str:
+    value = identifier(value, label)
+    _require(value.startswith('D-') and len(value) > 2, f'{label}: invalid dataset id: {value}')
     return value
 
 
@@ -257,15 +278,17 @@ class Sources:
     pubs: str
     studies: str
     questions: str
+    datasets: str
 
 
 def load_sources(raw) -> Sources:
     _require(isinstance(raw, dict), 'sources must be an object')
-    for key in ('pubs', 'studies', 'questions'):
+    known_fields(raw, ('pubs', 'studies', 'questions', 'datasets'), 'sources')
+    for key in ('pubs', 'studies', 'questions', 'datasets'):
         value = required_text(raw, key, 'sources')
         _require(not Path(value).is_absolute() and not value.startswith('~')
                  and 'by-stage' not in Path(value).parts, f'sources.{key}: expected a relative input path')
-    return Sources(raw['pubs'], raw['studies'], raw['questions'])
+    return Sources(raw['pubs'], raw['studies'], raw['questions'], raw['datasets'])
 
 
 @dataclass(frozen=True)
@@ -308,6 +331,27 @@ class Question:
     studies: tuple[str, ...]
     known: str
     remaining: str
+    datasets: tuple[str, ...]
+
+
+@dataclass(frozen=True)
+class Dataset:
+    id: str
+    name: str
+    provenance: str | None
+    version: str | None
+    access: str
+    licence: str | None
+    location: str | None
+    documentation: str | None
+    sampling_unit: str | None
+    catalog_sections: tuple[str, ...]
+
+
+@dataclass(frozen=True)
+class Lesson:
+    id: str
+    text: str
 
 
 @dataclass
@@ -316,9 +360,19 @@ class Program:
     studies: list[Study]
     questions: list[Question]
     warnings: list[str]
+    datasets: list[Dataset]
+    lessons: list[Lesson]
+    samples: list[Sample] | None
+    unavailable: tuple[str, ...]
 
 
 def read_records(path: Path, collection: str, warnings: list[str]) -> list[dict] | None:
+    raw = read_record_document(path, collection, warnings)
+    return raw[collection] if raw is not None else None
+
+
+def read_record_document(path: Path, collection: str, warnings: list[str],
+                         extra: tuple[str, ...] = ()) -> dict | None:
     no_generated_input(path)
     if not path.exists():
         warnings.append(f'{collection} record absent: {path}')
@@ -326,10 +380,11 @@ def read_records(path: Path, collection: str, warnings: list[str]) -> list[dict]
     raw = read_json(path)
     _require(isinstance(raw, dict) and type(raw.get('version')) is int and raw['version'] == 1,
              f'{path}: version must be 1')
+    known_fields(raw, ('version', collection, *extra), str(path))
     entries = raw.get(collection)
     _require(isinstance(entries, list), f'{path}: {collection} must be a list')
     _require(all(isinstance(e, dict) for e in entries), f'{path}: records must be objects')
-    return entries
+    return raw
 
 
 def reference_list(entry: dict, key: str, label: str) -> tuple[str, ...]:
@@ -344,6 +399,47 @@ def unique_records(records, label: str) -> dict:
     result = {r.id: r for r in records}
     _require(len(result) == len(records), f'duplicate {label} ids')
     return result
+
+
+def load_datasets(path: Path, warnings: list[str]) -> list[Dataset] | None:
+    entries = read_records(path, 'datasets', warnings)
+    if entries is None:
+        return None
+    datasets = []
+    for entry in entries:
+        id_ = dataset_id(entry.get('id'), 'dataset')
+        known_fields(entry, tuple(Dataset.__dataclass_fields__), id_)
+        name = required_text(entry, 'name', id_)
+        access = required_text(entry, 'access', id_)
+        _require(access in ACCESS_CLASSES, f'{id_}: unknown access class {access!r}')
+        metadata = {key: nullable_text(entry, key, id_) for key in
+                    ('provenance', 'version', 'licence', 'location', 'documentation', 'sampling_unit')}
+        unit = metadata['sampling_unit']
+        _require(unit is None or unit in SAMPLING_UNITS, f'{id_}: unknown sampling unit {unit!r}')
+        sections = reference_list(entry, 'catalog_sections', id_)
+        for section in sections:
+            identifier(section, f'{id_} catalog section')
+        datasets.append(Dataset(id_, name, access=access, catalog_sections=sections, **metadata))
+    unique_records(datasets, 'dataset')
+    return datasets
+
+
+def validate_sample_datasets(samples: list[Sample], datasets: list[Dataset] | None,
+                             warnings: list[str]) -> None:
+    if datasets is None:
+        warnings.append('sample/dataset cross-references unverified while a source is unavailable')
+        return
+    ids = {d.id for d in datasets}
+    for sample in samples:
+        _require(sample.dataset in ids, f'{sample.id}: unknown dataset {sample.dataset}')
+
+
+def containing_repo(location: Path, repos: dict[Path, Repo]) -> Repo | None:
+    """The deepest manifest repository holding a manuscript locator (a paper may live in a
+    subdirectory). The umbrella holds every nested checkout, so it matches only exactly."""
+    holders = [(len(path.parts), repo) for path, repo in repos.items()
+               if location == path or (repo.group != 'umbrella' and location.is_relative_to(path))]
+    return max(holders, key=lambda h: h[0])[1] if holders else None
 
 
 def load_pubs(path: Path, manifest: Manifest, root: Path, warnings: list[str]) -> list[Manuscript]:
@@ -376,7 +472,7 @@ def load_pubs(path: Path, manifest: Manifest, root: Path, warnings: list[str]) -
         location = locations.get('manuscript')
         _require(location is None or isinstance(location, str), f'{label}: invalid manuscript locator')
         # Relative locators are anchored to the umbrella, never the caller's cwd.
-        repo = repos.get((root / Path(location).expanduser()).resolve()) if location else None
+        repo = containing_repo((root / Path(location).expanduser()).resolve(), repos) if location else None
         if repo is None:
             warnings.append(f'{id_}: pubs record unmatched to a manifest repository')
         deadline = None
@@ -403,14 +499,26 @@ def load_pubs(path: Path, manifest: Manifest, root: Path, warnings: list[str]) -
     return manuscripts
 
 
-def load_program(manifest: Manifest, root: Path) -> Program:
+def load_program(manifest: Manifest, root: Path, include_pubs: bool = True) -> Program:
     warnings = []
-    manuscripts = load_pubs(root / manifest.sources.pubs, manifest, root, warnings)
+    manuscripts = load_pubs(root / manifest.sources.pubs, manifest, root, warnings) if include_pubs else []
     raw_studies = read_records(root / manifest.sources.studies, 'studies', warnings)
-    raw_questions = read_records(root / manifest.sources.questions, 'questions', warnings)
+    document = read_record_document(root / manifest.sources.questions, 'questions', warnings, ('lessons',))
+    raw_questions = document['questions'] if document is not None else None
+    datasets = load_datasets(root / manifest.sources.datasets, warnings)
+    lessons = []
+    if document is not None:
+        entries = document.get('lessons')
+        _require(isinstance(entries, list) and all(isinstance(e, dict) for e in entries),
+                 'lessons must be a list of objects')
+        for entry in entries:
+            known_fields(entry, ('id', 'text'), 'lesson')
+            lessons.append(Lesson(identifier(entry.get('id'), 'lesson'), required_text(entry, 'text', 'lesson')))
+        unique_records(lessons, 'lesson')
     studies, questions = [], []
     for entry in raw_studies or []:
         id_ = identifier(entry.get('id'), 'study')
+        known_fields(entry, tuple(Study.__dataclass_fields__), id_)
         _require(id_.startswith('S-') and len(id_) > 2, f'invalid study id: {id_}')
         title = required_text(entry, 'title', id_)
         state_ = required_text(entry, 'state', id_)
@@ -436,13 +544,15 @@ def load_program(manifest: Manifest, root: Path) -> Program:
         studies.append(Study(id_, title, state_, repo, path, reference_list(entry, 'questions', id_), successor, note))
     for entry in raw_questions or []:
         id_ = identifier(entry.get('id'), 'question')
+        known_fields(entry, tuple(Question.__dataclass_fields__), id_)
         _require(id_.startswith('Q') and len(id_) > 1, f'invalid question id: {id_}')
         state_ = required_text(entry, 'state', id_)
         _require(state_ in QUESTION_STATES, f'{id_}: unknown question state {state_!r}')
         questions.append(Question(id_, required_text(entry, 'question', id_), state_,
                                   reference_list(entry, 'studies', id_),
                                   required_text(entry, 'known', id_, empty=True),
-                                  required_text(entry, 'remaining', id_, empty=True)))
+                                  required_text(entry, 'remaining', id_, empty=True),
+                                  reference_list(entry, 'datasets', id_)))
     by_study = unique_records(studies, 'study')
     by_question = unique_records(questions, 'question')
     for study in studies:
@@ -461,7 +571,24 @@ def load_program(manifest: Manifest, root: Path) -> Program:
         _require(study_links == question_links, 'study/question links must agree in both directions')
     if raw_studies is None or raw_questions is None:
         warnings.append('study/question cross-references unverified while a source is unavailable')
-    return Program(manuscripts, studies, questions, warnings)
+    by_dataset = {d.id: d for d in datasets or []}
+    for question in questions:
+        for did in question.datasets:
+            dataset_id(did, question.id)
+            if datasets is not None:
+                _require(did in by_dataset, f'{question.id}: unknown dataset {did}')
+    if datasets is None or raw_questions is None:
+        warnings.append('question/dataset cross-references unverified while a source is unavailable')
+    ledger = root / 'spent.json'
+    no_generated_input(ledger)
+    samples = load_ledger(ledger) if ledger.exists() else None
+    if samples is None:
+        warnings.append(f'spent record absent: {ledger}')
+    else:
+        validate_sample_datasets(samples, datasets, warnings)
+    unavailable = tuple(name for name, records in [('studies', raw_studies), ('questions', raw_questions),
+                                                  ('datasets', datasets), ('spent', samples)] if records is None)
+    return Program(manuscripts, studies, questions, warnings, datasets or [], lessons, samples, unavailable)
 
 
 # ----------------------------------------------------------------------------- git and gh
@@ -798,6 +925,14 @@ def cmd_board(manifest: Manifest, root: Path, as_of: date | None = None,
             lines.append('')
     if not program.studies:
         lines += ['No study records available.', '']
+    lines += ['## Datasets', '']
+    draws = dataset_draws(program)
+    lines += markdown_table(('Id', 'Access class', 'Known draws'),
+                            [(d.id, d.access, len(draws[d.id]) if program.samples is not None else 'unverified')
+                             for d in program.datasets])
+    if not program.datasets:
+        lines += ['No dataset records available.']
+    lines += ['', 'Draw counts describe the spent ledger only; remaining eligibility unverified.', '']
     lines += ['## Attention', '']
     attention = list(program.warnings)
     for paper in sorted(program.manuscripts, key=lambda p: p.id):
@@ -834,6 +969,94 @@ def cmd_board(manifest: Manifest, root: Path, as_of: date | None = None,
     if write:
         target = root / 'STATUS.local.md'
         _require(not target.is_symlink(), 'refusing to write STATUS.local.md through a symlink')
+        target.write_text(text, encoding='utf-8')
+    else:
+        print(text, end='', file=out)
+    return 0
+
+
+# ----------------------------------------------------------------------------- questions ledger
+
+
+def dataset_draws(program: Program) -> dict[str, list[Sample]]:
+    draws = {d.id: [] for d in program.datasets}
+    for sample in sorted(program.samples or [], key=lambda s: (s.spent_on, s.id)):
+        if sample.dataset in draws:
+            draws[sample.dataset].append(sample)
+    return draws
+
+
+def render_questions(program: Program) -> str:
+    lines = ['# Where each programme question stands', '',
+             'This ledger is generated by `python3 tools/workspace.py questions --write` and must not be edited by hand.',
+             'Edit `questions.json`, `studies.json`, `datasets.json` and the umbrella `spent.json` instead.', '',
+             '"Answered" means answered at the scope stated, not settled for all data.', '']
+    if program.warnings:
+        lines += ['## Source warnings', ''] + ['- ' + warning for warning in program.warnings] + ['']
+    studies = {s.id: s for s in program.studies}
+    datasets = {d.id: d for d in program.datasets}
+    draws = dataset_draws(program)
+    for question in program.questions:
+        lines += [f'## {question.id}: {question.question}', '', f'State: {question.state}.', '',
+                  f'What is known: {question.known}', '', f'What remains: {question.remaining}', '',
+                  '### Studies', '']
+        lines += markdown_table(('Id', 'Title', 'State'),
+                                [(sid, studies[sid].title, studies[sid].state) if sid in studies
+                                 else (sid, 'record unavailable', 'unverified') for sid in question.studies])
+        if not question.studies:
+            lines.append('No studies recorded.')
+        lines += ['', '### Candidate datasets', '']
+        for did in question.datasets:
+            if did in datasets:
+                exposure = f'{len(draws[did])} known draws' if program.samples is not None else 'draws unverified'
+                lines.append(f'- [{did}](#{did}): {datasets[did].name} ({datasets[did].access}), {exposure}.')
+            else:
+                lines.append(f'- {did}: record unavailable; draws unverified.')
+        if not question.datasets:
+            lines.append('No candidate datasets recorded.')
+        lines.append('')
+    if not program.questions:
+        lines += ['No question records available.', '']
+    lines += ['## Dataset exposure', '',
+              'Known draws come only from `spent.json`. Zero recorded draws does not mean unused data.',
+              'Sizes retain the ledger labels at the time of each draw; they are not added across draws or units.', '']
+    for dataset in program.datasets:
+        lines += [f'<a id="{dataset.id}"></a>', '', f'### {dataset.id}: {dataset.name}', '']
+        exposure = f'{len(draws[dataset.id])} known draws' if program.samples is not None else 'draws unverified'
+        lines += [f'Access: {dataset.access}; {exposure}; remaining eligibility unverified.', '']
+        if dataset.catalog_sections:
+            lines += ['Catalog: ' + ', '.join(f'[{section}](public-datasets.md#{section})'
+                                            for section in dataset.catalog_sections) + '.', '']
+        if draws[dataset.id]:
+            lines += markdown_table(('Draw', 'Spent on', 'State', 'Unit', 'Recorded sizes (at draw)'),
+                                    [(s.id, s.spent_on, s.status, s.unit,
+                                      ', '.join(f'{key}={value}' for key, value in s.size.items()) or 'unknown')
+                                     for s in draws[dataset.id]]) + ['']
+    lines += ['## Lessons that now bind every new design', '']
+    lines += [f'{i}. {lesson.text}' for i, lesson in enumerate(program.lessons, 1)]
+    return '\n'.join(lines) + '\n'
+
+
+def cmd_questions(manifest: Manifest, root: Path, write: bool = False, check: bool = False, out=sys.stdout) -> int:
+    _require(not (write and check), 'questions: --write and --check are mutually exclusive')
+    program = load_program(manifest, root, include_pubs=False)
+    target = (root / manifest.sources.questions).with_name('questions-ledger.md')
+    no_generated_input(target)
+    if write or check:
+        _require(not target.is_symlink(), 'refusing questions-ledger.md through a symlink')
+        _require(target.resolve().is_relative_to(root.resolve()), 'questions output must stay inside the workspace')
+        if program.unavailable:
+            message = 'questions: sources unavailable: ' + ', '.join(program.unavailable)
+            if check:
+                print(message, file=out)
+                return 1
+            raise ManifestError(message)
+    text = render_questions(program)
+    if check:
+        if not target.exists() or target.read_text(encoding='utf-8') != text:
+            print(f'stale: {target.relative_to(root)}', file=out)
+            return 1
+    elif write:
         target.write_text(text, encoding='utf-8')
     else:
         print(text, end='', file=out)
@@ -948,6 +1171,9 @@ class Sample:
     excludes: tuple[str, ...]
     siblings: tuple[str, ...]
     evidence: tuple[dict, ...]
+    dataset: str
+    unit: str
+    size: dict[str, int]
     protocol: str | None = None
     freeze: str | None = None
 
@@ -971,9 +1197,17 @@ def load_ledger(path: Path = LEDGER) -> list[Sample]:
         for item in entry.get('evidence', []):
             _require(all(isinstance(item.get(k), str) and item[k] for k in ('repo', 'path', 'contains')),
                      f"sample {entry['id']}: evidence needs repo, path and contains")
+        did = dataset_id(entry.get('dataset'), f"sample {entry['id']} dataset")
+        unit = required_text(entry, 'unit', entry['id'])
+        _require(unit in SAMPLING_UNITS, f"sample {entry['id']}: unknown sampling unit {unit!r}")
+        size = entry.get('size')
+        _require(isinstance(size, dict) and all(isinstance(k, str) and k.strip() and type(v) is int and v >= 0
+                                               for k, v in size.items()),
+                 f"sample {entry['id']}: size must be an object of nonnegative integer counts")
         samples.append(Sample(entry['id'], entry['pool'], entry['status'], entry['spent_on'], entry['repo'],
                               entry['record'], tuple(entry.get('excludes', [])), tuple(entry.get('siblings', [])),
-                              tuple(entry.get('evidence', [])), entry.get('protocol'), entry.get('freeze')))
+                              tuple(entry.get('evidence', [])), did, unit, size,
+                              entry.get('protocol'), entry.get('freeze')))
     ids = [s.id for s in samples]
     _require(len(ids) == len(set(ids)), 'duplicate sample ids')
     for sample in samples:
@@ -1030,6 +1264,11 @@ def ledger_problems(samples: list[Sample], manifest: Manifest, root: Path) -> li
 def cmd_spent(manifest: Manifest, root: Path, verify: bool = False, path: Path = LEDGER, out=sys.stdout) -> int:
     """List the ledger of spent samples; with --verify, check the exclusion chain and the evidence files."""
     samples = load_ledger(path)
+    warnings = []
+    datasets = load_datasets(root / manifest.sources.datasets, warnings)
+    validate_sample_datasets(samples, datasets, warnings)
+    for warning in warnings:
+        print(warning, file=out)
     for sample in sorted(samples, key=lambda s: (s.pool, s.spent_on, s.id)):
         gate = sample.protocol or '-'
         print(f'{sample.pool:9s} {sample.spent_on} {sample.status:11s} {sample.id:30s} {sample.repo:28s} {gate}', file=out)
@@ -1104,10 +1343,15 @@ def main(argv: list[str] | None = None, root: Path = ROOT, manifest_path: Path |
     p = sub.add_parser('spent'); p.add_argument('--verify', action='store_true')
     sub.add_parser('by-stage')
     p = sub.add_parser('board'); p.add_argument('--as-of'); p.add_argument('--write', action='store_true')
+    p = sub.add_parser('questions')
+    mode = p.add_mutually_exclusive_group()
+    mode.add_argument('--write', action='store_true'); mode.add_argument('--check', action='store_true')
     args = parser.parse_args(argv)
     manifest_path = manifest_path or root / 'workspace.json'
     try:
         manifest = load(manifest_path)
+        if args.command == 'questions':
+            return cmd_questions(manifest, root, args.write, args.check, out=sys.stdout)
         if args.command == 'by-stage':
             return cmd_by_stage(manifest, root, out=sys.stdout)
         if args.command == 'board':
