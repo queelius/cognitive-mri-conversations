@@ -1,11 +1,14 @@
+# Historical index: statuses and priorities below are dated snapshots, not current authority.
+# Current statuses live in pubs and the private agenda's studies.json, questions.json and
+# datasets.json, read by python3 tools/workspace.py board.
 schema_version: 1
-updated: "2026-10-23"
+updated: "2026-10-24"
 path_base: repository_root
 owner:
   name: Alexander Richard Towell
   email: lex@metafunctor.com
   orcid: "0000-0001-6443-9897"
-purpose: Track existing work, research candidates, priorities and consolidation decisions.
+purpose: Preserve historical work, research candidates, priorities, decisions and evidence pointers.
 
 work_catalog:
   snapshot_date: "2026-10-16"
@@ -64,7 +67,7 @@ records:
   iscs_2027_paper_draft: papers/iscs-2027/paper/main.tex
   iscs_2027_paper_plan: docs/superpowers/plans/2026-10-18-iscs-2027-paper-draft.md
   iscs_2027_long_paper_plan: docs/superpowers/plans/2026-10-19-iscs-2027-long-paper-and-netsci.md
-  netsci_2027_abstract: papers/iscs-2027/abstracts/netsci-2027/main.tex
+  netsci_2027_reach_abstract_superseded: papers/iscs-2027/abstracts/netsci-2027/main.tex
   f3_integration_coding_design: docs/superpowers/specs/2026-10-19-f3-integration-coding-design.md
   editorial_review_2026_10_19: docs/research/audits/2026-10-19-editorial-review/REVIEW.md
   prior_art_reach_2026_10_19: docs/research/audits/2026-10-19-editorial-review/prior-art-reach.md
@@ -81,7 +84,7 @@ records:
   study1_person_networks: papers/person-networks/README.md
   study1_results: papers/person-networks/RESULTS.md
   study1_protocol: papers/person-networks/PROTOCOL.md
-  netsci_2027_abstract: papers/person-networks/abstracts/netsci-2027/main.tex
+  netsci_2027_person_networks_abstract: papers/person-networks/abstracts/netsci-2027/main.tex
   study1b_results: papers/person-networks/episodes/RESULTS.md
   study1b_protocol: papers/person-networks/episodes/PROTOCOL.md
   next_goal: docs/research/NEXT-GOAL.md
@@ -90,6 +93,10 @@ records:
   hierarchical_memory_addendum_results: papers/hierarchical-memory/addendum/results/
   hierarchical_memory_extension_claims: papers/hierarchical-memory-extended/CLAIMS.md
   hierarchical_memory_extension_plan: papers/hierarchical-memory-extended/PLAN.md
+  hierarchical_memory_extension_design_notes: papers/hierarchical-memory-extended/notes/
+  hierarchical_memory_extension_second_population_design: papers/hierarchical-memory-extended/analyses/C-second-population/DESIGN.md
+  hierarchical_memory_extension_extractor_design: papers/hierarchical-memory-extended/analyses/E-hierarchy-robustness/DESIGN.md
+  program_design_2026_10_23: docs/superpowers/specs/2026-10-23-cmri-research-program-design.md
 
 constraints:
   preferred_contribution: New empirical finding about human-AI conversation

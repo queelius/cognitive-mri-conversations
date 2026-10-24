@@ -1,6 +1,74 @@
 # CMRI research decision history
 
-Current priorities and candidate status are in the [registry](registry.yaml). This history records decisions without converting proposals into completed findings.
+Current public priorities are in the [program index](README.md). Current publication and research
+states live in `pubs` and the private agenda records, read by `python3 tools/workspace.py board`;
+the [registry](registry.yaml) is a historical index. This history records decisions without
+converting proposals into completed findings.
+
+**Current decisions, October 24, 2026, hierarchy API re-extraction phases:** Alexander Richard
+Towell adopted the phased route after five rounds of combined Claude Code and Codex review.
+The dry run is approved once the fifth fix round passes both reviews; the Haiku per-episode
+pilot is approved conditional on an accepted dry run. The owner must accept the pilot's counts
+before later phases. After an accepted pilot, the remaining per-episode runs may proceed under their approvals without
+waiting for the batched-arm calibration. The four slice batches still require calibration on
+the pilot's codes and review of the frozen comparison. If that calibration completes but
+fails, the owner permits the batched comparison as descriptive only, with no interval-based
+or difference wording. This remains paid API extraction with a spending cap. The owner also
+accepted temporary vendor retention on the batch path, with vendor copies purged after local
+results are verified. These are conditional authorizations, not a record of completed runs.
+[Plan decisions](../../papers/hierarchical-memory-extended/PLAN.md),
+[extractor design, amendments 6 to 12](../../papers/hierarchical-memory-extended/analyses/E-hierarchy-robustness/DESIGN.md)
+(private child repository).
+
+**Current decisions, October 24, 2026, hierarchy component C:** the owner chose the existing
+Study 1 WildChat development sample for an exploratory second-population analysis. Extraction
+uses the archive's API protocol instead of the earlier subagent route, under a separate review
+and approval. The codebook is fitted out of fold; per-person cuts are dropped. C enters the
+December 4 submission only if extraction is approved by November 1 and the fixed estimands,
+synthetic calibration and extraction checks pass with first results by November 13. This is
+not an authorization for a new held-out confirmation and does not record a completed result.
+The separate decision about a correction note to the ISCS editors remains deferred.
+[Plan decisions](../../papers/hierarchical-memory-extended/PLAN.md) (private).
+
+**Implementation record, October 24, 2026, program map:** the board, guarded disposable
+`by-stage/` link view, and structured study, question and dataset records are now built.
+`python3 tools/workspace.py board` reads publication statuses from `pubs` and research states
+from the private agenda; `questions` generates the question ledger, and dataset exposure is
+derived from `spent.json`. Recorded exposure does not establish remaining eligibility. The
+board and stage view stay local and private, repositories stay in place, and publication
+status, study state and repository role remain distinct. The research registry is retained
+as history. This records the map tooling, not completion of the proposed research engine.
+[Program design](../superpowers/specs/2026-10-23-cmri-research-program-design.md),
+[workspace tool](../../tools/workspace.py).
+
+**Decisions, October 23, 2026, hierarchy extension and extraction:** the owner started in-depth
+work on the Applied Network Science extension, due December 4; Matta's go-ahead remains open.
+For reproducibility, the owner replaced the archive's subscription-subagent extraction route
+with paid API extraction with a spending cap, using Claude Haiku 5.5 and OpenAI GPT-6-Luna with
+specified requests. The owner also added a batched arm beside the per-episode arm, with
+combined Claude Code and Codex review and owner approval before extraction. The comparison is
+between the two extraction procedures, not a reconstruction of the original extractor; the
+October 24 phase decisions above refine its gates. [Plan decisions](../../papers/hierarchical-memory-extended/PLAN.md)
+(private).
+
+**Decision, October 23, 2026, pair recurrence withheld:** the owner withheld N1 from the
+hierarchy extension as a validation limitation: recurring concept pairs have not been
+separated from topics changing over time. The proposed bounded salvage is not run. The
+control ladder is not validated for that separation; this establishes neither absence of
+recurrence nor impossibility of testing a narrower claim. The claim ledger also withholds
+N2 and N3 interpretations and withdraws the comparison with human semantic memory. Those
+withdrawals are not reversed by approving a new extraction.
+[Claim ledger](../../papers/hierarchical-memory-extended/CLAIMS.md) (private).
+
+**Program design, October 23, 2026, map before engine:** the owner requested a navigable
+program map and a reusable path from questions to studies and papers, including a public
+page for Dr. Matta. The design keeps independent repositories and one source per kind of
+record: `pubs` for manuscripts, the private agenda for studies, questions and datasets, and
+`workspace.json` for repositories. The assistant's design calls, explicitly distinguished
+from the owner's requests, put the map first, the public page second and the engine third;
+the public projection requires owner-approved text. Templates, study scaffolding and review
+commands are planned engine work, not delivered capabilities in this entry.
+[Design and migration table](../superpowers/specs/2026-10-23-cmri-research-program-design.md).
 
 **Verification addendum, October 23, grounded-dependency pilot:** the October 18
 CGDIALOG assessment now has its missing reproducibility record and figures.
@@ -15,7 +83,7 @@ preservation is scoped to this pilot, which never accessed PRISM; the separately
 authorized ISCS confirmation already spent the reserve. [Verification and
 limitations](../../papers/grounded-dependencies/VERIFICATION.md).
 
-**Current assessment, October 22, programme review and decisions:** the owner asked for a critical review of the whole programme and then adopted the assistant's recommendations. Seven independent reviewers (fresh context, files only, adversarial) read the papers, the two studies, the methods and the agenda, and a web sweep catalogued datasets and prior art; the synthesis and source reviews are in the private agenda (`papers/agenda/reviews/`). Verdict: every frozen pass stands as scored, and the reviewers found the freeze discipline sound; several readings built on the passes outrun their evidence and are being re-examined on development data before anything is submitted (a null that matches topics at controlled granularity; controls for repeated work within sittings; the reliability of the temporal measures within a person across time; machine-generation of every manuscript number from committed files, with two further controls, for the ISCS 2027 paper). The in-press ISCS 2026 chapter's small-world comparison was made against random graphs; a seeded ensemble of projections that preserve the bipartite degree sequences shows that the projection itself produces most of the reported coefficient, so the comparison with human semantic memory does not stand (whether clustering survives at matched density is still being tested). The correction is being prepared, and on October 23 work began on the chapter's invited journal extension (`papers/hierarchical-memory-extended/`, private), which records the status of every claim of the chapter. Decided: the temporal-networks manuscript is retired as a standalone paper (its surviving methods merge into the person-networks line); semantic-dynamics is retired; embedding-dynamics folds into a methods note or dissertation chapter; operational-memex is infrastructure, not a paper; the COMPSAC 2026 synthesis draft is retired; Study 4 is dropped as a study and Study 3 folds into Study 2. Decided as a standing rule: no study step may require other humans to label, code, rate or anchor; independent model coders from more than one family do it, blinded structurally, with their agreement reported, and every paper discloses that the analysis agent, the coders and the assistant studied are language models. The NetSci 2027 abstract will be rebuilt after the re-examination. The next frozen study will be a replication of Studies 1 and 1b on a collection with true person identifiers, after the development-data work and with the owner's explicit approval; an access request for a donated-history corpus has been drafted for the owner. The three earlier Study 1 and 1b entries below were condensed today to what was done and whether the frozen hypotheses held, because the repository is private and the paper is unwritten; the full readings remain in the study repository and will be published with the paper.
+**Prior assessment, October 22, programme review and decisions:** the owner asked for a critical review of the whole programme and then adopted the assistant's recommendations. Seven independent reviewers (fresh context, files only, adversarial) read the papers, the two studies, the methods and the agenda, and a web sweep catalogued datasets and prior art; the synthesis and source reviews are in the private agenda (`papers/agenda/reviews/`). Verdict: every frozen pass stands as scored, and the reviewers found the freeze discipline sound; several readings built on the passes outrun their evidence and are being re-examined on development data before anything is submitted (a null that matches topics at controlled granularity; controls for repeated work within sittings; the reliability of the temporal measures within a person across time; machine-generation of every manuscript number from committed files, with two further controls, for the ISCS 2027 paper). The in-press ISCS 2026 chapter's small-world comparison was made against random graphs; a seeded ensemble of projections that preserve the bipartite degree sequences shows that the projection itself produces most of the reported coefficient, so the comparison with human semantic memory does not stand (whether clustering survives at matched density is still being tested). The correction is being prepared, and on October 23 work began on the chapter's invited journal extension (`papers/hierarchical-memory-extended/`, private), which records the status of every claim of the chapter. Decided: the temporal-networks manuscript is retired as a standalone paper (its surviving methods merge into the person-networks line); semantic-dynamics is retired; embedding-dynamics folds into a methods note or dissertation chapter; operational-memex is infrastructure, not a paper; the COMPSAC 2026 synthesis draft is retired; Study 4 is dropped as a study and Study 3 folds into Study 2. Decided as a standing rule: no study step may require other humans to label, code, rate or anchor; independent model coders from more than one family do it, blinded structurally, with their agreement reported, and every paper discloses that the analysis agent, the coders and the assistant studied are language models. The NetSci 2027 abstract will be rebuilt after the re-examination. The next frozen study will be a replication of Studies 1 and 1b on a collection with true person identifiers, after the development-data work and with the owner's explicit approval; an access request for a donated-history corpus has been drafted for the owner. The three earlier Study 1 and 1b entries below were condensed today to what was done and whether the frozen hypotheses held, because the repository is private and the paper is unwritten; the full readings remain in the study repository and will be published with the paper.
 
 **Prior assessment, October 22, Study 1b confirmation:** the owner approved freezing and running a follow-up to Study 1 that asks what makes linked conversations close in time, with a pre-registered rule for failures: a failed hypothesis is reported as failed, and anything learned afterwards is labelled exploratory until tested on new data. The protocol was frozen (hashes and GitHub's push record committed before any text of the fresh sample was read) and run once on 449 WildChat identities disjoint from Study 1. A validity control and all three frozen hypotheses held in both encoders, and Study 1's measures reproduced on this population as a pre-specified ungated secondary. The quantitative readings, their qualifications and the exploratory follow-ups are recorded in the private study repository (`papers/person-networks/episodes/`) and will be published with the paper. (This entry was condensed on 2026-10-22; see that day's assessment.)
 
