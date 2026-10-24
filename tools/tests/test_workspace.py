@@ -652,3 +652,92 @@ def test_infrastructure_is_a_repository_role(tmp_path):
     raw['repos'][1]['group'] = 'infrastructure'
     write_program(tmp_path, raw, studies, questions, pubs)
     assert ws.load(tmp_path / 'workspace.json').repo('alpha').group == 'infrastructure'
+
+
+# ----------------------------------------------------------------------------- board
+
+
+def board(root, as_of='2026-10-23', write=False):
+    out = io.StringIO()
+    code = ws.cmd_board(ws.load(root / 'workspace.json'), root, ws.iso_date(as_of, 'as-of'), write, out)
+    return code, out.getvalue()
+
+
+def test_board_dates_order_and_all_disagreements(workspace):
+    root, remotes, _ = workspace
+    raw, studies, questions, pubs = program_fixture(root)
+    raw['remote'] = str(remotes) + '/{name}.git'
+    pubs += [dict(pubs[0], id='orphan', title='Unmatched paper', repos={}),
+             dict(pubs[0], id='early', title='Early paper', derived=dict(pubs[0]['derived'], status='in preparation')),
+             dict(pubs[0], id='custom', title='Custom paper', derived=dict(pubs[0]['derived'], status='custom status')),
+             dict(pubs[0], id='published', title='Published paper', derived=dict(pubs[0]['derived'], status='published'))]
+    write_program(root, raw, studies, questions, pubs)
+    call(root, 'clone')
+    commit(root / 'papers/alpha', {'new.txt': 'local commit'})
+    (root / 'papers/alpha/new.txt').write_text('uncommitted')
+    code, text = board(root)
+    assert code == 0
+    positions = [text.index(heading) for heading in ('## Manuscripts', '### in preparation', '### under review',
+                 '### published', '### custom status', '## Studies', '### stopped', '## Attention')]
+    assert positions == sorted(positions)
+    assert '2026-11-01 (9 days left)' in text
+    assert '2026-10-20 (overdue)' in text
+    assert 'Venue' in text and 'submitted 2026-10-01' in text and '10.1234/example' in text
+    assert 'S-one' in text and 'Q1' in text and 'alpha' in text
+    attention = text.split('## Attention')[1]
+    assert 'only stopped or folded studies' in attention
+    assert 'orphan: pubs record unmatched' in attention
+    assert 'beta: paper repository has neither a pubs record nor a study' in attention
+    assert '1 uncommitted' in attention and '1 unpushed' in attention
+    assert 'Skipped 0 missing checkouts' in text
+
+
+def test_board_attention_boundaries_and_no_false_disagreements(tmp_path):
+    raw, studies, questions, pubs = program_fixture(tmp_path)
+    pubs = [dict(pubs[0], id=f'p-{i}', title=f'Boundary {i}',
+                 deadline=dict(pubs[0]['deadline'], date=deadline), follow_up={'check_on': check})
+            for i, (deadline, check) in enumerate([
+                ('2026-10-22', '2026-10-22'), ('2026-10-23', '2026-10-23'),
+                ('2026-12-07', '2026-11-06'), ('2026-12-08', '2026-11-07')])]
+    studies += [dict(studies[0], id='S-active', state='running', questions=[])]
+    write_program(tmp_path, raw, studies, questions, pubs)
+    _, text = board(tmp_path)
+    attention = text.split('## Attention')[1]
+    assert 'p-1: deadline 2026-10-23 (0 days left)' in attention
+    assert 'p-2: deadline 2026-12-07 (45 days left)' in attention
+    assert 'p-0: deadline' not in attention and 'p-3: deadline' not in attention
+    assert 'p-0: follow-up 2026-10-22 (overdue)' in attention
+    assert 'p-1: follow-up 2026-10-23\n' in attention
+    assert 'p-2: follow-up 2026-11-06' in attention and 'p-3: follow-up' not in attention
+    assert 'only stopped or folded' not in attention
+    assert 'Skipped 5 missing checkouts' in text
+    assert 'papers/gamma-side' not in text
+
+
+def test_board_missing_data_write_and_cli(tmp_path, capfd):
+    raw, _, _, _ = program_fixture(tmp_path)
+    for source in raw['sources'].values():
+        (tmp_path / source).unlink()
+    code, text = board(tmp_path)
+    assert code == 0 and 'pubs record absent' in text and 'studies record absent' in text
+    assert board(tmp_path, write=True) == (0, '')
+    assert (tmp_path / 'STATUS.local.md').read_text() == text
+    assert ws.main(['board', '--as-of', '2026-10-23'], root=tmp_path) == 0
+    assert capfd.readouterr().out == text
+    assert ws.main(['board', '--as-of', '2026-10-23', '--write'], root=tmp_path) == 0
+    assert capfd.readouterr().out == ''
+    assert ws.main(['board', '--as-of', '2026-02-30'], root=tmp_path) == 2
+    assert 'YYYY-MM-DD' in capfd.readouterr().err
+    assert ws.main(['board'], root=tmp_path) == 0
+    assert ws.date.today().isoformat() in capfd.readouterr().out
+
+
+def test_board_missing_deadline_is_not_inferred_from_followup(tmp_path):
+    raw, studies, questions, pubs = program_fixture(tmp_path)
+    pubs[0].pop('deadline')
+    pubs[0]['title'] = 'Title | with\na newline'
+    write_program(tmp_path, raw, studies, questions, pubs)
+    _, text = board(tmp_path)
+    assert 'not recorded' in text
+    assert 'Title \\| with a newline' in text
+    assert 'paper-one: deadline' not in text

@@ -89,3 +89,7 @@ chatgpt-conversation-corpus/
 # local secret rotation list - never commit
 cmri-secrets-to-rotate.txt
 *secret*.txt
+
+# Disposable private program views
+by-stage/
+STATUS.local.md

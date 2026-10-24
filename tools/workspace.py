@@ -5,6 +5,7 @@
 GitHub visibility, data class, one-line note) and named snapshots that pin the commits a paper
 depends on. This tool derives everything else from it:
 
+    python3 tools/workspace.py board [--as-of YYYY-MM-DD] [--write]  # private research board
     python3 tools/workspace.py status                  # local state of every entry
     python3 tools/workspace.py clone [--dry-run]       # clone missing repos and worktrees into place
     python3 tools/workspace.py checkout SNAPSHOT       # detach pinned repos at their pins
@@ -730,6 +731,96 @@ def cmd_scan(manifest: Manifest, root: Path, snapshot: str, out=sys.stdout) -> i
     return 1 if total else 0
 
 
+# ----------------------------------------------------------------------------- private board
+
+
+def markdown_cell(value) -> str:
+    return str(value).replace('\\', '\\\\').replace('|', '\\|').replace('\r', ' ').replace('\n', ' ')
+
+
+def markdown_table(headers: tuple[str, ...], rows) -> list[str]:
+    return ['| ' + ' | '.join(headers) + ' |', '|' + '|'.join('---' for _ in headers) + '|'] + [
+        '| ' + ' | '.join(markdown_cell(value) for value in row) + ' |' for row in rows]
+
+
+def deadline_text(deadline: Deadline | None, as_of: date) -> str:
+    if deadline is None:
+        return 'not recorded'
+    return f'{deadline.date} ({(deadline.date - as_of).days} days left)'
+
+
+def cmd_board(manifest: Manifest, root: Path, as_of: date | None = None,
+              write: bool = False, out=sys.stdout) -> int:
+    as_of = as_of or date.today()
+    program = load_program(manifest, root)
+    lines = [f'# Research program board ({as_of})', '', '## Manuscripts', '']
+    groups = {}
+    for paper in program.manuscripts:
+        groups.setdefault(paper.status, []).append(paper)
+    order = [s for s in MANUSCRIPT_STATUSES if s in groups] + sorted(set(groups) - set(MANUSCRIPT_STATUSES))
+    for status_ in order:
+        lines += [f'### {markdown_cell(status_)}', '']
+        rows = [(p.title, p.venue, p.last_event, p.doi or 'not recorded',
+                 p.repo.name if p.repo else 'unmatched', deadline_text(p.deadline, as_of),
+                 str(p.check_on) if p.check_on else 'not recorded')
+                for p in sorted(groups[status_], key=lambda p: p.id)]
+        lines += markdown_table(('Title', 'Venue', 'Last event', 'DOI', 'Repository', 'Deadline', 'Follow-up check'), rows)
+        lines.append('')
+    if not groups:
+        lines += ['No manuscript records available.', '']
+    lines += ['## Studies', '']
+    for state_ in STUDY_STATES:
+        studies = sorted((s for s in program.studies if s.state == state_), key=lambda s: s.id)
+        if studies:
+            lines += [f'### {state_}', '']
+            lines += markdown_table(('Id', 'Title', 'Repository', 'Questions'),
+                                    [(s.id, s.title, s.repo or 'not recorded', ', '.join(s.questions) or 'none')
+                                     for s in studies])
+            lines.append('')
+    if not program.studies:
+        lines += ['No study records available.', '']
+    lines += ['## Attention', '']
+    attention = list(program.warnings)
+    for paper in sorted(program.manuscripts, key=lambda p: p.id):
+        if paper.deadline and 0 <= (paper.deadline.date - as_of).days <= 45:
+            attention.append(f'{paper.id}: deadline {deadline_text(paper.deadline, as_of)}')
+        if paper.check_on and paper.check_on <= as_of + timedelta(days=14):
+            attention.append(f'{paper.id}: follow-up {paper.check_on}' + (' (overdue)' if paper.check_on < as_of else ''))
+        if paper.repo and paper.status in MANUSCRIPT_STATUSES[:4]:
+            hosted = [s for s in program.studies if s.repo == paper.repo.name]
+            if hosted and all(s.state in ('stopped', 'folded') for s in hosted):
+                attention.append(f'{paper.id}: {paper.repo.name} hosts only stopped or folded studies '
+                                 f'while pubs status is {paper.status}')
+    recorded = {p.repo.name for p in program.manuscripts if p.repo} | {s.repo for s in program.studies if s.repo}
+    for repo in manifest.repos:
+        if repo.group == 'paper' and repo.name not in recorded:
+            attention.append(f'{repo.name}: paper repository has neither a pubs record nor a study')
+    skipped = 0
+    for entry in [*manifest.repos, *manifest.worktrees]:
+        no_generated_input(root / entry.path)
+        info = state(root, entry.path)
+        if not info['present']:
+            skipped += 1
+            continue
+        changes = []
+        if info['dirty']:
+            changes.append(f"{info['dirty']} uncommitted")
+        if info['ahead']:
+            changes.append(f"{info['ahead']} unpushed")
+        if changes:
+            attention.append(f'{entry.path}: ' + ', '.join(changes))
+    lines += ['- ' + markdown_cell(item) for item in attention] or ['No attention items.']
+    lines += ['', f'Skipped {skipped} missing checkouts.', '']
+    text = '\n'.join(lines)
+    if write:
+        target = root / 'STATUS.local.md'
+        _require(not target.is_symlink(), 'refusing to write STATUS.local.md through a symlink')
+        target.write_text(text, encoding='utf-8')
+    else:
+        print(text, end='', file=out)
+    return 0
+
+
 # ------------------------------------------------------------------ spent samples
 
 
@@ -894,10 +985,14 @@ def main(argv: list[str] | None = None, root: Path = ROOT, manifest_path: Path |
     p = sub.add_parser('scan'); p.add_argument('snapshot')
     p = sub.add_parser('render'); p.add_argument('--check', action='store_true')
     p = sub.add_parser('spent'); p.add_argument('--verify', action='store_true')
+    p = sub.add_parser('board'); p.add_argument('--as-of'); p.add_argument('--write', action='store_true')
     args = parser.parse_args(argv)
     manifest_path = manifest_path or root / 'workspace.json'
     try:
         manifest = load(manifest_path)
+        if args.command == 'board':
+            return cmd_board(manifest, root, iso_date(args.as_of, '--as-of') if args.as_of else None,
+                             args.write, out=sys.stdout)
         if args.command == 'status':
             return cmd_status(manifest, root)
         if args.command == 'clone':
