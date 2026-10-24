@@ -741,3 +741,237 @@ def test_board_missing_deadline_is_not_inferred_from_followup(tmp_path):
     assert 'not recorded' in text
     assert 'Title \\| with a newline' in text
     assert 'paper-one: deadline' not in text
+
+
+# ----------------------------------------------------------------------------- disposable links
+
+
+def by_stage(root):
+    out = io.StringIO()
+    code = ws.cmd_by_stage(ws.load(root / 'workspace.json'), root, out)
+    return code, out.getvalue()
+
+
+def test_by_stage_relative_links_subpaths_umbrella_and_missing_targets(tmp_path):
+    raw, studies, questions, pubs = program_fixture(tmp_path)
+    pubs.append(dict(pubs[0], id='umbrella-paper', repos={'manuscript': str(tmp_path)}))
+    studies.append(dict(studies[0], id='S-umbrella', repo='umbrella', questions=[], path='docs'))
+    studies.append(dict(studies[0], id='S-unassigned', repo=None, questions=[]))
+    studies[-1].pop('path')
+    write_program(tmp_path, raw, studies, questions, pubs)
+    (tmp_path / 'papers/alpha/analysis').mkdir(parents=True)
+    code, output = by_stage(tmp_path)
+    assert code == 0
+    view = tmp_path / 'by-stage'
+    assert (view / '.generated-by-workspace').is_file()
+    expected = {'manuscripts/under-review/paper-one': 'papers/alpha',
+                'studies/stopped/S-one': 'papers/alpha/analysis',
+                'repos/study/alpha': 'papers/alpha', 'repos/paper/beta': 'papers/beta',
+                'repos/pilot/gamma': 'papers/gamma'}
+    links = [p for p in view.rglob('*') if p.is_symlink()]
+    assert {str(p.relative_to(view)) for p in links} == set(expected)
+    for link in links:
+        assert not link.readlink().is_absolute()
+        assert link.resolve() == (tmp_path / expected[str(link.relative_to(view))]).resolve()
+    assert 'repos/paper/beta: missing target' in output
+    assert 'repos/pilot/gamma: missing target' in output
+    assert 'S-unassigned: no repository' in output
+    assert 'umbrella-paper' not in [p.name for p in links]
+    assert 'S-umbrella' not in [p.name for p in links]
+    assert by_stage(tmp_path)[0] == 0
+
+
+def test_by_stage_refuses_unmarked_directory_and_files_before_deleting(tmp_path):
+    program_fixture(tmp_path)
+    view = tmp_path / 'by-stage'
+    view.mkdir()
+    with pytest.raises(ws.ManifestError, match='marker'):
+        by_stage(tmp_path)
+    (view / '.generated-by-workspace').touch()
+    stale = view / 'old-link'
+    stale.symlink_to('../missing')
+    protected = view / 'nested/real.txt'
+    protected.parent.mkdir()
+    protected.write_text('preserve me')
+    with pytest.raises(ws.ManifestError, match='non-symlink'):
+        by_stage(tmp_path)
+    assert protected.read_text() == 'preserve me' and stale.is_symlink()
+
+
+def test_by_stage_removes_stale_links_without_following_them(tmp_path):
+    raw, studies, questions, pubs = program_fixture(tmp_path)
+    assert by_stage(tmp_path)[0] == 0
+    view = tmp_path / 'by-stage'
+    old = view / 'manuscripts/under-review/paper-one'
+    outside = tmp_path / 'protected'
+    outside.mkdir()
+    (outside / 'real.txt').write_text('keep')
+    (outside / 'link').symlink_to('real.txt')
+    (view / 'stale-directory').symlink_to('../protected', target_is_directory=True)
+    pubs[0]['derived']['status'] = 'in press'
+    studies[0]['state'] = 'deferred'
+    write_program(tmp_path, raw, studies, questions, pubs)
+    assert by_stage(tmp_path)[0] == 0
+    assert not old.is_symlink()
+    assert not (view / 'studies/stopped/S-one').is_symlink()
+    assert (view / 'studies/deferred/S-one').is_symlink()
+    assert (view / 'manuscripts/in-press/paper-one').is_symlink()
+    assert not (view / 'stale-directory').is_symlink()
+    assert (outside / 'real.txt').read_text() == 'keep' and (outside / 'link').is_symlink()
+
+
+@pytest.mark.parametrize('kind', ['root', 'marker', 'parent'])
+def test_by_stage_symlink_boundaries(tmp_path, kind):
+    program_fixture(tmp_path)
+    view = tmp_path / 'by-stage'
+    outside = tmp_path / 'outside'
+    outside.mkdir()
+    (outside / '.generated-by-workspace').touch()
+    if kind == 'root':
+        view.symlink_to(outside, target_is_directory=True)
+    else:
+        view.mkdir()
+        if kind == 'marker':
+            (view / '.generated-by-workspace').symlink_to(outside / '.generated-by-workspace')
+        else:
+            (view / '.generated-by-workspace').touch()
+            (view / 'repos').symlink_to(outside, target_is_directory=True)
+    if kind == 'parent':
+        assert by_stage(tmp_path)[0] == 0
+        assert not (view / 'repos').is_symlink()
+        assert not (outside / 'study').exists()
+    else:
+        with pytest.raises(ws.ManifestError, match='symlink|marker'):
+            by_stage(tmp_path)
+
+
+def test_by_stage_cli_and_missing_sources(tmp_path):
+    raw, _, _, _ = program_fixture(tmp_path)
+    for source in raw['sources'].values():
+        (tmp_path / source).unlink()
+    assert ws.main(['by-stage'], root=tmp_path) == 0
+    assert (tmp_path / 'by-stage/repos/study/alpha').is_symlink()
+
+
+def test_generated_view_is_never_a_source_even_through_aliases(tmp_path):
+    raw, studies, questions, pubs = program_fixture(tmp_path)
+    view = tmp_path / 'by-stage'
+    view.mkdir()
+    (view / 'records').symlink_to(tmp_path / 'records', target_is_directory=True)
+    (tmp_path / 'alias').symlink_to(view, target_is_directory=True)
+    raw['sources']['studies'] = 'alias/records/studies.json'
+    (tmp_path / 'workspace.json').write_text(json.dumps(raw))
+    with pytest.raises(ws.ManifestError, match='by-stage'):
+        load_program(tmp_path)
+
+
+def test_by_stage_plan_failure_preserves_existing_links(tmp_path):
+    raw, studies, questions, pubs = program_fixture(tmp_path)
+    assert by_stage(tmp_path)[0] == 0
+    raw['repos'][1]['name'] = '../escape'
+    studies[0]['repo'] = '../escape'
+    raw['snapshots'] = {}
+    write_program(tmp_path, raw, studies, questions, pubs)
+    with pytest.raises(ws.ManifestError, match='invalid id'):
+        by_stage(tmp_path)
+    assert (tmp_path / 'by-stage/repos/study/alpha').is_symlink()
+
+
+@pytest.mark.parametrize('collection, field', [('repos', 'path'), ('worktrees', 'path'), ('views', 'file')])
+def test_manifest_inputs_cannot_traverse_generated_view(tmp_path, collection, field):
+    raw, _, _, _ = program_fixture(tmp_path)
+    raw[collection][0][field] = 'by-stage/records/input'
+    (tmp_path / 'workspace.json').write_text(json.dumps(raw))
+    with pytest.raises(ws.ManifestError, match='by-stage'):
+        ws.load(tmp_path / 'workspace.json')
+
+
+def test_spent_evidence_cannot_read_generated_view(workspace):
+    root, _, _ = workspace
+    call(root, 'clone')
+    target = root / 'by-stage/evidence.txt'
+    target.parent.mkdir()
+    target.write_text('do not consume')
+    with pytest.raises(ws.ManifestError, match='by-stage'):
+        spent(root, sample('a', '2026-10-01', evidence=[
+            {'repo': 'umbrella', 'path': 'by-stage/evidence.txt', 'contains': 'do not consume'}]))
+
+
+def test_valid_fold_and_temporarily_absent_questions(tmp_path):
+    raw, studies, questions, pubs = program_fixture(tmp_path)
+    studies[0].update(state='folded', successor='S-next', note='Merged into successor')
+    studies.append(dict(studies[0], id='S-next', state='designed', successor=None, questions=[]))
+    write_program(tmp_path, raw, studies, questions, pubs)
+    assert load_program(tmp_path).studies[0].successor == 'S-next'
+    (tmp_path / raw['sources']['questions']).unlink()
+    program = load_program(tmp_path)
+    assert len(program.studies) == 2 and not program.questions
+    assert any('cross-references unverified' in warning for warning in program.warnings)
+
+
+def test_board_all_statuses_in_order_and_folded_disagreement(tmp_path):
+    raw, studies, questions, pubs = program_fixture(tmp_path)
+    studies[0].update(state='folded', successor='S-next')
+    studies.append(dict(studies[0], id='S-next', state='idea', repo='gamma', successor=None, questions=[]))
+    statuses = ['in preparation', 'revising', 'under review', 'seeking venue', 'in press',
+                'published', 'posted', 'withdrawn', 'retired', 'upstream custom status']
+    pubs = [dict(pubs[0], id=f'p-{i}', derived=dict(pubs[0]['derived'], status=status))
+            for i, status in enumerate(reversed(statuses))]
+    write_program(tmp_path, raw, studies, questions, pubs)
+    text = board(tmp_path)[1]
+    headings = [line.removeprefix('### ') for line in text.split('## Studies')[0].splitlines()
+                if line.startswith('### ')]
+    assert headings == statuses
+    assert text.count('only stopped or folded studies') == 4
+
+
+@pytest.mark.parametrize('date_', ['20261023', '2026-02-30', None, 42])
+def test_invalid_structured_dates_are_manifest_errors(tmp_path, date_):
+    raw, studies, questions, pubs = program_fixture(tmp_path)
+    pubs[0]['deadline']['date'] = date_
+    write_program(tmp_path, raw, studies, questions, pubs)
+    with pytest.raises(ws.ManifestError, match='YYYY-MM-DD'):
+        load_program(tmp_path)
+
+
+def test_malformed_json_reports_the_source_and_blank_jsonl_lines_are_ignored(tmp_path):
+    raw, _, _, _ = program_fixture(tmp_path)
+    source = tmp_path / raw['sources']['pubs']
+    source.write_text('\n' + source.read_text() + '\n')
+    assert len(load_program(tmp_path).manuscripts) == 1
+    source.write_text('{')
+    with pytest.raises(ws.ManifestError, match='pubs.jsonl:1'):
+        load_program(tmp_path)
+
+
+def test_by_stage_refuses_directory_at_planned_leaf_before_mutation(tmp_path):
+    program_fixture(tmp_path)
+    view = tmp_path / 'by-stage'
+    (view / 'repos/study/alpha').mkdir(parents=True)
+    (view / '.generated-by-workspace').touch()
+    (view / 'stale').symlink_to('../missing')
+    with pytest.raises(ws.ManifestError, match='replace a directory'):
+        by_stage(tmp_path)
+    assert (view / 'stale').is_symlink()
+
+
+def test_board_write_refuses_symlink(tmp_path):
+    program_fixture(tmp_path)
+    protected = tmp_path / 'protected.md'
+    protected.write_text('keep')
+    (tmp_path / 'STATUS.local.md').symlink_to(protected)
+    with pytest.raises(ws.ManifestError, match='symlink'):
+        board(tmp_path, write=True)
+    assert protected.read_text() == 'keep'
+
+
+def test_generated_view_input_rejected_through_file_symlink(tmp_path):
+    raw, _, _, _ = program_fixture(tmp_path)
+    view = tmp_path / 'by-stage'
+    view.mkdir()
+    (view / 'records').symlink_to(tmp_path / 'records', target_is_directory=True)
+    (tmp_path / 'indirect.json').symlink_to(view / 'records/studies.json')
+    raw['sources']['studies'] = 'indirect.json'
+    (tmp_path / 'workspace.json').write_text(json.dumps(raw))
+    with pytest.raises(ws.ManifestError, match='by-stage'):
+        load_program(tmp_path)

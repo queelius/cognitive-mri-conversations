@@ -5,6 +5,7 @@
 GitHub visibility, data class, one-line note) and named snapshots that pin the commits a paper
 depends on. This tool derives everything else from it:
 
+    python3 tools/workspace.py by-stage                # rebuild the private relative-link view
     python3 tools/workspace.py board [--as-of YYYY-MM-DD] [--write]  # private research board
     python3 tools/workspace.py status                  # local state of every entry
     python3 tools/workspace.py clone [--dry-run]       # clone missing repos and worktrees into place
@@ -132,6 +133,7 @@ def load(path: Path = MANIFEST) -> Manifest:
         _require(entry['visibility'] in VISIBILITY, f"unknown visibility {entry['visibility']!r}")
         _require(not Path(entry['path']).is_absolute() and '..' not in Path(entry['path']).parts,
                  f"path must stay inside the workspace: {entry['path']}")
+        no_generated_input(Path(path).parent / entry['path'])
         repos.append(Repo(entry['name'], entry['path'], entry['branch'], entry['visibility'], entry['data'],
                           entry['group'], entry['note'], bool(entry.get('archived', False)),
                           entry.get('default_branch')))
@@ -142,6 +144,7 @@ def load(path: Path = MANIFEST) -> Manifest:
         for key in ('path', 'repo', 'branch'):
             _require(isinstance(entry.get(key), str) and entry[key], f'worktree entry lacks {key}: {entry}')
         _require(entry['repo'] in names, f"worktree of unknown repository {entry['repo']!r}")
+        no_generated_input(Path(path).parent / entry['path'])
         worktrees.append(Worktree(entry['path'], entry['repo'], entry['branch']))
     paths = [r.path for r in repos] + [w.path for w in worktrees]
     _require(len(set(paths)) == len(paths), 'paths must be unique')
@@ -166,6 +169,7 @@ def load(path: Path = MANIFEST) -> Manifest:
         _require(entry['repo'] in by_name, f"reviewed exception for unknown repository {entry['repo']!r}")
     views = []
     for entry in raw.get('views', []):
+        no_generated_input(Path(path).parent / entry['file'])
         columns, headers = tuple(entry['columns']), tuple(entry['headers'])
         _require(all(c in COLUMNS for c in columns), f'unknown view column in {columns}')
         _require(len(columns) == len(headers), 'view columns and headers differ in length')
@@ -188,9 +192,23 @@ MANUSCRIPT_STATUSES = ('in preparation', 'revising', 'under review', 'seeking ve
 
 
 def no_generated_input(path: Path) -> None:
-    """Reject both direct and aliased inputs from the disposable view."""
-    _require('by-stage' not in path.parts and 'by-stage' not in path.resolve().parts,
-             f'input must not read from by-stage: {path}')
+    """Reject generated inputs, including symlinks that traverse the view then leave it."""
+    pending, seen = [path], set()
+    while pending:
+        candidate = pending.pop()
+        if candidate in seen:
+            continue
+        seen.add(candidate)
+        _require('by-stage' not in candidate.parts, f'input must not read from by-stage: {path}')
+        try:
+            resolved = candidate.resolve()
+        except RuntimeError as error:
+            raise ManifestError(f'invalid input path {path}: {error}') from error
+        _require('by-stage' not in resolved.parts, f'input must not read from by-stage: {path}')
+        # resolve() alone hides intermediate link destinations. Check those explicitly.
+        for parent in (candidate, *candidate.parents):
+            if parent.is_symlink():
+                pending.append(parent.parent / parent.readlink())
 
 
 def strict_json(text: str, source: str):
@@ -461,6 +479,7 @@ def git(path: Path, *args: str, check: bool = True) -> str:
 
 
 def is_checkout(path: Path) -> bool:
+    no_generated_input(path)
     return (path / '.git').exists()
 
 
@@ -821,6 +840,100 @@ def cmd_board(manifest: Manifest, root: Path, as_of: date | None = None,
     return 0
 
 
+# ----------------------------------------------------------------------------- disposable view
+
+VIEW_MARKER = '.generated-by-workspace'
+
+
+def status_slug(status: str) -> str:
+    """A path component only; publication status itself is never rewritten."""
+    return '-'.join(''.join(c.lower() if c.isalnum() else ' ' for c in status).split()) or 'unknown'
+
+
+def view_links(manifest: Manifest, program: Program, root: Path, warnings: list[str]) -> dict[Path, Path]:
+    links = {}
+
+    def add(relative: Path, repo: Repo, subpath: str | None = None):
+        if repo.path == '.' or (root / repo.path).resolve() == root.resolve():
+            return
+        target = root / repo.path
+        if subpath:
+            target /= subpath
+        no_generated_input(target)
+        _require(relative not in links, f'duplicate view link: {relative}')
+        links[relative] = target
+
+    for paper in program.manuscripts:
+        if paper.repo:
+            add(Path('manuscripts') / status_slug(paper.status) / paper.id, paper.repo)
+    for study in program.studies:
+        if study.repo:
+            add(Path('studies') / study.state / study.id, manifest.repo(study.repo), study.path)
+        else:
+            warnings.append(f'{study.id}: no repository; no link created')
+    for repo in manifest.repos:
+        name = identifier(repo.name, 'repository')
+        add(Path('repos') / repo.group / name, repo)
+    return links
+
+
+def inspect_view(view: Path) -> tuple[list[Path], set[Path]]:
+    """The marker owns the subtree's links. Inventory it without following any link.
+
+    Refuse every regular/special file except the root marker before removing anything.
+    Empty directories are left intact. Link targets, including directory targets, are untouched.
+    """
+    _require(not view.is_symlink(), f'refusing symlink view root: {view}')
+    if not view.exists():
+        return [], set()
+    marker = view / VIEW_MARKER
+    _require(view.is_dir() and not marker.is_symlink() and marker.is_file(),
+             f'{view}: missing regular {VIEW_MARKER} marker')
+    links, directories = [], {view}
+
+    def visit(directory: Path):
+        with os.scandir(directory) as entries:
+            for entry in entries:
+                path = Path(entry.path)
+                if path == marker:
+                    continue
+                if entry.is_symlink():
+                    links.append(path)
+                elif entry.is_dir(follow_symlinks=False):
+                    directories.add(path)
+                    visit(path)
+                else:
+                    raise ManifestError(f'refusing non-symlink file inside by-stage: {path}')
+    visit(view)
+    return links, directories
+
+
+def cmd_by_stage(manifest: Manifest, root: Path, out=sys.stdout) -> int:
+    root = root.absolute()
+    view = root / 'by-stage'
+    old_links, directories = inspect_view(view)
+    program = load_program(manifest, root)
+    warnings = list(program.warnings)
+    links = view_links(manifest, program, root, warnings)
+    for relative in links:
+        _require(view / relative not in directories, f'view link would replace a directory: {relative}')
+    # Validation and the complete no-follow inventory precede all mutations.
+    view.mkdir(exist_ok=True)
+    (view / VIEW_MARKER).touch()
+    for link in old_links:
+        link.unlink()
+    for relative, target in sorted(links.items()):
+        link = view / relative
+        link.parent.mkdir(parents=True, exist_ok=True)
+        link.symlink_to(os.path.relpath(target, link.parent), target_is_directory=True)
+        if not target.exists():
+            warnings.append(f'{relative}: missing target {target}')
+    for warning in warnings:
+        print(warning, file=out)
+    print(f'Created {len(links)} relative links in by-stage/.', file=out)
+    return 0
+
+
 # ------------------------------------------------------------------ spent samples
 
 
@@ -896,6 +1009,8 @@ def ledger_problems(samples: list[Sample], manifest: Manifest, root: Path) -> li
         if not is_checkout(where):
             continue  # a missing checkout is reported by `status`, not here
         for label, rel in (('record', sample.record), ('protocol', sample.protocol), ('freeze', sample.freeze)):
+            if rel:
+                no_generated_input(where / rel)
             if rel and not (where / rel).is_file():
                 problems.append(f'{sample.id}: {label} {rel} is missing in {sample.repo}')
         for item in sample.evidence:
@@ -904,6 +1019,7 @@ def ledger_problems(samples: list[Sample], manifest: Manifest, root: Path) -> li
             except ManifestError:
                 problems.append(f"{sample.id}: evidence names unknown repository {item['repo']}")
                 continue
+            no_generated_input(target)
             if not target.is_file():
                 problems.append(f"{sample.id}: evidence file {item['path']} is missing in {item['repo']}")
             elif item['contains'] not in target.read_text(encoding='utf-8', errors='replace'):
@@ -956,6 +1072,7 @@ def cmd_render(manifest: Manifest, root: Path, check: bool = False, out=sys.stdo
     texts = {}
     for view in manifest.views:
         path = root / view.file
+        no_generated_input(path)
         text = texts.get(path, path.read_text(encoding='utf-8'))
         begin, end = f'<!-- workspace:{view.block}:begin -->', f'<!-- workspace:{view.block}:end -->'
         _require(begin in text and end in text, f'{view.file} lacks the markers for block {view.block!r}')
@@ -985,11 +1102,14 @@ def main(argv: list[str] | None = None, root: Path = ROOT, manifest_path: Path |
     p = sub.add_parser('scan'); p.add_argument('snapshot')
     p = sub.add_parser('render'); p.add_argument('--check', action='store_true')
     p = sub.add_parser('spent'); p.add_argument('--verify', action='store_true')
+    sub.add_parser('by-stage')
     p = sub.add_parser('board'); p.add_argument('--as-of'); p.add_argument('--write', action='store_true')
     args = parser.parse_args(argv)
     manifest_path = manifest_path or root / 'workspace.json'
     try:
         manifest = load(manifest_path)
+        if args.command == 'by-stage':
+            return cmd_by_stage(manifest, root, out=sys.stdout)
         if args.command == 'board':
             return cmd_board(manifest, root, iso_date(args.as_of, '--as-of') if args.as_of else None,
                              args.write, out=sys.stdout)

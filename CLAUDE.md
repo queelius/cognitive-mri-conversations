@@ -36,6 +36,20 @@ manage snapshots, `remote-check` compares GitHub settings, `scan` checks a snaps
 forbidden files and secrets before publication, and `render` regenerates the tables below.
 `spent.json` is the ledger of every sample drawn from a shared pool (PRISM, WildChat); `spent --verify`
 checks that each later draw's committed configuration excludes every earlier one.
+`board [--as-of YYYY-MM-DD] [--write]` reads the manifest's `sources`: the generated
+`pubs.jsonl`, agenda `studies.json`, and agenda `questions.json`. It keeps publication status,
+study state, and repository role separate. Missing source files are reported; study/question
+cross-references remain unverified until both records are available. Optional publication deadlines
+use ISO dates for both `date` and `verified`, with a `source` string. Deadline attention covers
+today through 45 days ahead; follow-up attention includes overdue checks and the next 14 days.
+`--write` saves the private board to gitignored `STATUS.local.md`.
+
+`by-stage` builds gitignored relative links to repository directories and study subpaths. Its
+`.generated-by-workspace` marker designates the whole subtree as disposable generator-owned links.
+Do not put personal links or files there. Rebuilds refuse unmarked directories and real files,
+leave empty directories intact, and never traverse directory links. The umbrella is never linked.
+The generated view is not an input source for this tool.
+
 Edit the manifest, then run `python3 tools/workspace.py render`; never edit the tables by hand.
 
 Consequences:
