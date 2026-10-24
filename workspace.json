@@ -268,7 +268,8 @@
       "file": "CLAUDE.md",
       "block": "papers",
       "groups": [
-        "paper"
+        "paper",
+        "infrastructure"
       ],
       "columns": [
         "path",

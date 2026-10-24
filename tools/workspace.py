@@ -185,7 +185,7 @@ def save(manifest: Manifest, path: Path = MANIFEST) -> None:
 
 # ----------------------------------------------------------------------------- program records
 
-STUDY_STATES = ('idea', 'designed', 'running', 'confirmed', 'not-confirmed', 'stopped', 'deferred', 'folded')
+STUDY_STATES = ('idea', 'designed', 'running', 'explored', 'confirmed', 'not-confirmed', 'stopped', 'deferred', 'folded')
 QUESTION_STATES = ('open', 'answered', 'narrowed', 'deferred', 'stopped')
 MANUSCRIPT_STATUSES = ('in preparation', 'revising', 'under review', 'seeking venue', 'in press',
                        'published', 'posted', 'withdrawn', 'retired')
