@@ -58,6 +58,8 @@ def make_remote(remotes: Path, name: str, branches=('main',)):
 
 def base_manifest(remotes: Path) -> dict:
     return {
+        'sources': {'pubs': '../pubs/pubs.jsonl', 'studies': 'papers/agenda/studies.json',
+                    'questions': 'papers/agenda/questions.json'},
         'version': 1, 'owner': 'tester', 'remote': str(remotes) + '/{name}.git',
         'repos': [
             {'name': 'umbrella', 'path': '.', 'branch': 'main', 'visibility': 'public', 'data': 'none',
@@ -522,3 +524,131 @@ def test_main_runs_spent(workspace):
     assert ws.main(['spent', '--verify'], root=root) == 0
     write_ledger(root, [sample('a', '2026-10-01'), sample('b', '2026-10-02')])
     assert ws.main(['spent', '--verify'], root=root) == 1
+
+
+# ----------------------------------------------------------------------------- program sources
+
+
+def program_fixture(root):
+    raw = base_manifest(root)
+    raw['sources'] = {'pubs': 'records/pubs.jsonl', 'studies': 'records/studies.json',
+                      'questions': 'records/questions.json'}
+    studies = [{'id': 'S-one', 'title': 'Study one', 'state': 'stopped', 'repo': 'alpha',
+                'questions': ['Q1'], 'successor': None, 'path': 'analysis'}]
+    questions = [{'id': 'Q1', 'question': 'Does it work?', 'state': 'open', 'studies': ['S-one'],
+                  'known': 'A control', 'remaining': 'A replication'}]
+    pubs = [{'id': 'paper-one', 'program': 'cognitive-mri', 'title': 'Paper one',
+             'repos': {'manuscript': str(root / 'papers/alpha')},
+             'derived': {'status': 'under review', 'venue': 'Venue', 'last_event': 'submitted 2026-10-01',
+                         'doi': '10.1234/example'},
+             'deadline': {'date': '2026-11-01', 'source': 'https://example.org', 'verified': '2026-10-01'},
+             'follow_up': {'check_on': '2026-10-20', 'action': 'Check', 'resume_at': 'notes'}}]
+    write_program(root, raw, studies, questions, pubs)
+    return raw, studies, questions, pubs
+
+
+def write_program(root, raw, studies, questions, pubs):
+    (root / 'workspace.json').write_text(json.dumps(raw))
+    for kind, payload in [('studies', {'version': 1, 'studies': studies}),
+                          ('questions', {'version': 1, 'questions': questions}), ('pubs', pubs)]:
+        path = root / raw['sources'][kind]
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text('\n'.join(json.dumps(p) for p in payload) + '\n' if kind == 'pubs'
+                        else json.dumps(payload))
+
+
+def load_program(root):
+    return ws.load_program(ws.load(root / 'workspace.json'), root)
+
+
+@pytest.mark.parametrize('kind', ['workspace', 'spent', 'pubs', 'studies', 'questions'])
+def test_duplicate_keys_rejected_in_every_file_kind(tmp_path, kind):
+    raw, _, _, _ = program_fixture(tmp_path)
+    path = tmp_path / (raw['sources'][kind] if kind in raw['sources'] else f'{kind}.json')
+    path.write_text('{"outer": {"duplicate": 1, "duplicate": 2}}\n')
+    with pytest.raises(ws.ManifestError, match="duplicate.*duplicate"):
+        if kind == 'workspace':
+            ws.load(path)
+        elif kind == 'spent':
+            ws.load_ledger(path)
+        else:
+            load_program(tmp_path)
+
+
+@pytest.mark.parametrize('sources', [None, [], {}, {'pubs': '/absolute'},
+                                    {'pubs': '../pubs/pubs.jsonl', 'studies': 42, 'questions': 'q.json'},
+                                    {'pubs': 'by-stage/input.jsonl', 'studies': 's', 'questions': 'q'}])
+def test_sources_configuration_is_validated(tmp_path, sources):
+    raw, _, _, _ = program_fixture(tmp_path)
+    raw['sources'] = sources
+    (tmp_path / 'workspace.json').write_text(json.dumps(raw))
+    with pytest.raises(ws.ManifestError, match='sources'):
+        ws.load(tmp_path / 'workspace.json')
+
+
+@pytest.mark.parametrize('kind, mutate, message', [
+    ('studies', lambda s: s[0].update(state='finished'), 'unknown study state'),
+    ('questions', lambda q: q[0].update(state='closed'), 'unknown question state'),
+    ('studies', lambda s: s.append(dict(s[0])), 'duplicate study ids'),
+    ('questions', lambda q: q.append(dict(q[0])), 'duplicate question ids'),
+    ('studies', lambda s: s[0].update(repo='unknown'), 'unknown repository'),
+    ('studies', lambda s: s[0].update(questions=['Q99']), 'unknown question'),
+    ('questions', lambda q: q[0].update(studies=['S-missing']), 'unknown study'),
+    ('studies', lambda s: s[0].update(state='folded'), 'folded.*successor'),
+    ('studies', lambda s: s[0].pop('successor'), 'successor'),
+    ('studies', lambda s: s[0].update(state='folded', successor='S-missing'), 'unknown successor'),
+    ('studies', lambda s: s[0].update(successor='S-one'), 'successor.*null'),
+    ('studies', lambda s: s[0].update(questions=[]), 'links must agree'),
+    ('questions', lambda q: q[0].update(studies=[]), 'links must agree'),
+    ('studies', lambda s: s[0].update(path='../outside'), 'subpath'),
+    ('studies', lambda s: s[0].update(path='/outside'), 'subpath'),
+    ('studies', lambda s: s[0].update(questions='Q1'), 'list'),
+    ('questions', lambda q: q[0].update(known=42), 'known'),
+])
+def test_program_record_rules(tmp_path, kind, mutate, message):
+    raw, studies, questions, pubs = program_fixture(tmp_path)
+    mutate(studies if kind == 'studies' else questions)
+    write_program(tmp_path, raw, studies, questions, pubs)
+    with pytest.raises(ws.ManifestError, match=message):
+        load_program(tmp_path)
+
+
+def test_pubs_join_filter_and_staleness(tmp_path, monkeypatch):
+    import os
+    raw, studies, questions, pubs = program_fixture(tmp_path)
+    monkeypatch.setenv('HOME', str(tmp_path))
+    pubs[0]['repos']['manuscript'] = '~/papers/alpha/../alpha'
+    pubs += [dict(pubs[0], id='unmatched', repos={'manuscript': str(tmp_path / 'elsewhere')}),
+             dict(pubs[0], id='other-program', program='other')]
+    write_program(tmp_path, raw, studies, questions, pubs)
+    yaml = tmp_path / 'records/papers/paper.yaml'
+    yaml.parent.mkdir()
+    yaml.write_text('not parsed')
+    source = tmp_path / raw['sources']['pubs']
+    os.utime(source, (100, 100))
+    os.utime(yaml, (200, 200))
+    program = load_program(tmp_path)
+    assert [p.id for p in program.manuscripts] == ['paper-one', 'unmatched']
+    assert program.manuscripts[0].repo.name == 'alpha'
+    assert program.manuscripts[1].repo is None
+    assert program.manuscripts[0].status == 'under review'
+    assert any('stale' in warning and 'paper.yaml' in warning for warning in program.warnings)
+    assert any('unmatched' in warning for warning in program.warnings)
+    os.utime(yaml, (50, 50))
+    assert not any('stale' in warning for warning in load_program(tmp_path).warnings)
+
+
+def test_missing_sources_are_reported_and_do_not_fail(tmp_path):
+    raw, _, _, _ = program_fixture(tmp_path)
+    for source in raw['sources'].values():
+        (tmp_path / source).unlink()
+    program = load_program(tmp_path)
+    assert not program.manuscripts and not program.studies and not program.questions
+    assert sum('absent' in warning for warning in program.warnings) == 3
+
+
+def test_infrastructure_is_a_repository_role(tmp_path):
+    raw, studies, questions, pubs = program_fixture(tmp_path)
+    raw['repos'][1]['group'] = 'infrastructure'
+    write_program(tmp_path, raw, studies, questions, pubs)
+    assert ws.load(tmp_path / 'workspace.json').repo('alpha').group == 'infrastructure'

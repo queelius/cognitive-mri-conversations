@@ -23,8 +23,10 @@ from __future__ import annotations
 
 import argparse
 from dataclasses import dataclass, field
+from datetime import date, timedelta
 import fnmatch
 import json
+import os
 from pathlib import Path
 import re
 import subprocess
@@ -32,7 +34,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / 'workspace.json'
-GROUPS = ('umbrella', 'corpus', 'planning', 'paper', 'pilot', 'study')
+GROUPS = ('umbrella', 'corpus', 'planning', 'paper', 'pilot', 'study', 'infrastructure')
 DATA = ('none', 'public', 'private-archive')
 VISIBILITY = ('public', 'private')
 COLUMNS = ('path', 'repo', 'repo_branch', 'note')
@@ -95,6 +97,7 @@ class Manifest:
     policy: dict
     views: list[View]
     raw: dict = field(repr=False)
+    sources: Sources
 
     def repo(self, name: str) -> Repo:
         for repo in self.repos:
@@ -113,8 +116,9 @@ def _require(cond: bool, message: str) -> None:
 
 def load(path: Path = MANIFEST) -> Manifest:
     """Parse and validate the manifest; every structural rule lives here."""
-    raw = json.loads(Path(path).read_text(encoding='utf-8'))
-    _require(raw.get('version') == 1, 'manifest version must be 1')
+    raw = read_json(path)
+    _require(isinstance(raw, dict) and raw.get('version') == 1, 'manifest version must be 1')
+    sources = load_sources(raw.get('sources'))
     for key in ('owner', 'remote', 'repos'):
         _require(key in raw, f'manifest lacks {key}')
     _require('{name}' in raw['remote'], 'remote template must contain {name}')
@@ -167,11 +171,278 @@ def load(path: Path = MANIFEST) -> Manifest:
         _require(all(g in GROUPS for g in entry['groups']), f"unknown view group in {entry['groups']}")
         views.append(View(entry['file'], entry['block'], tuple(entry['groups']), columns, headers))
     return Manifest(raw['owner'], raw['remote'], repos, worktrees, snapshots,
-                    raw.get('publication_policy', {}), views, raw)
+                    raw.get('publication_policy', {}), views, raw, sources)
 
 
 def save(manifest: Manifest, path: Path = MANIFEST) -> None:
     Path(path).write_text(json.dumps(manifest.raw, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
+
+
+# ----------------------------------------------------------------------------- program records
+
+STUDY_STATES = ('idea', 'designed', 'running', 'confirmed', 'not-confirmed', 'stopped', 'deferred', 'folded')
+QUESTION_STATES = ('open', 'answered', 'narrowed', 'deferred', 'stopped')
+MANUSCRIPT_STATUSES = ('in preparation', 'revising', 'under review', 'seeking venue', 'in press',
+                       'published', 'posted', 'withdrawn', 'retired')
+
+
+def no_generated_input(path: Path) -> None:
+    """Reject both direct and aliased inputs from the disposable view."""
+    _require('by-stage' not in path.parts and 'by-stage' not in path.resolve().parts,
+             f'input must not read from by-stage: {path}')
+
+
+def strict_json(text: str, source: str):
+    def unique(pairs):
+        result = {}
+        for key, value in pairs:
+            _require(key not in result, f'{source}: duplicate object key {key!r}')
+            result[key] = value
+        return result
+    try:
+        return json.loads(text, object_pairs_hook=unique)
+    except json.JSONDecodeError as error:
+        raise ManifestError(f'{source}: {error}') from error
+
+
+def read_json(path: Path):
+    path = Path(path)
+    no_generated_input(path)
+    return strict_json(path.read_text(encoding='utf-8'), str(path))
+
+
+def required_text(entry: dict, key: str, label: str, empty: bool = False) -> str:
+    value = entry.get(key)
+    _require(isinstance(value, str) and (empty or bool(value.strip())), f'{label}: invalid {key}')
+    return value
+
+
+def identifier(value: str, label: str) -> str:
+    _require(isinstance(value, str) and bool(value) and value not in ('.', '..')
+             and all(c.isalnum() or c in '-_.' for c in value), f'{label}: invalid id {value!r}')
+    return value
+
+
+def iso_date(value: str, label: str) -> date:
+    try:
+        parsed = date.fromisoformat(value)
+        if parsed.isoformat() != value:
+            raise ValueError(value)
+        return parsed
+    except (TypeError, ValueError) as error:
+        raise ManifestError(f'{label}: expected YYYY-MM-DD, got {value!r}') from error
+
+
+@dataclass(frozen=True)
+class Sources:
+    pubs: str
+    studies: str
+    questions: str
+
+
+def load_sources(raw) -> Sources:
+    _require(isinstance(raw, dict), 'sources must be an object')
+    for key in ('pubs', 'studies', 'questions'):
+        value = required_text(raw, key, 'sources')
+        _require(not Path(value).is_absolute() and not value.startswith('~')
+                 and 'by-stage' not in Path(value).parts, f'sources.{key}: expected a relative input path')
+    return Sources(raw['pubs'], raw['studies'], raw['questions'])
+
+
+@dataclass(frozen=True)
+class Deadline:
+    date: date
+    source: str
+    verified: date
+
+
+@dataclass(frozen=True)
+class Manuscript:
+    id: str
+    title: str
+    status: str
+    venue: str
+    last_event: str
+    doi: str
+    repo: Repo | None
+    deadline: Deadline | None
+    check_on: date | None
+
+
+@dataclass(frozen=True)
+class Study:
+    id: str
+    title: str
+    state: str
+    repo: str | None
+    path: str | None
+    questions: tuple[str, ...]
+    successor: str | None
+    note: str | None
+
+
+@dataclass(frozen=True)
+class Question:
+    id: str
+    question: str
+    state: str
+    studies: tuple[str, ...]
+    known: str
+    remaining: str
+
+
+@dataclass
+class Program:
+    manuscripts: list[Manuscript]
+    studies: list[Study]
+    questions: list[Question]
+    warnings: list[str]
+
+
+def read_records(path: Path, collection: str, warnings: list[str]) -> list[dict] | None:
+    no_generated_input(path)
+    if not path.exists():
+        warnings.append(f'{collection} record absent: {path}')
+        return None
+    raw = read_json(path)
+    _require(isinstance(raw, dict) and type(raw.get('version')) is int and raw['version'] == 1,
+             f'{path}: version must be 1')
+    entries = raw.get(collection)
+    _require(isinstance(entries, list), f'{path}: {collection} must be a list')
+    _require(all(isinstance(e, dict) for e in entries), f'{path}: records must be objects')
+    return entries
+
+
+def reference_list(entry: dict, key: str, label: str) -> tuple[str, ...]:
+    values = entry.get(key)
+    _require(isinstance(values, list) and all(isinstance(v, str) and v for v in values),
+             f'{label}: {key} must be a list of ids')
+    _require(len(values) == len(set(values)), f'{label}: duplicate {key} references')
+    return tuple(values)
+
+
+def unique_records(records, label: str) -> dict:
+    result = {r.id: r for r in records}
+    _require(len(result) == len(records), f'duplicate {label} ids')
+    return result
+
+
+def load_pubs(path: Path, manifest: Manifest, root: Path, warnings: list[str]) -> list[Manuscript]:
+    no_generated_input(path)
+    if not path.exists():
+        warnings.append(f'pubs record absent: {path}')
+        return []
+    repos = {}
+    for repo in manifest.repos:
+        location = (root / repo.path).resolve()
+        _require(location not in repos, f'ambiguous repository path: {location}')
+        repos[location] = repo
+    manuscripts = []
+    for number, line in enumerate(path.read_text(encoding='utf-8').splitlines(), 1):
+        if not line.strip():
+            continue
+        label = f'{path}:{number}'
+        raw = strict_json(line, label)
+        _require(isinstance(raw, dict), f'{label}: expected an object')
+        if raw.get('program') != 'cognitive-mri':
+            continue
+        id_ = identifier(raw.get('id'), label)
+        title = required_text(raw, 'title', label)
+        derived = raw.get('derived')
+        _require(isinstance(derived, dict), f'{label}: derived must be an object')
+        status = required_text(derived, 'status', label)
+        fields = [required_text(derived, key, label, empty=True) for key in ('venue', 'last_event', 'doi')]
+        locations = raw.get('repos', {})
+        _require(isinstance(locations, dict), f'{label}: repos must be an object')
+        location = locations.get('manuscript')
+        _require(location is None or isinstance(location, str), f'{label}: invalid manuscript locator')
+        # Relative locators are anchored to the umbrella, never the caller's cwd.
+        repo = repos.get((root / Path(location).expanduser()).resolve()) if location else None
+        if repo is None:
+            warnings.append(f'{id_}: pubs record unmatched to a manifest repository')
+        deadline = None
+        if raw.get('deadline') is not None:
+            value = raw['deadline']
+            _require(isinstance(value, dict), f'{label}: deadline must be an object')
+            deadline = Deadline(iso_date(value.get('date'), f'{label} deadline.date'),
+                                required_text(value, 'source', label),
+                                iso_date(value.get('verified'), f'{label} deadline.verified'))
+        check_on = None
+        if raw.get('follow_up') is not None:
+            value = raw['follow_up']
+            _require(isinstance(value, dict), f'{label}: follow_up must be an object')
+            if value.get('check_on') is not None:
+                check_on = iso_date(value['check_on'], f'{label} follow_up.check_on')
+        manuscripts.append(Manuscript(id_, title, status, *fields, repo, deadline, check_on))
+    unique_records(manuscripts, 'manuscript')
+    yaml_dir = path.parent / 'papers'
+    no_generated_input(yaml_dir)
+    for yaml in sorted(yaml_dir.glob('*.yaml')):
+        no_generated_input(yaml)
+        if yaml.stat().st_mtime_ns > path.stat().st_mtime_ns:
+            warnings.append(f'pubs index stale: {yaml} is newer than {path}')
+    return manuscripts
+
+
+def load_program(manifest: Manifest, root: Path) -> Program:
+    warnings = []
+    manuscripts = load_pubs(root / manifest.sources.pubs, manifest, root, warnings)
+    raw_studies = read_records(root / manifest.sources.studies, 'studies', warnings)
+    raw_questions = read_records(root / manifest.sources.questions, 'questions', warnings)
+    studies, questions = [], []
+    for entry in raw_studies or []:
+        id_ = identifier(entry.get('id'), 'study')
+        _require(id_.startswith('S-') and len(id_) > 2, f'invalid study id: {id_}')
+        title = required_text(entry, 'title', id_)
+        state_ = required_text(entry, 'state', id_)
+        _require(state_ in STUDY_STATES, f'{id_}: unknown study state {state_!r}')
+        _require('repo' in entry and (entry['repo'] is None or isinstance(entry['repo'], str)),
+                 f'{id_}: repo must be a repository name or null')
+        repo = entry['repo']
+        if repo is not None:
+            manifest.repo(repo)
+        _require('successor' in entry, f'{id_}: successor is required')
+        successor = entry['successor']
+        if state_ == 'folded':
+            _require(isinstance(successor, str) and bool(successor), f'{id_}: folded study needs a successor')
+        else:
+            _require(successor is None, f'{id_}: successor must be null unless folded')
+        path = entry.get('path')
+        if 'path' in entry:
+            _require(isinstance(path, str) and bool(path) and not Path(path).is_absolute()
+                     and '..' not in Path(path).parts and 'by-stage' not in Path(path).parts,
+                     f'{id_}: path must be a relative subpath')
+            _require(repo is not None, f'{id_}: subpath requires a repository')
+        note = required_text(entry, 'note', id_, empty=True) if 'note' in entry else None
+        studies.append(Study(id_, title, state_, repo, path, reference_list(entry, 'questions', id_), successor, note))
+    for entry in raw_questions or []:
+        id_ = identifier(entry.get('id'), 'question')
+        _require(id_.startswith('Q') and len(id_) > 1, f'invalid question id: {id_}')
+        state_ = required_text(entry, 'state', id_)
+        _require(state_ in QUESTION_STATES, f'{id_}: unknown question state {state_!r}')
+        questions.append(Question(id_, required_text(entry, 'question', id_), state_,
+                                  reference_list(entry, 'studies', id_),
+                                  required_text(entry, 'known', id_, empty=True),
+                                  required_text(entry, 'remaining', id_, empty=True)))
+    by_study = unique_records(studies, 'study')
+    by_question = unique_records(questions, 'question')
+    for study in studies:
+        if study.successor is not None:
+            _require(study.successor in by_study, f'{study.id}: unknown successor {study.successor}')
+        if raw_questions is not None:
+            for qid in study.questions:
+                _require(qid in by_question, f'{study.id}: unknown question {qid}')
+    if raw_studies is not None:
+        for question in questions:
+            for sid in question.studies:
+                _require(sid in by_study, f'{question.id}: unknown study {sid}')
+    if raw_studies is not None and raw_questions is not None:
+        study_links = {(s.id, q) for s in studies for q in s.questions}
+        question_links = {(s, q.id) for q in questions for s in q.studies}
+        _require(study_links == question_links, 'study/question links must agree in both directions')
+    if raw_studies is None or raw_questions is None:
+        warnings.append('study/question cross-references unverified while a source is unavailable')
+    return Program(manuscripts, studies, questions, warnings)
 
 
 # ----------------------------------------------------------------------------- git and gh
@@ -479,7 +750,7 @@ class Sample:
 
 def load_ledger(path: Path = LEDGER) -> list[Sample]:
     """Parse and validate `spent.json`; every structural rule of the ledger lives here."""
-    raw = json.loads(Path(path).read_text(encoding='utf-8'))
+    raw = read_json(path)
     _require(raw.get('version') == 1, 'ledger version must be 1')
     _require(isinstance(raw.get('samples'), list) and raw['samples'], 'ledger lacks samples')
     pools = raw.get('pools', {})

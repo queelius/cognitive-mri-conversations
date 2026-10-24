@@ -63,7 +63,6 @@ Consequences:
 | `papers/hierarchical-memory-extended/` | cmri-hierarchical-memory-extended | In preparation: the extended journal version of the ISCS 2026 paper for the Applied Network Science ISCS 2026 collection (due 2026-12-04). Pins the camera-ready and the addendum's results; corrects the small-world claim. |
 | `papers/embedding-dynamics/` | cmri-embedding-dynamics | Partial draft; to be folded into a methods note or dissertation chapter (decided 2026-10-22). The false turning-cosine proposition is corrected per the October 2026 audit; see `docs/research/DYNAMICS-CONSOLIDATION.md`. |
 | `papers/semantic-dynamics/` | cmri-semantic-dynamics | Full draft, retired 2026-10-22: its headline claims failed the October 2026 audit; two hypotheses (continuation versus revisitation links; within-conversation episode boundaries) are kept for later studies. |
-| `papers/operational-memex/` | cmri-operational-memex | Infrastructure (the per-message embedding store), not a paper (decided 2026-10-22). |
 <!-- workspace:papers:end -->
 
 Build instructions, pipeline usage, and per-paper notes live in each child repo's README and

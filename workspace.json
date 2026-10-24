@@ -90,7 +90,7 @@
       "branch": "main",
       "visibility": "private",
       "data": "private-archive",
-      "group": "paper",
+      "group": "infrastructure",
       "note": "Infrastructure (the per-message embedding store), not a paper (decided 2026-10-22)."
     },
     {
@@ -315,5 +315,10 @@
         "Role and result"
       ]
     }
-  ]
+  ],
+  "sources": {
+    "pubs": "../pubs/pubs.jsonl",
+    "studies": "papers/agenda/studies.json",
+    "questions": "papers/agenda/questions.json"
+  }
 }
