@@ -1,6 +1,17 @@
 # ISCS 2027 research directions and decision history
 
-## October 18 grounded-dependency pilot — current decision
+## October 23 verification and current programme pointer
+
+The [grounded-dependency pilot verification](../../papers/grounded-dependencies/VERIFICATION.md)
+now includes byte-identical replay, 25 passing tests, coverage, figures and a
+fresh-context AI technical review. Its scientific decision is unchanged. The
+October 18 methods follow-up below was never activated and was superseded by
+the [October 22 programme sequence](../../docs/research/NEXT-GOAL.md).
+This pilot never accessed the PRISM reserve; a separate authorized confirmation
+opened it, so those components are now spent. These historical pilot entries
+do not override the current research agenda, later studies or journal plans.
+
+## October 18 grounded-dependency pilot — prior decision
 
 **Narrow the question; no full paper or human–AI confirmation from this measurement.**
 The [executed CGDIALOG training pilot](../../papers/grounded-dependencies/REPORT.md)
