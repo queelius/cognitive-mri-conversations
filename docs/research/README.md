@@ -115,9 +115,9 @@ their interpretations; the later frozen confirmations are separate from those ni
   competitive and history-mean augmentations gave no stable increment, although 300 records carry
   annotated relevant turns three or more back.
 
-Dead ends on these sources: same-premise revision is too rare in capped PRISM conversations
-to measure (0 clear cases in 100 windows from 36 capped packets, classified by unvalidated AI
-drafts); the LongMemEval sample had no cross-topic cases, so
+Dead ends on these sources: the integration pilot identified no clear same-premise revisions
+in 100 windows from 36 capped PRISM packets using unvalidated AI drafts, so revision persistence
+was unestimable; the LongMemEval sample had no cross-topic cases, so
 the bridge-retention hypothesis was never actually tested.
 
 The campaign set its "full paper" bar at journal-of-record level (novelty beyond the closest

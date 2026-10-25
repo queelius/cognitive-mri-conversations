@@ -8,10 +8,10 @@ converting proposals into completed findings.
 **Current decisions, October 25, 2026, independent review of the program:** an independent Codex
 review of the whole program (private) found readings that outran their comparisons, and Alexander
 Richard Towell asked for each to be addressed. Public summaries now say: strangers' conversations
-chosen as nearest neighbours in embedding space reproduce about 90% of the person-network difference,
-a ratio that depends on the matching rule and is not a share attributable to topics; adding the
-person's preceding turn does at least as well as averaging the whole mixed history, which does not
-show that older history is uninformative; ThoughtTrace gave a narrow stopping decision rather than
+chosen as nearest neighbours in embedding space reproduce about 90% of the fragmentation and
+clustering contrasts, a ratio that depends on the matching rule and is not a share attributable to
+topics; in centered cosine, adding the person's preceding turn does at least as well as averaging the
+whole mixed history, while prespecified descriptive comparisons found smaller gains from older turns; ThoughtTrace gave a narrow stopping decision rather than
 evidence that sequence is uninformative; CGDIALOG's human labels include relevant turns three or more
 back even though recency was competitive. Within-history reproducibility is no longer described as a
 stable trait. The ISCS 2027 manuscript's reply-residual explanation is being corrected (its sign
