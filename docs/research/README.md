@@ -107,12 +107,17 @@ their interpretations; the later frozen confirmations are separate from those ni
   endpoint graph revealed in random order. The old preferential-attachment beta is a different
   estimand with 72% power; the direct return-lag statistic is better powered (24/25 vs 18/25)
   and shorter than block-null in all three archives.
-- **Clean negatives:** sequence-trajectory features are reliably worse than pooling for
-  reason identification (ThoughtTrace); with human relevance labels (CGDIALOG), recency alone
-  matches any embedding augmentation.
+- **Bounded negatives (narrowed 2026-10-25 after an independent review):** on ThoughtTrace's
+  reported-purpose retrieval task, the development-selected sequence alternative did not earn its
+  complexity over recent-turn pooling (primary difference -4.9 points, selection-aware interval
+  -8.6 to +4.8; other panels inconclusive), a stopping decision for that proposal rather than
+  evidence that order carries no information; on CGDIALOG's human relevance labels, recency was
+  competitive and history-mean augmentations gave no stable increment, although 300 records carry
+  annotated relevant turns three or more back.
 
 Dead ends on these sources: same-premise revision is too rare in capped PRISM conversations
-to measure (0 clear cases in 100 windows); the LongMemEval sample had no cross-topic cases, so
+to measure (0 clear cases in 100 windows from 36 capped packets, classified by unvalidated AI
+drafts); the LongMemEval sample had no cross-topic cases, so
 the bridge-retention hypothesis was never actually tested.
 
 The campaign set its "full paper" bar at journal-of-record level (novelty beyond the closest

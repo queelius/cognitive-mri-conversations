@@ -5,6 +5,20 @@ states live in `pubs` and the private agenda records, read by `python3 tools/wor
 the [registry](registry.yaml) is a historical index. This history records decisions without
 converting proposals into completed findings.
 
+**Current decisions, October 25, 2026, independent review of the program:** an independent Codex
+review of the whole program (private) found readings that outran their comparisons, and Alexander
+Richard Towell asked for each to be addressed. Public summaries now say: strangers' conversations
+chosen as nearest neighbours in embedding space reproduce about 90% of the person-network difference,
+a ratio that depends on the matching rule and is not a share attributable to topics; adding the
+person's preceding turn does at least as well as averaging the whole mixed history, which does not
+show that older history is uninformative; ThoughtTrace gave a narrow stopping decision rather than
+evidence that sequence is uninformative; CGDIALOG's human labels include relevant turns three or more
+back even though recency was competitive. Within-history reproducibility is no longer described as a
+stable trait. The ISCS 2027 manuscript's reply-residual explanation is being corrected (its sign
+depends on a normalization convention), and the corpus release's exclusion accounting was
+reconciled. These summaries of person-level results are public by the owner's
+choice, scoped as stated here; the detailed readings remain with their study repositories.
+
 **Current decisions, October 24, 2026, hierarchy API re-extraction phases:** Alexander Richard
 Towell adopted the phased route after five rounds of combined Claude Code and Codex review.
 The dry run is approved once the fifth fix round passes both reviews; the Haiku per-episode

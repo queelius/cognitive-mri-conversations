@@ -35,13 +35,16 @@ Results confirmed by frozen, single-shot tests on samples no earlier analysis ha
 
 - **A person's recent history predicts their next message better than their last two
   messages do**, on held-out PRISM data and again on English WildChat-4.8M, in both text
-  encoders we use. A second protocol located the gain: it is carried by the person's own
-  preceding turn, not by deep history.
+  encoders we use. A second protocol found that adding the person's own preceding
+  turn to the latest exchange does at least as well as averaging the whole mixed history, though
+  older turns of the person still add a little.
 - **A person's conversation network is more
-  fragmented, more clustered and more bunched in time than a matched pool of strangers'
-  conversations** (250 held-out WildChat users), but strangers' conversations on the same topics
-  reproduce about 90% of the difference. The bunching in time comes mostly from sittings and
-  topic periods (449 further users).
+  fragmented, more clustered and more local in conversation order than a matched pool of
+  strangers' conversations** (250 held-out WildChat users). Strangers' conversations chosen as
+  nearest neighbours in embedding space reproduce about 90% of the difference; how much is
+  reproduced depends on how closely conversations are matched, so this is not a share
+  attributable to topics. The locality comes mostly from sittings and topic periods (449 further
+  users).
 
 Corrections to our own earlier work, carried by the addendum and the journal extension:
 

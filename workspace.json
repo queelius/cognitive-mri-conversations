@@ -128,7 +128,7 @@
       "data": "public",
       "group": "pilot",
       "archived": true,
-      "note": "CGDIALOG human labels: recency alone matches embedding augmentations."
+      "note": "CGDIALOG human relevance labels: recency was competitive and history-mean augmentations gave no stable increment, though 300 records carry relevant turns three or more back."
     },
     {
       "name": "cmri-integration-measurement",
@@ -148,7 +148,7 @@
       "visibility": "private",
       "data": "public",
       "group": "pilot",
-      "note": "ThoughtTrace: sequence-trajectory features are reliably worse than pooling. Supplies the pinned ONNX encoders (MiniLM, E5) every study uses."
+      "note": "ThoughtTrace: the tested sequence alternative did not earn its complexity over recent-turn pooling (a narrow stopping decision; other panels inconclusive). Supplies the pinned ONNX encoders (MiniLM, E5) every study uses."
     },
     {
       "name": "cmri-selective-forgetting",
@@ -194,7 +194,7 @@
       "visibility": "private",
       "data": "public",
       "group": "study",
-      "note": "Study 1: how personal is a person's knowledge network? Frozen confirmation on 250 held-out WildChat identities passed in both encoders (2026-10-21): networks are more fragmented, more clustered and more temporally episodic than size- and density-matched pools of strangers, but strangers' conversations on the same topics reproduce about 90% of it. Study 1b's frozen confirmation on 449 fresh light users passed (2026-10-22): sittings and topic periods account for most of the time locality. Home of the NetSci 2027 abstract."
+      "note": "Study 1: how personal is a person's knowledge network? Frozen confirmation on 250 held-out WildChat identities passed in both encoders (2026-10-21): networks are more fragmented, more clustered and more temporally episodic than size- and density-matched pools of strangers, but strangers' conversations chosen as nearest neighbours in embedding space reproduce about 90% of it (a ratio that depends on the matching rule, not a topic share). Study 1b's frozen confirmation on 449 fresh light users passed (2026-10-22): sittings and topic periods account for most of the time locality. Home of the NetSci 2027 abstract."
     }
   ],
   "worktrees": [
