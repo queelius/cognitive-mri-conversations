@@ -31,8 +31,8 @@ never presented as deadlines.
 1. The extension (`papers/hierarchical-memory-extended/`): the conference paper's conclusions under
    three extractors, whether they can be told apart from topic drift, and batching effects; see
    that repository's `notes/2026-10-26-research-iteration.md` and PLAN.md. CPU only, existing data.
-2. The NetSci abstract (`papers/person-networks/abstracts/netsci-2027/`): one sentence rests on an
-   unfinished rerun (coarser topic matching); rerun it or remove the sentence.
+2. The NetSci abstract (`papers/person-networks/abstracts/netsci-2027/`): its coarser-matching sentence
+   was confirmed by the fingerprinted rerun (2026-10-26); it needs Alex's read and submission by Dec 1.
 3. Next experiment after the extension: not reach in bits until Alex frees an A100.
    The candidate list and its prior art are in `papers/agenda/` (`PROGRAM-PLAN.md`, a proposal, and
    `reports/CMRI research questions 2026.md`).
