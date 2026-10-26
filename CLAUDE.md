@@ -17,6 +17,37 @@ This repository is a landing page plus shared working data. Each paper is its ow
 git repository under `papers/` (gitignored here). The umbrella still carries the program's
 published compendium DOI (10.5281/zenodo.18778376) and the full pre-split git history.
 
+## Current focus and how we work (read first; update when the focus changes)
+
+**Goal (Alex, 2026-10-26): publish again soon.** Plan papers and experiments, not a thesis or
+dissertation chapters, and move fast.
+
+**Real deadlines only.** The live ones are in the board (`python3 tools/workspace.py board`, which
+reads the sibling `../pubs` repository): NetSci 2027 abstract (2026-12-01), the Applied Network
+Science extension (2026-12-04), ISCS 2027 (2027-03-01). Internal targets are labelled as targets,
+never presented as deadlines.
+
+**Now (update this list as work finishes):**
+1. The extension (`papers/hierarchical-memory-extended/`): the conference paper's conclusions under
+   three extractors, whether they can be told apart from topic drift, and batching effects; see
+   that repository's `notes/2026-10-26-research-iteration.md` and PLAN.md. CPU only, existing data.
+2. The NetSci abstract (`papers/person-networks/abstracts/netsci-2027/`): one sentence rests on an
+   unfinished rerun (coarser topic matching); rerun it or remove the sentence.
+3. Next experiment after the extension: not reach in bits until Alex frees an A100.
+   The candidate list and its prior art are in `papers/agenda/` (`PROGRAM-PLAN.md`, a proposal, and
+   `reports/CMRI research questions 2026.md`).
+
+**Working rules:**
+- Claude implements; Codex (`codex exec -s read-only ... < /dev/null`) reviews once per milestone
+  with a closure criterion, not in open-ended rounds. Verify its findings before acting.
+- Ask Alex only for decisions that are his (co-authors, money, scope, submission), in plain
+  language, with a recommendation. Do the rest.
+- Design before the first run, then aggregate results committed before they are interpreted;
+  failed checks are reported as they are, then explored as labelled exploratory work.
+- After every milestone, commit and push every touched repository (several repos, several pushes).
+- No spend without a reviewed request record and Alex's committed approval; agents never send
+  email or submit.
+
 ## Working model: a cluster of independent git repos
 
 This is the most important thing to understand before making changes. The umbrella git repo
