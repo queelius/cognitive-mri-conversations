@@ -390,7 +390,7 @@
           "contains": "prism-protocol2"
         }
       ],
-      "note": "Every remaining never-selected component with an eligible conversation (323 of 382); Protocol R (reach in bits) confirmation. No never-selected PRISM component with an eligible conversation remains.",
+      "note": "Every remaining never-selected component with an eligible conversation (323 of 382); Protocol R (reach in bits) confirmation. No never-selected PRISM component with an eligible conversation remains. Scored under Protocol R on 2026-10-27; passed (all five rules, both scorers).",
       "dataset": "D-prism"
     },
     {
@@ -429,7 +429,7 @@
           "contains": "wildchat-study1b-light"
         }
       ],
-      "note": "Protocol R (reach in bits) confirmation; 500 IPs drawn from metadata, 481 retained after the text check (loss 3.6%).",
+      "note": "Protocol R (reach in bits) confirmation; 500 IPs drawn from metadata, 481 retained after the text check (loss 3.6%). Scored under Protocol R on 2026-10-27; passed (all five rules, both scorers).",
       "dataset": "D-wildchat-4.8m"
     }
   ]

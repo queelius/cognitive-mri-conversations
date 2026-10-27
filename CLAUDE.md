@@ -35,8 +35,8 @@ never presented as deadlines.
    was confirmed by the fingerprinted rerun (2026-10-26); it needs Alex's read and submission by Dec 1.
 3. Reach in bits (`papers/reach-bits/`, for ISCS 2027): base language models score the next user
    message under Protocol 2's contexts. Development on the spent samples agreed across two scorers and
-   both collections; Protocol R was frozen on 2026-10-27 and its confirmation on fresh PRISM and WildChat
-   samples is being scored. The extension also gained G (open-weight extractors run locally).
+   both collections; Protocol R (frozen 2026-10-27) PASSED on fresh PRISM and WildChat samples in both
+   scorers (all five rules). Next: write it into the ISCS 2027 paper (`papers/iscs-2027/paper/`). The extension also gained G (open-weight extractors run locally).
    The candidate list and its prior art are in `papers/agenda/` (`PROGRAM-PLAN.md`, a proposal, and
    `reports/CMRI research questions 2026.md`).
 
