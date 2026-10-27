@@ -431,6 +431,49 @@
       ],
       "note": "Protocol R (reach in bits) confirmation; 500 IPs drawn from metadata, 481 retained after the text check (loss 3.6%). Scored under Protocol R on 2026-10-27; passed (all five rules, both scorers).",
       "dataset": "D-wildchat-4.8m"
+    },
+    {
+      "id": "wildchat-reachbits-xs-fresh",
+      "pool": "wildchat",
+      "unit": "identity",
+      "status": "frozen",
+      "spent_on": "2026-10-27",
+      "size": {
+        "identities": 400,
+        "conversations": 7887,
+        "ips": 397
+      },
+      "repo": "cmri-reach-bits",
+      "protocol": "PROTOCOL-XS.md",
+      "freeze": "FREEZE-XS.json",
+      "record": "results/xs-fresh-plan.json",
+      "ids_committed": "counts and membership digests in the plan; the partition cache with IP digests is gitignored",
+      "excludes": [
+        "wildchat-temporal-screen",
+        "wildchat-development",
+        "wildchat-confirmation",
+        "wildchat-reach-long",
+        "wildchat-protocol2",
+        "wildchat-study1-development",
+        "wildchat-study1-confirmation",
+        "wildchat-study1b-light",
+        "wildchat-reachbits-fresh"
+      ],
+      "siblings": [],
+      "evidence": [
+        {
+          "repo": "cmri-reach-bits",
+          "path": "xs-fresh.json",
+          "contains": "wildchat-reachbits-fresh"
+        },
+        {
+          "repo": "cmri-reach-bits",
+          "path": "src/reach_bits/xs_fresh.py",
+          "contains": "outside_earlier_rules"
+        }
+      ],
+      "note": "Protocol XS (cross-session reach in bits) confirmation: moderate users (12 to 29 conversations) outside every earlier WildChat sample and off IPs hosting a Study 1- or 1b-eligible identity; 400 of 789 eligible drawn (389 in reserve); frozen 2026-10-27 22:40 UTC, text read after the freeze.",
+      "dataset": "D-wildchat-4.8m"
     }
   ]
 }
