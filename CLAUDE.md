@@ -37,6 +37,11 @@ never presented as deadlines.
    message under Protocol 2's contexts. Development on the spent samples agreed across two scorers and
    both collections; Protocol R (frozen 2026-10-27) PASSED on fresh PRISM and WildChat samples in both
    scorers (all five rules). Next: write it into the ISCS 2027 paper (`papers/iscs-2027/paper/`). The extension also gained G (open-weight extractors run locally).
+   Cross-session reach in bits (exploratory, spent samples, 2026-10-27; `DESIGN-cross-session.md`,
+   `results/xs/REPORT.md`, `notes/2026-10-27-cross-session-results.md`): a person's own earlier
+   conversation predicts the opening of their next one better than a matched stranger's, on PRISM and
+   WildChat under both scorers, declining with lag and elapsed time but still positive at lag 8 and
+   after 30 days; it survives repetition and timing exclusions. Where to write it up is Alex's call.
    The candidate list and its prior art are in `papers/agenda/` (`PROGRAM-PLAN.md`, a proposal, and
    `reports/CMRI research questions 2026.md`).
 
