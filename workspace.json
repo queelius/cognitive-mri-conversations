@@ -188,6 +188,15 @@
       "note": "Draws and encodes WildChat samples outside every earlier one: the exploratory long-conversation sample (557 conversations of 20 to 40 messages) and the fresh sample for Protocol 2."
     },
     {
+      "name": "cmri-reach-bits",
+      "path": "papers/reach-bits",
+      "branch": "main",
+      "visibility": "private",
+      "data": "public",
+      "group": "study",
+      "note": "Reach in bits: base language models (OLMo-2, Qwen3) score the next user message under Protocol 2's contexts; development on the spent samples and Protocol R's frozen confirmation on fresh PRISM and WildChat samples (2026-10-27)."
+    },
+    {
       "name": "cmri-person-networks",
       "path": "papers/person-networks",
       "branch": "main",

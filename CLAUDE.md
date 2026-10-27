@@ -33,7 +33,10 @@ never presented as deadlines.
    that repository's `notes/2026-10-26-research-iteration.md` and PLAN.md. CPU only, existing data.
 2. The NetSci abstract (`papers/person-networks/abstracts/netsci-2027/`): its coarser-matching sentence
    was confirmed by the fingerprinted rerun (2026-10-26); it needs Alex's read and submission by Dec 1.
-3. Next experiment after the extension: not reach in bits until Alex frees an A100.
+3. Reach in bits (`papers/reach-bits/`, for ISCS 2027): base language models score the next user
+   message under Protocol 2's contexts. Development on the spent samples agreed across two scorers and
+   both collections; Protocol R was frozen on 2026-10-27 and its confirmation on fresh PRISM and WildChat
+   samples is being scored. The extension also gained G (open-weight extractors run locally).
    The candidate list and its prior art are in `papers/agenda/` (`PROGRAM-PLAN.md`, a proposal, and
    `reports/CMRI research questions 2026.md`).
 
@@ -175,6 +178,7 @@ person's preceding turn carries the gain), on fresh PRISM and WildChat samples (
 | `papers/iscs-2027/` | cmri-iscs-2027 (`main`) | Frozen PRISM reserve confirmation of the history-pooling gain (MiniLM +.025, E5 +.018) and Protocol 2, the reach decomposition confirmed on fresh PRISM and WildChat samples. Home of the ISCS 2027 paper (`paper/`, build with `make`), the NetSci 2027 abstract and the locked environment for all study code (`uv sync`). |
 | `papers/wildchat-replication/` | cmri-wildchat-replication (`main`) | Frozen cross-collection replication on WildChat-4.8M passed in both encoders (MiniLM +.021, E5 +.016; 482 IP components, 801 conversations). |
 | `papers/history-reach/` | cmri-history-reach (`master`) | Draws and encodes WildChat samples outside every earlier one: the exploratory long-conversation sample (557 conversations of 20 to 40 messages) and the fresh sample for Protocol 2. |
+| `papers/reach-bits/` | cmri-reach-bits (`main`) | Reach in bits: base language models (OLMo-2, Qwen3) score the next user message under Protocol 2's contexts; development on the spent samples and Protocol R's frozen confirmation on fresh PRISM and WildChat samples (2026-10-27). |
 | `papers/person-networks/` | cmri-person-networks (`main`) | Study 1: how personal is a person's knowledge network? Frozen confirmation on 250 held-out WildChat identities passed in both encoders (2026-10-21): networks are more fragmented, more clustered and more temporally episodic than size- and density-matched pools of strangers, but strangers' conversations chosen as nearest neighbours in embedding space reproduce about 90% of the fragmentation and clustering contrasts (a ratio that depends on the matching rule, not a topic share). Study 1b's frozen confirmation on 449 fresh light users passed (2026-10-22): locality usually shrinks after grouping conversations into sittings, and under the prespecified topic definition shuffling within topics reproduces most sitting-level locality. Home of the NetSci 2027 abstract. |
 <!-- workspace:studies:end -->
 

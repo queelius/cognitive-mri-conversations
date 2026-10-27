@@ -358,6 +358,79 @@
       ],
       "note": "Identities of 30 to 49 conversations on IPs disjoint from Study 1's; opened once on 2026-10-22; all three frozen hypotheses held.",
       "dataset": "D-wildchat-4.8m"
+    },
+    {
+      "id": "prism-reachbits-fresh",
+      "pool": "prism",
+      "unit": "component",
+      "status": "frozen",
+      "spent_on": "2026-10-27",
+      "size": {
+        "components": 323,
+        "conversations": 1069,
+        "participants": 336,
+        "user_targets": 2034,
+        "never_selected_pool": 382
+      },
+      "repo": "cmri-reach-bits",
+      "protocol": "PROTOCOL.md",
+      "freeze": "FREEZE.json",
+      "record": "results/fresh-draw-prism.json",
+      "ids_committed": "counts and the selection hash in the draw record; member list in the gitignored cache",
+      "excludes": [
+        "prism-development",
+        "prism-reserve",
+        "prism-protocol2"
+      ],
+      "siblings": [],
+      "evidence": [
+        {
+          "repo": "cmri-reach-bits",
+          "path": "fresh.json",
+          "contains": "prism-protocol2"
+        }
+      ],
+      "note": "Every remaining never-selected component with an eligible conversation (323 of 382); Protocol R (reach in bits) confirmation. No never-selected PRISM component with an eligible conversation remains.",
+      "dataset": "D-prism"
+    },
+    {
+      "id": "wildchat-reachbits-fresh",
+      "pool": "wildchat",
+      "unit": "ip",
+      "status": "frozen",
+      "spent_on": "2026-10-27",
+      "size": {
+        "ips_drawn": 500,
+        "conversations_drawn": 782,
+        "ips_retained": 481,
+        "conversations_retained": 754,
+        "user_targets": 1861
+      },
+      "repo": "cmri-reach-bits",
+      "protocol": "PROTOCOL.md",
+      "freeze": "FREEZE.json",
+      "record": "results/fresh-draw-wildchat.json",
+      "ids_committed": "counts and hashes in the draw record; member list in the gitignored cache",
+      "excludes": [
+        "wildchat-temporal-screen",
+        "wildchat-development",
+        "wildchat-confirmation",
+        "wildchat-reach-long",
+        "wildchat-protocol2",
+        "wildchat-study1-development",
+        "wildchat-study1-confirmation",
+        "wildchat-study1b-light"
+      ],
+      "siblings": [],
+      "evidence": [
+        {
+          "repo": "cmri-reach-bits",
+          "path": "fresh.json",
+          "contains": "wildchat-study1b-light"
+        }
+      ],
+      "note": "Protocol R (reach in bits) confirmation; 500 IPs drawn from metadata, 481 retained after the text check (loss 3.6%).",
+      "dataset": "D-wildchat-4.8m"
     }
   ]
 }
