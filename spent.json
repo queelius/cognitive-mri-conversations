@@ -474,6 +474,45 @@
       ],
       "note": "Protocol XS (cross-session reach in bits) confirmation: moderate users (12 to 29 conversations) outside every earlier WildChat sample and off IPs hosting a Study 1- or 1b-eligible identity; 400 of 789 eligible drawn (389 in reserve); frozen 2026-10-27 22:40 UTC, text read after the freeze. Scored 2026-10-28 (OLMo-2, Qwen3): NOT EVALUATED, because Qwen3's repeatability gate failed on two descriptive subsets (ratios 0.016 and 0.019 against 0.01); all six rule estimates were above zero under both scorers (notes/2026-10-28-protocol-xs-outcome.md).",
       "dataset": "D-wildchat-4.8m"
+    },
+    {
+      "id": "wildchat-hme-k-long-histories",
+      "pool": "wildchat",
+      "unit": "identity",
+      "status": "exploratory",
+      "spent_on": "2026-10-28",
+      "size": {
+        "identities": 77,
+        "conversations": 26098,
+        "ips": 77
+      },
+      "repo": "cmri-hierarchical-memory-extended",
+      "record": "analyses/K-long-histories/results/cohort.json",
+      "ids_committed": "counts and membership digests in the record; identity keys, IP digests and conversation hashes stay in the gitignored cache/K/cohort.json",
+      "excludes": [],
+      "reuses": [
+        "wildchat-temporal-screen",
+        "wildchat-development",
+        "wildchat-confirmation",
+        "wildchat-reach-long",
+        "wildchat-protocol2",
+        "wildchat-study1-development",
+        "wildchat-study1-confirmation",
+        "wildchat-study1b-light",
+        "wildchat-reachbits-fresh",
+        "wildchat-reachbits-xs-fresh"
+      ],
+      "reuse_decision": "Alex, 2026-10-28: \"Of course temporal pilot data may be used\" (temporal-screen identities for exploratory work) and K approved for the December 4 submission (cmri-hierarchical-memory-extended PLAN.md, Decisions)",
+      "siblings": [],
+      "evidence": [
+        {
+          "repo": "cmri-hierarchical-memory-extended",
+          "path": "analyses/K-long-histories/cohort-settings.json",
+          "contains": "wildchat-hme-k-long-histories"
+        }
+      ],
+      "note": "K (hierarchy extension, exploratory): identities with at least 100 non-templated conversations over at least 180 days, holding at least 90% of their IP's conversations, after the census's person screens (DESIGN.md amendments 1 to 4); the strict sensitivity (IP hosting no other identity) is a subset of 48 identities and 17,261 conversations. Drawn without excluding earlier samples; measured overlap after screens: temporal screen 56 identities (22,889 conversations), Study 1 16 (8 development, 8 confirmation; 1,896 conversations), other samples 0, unspent 5 (1,313). Entered before extraction.",
+      "dataset": "D-wildchat-4.8m"
     }
   ]
 }
