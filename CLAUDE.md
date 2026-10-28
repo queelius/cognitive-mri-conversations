@@ -48,7 +48,7 @@ never presented as deadlines.
    `reports/CMRI research questions 2026.md`).
 
 **Working rules:**
-- Claude implements; Codex (`codex exec -s read-only -c model_reasoning_effort=max ... < /dev/null`,
+- Claude implements; Codex (`codex exec -m gpt-6.1-sol -s read-only -c model_reasoning_effort=max ... < /dev/null`,
   sometimes `-m gpt-6-astra` for variation) reviews once per milestone with a closure criterion, not in
   open-ended rounds. Verify its findings before acting.
 - Ask Alex only for decisions that are his (co-authors, money, scope, submission), in plain
