@@ -28,9 +28,11 @@ Science extension (2026-12-04), ISCS 2027 (2027-03-01). Internal targets are lab
 never presented as deadlines.
 
 **Now (update this list as work finishes):**
-1. The extension (`papers/hierarchical-memory-extended/`): the conference paper's conclusions under
-   three extractors, whether they can be told apart from topic drift, and batching effects; see
-   that repository's `notes/2026-10-26-research-iteration.md` and PLAN.md. CPU only, existing data.
+1. The extension (`papers/hierarchical-memory-extended/`): Alex decided on 2026-10-28 to centre it on the
+   organisation of concept co-use, with H (who made the connection) as a second result if the evidence supports it.
+   Of the two decisive comparisons, J (codebook crossing) survives in every construction and I finds no predictive
+   increment beyond recency. See that repository's PLAN.md and `notes/2026-10-28-I-J-results.md`. H's calibrated
+   reference is running on CPU, and WildChat H extraction on the GPU.
 2. The NetSci abstract (`papers/person-networks/abstracts/netsci-2027/`): its coarser-matching sentence
    was confirmed by the fingerprinted rerun (2026-10-26); it needs Alex's read and submission by Dec 1.
 3. Reach in bits (`papers/reach-bits/`, for ISCS 2027): base language models score the next user
