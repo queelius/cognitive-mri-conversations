@@ -48,13 +48,19 @@ never presented as deadlines.
    `reports/CMRI research questions 2026.md`).
 
 **Working rules:**
-- Claude implements; Codex (`codex exec -s read-only ... < /dev/null`) reviews once per milestone
-  with a closure criterion, not in open-ended rounds. Verify its findings before acting.
+- Claude implements; Codex (`codex exec -s read-only -c model_reasoning_effort=max ... < /dev/null`,
+  sometimes `-m gpt-6-astra` for variation) reviews once per milestone with a closure criterion, not in
+  open-ended rounds. Verify its findings before acting.
 - Ask Alex only for decisions that are his (co-authors, money, scope, submission), in plain
   language, with a recommendation. Do the rest.
 - Design before the first run, then aggregate results committed before they are interpreted;
   failed checks are reported as they are, then explored as labelled exploratory work.
 - After every milestone, commit and push every touched repository (several repos, several pushes).
+- At every milestone, audit the living documents against the work just done: the agenda ledger
+  (`papers/agenda/questions.json`, `studies.json`), the paper's PLAN.md (open decisions, next actions)
+  and CLAIMS.md, README and resume notes, and this "Now" list. Record each mistake as a lesson in
+  `questions.json` (`lessons`), and encode it as a check or written rule where possible. Open
+  questions to revisit live in the ledger (research) and in each PLAN.md's "Open decisions" (papers).
 - No spend without a reviewed request record and Alex's committed approval; agents never send
   email or submit.
 
