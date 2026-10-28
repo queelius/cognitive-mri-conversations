@@ -472,7 +472,7 @@
           "contains": "outside_earlier_rules"
         }
       ],
-      "note": "Protocol XS (cross-session reach in bits) confirmation: moderate users (12 to 29 conversations) outside every earlier WildChat sample and off IPs hosting a Study 1- or 1b-eligible identity; 400 of 789 eligible drawn (389 in reserve); frozen 2026-10-27 22:40 UTC, text read after the freeze.",
+      "note": "Protocol XS (cross-session reach in bits) confirmation: moderate users (12 to 29 conversations) outside every earlier WildChat sample and off IPs hosting a Study 1- or 1b-eligible identity; 400 of 789 eligible drawn (389 in reserve); frozen 2026-10-27 22:40 UTC, text read after the freeze. Scored 2026-10-28 (OLMo-2, Qwen3): NOT EVALUATED, because Qwen3's repeatability gate failed on two descriptive subsets (ratios 0.016 and 0.019 against 0.01); all six rule estimates were above zero under both scorers (notes/2026-10-28-protocol-xs-outcome.md).",
       "dataset": "D-wildchat-4.8m"
     }
   ]
