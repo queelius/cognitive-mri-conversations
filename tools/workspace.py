@@ -1176,6 +1176,8 @@ class Sample:
     size: dict[str, int]
     protocol: str | None = None
     freeze: str | None = None
+    reuses: tuple[str, ...] = ()
+    reuse_decision: str | None = None
 
 
 def load_ledger(path: Path = LEDGER) -> list[Sample]:
@@ -1192,8 +1194,14 @@ def load_ledger(path: Path = LEDGER) -> list[Sample]:
         _require(entry['pool'] in pools, f"sample {entry['id']} names an undeclared pool {entry['pool']!r}")
         _require(re.fullmatch(r'\d{4}-\d{2}-\d{2}', entry['spent_on']) is not None,
                  f"sample {entry['id']}: spent_on must be an ISO date")
-        for key in ('excludes', 'siblings', 'evidence'):
+        for key in ('excludes', 'siblings', 'evidence', 'reuses'):
             _require(isinstance(entry.get(key, []), list), f"sample {entry['id']}: {key} must be a list")
+        if entry.get('reuses'):
+            # An exploratory draw may overlap earlier samples by a recorded decision; it never confirms anything.
+            _require(entry['status'] == 'exploratory',
+                     f"sample {entry['id']}: only an exploratory draw may reuse earlier samples")
+            _require(isinstance(entry.get('reuse_decision'), str) and entry['reuse_decision'].strip(),
+                     f"sample {entry['id']}: reuses needs a reuse_decision (who decided, when)")
         for item in entry.get('evidence', []):
             _require(all(isinstance(item.get(k), str) and item[k] for k in ('repo', 'path', 'contains')),
                      f"sample {entry['id']}: evidence needs repo, path and contains")
@@ -1207,12 +1215,15 @@ def load_ledger(path: Path = LEDGER) -> list[Sample]:
         samples.append(Sample(entry['id'], entry['pool'], entry['status'], entry['spent_on'], entry['repo'],
                               entry['record'], tuple(entry.get('excludes', [])), tuple(entry.get('siblings', [])),
                               tuple(entry.get('evidence', [])), did, unit, size,
-                              entry.get('protocol'), entry.get('freeze')))
+                              entry.get('protocol'), entry.get('freeze'), tuple(entry.get('reuses', [])),
+                              entry.get('reuse_decision')))
     ids = [s.id for s in samples]
     _require(len(ids) == len(set(ids)), 'duplicate sample ids')
     for sample in samples:
-        for other in sample.excludes + sample.siblings:
+        for other in sample.excludes + sample.siblings + sample.reuses:
             _require(other in ids, f'sample {sample.id} names unknown sample {other}')
+        _require(not set(sample.reuses) & set(sample.excludes),
+                 f'sample {sample.id} both excludes and reuses the same sample')
         for other in sample.siblings:
             _require(sample.id in next(s for s in samples if s.id == other).siblings,
                      f'siblings must be mutual: {sample.id} and {other}')
@@ -1221,7 +1232,8 @@ def load_ledger(path: Path = LEDGER) -> list[Sample]:
 
 def ledger_problems(samples: list[Sample], manifest: Manifest, root: Path) -> list[str]:
     """Every way the ledger can fail: an unknown repository, a missing record or protocol file, missing
-    evidence text, or a draw that does not name every earlier draw from the same pool."""
+    evidence text, or a draw that does not name every earlier draw from the same pool (as excluded, as a sibling, or,
+    for an exploratory draw, as deliberately reused)."""
     problems = []
     by_pool: dict[str, list[Sample]] = {}
     for sample in samples:
@@ -1232,7 +1244,7 @@ def ledger_problems(samples: list[Sample], manifest: Manifest, root: Path) -> li
             for earlier in ordered[:index]:
                 if earlier.spent_on == sample.spent_on and earlier.id in sample.siblings:
                     continue
-                if earlier.id not in sample.excludes and earlier.id not in sample.siblings:
+                if earlier.id not in sample.excludes + sample.siblings + sample.reuses:
                     problems.append(f'{sample.id}: does not exclude the earlier {pool} sample {earlier.id}')
     for sample in samples:
         try:

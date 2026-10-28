@@ -459,6 +459,11 @@ def test_the_real_ledger_is_valid_and_its_chain_is_complete():
     (lambda s: s[1].update(siblings=['a']), 'siblings must be mutual'),
     (lambda s: s.append(dict(s[0])), 'duplicate sample ids'),
     (lambda s: s[0].update(evidence=[{'repo': 'alpha'}]), 'evidence needs'),
+    (lambda s: s[1].update(excludes=[], reuses=['a'], reuse_decision='Alex, 2026-10-28'), 'only an exploratory'),
+    (lambda s: s[1].update(excludes=[], reuses=['a'], status='exploratory'), 'reuse_decision'),
+    (lambda s: s[1].update(reuses=['a'], status='exploratory', reuse_decision='Alex'), 'both excludes and reuses'),
+    (lambda s: s[1].update(excludes=[], reuses=['nobody'], status='exploratory', reuse_decision='Alex'),
+     'unknown sample'),
 ])
 def test_ledger_rules(tmp_path, mutate, message):
     samples = [sample('a', '2026-10-01'), sample('b', '2026-10-02', excludes=['a'])]
@@ -476,6 +481,19 @@ def test_spent_verify_reports_a_draw_that_misses_an_earlier_one(workspace):
     assert code == 1 and 'b: does not exclude the earlier p sample a' in text
     code, text = spent(root, sample('a', '2026-10-01'), sample('b', '2026-10-02', excludes=['a']))
     assert code == 0 and '2 samples, 0 problems' in text
+
+
+def test_spent_verify_accepts_a_recorded_exploratory_reuse_and_later_draws_must_exclude_it(workspace):
+    root, _, _ = workspace
+    call(root, 'clone')
+    first = sample('screen', '2026-09-30', status='screen')
+    reuse = sample('explore', '2026-10-01', status='exploratory', reuses=['screen'],
+                   reuse_decision='Alex, 2026-10-01: the screen may be used for exploratory work')
+    code, text = spent(root, first, reuse)
+    assert code == 0, text
+    later = sample('later', '2026-10-02', excludes=['screen'])
+    code, text = spent(root, first, reuse, later)
+    assert code == 1 and 'later: does not exclude the earlier p sample explore' in text
 
 
 def test_spent_verify_accepts_same_day_siblings_and_still_needs_earlier_draws(workspace):

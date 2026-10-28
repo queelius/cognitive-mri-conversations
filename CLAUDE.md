@@ -86,7 +86,7 @@ that pin the commits a paper depends on. `tools/workspace.py` derives everything
 manage snapshots, `remote-check` compares GitHub settings, `scan` checks a snapshot for
 forbidden files and secrets before publication, and `render` regenerates the tables below.
 `spent.json` is the ledger of every sample drawn from a shared pool (PRISM, WildChat); `spent --verify`
-checks that each later draw's committed configuration excludes every earlier one. Each sample's
+checks that each later draw's committed configuration excludes every earlier one. An exploratory draw may instead name earlier samples it deliberately reuses (`reuses`, with a `reuse_decision` saying who decided and when); it confirms nothing, and later draws must still exclude it. Each sample's
 `dataset` references a dataset id, validated against the manifest's datasets source. Unit and size
 labels are retained from the draw record; counts are never combined across draws or units.
 `board [--as-of YYYY-MM-DD] [--write]` reads the manifest's `sources`: the generated
