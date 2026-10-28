@@ -31,11 +31,12 @@ never presented as deadlines.
 1. The extension (`papers/hierarchical-memory-extended/`): Alex decided on 2026-10-28 to centre it on the
    organisation of concept co-use, with H (who made the connection) as a second result if the evidence supports it.
    Of the two decisive comparisons, J (codebook crossing) survives in every construction and I finds no predictive
-   increment beyond recency. See that repository's PLAN.md and `notes/2026-10-28-I-J-results.md`. H's persistence
-   reading of 2026-10-28 was withdrawn the same day (a control-selection bug found by review) and is rerunning
-   (amendment 8, `notes/2026-10-28-H-results.md`); its attribution and composition results stand, and Claude
-   recommends a scope paragraph, not a second result (Alex's decision, with the framing). A second population for December 4 (K: WildChat long
-   histories, `analyses/K-long-histories/DESIGN.md`, proposed) awaits Alex's decision.
+   increment beyond recency. See that repository's PLAN.md and `notes/2026-10-28-I-J-results.md`. Alex decided on
+   2026-10-28 (evening): H (who made the connection) is one scope paragraph in the discussion (attribution through an
+   extractor, composition; its persistence sentence waits for the amendment-8 rerun, which is in progress), and a
+   second population enters the December 4 submission: K (WildChat long histories) with a true-identity case series
+   of open personal archives (`analyses/K-long-histories/DESIGN.md`, amendments 1 and 2 after a Codex review). The
+   title and framing are decided after K's results.
 2. The NetSci abstract (`papers/person-networks/abstracts/netsci-2027/`): its coarser-matching sentence
    was confirmed by the fingerprinted rerun (2026-10-26); it needs Alex's read and submission by Dec 1.
 3. Reach in bits (`papers/reach-bits/`, for ISCS 2027): base language models score the next user
