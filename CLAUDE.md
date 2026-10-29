@@ -33,10 +33,12 @@ never presented as deadlines.
    Of the two decisive comparisons, J (codebook crossing) survives in every construction and I finds no predictive
    increment beyond recency. See that repository's PLAN.md and `notes/2026-10-28-I-J-results.md`. Alex decided on
    2026-10-28 (evening): H (who made the connection) is one scope paragraph in the discussion (attribution through an
-   extractor, composition; its persistence sentence waits for the amendment-8 rerun, which is in progress), and a
-   second population enters the December 4 submission: K (WildChat long histories) with a true-identity case series
-   of open personal archives (`analyses/K-long-histories/DESIGN.md`, amendments 1 and 2 after a Codex review). The
-   title and framing are decided after K's results.
+   extractor, composition, and one persistence sentence: read under amendment 8 on 2026-10-29, taken-up connections
+   recur more than made ones under the primary extractor, but not across codebooks, extractors or populations;
+   `notes/2026-10-29-H-corrected-reading.md`). A second population enters the December 4 submission: K (WildChat long
+   histories, 77 identities) with a true-identity case series of three open personal archives
+   (`analyses/K-long-histories/DESIGN.md`, amendments 1 to 4). K's extraction is done and its tests are running on
+   the A100 node (2026-10-29). The title and framing are decided after K's results.
 2. The NetSci abstract (`papers/person-networks/abstracts/netsci-2027/`): its coarser-matching sentence
    was confirmed by the fingerprinted rerun (2026-10-26); it needs Alex's read and submission by Dec 1.
 3. Reach in bits (`papers/reach-bits/`, for ISCS 2027): base language models score the next user
