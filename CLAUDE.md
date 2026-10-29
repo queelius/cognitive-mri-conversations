@@ -35,14 +35,17 @@ never presented as deadlines.
    2026-10-28 (evening): H (who made the connection) is one scope paragraph in the discussion (attribution through an
    extractor, composition, and one persistence sentence: read under amendment 8 on 2026-10-29, taken-up connections
    recur more than made ones under the primary extractor, but not across codebooks, extractors or populations;
-   `notes/2026-10-29-H-corrected-reading.md`). A second population enters the December 4 submission: K (WildChat long
-   histories, 77 identities) with a true-identity case series of three open personal archives
-   (`analyses/K-long-histories/DESIGN.md`, amendments 1 to 4). K's primary results (Qwen3-14B, read 2026-10-29; the Codex review's five
-   design-conformance items were fixed by amendment 6 and rerun, and the closure's first part closed): both patterns
-   hold in the WildChat identities (co-use beyond themes 76 and 77 of 77 under the two codebooks; concentration in
-   time 56 to 61 of 77) and in each of the three case-series people (`notes/2026-10-29-K-results.md`). The second
-   extractor (Mistral-7B, amendment 5) is running. Open for Alex after it: the title and K's place in the abstract
-   (the centre was decided on 2026-10-28; `notes/2026-10-29-framing-options.md`).
+   `notes/2026-10-29-H-corrected-reading.md`). A second population enters the December 4 submission as a co-equal result: K (WildChat long histories, 77
+   identities) with a true-identity case series of three open personal archives (`analyses/K-long-histories/DESIGN.md`,
+   amendments 1 to 6). Both extractors were read on 2026-10-29 and every Codex review closed: every WildChat reading
+   holds under Qwen3-14B and Mistral-7B (co-use beyond themes 75 to 77 of 77; concentration in time 56 to 66 of 77);
+   the three case-series people pass the co-use test under both, and the temporal test under Qwen3-14B (case 1 fails
+   it under Mistral-7B with the paper codebook) (`notes/2026-10-29-K-results.md`). Alex decided on 2026-10-29: title
+   "Concept networks from AI conversation logs: co-use beyond shared themes, in one archive and in other people's long
+   histories" (provisional until settled with Matta), K in the abstract's second sentence, people before prediction.
+   The title, abstract, introduction, discussion and conclusion are rewritten (fe0adec); a Codex review of the rewrite
+   is running. Left for submission: acknowledgements and authors' contributions (Alex with Matta), the repository URL
+   and DOI, and the ISCS editors' note decision.
 2. The NetSci abstract (`papers/person-networks/abstracts/netsci-2027/`): its coarser-matching sentence
    was confirmed by the fingerprinted rerun (2026-10-26); it needs Alex's read and submission by Dec 1.
 3. Reach in bits (`papers/reach-bits/`, for ISCS 2027): base language models score the next user
