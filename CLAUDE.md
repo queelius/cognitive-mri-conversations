@@ -37,8 +37,10 @@ never presented as deadlines.
    recur more than made ones under the primary extractor, but not across codebooks, extractors or populations;
    `notes/2026-10-29-H-corrected-reading.md`). A second population enters the December 4 submission: K (WildChat long
    histories, 77 identities) with a true-identity case series of three open personal archives
-   (`analyses/K-long-histories/DESIGN.md`, amendments 1 to 4). K's extraction is done and its tests are running on
-   the A100 node (2026-10-29). The title and framing are decided after K's results.
+   (`analyses/K-long-histories/DESIGN.md`, amendments 1 to 4). K's primary results (Qwen3-14B, read 2026-10-29): both patterns hold in
+   the WildChat identities (co-use beyond themes 76 of 77; concentration in time 56 to 61 of 77) and in each of the
+   three case-series people; a second extractor (Mistral-7B, amendment 5) is running, and a Codex review of the
+   results. The title and framing are decided after those (`notes/2026-10-29-K-results.md`).
 2. The NetSci abstract (`papers/person-networks/abstracts/netsci-2027/`): its coarser-matching sentence
    was confirmed by the fingerprinted rerun (2026-10-26); it needs Alex's read and submission by Dec 1.
 3. Reach in bits (`papers/reach-bits/`, for ISCS 2027): base language models score the next user
