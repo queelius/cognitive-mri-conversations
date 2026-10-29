@@ -43,8 +43,8 @@ never presented as deadlines.
    it under Mistral-7B with the paper codebook) (`notes/2026-10-29-K-results.md`). Alex decided on 2026-10-29: title
    "Concept networks from AI conversation logs: co-use beyond shared themes, in one archive and in other people's long
    histories" (provisional until settled with Matta), K in the abstract's second sentence, people before prediction.
-   The title, abstract, introduction, discussion and conclusion are rewritten (fe0adec); a Codex review of the rewrite
-   is running. Left for submission: acknowledgements and authors' contributions (Alex with Matta), the repository URL
+   The title, abstract, introduction, discussion and conclusion are rewritten (fe0adec) and their Codex review closed
+   after fixes (a91b221; `notes/2026-10-29-review-framing-codex.md`). Left for submission: acknowledgements and authors' contributions (Alex with Matta), the repository URL
    and DOI, and the ISCS editors' note decision.
 2. The NetSci abstract (`papers/person-networks/abstracts/netsci-2027/`): its coarser-matching sentence
    was confirmed by the fingerprinted rerun (2026-10-26); it needs Alex's read and submission by Dec 1.
