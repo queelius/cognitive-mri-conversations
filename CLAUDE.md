@@ -143,7 +143,7 @@ bytecode excluded), `~/.local/share/cmri` (paid API results), `~/.local/state/cm
 folder. Push before leaving a machine and pull where you arrive (one active machine at a time); only changed chunks
 travel, so re-syncs are quick. Pull restores each named path to where it lies on that machine and repairs moved git
 worktrees; it overwrites changed files but never deletes local ones. It needs `restic` and `rclone` on the machine, an
-rclone remote `gdrive-backup` (Drive, scope `drive.file`) and the password file `~/.config/cmri/restic-password`
+rclone remote `gdrive-backup` (Drive, with Alex's own OAuth client from Google Cloud project rclone-512713; rclone's shared client is rate-limited) and the password file `~/.config/cmri/restic-password`
 (created by the first push; copy it to every machine). On a new computer: install git, python3, uv, rclone and restic;
 `rclone config` a `gdrive-backup` remote; clone the umbrella from GitHub; copy the password file; run
 `python3 tools/workspace.py backup pull`; then `uv sync` in `papers/iscs-2027`. The Hugging Face model cache is not

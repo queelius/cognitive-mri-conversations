@@ -333,7 +333,7 @@
     "datasets": "papers/agenda/datasets.json"
   },
   "backup": {
-    "note": "The whole workspace (every repository with its .git, gitignored data and caches) plus the data kept outside it, in one encrypted, deduplicated restic repository on Alex's Google Drive. `backup push` before leaving a machine, `backup pull` where you arrive; only changed chunks travel.",
+    "note": "The whole workspace (every repository with its .git, gitignored data and caches) plus the data kept outside it, in one encrypted, deduplicated restic repository on Alex's Google Drive. `backup push` before leaving a machine, `backup pull` where you arrive; only changed chunks travel. The rclone remote uses Alex's own Google OAuth client (project rclone-512713), not rclone's shared one, whose quota rate-limits large uploads.",
     "repository": "rclone:gdrive-backup:cmri-restic",
     "password_file": "~/.config/cmri/restic-password",
     "paths": {
@@ -352,8 +352,8 @@
     ],
     "pack_size_mib": 64,
     "options": {
-      "rclone.connections": "2",
-      "rclone.args": "serve restic --stdio --b2-hard-delete --tpslimit 4 --tpslimit-burst 4 --drive-pacer-min-sleep 250ms --low-level-retries 20"
+      "rclone.connections": "4",
+      "rclone.args": "serve restic --stdio --b2-hard-delete --tpslimit 8 --tpslimit-burst 8 --low-level-retries 20"
     }
   }
 }
