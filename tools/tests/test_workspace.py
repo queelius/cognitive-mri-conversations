@@ -1289,6 +1289,7 @@ def test_backup_locations_follow_the_machine(tmp_path):
     ({'paths': {'Bad Name': '.'}}, 'kebab-case'),
     ({'exclude': '.venv'}, 'exclude must be a list'),
     ({'pack_size_mib': 512}, 'pack_size_mib'),
+    ({'options': {'rclone.connections': 2}}, 'options must map'),
 ])
 def test_backup_rules(tmp_path, over, message):
     with pytest.raises(ws.ManifestError, match=message):

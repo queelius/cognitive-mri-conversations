@@ -350,6 +350,10 @@
       "node_modules",
       "*.pyc"
     ],
-    "pack_size_mib": 64
+    "pack_size_mib": 64,
+    "options": {
+      "rclone.connections": "2",
+      "rclone.args": "serve restic --stdio --b2-hard-delete --tpslimit 4 --tpslimit-burst 4 --drive-pacer-min-sleep 250ms --low-level-retries 20"
+    }
   }
 }

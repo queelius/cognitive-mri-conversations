@@ -1352,6 +1352,7 @@ class Backup:
     paths: dict[str, str]          # name -> location (relative to the umbrella, ~-prefixed, or {claude_memory})
     exclude: tuple[str, ...]
     pack_size_mib: int
+    options: dict[str, str] = field(default_factory=dict)   # restic -o key=value (e.g. rclone throttling)
     tag: str = 'cmri'
 
 
@@ -1368,7 +1369,10 @@ def load_backup(manifest: Manifest) -> Backup:
     _require(isinstance(exclude, list) and all(isinstance(e, str) for e in exclude), 'backup exclude must be a list')
     pack = raw.get('pack_size_mib', 16)
     _require(isinstance(pack, int) and 4 <= pack <= 128, 'backup pack_size_mib must be 4 to 128')
-    return Backup(raw['repository'], raw['password_file'], dict(paths), tuple(exclude), pack)
+    options = raw.get('options', {})
+    _require(isinstance(options, dict) and all(isinstance(v, str) for v in options.values()),
+             'backup options must map restic option names to strings')
+    return Backup(raw['repository'], raw['password_file'], dict(paths), tuple(exclude), pack, dict(options))
 
 
 def claude_memory_dir(root: Path) -> Path:
@@ -1391,7 +1395,9 @@ def backup_locations(backup: Backup, root: Path) -> dict[str, Path]:
 
 def restic(backup: Backup, *args: str, capture: bool = False) -> subprocess.CompletedProcess:
     """restic against the configured repository; progress streams to the terminal unless captured."""
-    cmd = ['restic', '-r', backup.repository, '--password-file', str(Path(backup.password_file).expanduser()), *args]
+    options = [a for key, value in backup.options.items() for a in ('-o', f'{key}={value}')]
+    cmd = ['restic', '-r', backup.repository, '--password-file', str(Path(backup.password_file).expanduser()),
+           *options, *args]
     return subprocess.run(cmd, check=False, stdin=subprocess.DEVNULL, capture_output=capture, text=True)
 
 
