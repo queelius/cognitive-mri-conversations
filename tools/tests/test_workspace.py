@@ -1257,3 +1257,92 @@ def test_spent_missing_datasets_are_reported_but_do_not_fail_verification(tmp_pa
                         path=tmp_path / 'spent.json', out=out) == 0
     text = out.getvalue()
     assert 'datasets record absent' in text and 'cross-references unverified' in text and '0 problems' in text
+
+
+# ----------------------------------------------------------------------------- backup to Drive
+
+def backup_manifest(tmp_path, root: Path, **over) -> 'ws.Manifest':
+    raw = {'version': 1, 'owner': 'tester', 'remote': 'x/{name}.git', 'repos': [],
+           'sources': base_manifest(tmp_path)['sources'],
+           'backup': {'repository': str(tmp_path / 'restic-repo'), 'password_file': '~/.config/cmri/restic-password',
+                      'paths': {'workspace': '.', 'outside': '~/outside', 'claude-memory': '{claude_memory}'},
+                      'exclude': ['.venv', '__pycache__'], 'pack_size_mib': 4, **over}}
+    path = root / 'workspace.json'
+    root.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(raw))
+    return ws.load(path)
+
+
+def test_backup_locations_follow_the_machine(tmp_path):
+    root = tmp_path / 'some_place' / 'cmri'
+    backup = ws.load_backup(backup_manifest(tmp_path, root))
+    where = ws.backup_locations(backup, root)
+    assert where['workspace'] == root.resolve()
+    assert where['outside'] == Path.home() / 'outside'
+    name = str(root.resolve()).replace('/', '-').replace('_', '-')
+    assert where['claude-memory'] == Path.home() / '.claude' / 'projects' / name / 'memory'
+
+
+@pytest.mark.parametrize('over, message', [
+    ({'repository': ''}, 'backup lacks repository'),
+    ({'paths': {}}, 'backup paths must map names'),
+    ({'paths': {'Bad Name': '.'}}, 'kebab-case'),
+    ({'exclude': '.venv'}, 'exclude must be a list'),
+    ({'pack_size_mib': 512}, 'pack_size_mib'),
+])
+def test_backup_rules(tmp_path, over, message):
+    with pytest.raises(ws.ManifestError, match=message):
+        ws.load_backup(backup_manifest(tmp_path, tmp_path / 'root', **over))
+
+
+def test_pull_needs_the_password_and_push_dry_run_creates_nothing(tmp_path, monkeypatch):
+    root = tmp_path / 'root'
+    manifest = backup_manifest(tmp_path, root)
+    calls = []
+    monkeypatch.setattr(ws, 'restic', lambda backup, *args, capture=False: calls.append(args))
+    out = io.StringIO()
+    assert ws.cmd_backup(manifest, root, 'pull', out=out) == 1 and 'no restic password' in out.getvalue()
+    assert ws.cmd_backup(manifest, root, 'push', dry_run=True, out=out) == 1
+    assert not (Path.home() / '.config/cmri/restic-password').exists() and calls == []
+
+
+@pytest.mark.skipif(subprocess.run(['which', 'restic'], capture_output=True).returncode != 0,
+                    reason='restic is not installed')
+def test_backup_push_then_pull_on_another_machine_and_back(tmp_path, monkeypatch):
+    home1, first = Path.home(), tmp_path / 'machine1' / 'cmri'
+    manifest = backup_manifest(tmp_path, first)
+    (first / 'papers' / 'alpha' / '.venv').mkdir(parents=True)
+    (first / 'papers' / 'alpha' / 'cache.json').write_text('{"a": 1}')
+    (first / 'papers' / 'alpha' / '.venv' / 'big').write_text('regenerable')
+    sh('git', 'init', '-q', str(first / 'papers' / 'beta'))
+    commit(first / 'papers' / 'beta', {'a.txt': 'x'})
+    sh('git', 'worktree', 'add', '-q', '-b', 'side', str(first / 'papers' / 'beta-wt'), cwd=first / 'papers' / 'beta')
+    (Path.home() / 'outside').mkdir()
+    (Path.home() / 'outside' / 'results.jsonl').write_text('paid\n')
+    memory = ws.claude_memory_dir(first)
+    memory.mkdir(parents=True)
+    (memory / 'MEMORY.md').write_text('# index\n')
+    out = io.StringIO()
+    assert ws.cmd_backup(manifest, first, 'push', host='one', out=out) == 0, out.getvalue()
+    password = (Path.home() / '.config/cmri/restic-password').read_text()
+
+    home2 = tmp_path / 'home2'                                  # another machine: other home, other path
+    (home2 / '.config/cmri').mkdir(parents=True)
+    (home2 / '.config/cmri/restic-password').write_text(password)
+    monkeypatch.setenv('HOME', str(home2))
+    second = tmp_path / 'machine2' / 'repos' / 'cmri'
+    manifest2 = backup_manifest(tmp_path, second)
+    assert ws.cmd_backup(manifest2, second, 'pull', out=out) == 0, out.getvalue()
+    assert (second / 'papers/alpha/cache.json').read_text() == '{"a": 1}'
+    assert not (second / 'papers/alpha/.venv').exists()               # excluded
+    assert (home2 / 'outside/results.jsonl').read_text() == 'paid\n'
+    assert (ws.claude_memory_dir(second) / 'MEMORY.md').read_text() == '# index\n'
+    assert sh('git', 'rev-parse', '--abbrev-ref', 'HEAD', cwd=second / 'papers/beta-wt') == 'side'   # repaired
+    assert str(second) in sh('git', 'worktree', 'list', cwd=second / 'papers/beta')
+
+    (second / 'papers/alpha/cache.json').write_text('{"a": 2}')     # work there, push, come back
+    assert ws.cmd_backup(manifest2, second, 'push', host='two', out=out) == 0, out.getvalue()
+    monkeypatch.setenv('HOME', str(home1))
+    assert ws.cmd_backup(manifest, first, 'pull', host='two', out=out) == 0, out.getvalue()
+    assert (first / 'papers/alpha/cache.json').read_text() == '{"a": 2}'
+    assert 'of two' in out.getvalue()

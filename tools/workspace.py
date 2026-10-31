@@ -18,8 +18,10 @@ depends on. This tool derives everything else from it:
     python3 tools/workspace.py scan SNAPSHOT           # forbidden files and secrets, tree and history
     python3 tools/workspace.py render [--check]        # regenerate the CLAUDE.md tables
     python3 tools/workspace.py spent [--verify]        # the ledger of spent samples; --verify checks the exclusion chain
+    python3 tools/workspace.py backup push|pull|snapshots [--dry-run]  # whole workspace to Google Drive (restic);
+                                                       # push before leaving a machine, pull where you arrive
 
-Standard library only; git and gh do the work. Secret scans report the pattern name, path and
+Standard library only; git, gh, restic and rclone do the work. Secret scans report the pattern name, path and
 blob id of a hit, never the matched text.
 """
 from __future__ import annotations
@@ -1340,6 +1342,144 @@ def cmd_render(manifest: Manifest, root: Path, check: bool = False, out=sys.stdo
     return 1 if (check and stale) else 0
 
 
+# ----------------------------------------------------------------------------- backup to Drive
+
+@dataclass(frozen=True)
+class Backup:
+    """The manifest's `backup` section: one restic repository holding the whole workspace and its outside data."""
+    repository: str
+    password_file: str
+    paths: dict[str, str]          # name -> location (relative to the umbrella, ~-prefixed, or {claude_memory})
+    exclude: tuple[str, ...]
+    pack_size_mib: int
+    tag: str = 'cmri'
+
+
+def load_backup(manifest: Manifest) -> Backup:
+    raw = manifest.raw.get('backup')
+    _require(isinstance(raw, dict), 'manifest lacks a backup section')
+    for key in ('repository', 'password_file'):
+        _require(isinstance(raw.get(key), str) and raw[key], f'backup lacks {key}')
+    paths = raw.get('paths')
+    _require(isinstance(paths, dict) and paths and all(isinstance(v, str) and v for v in paths.values()),
+             'backup paths must map names to locations')
+    _require(all(re.fullmatch(r'[a-z][a-z0-9-]*', name) for name in paths), 'backup path names must be kebab-case')
+    exclude = raw.get('exclude', [])
+    _require(isinstance(exclude, list) and all(isinstance(e, str) for e in exclude), 'backup exclude must be a list')
+    pack = raw.get('pack_size_mib', 16)
+    _require(isinstance(pack, int) and 4 <= pack <= 128, 'backup pack_size_mib must be 4 to 128')
+    return Backup(raw['repository'], raw['password_file'], dict(paths), tuple(exclude), pack)
+
+
+def claude_memory_dir(root: Path) -> Path:
+    """Claude Code's memory folder for a project, named from the project's absolute path."""
+    return Path.home() / '.claude' / 'projects' / re.sub(r'[^A-Za-z0-9]', '-', str(root.resolve())) / 'memory'
+
+
+def backup_locations(backup: Backup, root: Path) -> dict[str, Path]:
+    """Each backed-up path as it lies on this machine (the same names map to other paths on another machine)."""
+    out = {}
+    for name, where in backup.paths.items():
+        if where == '{claude_memory}':
+            out[name] = claude_memory_dir(root)
+        elif where.startswith('~'):
+            out[name] = Path(where).expanduser()
+        else:
+            out[name] = (root / where).resolve()
+    return out
+
+
+def restic(backup: Backup, *args: str, capture: bool = False) -> subprocess.CompletedProcess:
+    """restic against the configured repository; progress streams to the terminal unless captured."""
+    cmd = ['restic', '-r', backup.repository, '--password-file', str(Path(backup.password_file).expanduser()), *args]
+    return subprocess.run(cmd, check=False, stdin=subprocess.DEVNULL, capture_output=capture, text=True)
+
+
+def _password(backup: Backup, create: bool, out) -> bool:
+    path = Path(backup.password_file).expanduser()
+    if path.is_file():
+        return True
+    if not create:
+        print(f'no restic password at {path}: copy the file from the machine that pushed (same content)', file=out)
+        return False
+    import secrets
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(secrets.token_urlsafe(32) + '\n', encoding='utf-8')
+    path.chmod(0o600)
+    print(f'created a restic password at {path}: keep a copy (password manager); without it the backup cannot be '
+          'read', file=out)
+    return True
+
+
+def repair_worktrees(root: Path, original: str, out=sys.stdout) -> None:
+    """After a restore under another path, point every linked worktree and its repository at their new places."""
+    for gitfile in [*root.glob('*/.git'), *root.glob('*/*/.git')]:
+        line = gitfile.read_text(encoding='utf-8').strip() if gitfile.is_file() else ''
+        old = line.removeprefix('gitdir: ')
+        if line.startswith('gitdir: ') and old.startswith(original.rstrip('/') + '/'):
+            main = (root / Path(old).relative_to(original)).parents[2]       # <repo>/.git/worktrees/<name>
+            result = run(['git', '-C', str(main), 'worktree', 'repair', str(gitfile.parent)], check=False)
+            print(f"repaired worktree {gitfile.parent.relative_to(root)}"
+                  f"{'' if result.returncode == 0 else ': ' + result.stderr.strip()}", file=out)
+
+
+def cmd_backup(manifest: Manifest, root: Path, action: str, dry_run: bool = False, host: str | None = None,
+               snapshot: str | None = None, out=sys.stdout) -> int:
+    backup = load_backup(manifest)
+    locations = backup_locations(backup, root)
+    if action == 'push':
+        if not _password(backup, create=not dry_run, out=out):
+            return 1
+        present = {n: p for n, p in locations.items() if p.exists()}
+        for name in sorted(set(locations) - set(present)):
+            print(f'skip {name}: {locations[name]} does not exist here', file=out)
+        if not dry_run and restic(backup, 'cat', 'config', capture=True).returncode != 0:
+            print(f'initialising {backup.repository}', file=out)
+            if restic(backup, 'init').returncode != 0:
+                return 1
+        args = ['backup', *[str(p) for p in present.values()], '--tag', backup.tag,
+                *[a for n, p in present.items() for a in ('--tag', f'{n}={p}')],
+                *[a for e in backup.exclude for a in ('--exclude', e)],
+                '--pack-size', str(backup.pack_size_mib), '--compression', 'auto']
+        if host:
+            args += ['--host', host]
+        if dry_run:
+            args += ['--dry-run', '-v']
+        return restic(backup, *args).returncode
+    if action == 'snapshots':
+        return restic(backup, 'snapshots', '--tag', backup.tag, '--compact').returncode
+    # pull: the latest snapshot (of one host, if given), each named path restored to where it lies on this machine
+    if not _password(backup, create=False, out=out):
+        return 1
+    listing = restic(backup, 'snapshots', '--json', '--tag', backup.tag, *(['--host', host] if host else []),
+                     capture=True)
+    if listing.returncode != 0:
+        print(listing.stderr.strip(), file=out)
+        return 1
+    snaps = json.loads(listing.stdout or '[]')
+    if snapshot:
+        snaps = [s for s in snaps if s['id'].startswith(snapshot) or s.get('short_id') == snapshot]
+    if not snaps:
+        print('no matching snapshot', file=out)
+        return 1
+    snap = max(snaps, key=lambda s: s['time'])
+    print(f"restoring snapshot {snap['short_id']} of {snap['hostname']}, {snap['time'][:19]}", file=out)
+    code = 0
+    for tag in snap.get('tags', []):
+        name, sep, original = tag.partition('=')
+        if not sep or name not in locations:
+            continue
+        target = locations[name]
+        print(f'{name}: {original} -> {target}', file=out)
+        if not dry_run:
+            target.mkdir(parents=True, exist_ok=True)
+        args = ['restore', f"{snap['id']}:{original}", '--target', str(target), '--overwrite', 'if-changed']
+        code = code or restic(backup, *args, *(['--dry-run', '-v'] if dry_run else [])).returncode
+        if name == 'workspace' and not dry_run and code == 0 and Path(original) != target:
+            repair_worktrees(target, original, out=out)
+    return code
+
+
 def main(argv: list[str] | None = None, root: Path = ROOT, manifest_path: Path | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.split('\n\n')[0])
     sub = parser.add_subparsers(dest='command', required=True)
@@ -1353,6 +1493,8 @@ def main(argv: list[str] | None = None, root: Path = ROOT, manifest_path: Path |
     p = sub.add_parser('scan'); p.add_argument('snapshot')
     p = sub.add_parser('render'); p.add_argument('--check', action='store_true')
     p = sub.add_parser('spent'); p.add_argument('--verify', action='store_true')
+    p = sub.add_parser('backup'); p.add_argument('action', choices=('push', 'pull', 'snapshots'))
+    p.add_argument('--dry-run', action='store_true'); p.add_argument('--host'); p.add_argument('--snapshot')
     sub.add_parser('by-stage')
     p = sub.add_parser('board'); p.add_argument('--as-of'); p.add_argument('--write', action='store_true')
     p = sub.add_parser('questions')
@@ -1385,6 +1527,8 @@ def main(argv: list[str] | None = None, root: Path = ROOT, manifest_path: Path |
             return cmd_remote_check(manifest)
         if args.command == 'scan':
             return cmd_scan(manifest, root, args.snapshot)
+        if args.command == 'backup':
+            return cmd_backup(manifest, root, args.action, args.dry_run, args.host, args.snapshot)
         if args.command == 'spent':
             return cmd_spent(manifest, root, args.verify, root / 'spent.json')
         return cmd_render(manifest, root, args.check)

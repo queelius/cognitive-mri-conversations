@@ -331,5 +331,25 @@
     "studies": "papers/agenda/studies.json",
     "questions": "papers/agenda/questions.json",
     "datasets": "papers/agenda/datasets.json"
+  },
+  "backup": {
+    "note": "The whole workspace (every repository with its .git, gitignored data and caches) plus the data kept outside it, in one encrypted, deduplicated restic repository on Alex's Google Drive. `backup push` before leaving a machine, `backup pull` where you arrive; only changed chunks travel.",
+    "repository": "rclone:gdrive-backup:cmri-restic",
+    "password_file": "~/.config/cmri/restic-password",
+    "paths": {
+      "workspace": ".",
+      "api-results": "~/.local/share/cmri",
+      "api-state": "~/.local/state/cmri",
+      "claude-memory": "{claude_memory}"
+    },
+    "exclude": [
+      ".venv",
+      "__pycache__",
+      ".pytest_cache",
+      ".mypy_cache",
+      "node_modules",
+      "*.pyc"
+    ],
+    "pack_size_mib": 64
   }
 }

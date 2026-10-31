@@ -136,6 +136,19 @@ Do not put personal links or files there. Rebuilds refuse unmarked directories a
 leave empty directories intact, and never traverse directory links. The umbrella is never linked.
 The generated view is not an input source for this tool.
 
+`backup push|pull|snapshots [--dry-run] [--host H] [--snapshot ID]` moves the whole workspace between machines
+through Alex's Google Drive: one encrypted, deduplicated restic repository (`backup` in `workspace.json`) holding the
+umbrella tree with every child repository (their `.git`, gitignored data and caches; `.venv` and caches of Python
+bytecode excluded), `~/.local/share/cmri` (paid API results), `~/.local/state/cmri` and this project's Claude memory
+folder. Push before leaving a machine and pull where you arrive (one active machine at a time); only changed chunks
+travel, so re-syncs are quick. Pull restores each named path to where it lies on that machine and repairs moved git
+worktrees; it overwrites changed files but never deletes local ones. It needs `restic` and `rclone` on the machine, an
+rclone remote `gdrive-backup` (Drive, scope `drive.file`) and the password file `~/.config/cmri/restic-password`
+(created by the first push; copy it to every machine). On a new computer: install git, python3, uv, rclone and restic;
+`rclone config` a `gdrive-backup` remote; clone the umbrella from GitHub; copy the password file; run
+`python3 tools/workspace.py backup pull`; then `uv sync` in `papers/iscs-2027`. The Hugging Face model cache is not
+included (re-downloadable).
+
 Edit the manifest, then run `python3 tools/workspace.py render`; never edit the tables by hand.
 
 Consequences:
