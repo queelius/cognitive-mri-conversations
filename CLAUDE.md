@@ -45,7 +45,7 @@ never presented as deadlines.
    histories" (provisional until settled with Matta), K in the abstract's second sentence, people before prediction.
    The title, abstract, introduction, discussion and conclusion are rewritten (fe0adec) and their Codex review closed
    after fixes (a91b221; `notes/2026-10-29-review-framing-codex.md`). Left for submission: acknowledgements and authors' contributions (Alex with Matta), the repository URL
-   and DOI, and the ISCS editors' note decision.
+   and DOI, and the ISCS editors' note decision. On 2026-11-01 a critical audit (Opus as primary reviewer) led to corrections now in the manuscript, and Alex added analysis M (resolution curve, sittings and days, the person's own messages) and a PageRank predictor (I amendment 4, out of the paper until read); all designs were reviewed and closed before code, and they are running (that repository's PLAN.md, item 0).
 2. The NetSci abstract (`papers/person-networks/abstracts/netsci-2027/`): its coarser-matching sentence
    was confirmed by the fingerprinted rerun (2026-10-26); it needs Alex's read and submission by Dec 1.
 3. Reach in bits (`papers/reach-bits/`, for ISCS 2027): base language models score the next user
