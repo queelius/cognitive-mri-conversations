@@ -149,6 +149,13 @@ rclone remote `gdrive-backup` (Drive, with Alex's own OAuth client from Google C
 `python3 tools/workspace.py backup pull`; then `uv sync` in `papers/iscs-2027`. The Hugging Face model cache is not
 included (re-downloadable).
 
+`packet NAME [--dry-run]` builds a zip for discussing the work with an outside assistant (for example a ChatGPT
+Pro session): the files named in the manifest's `packets` section, read from each repository's committed HEAD (plus
+named built PDFs), with a generated `INDEX.md` and a committed overview as `START-HERE.md` (the `chatgpt` packet's
+lives in cmri-agenda, since this repository is public). Every file passes the publication policy's forbidden paths,
+the packet's own exclusions and the secret patterns, and any finding refuses the build; the zip goes to gitignored
+`packets/NAME-DATE.zip`. Rebuild the PDFs (`make reading`, `make simple`) first when the papers have changed.
+
 Edit the manifest, then run `python3 tools/workspace.py render`; never edit the tables by hand.
 
 Consequences:

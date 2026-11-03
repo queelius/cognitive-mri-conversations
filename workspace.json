@@ -355,5 +355,115 @@
       "rclone.connections": "4",
       "rclone.args": "serve restic --stdio --b2-hard-delete --tpslimit 8 --tpslimit-burst 8 --low-level-retries 20"
     }
+  },
+  "packets": {
+    "chatgpt": {
+      "description": "Committed research material of the CMRI programme (plans, questions, designs, reports, claim ledgers, paper PDFs) for discussion with an outside assistant. Aggregates only; no conversation text.",
+      "intro": {
+        "repo": "cmri-agenda",
+        "path": "packets/START-HERE.md"
+      },
+      "include": [
+        {
+          "repo": "cognitive-mri-conversations",
+          "paths": [
+            "README.md",
+            "docs/research/DECISIONS.md",
+            "docs/research/EXPERIMENT-PORTFOLIO.md"
+          ]
+        },
+        {
+          "repo": "cmri-agenda",
+          "paths": [
+            "README.md",
+            "PROGRAM-PLAN.md",
+            "research-agenda.md",
+            "questions-ledger.md",
+            "public-datasets.md",
+            "novelty-checks.md",
+            "proposals/*.md",
+            "reports/*.md",
+            "studies/*.md",
+            "reviews/2026-10-22-*.md",
+            "reviews/2026-10-26-program-plan-review-*.md"
+          ]
+        },
+        {
+          "repo": "cmri-hierarchical-memory-extended",
+          "paths": [
+            "README.md",
+            "PLAN.md",
+            "CLAIMS.md",
+            "OUTLINE.md",
+            "VENUE.md",
+            "analyses/README.md",
+            "analyses/*/report.md",
+            "analyses/*/DESIGN.md",
+            "notes/2026-11-*.md",
+            "paper-simple/*.md",
+            "paper-simple/sections/*.md"
+          ],
+          "built": [
+            "build/reading/main.pdf",
+            "build/simple/main.pdf"
+          ]
+        },
+        {
+          "repo": "cmri-person-networks",
+          "paths": [
+            "README.md",
+            "DESIGN.md",
+            "PROTOCOL.md",
+            "RESULTS.md",
+            "DEVIATIONS.md",
+            "abstracts/netsci-2027/*"
+          ]
+        },
+        {
+          "repo": "cmri-reach-bits",
+          "paths": [
+            "*.md",
+            "results/xs/REPORT.md",
+            "notes/2026-10-27-cross-session-results.md"
+          ]
+        },
+        {
+          "repo": "cmri-iscs-2027",
+          "paths": [
+            "README.md",
+            "REPORT.md",
+            "CLAIMS.md",
+            "PROTOCOL.md",
+            "PROTOCOL2.md",
+            "paper/main.pdf"
+          ]
+        },
+        {
+          "repo": "cmri-hierarchical-memory",
+          "paths": [
+            "README.md",
+            "paper/paper.pdf"
+          ]
+        },
+        {
+          "repo": "cmri-knowledge-networks",
+          "paths": [
+            "README.md",
+            "paper/paper.pdf"
+          ]
+        }
+      ],
+      "exclude": [
+        "correspondence/*",
+        "*consent*",
+        "*waiver*",
+        "*Waiver*",
+        "*.jsonl",
+        "*.pkl",
+        "*.parquet",
+        "cache/*"
+      ],
+      "max_bytes": 20971520
+    }
   }
 }

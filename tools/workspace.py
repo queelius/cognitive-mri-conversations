@@ -20,6 +20,8 @@ depends on. This tool derives everything else from it:
     python3 tools/workspace.py spent [--verify]        # the ledger of spent samples; --verify checks the exclusion chain
     python3 tools/workspace.py backup push|pull|snapshots [--dry-run]  # whole workspace to Google Drive (restic);
                                                        # push before leaving a machine, pull where you arrive
+    python3 tools/workspace.py packet NAME [--dry-run]   # a scanned zip of named, committed files for discussion
+                                                       # with an outside assistant (gitignored packets/)
 
 Standard library only; git, gh, restic and rclone do the work. Secret scans report the pattern name, path and
 blob id of a hit, never the matched text.
@@ -30,12 +32,14 @@ import argparse
 from dataclasses import dataclass, field
 from datetime import date, timedelta
 import fnmatch
+import hashlib
 import json
 import os
 from pathlib import Path
 import re
 import subprocess
 import sys
+import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / 'workspace.json'
@@ -1486,6 +1490,139 @@ def cmd_backup(manifest: Manifest, root: Path, action: str, dry_run: bool = Fals
     return code
 
 
+# ----------------------------------------------------------------------------- discussion packets
+
+
+@dataclass(frozen=True)
+class PacketPart:
+    repo: str
+    paths: tuple[str, ...]          # globs over the files committed at HEAD
+    built: tuple[str, ...]          # exact paths of built (usually gitignored) files in the working tree
+
+
+@dataclass(frozen=True)
+class Packet:
+    name: str
+    description: str
+    intro: tuple[str, str]          # (repo, path) of a committed overview, placed at the packet's root as START-HERE.md
+    parts: tuple[PacketPart, ...]
+    exclude: tuple[str, ...]
+    max_bytes: int
+
+
+def load_packet(manifest: Manifest, name: str) -> Packet:
+    packets = manifest.raw.get('packets')
+    _require(isinstance(packets, dict) and packets, 'manifest lacks a packets section')
+    raw = packets.get(name)
+    _require(isinstance(raw, dict), f'unknown packet: {name}')
+    _require(isinstance(raw.get('description'), str) and raw['description'], f'packet {name} lacks description')
+    intro = raw.get('intro')
+    _require(isinstance(intro, dict) and all(isinstance(intro.get(k), str) and intro[k] for k in ('repo', 'path')),
+             f'packet {name}: intro must name a repo and a path')
+    manifest.repo(intro['repo'])
+    parts = []
+    for entry in raw.get('include', []):
+        _require(isinstance(entry, dict) and isinstance(entry.get('repo'), str), f'packet {name}: bad include {entry}')
+        manifest.repo(entry['repo'])
+        paths, built = entry.get('paths', []), entry.get('built', [])
+        _require(all(isinstance(x, str) and x for x in [*paths, *built]) and (paths or built),
+                 f"packet {name}: include for {entry['repo']} needs paths or built files")
+        _require(all(not Path(x).is_absolute() and '..' not in Path(x).parts for x in built),
+                 f"packet {name}: built paths must stay inside {entry['repo']}")
+        parts.append(PacketPart(entry['repo'], tuple(paths), tuple(built)))
+    _require(parts, f'packet {name} includes nothing')
+    exclude = raw.get('exclude', [])
+    _require(isinstance(exclude, list) and all(isinstance(e, str) for e in exclude), f'packet {name}: bad exclude')
+    limit = raw.get('max_bytes', 100 * 2 ** 20)
+    _require(isinstance(limit, int) and limit > 0, f'packet {name}: max_bytes must be a positive integer')
+    return Packet(name, raw['description'], (intro['repo'], intro['path']), tuple(parts), tuple(exclude), limit)
+
+
+def packet_files(packet: Packet, manifest: Manifest, root: Path) -> tuple[list[dict], list[dict]]:
+    """Every file the packet would hold (committed content at HEAD, or a built file) and every finding against it.
+
+    Findings: a forbidden path (publication policy or the packet's own exclusions), a secret pattern in the bytes,
+    a glob or built file that matches nothing. Committed content is read from git, never from the working tree.
+    """
+    patterns = {k: re.compile(v.encode()) for k, v in manifest.policy.get('secret_patterns', {}).items()}
+    forbidden = [*manifest.policy.get('forbidden_paths', []), *packet.exclude]
+    files, findings = [], []
+    for part in packet.parts:
+        repo = manifest.repo(part.repo)
+        where = root / repo.path
+        head = git(where, 'rev-parse', 'HEAD')
+        tracked = git(where, 'ls-tree', '-r', '--name-only', head).splitlines()
+        chosen = []
+        for pattern in part.paths:
+            hits = [t for t in tracked if fnmatch.fnmatch(t, pattern)]
+            if not hits:
+                findings.append({'kind': 'matches nothing', 'repo': part.repo, 'path': pattern})
+            chosen += [h for h in hits if h not in chosen]
+        entries = [(path, run(['git', '-C', str(where), 'show', f'{head}:{path}'], text=False).stdout, 'committed')
+                   for path in chosen]
+        for path in part.built:
+            target = where / path
+            if not target.is_file():
+                findings.append({'kind': 'built file missing', 'repo': part.repo, 'path': path})
+                continue
+            entries.append((path, target.read_bytes(), 'built from the working tree'))
+        for path, data, origin in entries:
+            rule = _forbidden(path, forbidden)
+            if rule:
+                findings.append({'kind': 'forbidden path', 'repo': part.repo, 'path': path, 'rule': rule})
+                continue
+            for name, rx in patterns.items():
+                if rx.search(data):
+                    findings.append({'kind': 'secret pattern', 'repo': part.repo, 'path': path, 'rule': name})
+            files.append({'repo': part.repo, 'folder': Path(repo.path).name, 'path': path, 'data': data,
+                          'origin': origin, 'commit': head[:10], 'note': repo.note})
+    return files, findings
+
+
+def packet_index(packet: Packet, files: list[dict], built_on: date) -> str:
+    lines = [f'# Packet {packet.name} ({built_on.isoformat()})', '', packet.description, '',
+             'Start with START-HERE.md. Files are grouped by repository folder; each repository is one independent',
+             'git repository of the programme, at the commit given. Committed files are their content at that commit;',
+             'built files (PDFs) were built from it.', '']
+    for folder in sorted({f['folder'] for f in files}):
+        group = [f for f in files if f['folder'] == folder]
+        lines += [f"## {folder}/ ({group[0]['repo']} at {group[0]['commit']})", '', group[0]['note'], '']
+        lines += [f"- `{folder}/{f['path']}` ({len(f['data']):,} bytes{'' if f['origin'] == 'committed' else ', built'})"
+                  for f in group]
+        lines.append('')
+    return '\n'.join(lines)
+
+
+def cmd_packet(manifest: Manifest, root: Path, name: str, dry_run: bool = False, as_of: date | None = None,
+               out=sys.stdout) -> int:
+    packet = load_packet(manifest, name)
+    files, findings = packet_files(packet, manifest, root)
+    intro_files, intro_findings = packet_files(
+        Packet(name, '', packet.intro, (PacketPart(packet.intro[0], (packet.intro[1],), ()),), packet.exclude, 1),
+        manifest, root)
+    findings += intro_findings
+    total = sum(len(f['data']) for f in files)
+    if total > packet.max_bytes:
+        findings.append({'kind': 'over max_bytes', 'repo': '-', 'path': f'{total:,} > {packet.max_bytes:,}'})
+    for f in findings:
+        extra = f" rule={f['rule']}" if 'rule' in f else ''
+        print(f"  {f['kind']}: {f['repo']} {f['path']}{extra}", file=out)
+    print(f'{name}: {len(files)} file(s), {total:,} bytes, {len(findings)} finding(s)', file=out)
+    if findings or dry_run:
+        return 1 if findings else 0
+    built_on = as_of or date.today()
+    target = root / 'packets' / f'{name}-{built_on.isoformat()}.zip'
+    target.parent.mkdir(exist_ok=True)
+    with zipfile.ZipFile(target, 'w', zipfile.ZIP_DEFLATED) as z:
+        z.writestr('START-HERE.md', intro_files[0]['data'] if intro_files else b'')
+        z.writestr('INDEX.md', packet_index(packet, files, built_on))
+        for f in files:
+            z.writestr(f"{f['folder']}/{f['path']}", f['data'])
+    digest = hashlib.sha256(target.read_bytes()).hexdigest()
+    print(f'wrote {target.relative_to(root)} ({target.stat().st_size:,} bytes, sha256 {digest[:12]})', file=out)
+    return 0
+
+
 def main(argv: list[str] | None = None, root: Path = ROOT, manifest_path: Path | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.split('\n\n')[0])
     sub = parser.add_subparsers(dest='command', required=True)
@@ -1502,6 +1639,7 @@ def main(argv: list[str] | None = None, root: Path = ROOT, manifest_path: Path |
     p = sub.add_parser('backup'); p.add_argument('action', choices=('push', 'pull', 'snapshots'))
     p.add_argument('--dry-run', action='store_true'); p.add_argument('--host'); p.add_argument('--snapshot')
     sub.add_parser('by-stage')
+    p = sub.add_parser('packet'); p.add_argument('name'); p.add_argument('--dry-run', action='store_true')
     p = sub.add_parser('board'); p.add_argument('--as-of'); p.add_argument('--write', action='store_true')
     p = sub.add_parser('questions')
     mode = p.add_mutually_exclusive_group()
@@ -1535,6 +1673,8 @@ def main(argv: list[str] | None = None, root: Path = ROOT, manifest_path: Path |
             return cmd_scan(manifest, root, args.snapshot)
         if args.command == 'backup':
             return cmd_backup(manifest, root, args.action, args.dry_run, args.host, args.snapshot)
+        if args.command == 'packet':
+            return cmd_packet(manifest, root, args.name, args.dry_run)
         if args.command == 'spent':
             return cmd_spent(manifest, root, args.verify, root / 'spent.json')
         return cmd_render(manifest, root, args.check)

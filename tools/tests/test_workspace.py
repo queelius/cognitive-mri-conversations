@@ -1347,3 +1347,82 @@ def test_backup_push_then_pull_on_another_machine_and_back(tmp_path, monkeypatch
     assert ws.cmd_backup(manifest, first, 'pull', host='two', out=out) == 0, out.getvalue()
     assert (first / 'papers/alpha/cache.json').read_text() == '{"a": 2}'
     assert 'of two' in out.getvalue()
+
+
+# ----------------------------------------------------------------------------- discussion packets
+
+def packet_manifest(root, include, intro=('alpha', 'START.md'), **extra):
+    data = json.loads((root / 'workspace.json').read_text())
+    data['packets'] = {'talk': {'description': 'For discussion.', 'intro': {'repo': intro[0], 'path': intro[1]},
+                                'include': include, **extra}}
+    (root / 'workspace.json').write_text(json.dumps(data))
+
+
+def test_packet_zips_committed_content_with_an_index_and_the_intro(workspace):
+    import zipfile
+    root, _, _ = workspace
+    call(root, 'clone')
+    alpha = root / 'papers/alpha'
+    commit(alpha, {'START.md': '# Start\n', 'notes/a.md': 'committed\n', 'notes/b.txt': 'not chosen\n'})
+    (alpha / 'notes/a.md').write_text('edited, not committed\n')
+    (alpha / 'build').mkdir()
+    (alpha / 'build/paper.pdf').write_bytes(b'%PDF-1.5 built')
+    packet_manifest(root, [{'repo': 'alpha', 'paths': ['notes/*.md'], 'built': ['build/paper.pdf']}])
+    out = io.StringIO()
+    code = ws.cmd_packet(ws.load(root / 'workspace.json'), root, 'talk', as_of=ws.date(2026, 11, 3), out=out)
+    assert code == 0, out.getvalue()
+    with zipfile.ZipFile(root / 'packets/talk-2026-11-03.zip') as z:
+        names = set(z.namelist())
+        assert names == {'START-HERE.md', 'INDEX.md', 'alpha/notes/a.md', 'alpha/build/paper.pdf'}
+        assert z.read('alpha/notes/a.md') == b'committed\n'          # HEAD, never the working tree
+        assert z.read('START-HERE.md') == b'# Start\n'
+        index = z.read('INDEX.md').decode()
+        assert 'alpha/build/paper.pdf' in index and 'built' in index
+
+
+def test_packet_refuses_secrets_forbidden_paths_exclusions_and_empty_globs_without_writing(workspace):
+    root, _, _ = workspace
+    call(root, 'clone')
+    alpha = root / 'papers/alpha'
+    commit(alpha, {'START.md': '# Start\n', 'a.md': f'key={FAKE_KEY}\n', 'emb.npz': 'vectors',
+                   'correspondence/letter.md': 'private'})
+    packet_manifest(root, [{'repo': 'alpha', 'paths': ['*.md', 'emb.npz', 'correspondence/*', 'missing/*'],
+                            'built': ['build/none.pdf']}], exclude=['correspondence/*'])
+    out = io.StringIO()
+    assert ws.cmd_packet(ws.load(root / 'workspace.json'), root, 'talk', out=out) == 1
+    text = out.getvalue()
+    assert 'secret pattern: alpha a.md rule=google_api_key' in text and FAKE_KEY not in text
+    assert 'forbidden path: alpha emb.npz' in text and 'forbidden path: alpha correspondence/letter.md' in text
+    assert 'matches nothing: alpha missing/*' in text and 'built file missing: alpha build/none.pdf' in text
+    assert not (root / 'packets').exists()
+
+
+def test_packet_refuses_an_uncommitted_intro_and_an_oversized_packet(workspace):
+    root, _, _ = workspace
+    call(root, 'clone')
+    alpha = root / 'papers/alpha'
+    commit(alpha, {'a.md': 'x' * 100})
+    (alpha / 'START.md').write_text('# not committed\n')
+    packet_manifest(root, [{'repo': 'alpha', 'paths': ['a.md']}], max_bytes=10)
+    out = io.StringIO()
+    assert ws.cmd_packet(ws.load(root / 'workspace.json'), root, 'talk', dry_run=True, out=out) == 1
+    assert 'matches nothing: alpha START.md' in out.getvalue() and 'over max_bytes' in out.getvalue()
+
+
+@pytest.mark.parametrize('include, message', [
+    ([], 'includes nothing'),
+    ([{'repo': 'nope', 'paths': ['a.md']}], 'unknown repository'),
+    ([{'repo': 'alpha'}], 'needs paths or built files'),
+    ([{'repo': 'alpha', 'built': ['../outside.pdf']}], 'must stay inside'),
+])
+def test_packet_manifest_rules(workspace, include, message):
+    root, _, _ = workspace
+    packet_manifest(root, include)
+    with pytest.raises(ws.ManifestError, match=message):
+        ws.load_packet(ws.load(root / 'workspace.json'), 'talk')
+
+
+def test_the_real_packets_are_valid():
+    manifest = ws.load(ws.MANIFEST)
+    for name in manifest.raw.get('packets', {}):
+        assert ws.load_packet(manifest, name).parts

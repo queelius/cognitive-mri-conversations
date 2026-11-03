@@ -93,3 +93,4 @@ cmri-secrets-to-rotate.txt
 # Disposable private program views
 by-stage/
 STATUS.local.md
+packets/
