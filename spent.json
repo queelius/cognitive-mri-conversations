@@ -513,6 +513,45 @@
       ],
       "note": "K (hierarchy extension, exploratory): identities with at least 100 non-templated conversations over at least 180 days, holding at least 90% of their IP's conversations, after the census's person screens (DESIGN.md amendments 1 to 4); the strict sensitivity (IP hosting no other identity) is a subset of 48 identities and 17,261 conversations. Drawn without excluding earlier samples; measured overlap after screens: temporal screen 56 identities (22,889 conversations), Study 1 16 (8 development, 8 confirmation; 1,896 conversations), other samples 0, unspent 5 (1,313). Entered before extraction.",
       "dataset": "D-wildchat-4.8m"
+    },
+    {
+      "id": "wildchat-hme-q-extraction-fidelity",
+      "pool": "wildchat",
+      "unit": "identity",
+      "status": "exploratory",
+      "spent_on": "2026-11-04",
+      "size": {
+        "identities": 77,
+        "conversations": 154
+      },
+      "repo": "cmri-hierarchical-memory-extended",
+      "record": "analyses/Q-extraction-fidelity/results/central/api-requests.json",
+      "ids_committed": "counts and hashes in the record; conversation keys stay in the gitignored cache/Q-central/requests/positions.json",
+      "excludes": [],
+      "reuses": [
+        "wildchat-hme-k-long-histories",
+        "wildchat-temporal-screen",
+        "wildchat-development",
+        "wildchat-confirmation",
+        "wildchat-reach-long",
+        "wildchat-protocol2",
+        "wildchat-study1-development",
+        "wildchat-study1-confirmation",
+        "wildchat-study1b-light",
+        "wildchat-reachbits-fresh",
+        "wildchat-reachbits-xs-fresh"
+      ],
+      "reuse_decision": "Alex, 2026-11-03: Q follows the reviewed recommendations, including reusing K's WildChat identities (cmri-hierarchical-memory-extended PLAN.md)",
+      "siblings": [],
+      "evidence": [
+        {
+          "repo": "cmri-hierarchical-memory-extended",
+          "path": "analyses/Q-extraction-fidelity/DESIGN.md",
+          "contains": "wildchat-hme-q-extraction-fidelity"
+        }
+      ],
+      "note": "Q (hierarchy extension, exploratory): an audit of extraction quality judged by two vendor language models; two conversations per K identity, drawn among those every K extractor accepted; confirms nothing.",
+      "dataset": "D-wildchat-4.8m"
     }
   ]
 }
