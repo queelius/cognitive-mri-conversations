@@ -48,7 +48,8 @@ never presented as deadlines.
    and DOI, and the ISCS editors' note decision. On 2026-11-01 a critical audit (Opus as primary reviewer) led to corrections now in the manuscript, and Alex added analysis M (resolution curve, sittings and days, the person's own messages) and a PageRank predictor (I amendment 4, out of the paper until read); all designs were reviewed and closed before code, and they are running (that repository's PLAN.md, item 0). Since 2026-11-02 the extension also has a simple alternative
    version (`paper-simple/`, `make simple`, 20 pages; Alex chooses after reading both), and on 2026-11-03 Alex approved Q,
    a blinded audit of extraction quality by two vendor judges (Claude Opus 5.5, GPT-6.1-sol) in three staged records;
-   stage 1 (central concepts) is running under his approval of 2026-11-04 (`analyses/Q-extraction-fidelity/`). A
+   it ran in three approved stages (about $8; done 2026-11-05) and is in the paper as claim N18: nearly all of every
+   current extractor's concepts are in the conversations (`analyses/Q-extraction-fidelity/`). A
    discussion packet for outside assistants is built by `workspace.py packet chatgpt`.
 2. The NetSci abstract (`papers/person-networks/abstracts/netsci-2027/`): its coarser-matching sentence
    was confirmed by the fingerprinted rerun (2026-10-26); it needs Alex's read and submission by Dec 1.
