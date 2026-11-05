@@ -161,6 +161,11 @@ lives in cmri-agenda, since this repository is public). Every file passes the pu
 the packet's own exclusions and the secret patterns, and any finding refuses the build; the zip goes to gitignored
 `packets/NAME-DATE.zip`. Rebuild the PDFs (`make reading`, `make simple`) first when the papers have changed.
 
+Reproduction on another machine (2026-11-05): the extension's `REPRODUCE.md` says what reproduces from GitHub alone
+(every committed number, figure and PDF), from GitHub plus the private Hugging Face dataset
+`queelius/cmri-hierarchy-extension-public-derived` (WildChat- and case-series-derived intermediates; restore with the
+extension's `tools/hf_export.py restore`), and what needs the encrypted Drive backup (anything on the private archive).
+
 Edit the manifest, then run `python3 tools/workspace.py render`; never edit the tables by hand.
 
 Consequences:
