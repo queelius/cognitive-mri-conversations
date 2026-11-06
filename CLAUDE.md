@@ -49,7 +49,7 @@ never presented as deadlines.
    version (`paper-simple/`, `make simple`, 20 pages; Alex chooses after reading both), and on 2026-11-03 Alex approved Q,
    a blinded audit of extraction quality by two vendor judges (Claude Opus 5.5, GPT-6.1-sol) in three staged records;
    it ran in three approved stages (about $8; done 2026-11-05) and is in the paper as claim N18: nearly all of every
-   current extractor's concepts are in the conversations (`analyses/Q-extraction-fidelity/`). A
+   current extractor's concepts are in the conversations (`analyses/Q-extraction-fidelity/`). On 2026-11-06 T (literal repeats) went in as claim N20: both patterns hold after removing them, and a small part of the co-use effect goes with them (`notes/2026-11-06-T-words-results.md`). R, a frozen confirmation on 27 fresh WildChat identities (`analyses/R-fresh-confirmation/`), was frozen the same day (0c9149f) with Alex's approval and entered in `spent.json`; it awaits GPU lease L007 for extraction. A
    discussion packet for outside assistants is built by `workspace.py packet chatgpt`.
 2. The NetSci abstract (`papers/person-networks/abstracts/netsci-2027/`): its coarser-matching sentence
    was confirmed by the fingerprinted rerun (2026-10-26); it needs Alex's read and submission by Dec 1.
