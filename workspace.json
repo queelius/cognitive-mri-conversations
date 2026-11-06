@@ -67,6 +67,15 @@
       "note": "In preparation: the extended journal version of the ISCS 2026 paper for the Applied Network Science ISCS 2026 collection (due 2026-12-04). Pins the camera-ready and the addendum's results; corrects the small-world claim."
     },
     {
+      "name": "cmri-person-model",
+      "path": "papers/person-model",
+      "branch": "main",
+      "visibility": "private",
+      "data": "private-archive",
+      "group": "paper",
+      "note": "In preparation, scaffolded 2026-11-06: a model of a person built from their AI conversations, as dated statements with provenance, scored on what the person later says and answers; a self-restructuring wiki and its dreaming are treatments. Nothing written or scored yet."
+    },
+    {
       "name": "cmri-embedding-dynamics",
       "path": "papers/embedding-dynamics",
       "branch": "main",

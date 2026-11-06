@@ -43,6 +43,8 @@ never presented as deadlines.
    The candidate list and its prior art are in `papers/agenda/` (`PROGRAM-PLAN.md`, a proposal, and
    `reports/CMRI research questions 2026.md`).
 
+4. A model of a person from their AI conversations (`papers/person-model/`, Alex, 2026-11-06: "very promising", move fast): dated statements with provenance, scored on later text and on answers. Scorer first, writer second. Read its PLAN.md. **The later ChatGPT export stays sealed under its `PROTOCOL-EXPORT.md`: size and hash only, until the predictions are frozen.** Exploration queue, in the extension's PLAN.md: assistant carry-over waits for GPU lease L008 and the fingerprint is parked.
+
 **Working rules:**
 - Claude implements; Codex (`codex exec -m gpt-6.1-sol -s read-only -c model_reasoning_effort=max ... < /dev/null`,
   sometimes `-m gpt-6-astra` for variation) reviews once per milestone with a closure criterion, not in
@@ -170,6 +172,7 @@ Consequences:
 | `papers/temporal-networks/` | cmri-temporal-networks; worktree `papers/temporal-networks-calibration/` on `pilot/iscs-2027-calibration` | Rejected at PLOS Complex Systems 2026-04-27; retired as a standalone paper on 2026-10-22 (withdrawal note in the manuscript). Branch `pilot/iscs-2027-calibration` holds the October 2026 calibration whose exact identities, return-lag statistic and densification exponents survive and merge into the person-networks line. |
 | `papers/hierarchical-memory/` | cmri-hierarchical-memory | Accepted at ISCS 2026; Springer SSDC 709 proceedings forthcoming. An addendum correcting the small-world comparison (degree-preserving null) is in `addendum/` (2026-10-22). Formerly `agentic/`. |
 | `papers/hierarchical-memory-extended/` | cmri-hierarchical-memory-extended | In preparation: the extended journal version of the ISCS 2026 paper for the Applied Network Science ISCS 2026 collection (due 2026-12-04). Pins the camera-ready and the addendum's results; corrects the small-world claim. |
+| `papers/person-model/` | cmri-person-model | In preparation, scaffolded 2026-11-06: a model of a person built from their AI conversations, as dated statements with provenance, scored on what the person later says and answers; a self-restructuring wiki and its dreaming are treatments. Nothing written or scored yet. |
 | `papers/embedding-dynamics/` | cmri-embedding-dynamics | Partial draft; to be folded into a methods note or dissertation chapter (decided 2026-10-22). The false turning-cosine proposition is corrected per the October 2026 audit; see `docs/research/DYNAMICS-CONSOLIDATION.md`. |
 | `papers/semantic-dynamics/` | cmri-semantic-dynamics | Full draft, retired 2026-10-22: its headline claims failed the October 2026 audit; two hypotheses (continuation versus revisitation links; within-conversation episode boundaries) are kept for later studies. |
 | `papers/operational-memex/` | cmri-operational-memex | Infrastructure (the per-message embedding store), not a paper (decided 2026-10-22). |
