@@ -552,6 +552,49 @@
       ],
       "note": "Q (hierarchy extension, exploratory): an audit of extraction quality judged by two vendor language models; two conversations per K identity, drawn among those every K extractor accepted; confirms nothing.",
       "dataset": "D-wildchat-4.8m"
+    },
+    {
+      "id": "wildchat-hme-r-fresh-confirmation",
+      "pool": "wildchat",
+      "unit": "identity",
+      "status": "frozen",
+      "spent_on": "2026-11-06",
+      "size": {
+        "identities": 27,
+        "conversations": 6555
+      },
+      "repo": "cmri-hierarchical-memory-extended",
+      "record": "analyses/R-fresh-confirmation/run/results/cohort.json",
+      "ids_committed": "counts and membership digests in the record; identity keys, IP digests and conversation hashes stay in the gitignored analyses/R-fresh-confirmation/run/cache/cohort.json",
+      "excludes": [
+        "wildchat-temporal-screen",
+        "wildchat-development",
+        "wildchat-confirmation",
+        "wildchat-reach-long",
+        "wildchat-protocol2",
+        "wildchat-study1-development",
+        "wildchat-study1-confirmation",
+        "wildchat-study1b-light",
+        "wildchat-reachbits-fresh",
+        "wildchat-reachbits-xs-fresh",
+        "wildchat-hme-k-long-histories",
+        "wildchat-hme-q-extraction-fidelity"
+      ],
+      "siblings": [],
+      "evidence": [
+        {
+          "repo": "cmri-hierarchical-memory-extended",
+          "path": "analyses/R-fresh-confirmation/pipeline.py",
+          "contains": "wildchat-hme-r-fresh-confirmation"
+        },
+        {
+          "repo": "cmri-hierarchical-memory-extended",
+          "path": "analyses/K-long-histories/cohort-settings.json",
+          "contains": "wildchat-hme-k-long-histories"
+        }
+      ],
+      "note": "R (hierarchy extension, frozen confirmation, PROTOCOL.md; freeze FREEZE-R.json): every identity outside all earlier samples with at least 50 conversations over at least 60 days under K's primary rule and person screens and a metadata volume screen, tested for K's two patterns under K's frozen codebooks. Entered after selection and before any export or extraction. Alex approved, 2026-11-05 (PLAN.md).",
+      "dataset": "D-wildchat-4.8m"
     }
   ]
 }
