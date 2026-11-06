@@ -460,6 +460,9 @@ def test_the_real_ledger_is_valid_and_its_chain_is_complete():
     (lambda s: s.append(dict(s[0])), 'duplicate sample ids'),
     (lambda s: s[0].update(evidence=[{'repo': 'alpha'}]), 'evidence needs'),
     (lambda s: s[1].update(excludes=[], reuses=['a'], reuse_decision='Alex, 2026-10-28'), 'only an exploratory'),
+    (lambda s: s[1].update(excludes=[], status='frozen-reuse', reuses=['a'], reuse_decision='Alex'), 'a protocol and a freeze'),
+    (lambda s: s[1].update(excludes=[], status='frozen-reuse', reuses=['a'], reuse_decision='Alex', protocol='README.md',
+                           freeze='README.md'), 'names the hypotheses'),
     (lambda s: s[1].update(excludes=[], reuses=['a'], status='exploratory'), 'reuse_decision'),
     (lambda s: s[1].update(reuses=['a'], status='exploratory', reuse_decision='Alex'), 'both excludes and reuses'),
     (lambda s: s[1].update(excludes=[], reuses=['nobody'], status='exploratory', reuse_decision='Alex'),
@@ -494,6 +497,20 @@ def test_spent_verify_accepts_a_recorded_exploratory_reuse_and_later_draws_must_
     later = sample('later', '2026-10-02', excludes=['screen'])
     code, text = spent(root, first, reuse, later)
     assert code == 1 and 'later: does not exclude the earlier p sample explore' in text
+
+
+def test_a_frozen_reuse_tests_each_hypothesis_once(workspace):
+    root, _, _ = workspace
+    call(root, 'clone')
+    first = sample('screen', '2026-09-30', status='screen')
+    base = dict(status='frozen-reuse', reuses=['screen'], reuse_decision='Alex, 2026-11-06')
+    one = sample('r', '2026-10-01', protocol='README.md', freeze='README.md', hypotheses=['H-new'], **base)
+    code, text = spent(root, first, one)
+    assert code == 0, text
+    again = sample('r2', '2026-10-02', protocol='README.md', freeze='README.md', hypotheses=['H-new'], status='frozen-reuse',
+                   reuses=['screen', 'r'], reuse_decision='Alex, 2026-11-06')
+    code, text = spent(root, first, one, again)
+    assert code == 1 and 'hypothesis H-new was already tested on r' in text
 
 
 def test_spent_verify_accepts_same_day_siblings_and_still_needs_earlier_draws(workspace):

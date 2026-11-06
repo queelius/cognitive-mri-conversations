@@ -5,7 +5,8 @@
     "Every draw from a pool is an entry, including development draws and screening lists, because later draws must exclude them.",
     "Entries of one pool are ordered by `spent_on`; each entry's `excludes` (plus `siblings`, partitions of one draw) must name every earlier entry of its pool.",
     "`evidence` points at the committed configuration that performed the exclusion and a string it must contain.",
-    "`record` is the committed file that describes the sample (counts and hashes); the member list itself may be gitignored when it carries IP digests."
+    "`record` is the committed file that describes the sample (counts and hashes); the member list itself may be gitignored when it carries IP digests.",
+    "Freshness is relative to a hypothesis (Alex, 2026-11-06). A draw reusing earlier samples is `exploratory`, or `frozen-reuse` if it tests named new `hypotheses` whose signals were never computed on those people, under a frozen `protocol` and `freeze`; each hypothesis is tested once. Later draws must still name it."
   ],
   "pools": {
     "prism": "PRISM (Kirk et al. 2024) conversations, grouped into components by shared participant, opening prompt or candidate set (cmri-portfolio-wave1).",

@@ -100,7 +100,7 @@ that pin the commits a paper depends on. `tools/workspace.py` derives everything
 manage snapshots, `remote-check` compares GitHub settings, `scan` checks a snapshot for
 forbidden files and secrets before publication, and `render` regenerates the tables below.
 `spent.json` is the ledger of every sample drawn from a shared pool (PRISM, WildChat); `spent --verify`
-checks that each later draw's committed configuration excludes every earlier one. An exploratory draw may instead name earlier samples it deliberately reuses (`reuses`, with a `reuse_decision` saying who decided and when); it confirms nothing, and later draws must still exclude it. Each sample's
+checks that each later draw's committed configuration excludes every earlier one. An exploratory draw may instead name earlier samples it deliberately reuses (`reuses`, with a `reuse_decision` saying who decided and when); it confirms nothing, and later draws must still exclude it. **Evidence has three levels (Alex, 2026-11-06, before R's result existed): freshness is relative to a hypothesis, not to a person.** A pattern can be confirmed on the people who suggested it only by new people (status `frozen`). Reused people can test a new hypothesis if its signal has never been computed on them and its rule is frozen first (status `frozen-reuse`, naming `hypotheses`, each tested once; `protocol`, `freeze` and `reuse_decision` required): the report states the earlier exposure, tests that the signal adds something beyond the known patterns, states how many tests the split carries and corrects across them, and says "in reused people". Everything else is exploratory. Findings on the same people are not independent evidence. Earlier results keep their labels. Each sample's
 `dataset` references a dataset id, validated against the manifest's datasets source. Unit and size
 labels are retained from the draw record; counts are never combined across draws or units.
 `board [--as-of YYYY-MM-DD] [--write]` reads the manifest's `sources`: the generated
@@ -240,10 +240,10 @@ person's preceding turn carries the gain), on fresh PRISM and WildChat samples (
 
 The PRISM pilots share one 1,191-conversation development partition and a **248-component
 reserve that was opened on 2026-10-18 under the frozen protocol in cmri-iscs-2027**; it must
-not be reused for further confirmation. `papers/wildchat-replication/` (cmri-wildchat-replication)
+not be reused to confirm that contrast again. `papers/wildchat-replication/` (cmri-wildchat-replication)
 re-ran the same frozen primary contrast on a second collection, English WildChat-4.8M from the
 temporal pilot's local mirror, with hashed-IP components; its confirmation sample has also been
-opened once and must not be reused. Protocol 2's fresh samples (250 never-selected PRISM
+opened once and must not be reused for that contrast. Protocol 2's fresh samples (250 never-selected PRISM
 components; 478 WildChat IPs outside every other sample, drawn by `papers/history-reach/`) are
 spent the same way, as are Study 1's 150 development and 250 confirmation WildChat identities
 and Study 1b's 449 light-user identities (`papers/person-networks/`); `spent.json` lists them all. The pilots' large data directories are gitignored;

@@ -48,7 +48,7 @@ DATA = ('none', 'public', 'private-archive')
 VISIBILITY = ('public', 'private')
 COLUMNS = ('path', 'repo', 'repo_branch', 'note')
 LEDGER = ROOT / 'spent.json'
-SAMPLE_STATUS = ('development', 'frozen', 'exploratory', 'screen')
+SAMPLE_STATUS = ('development', 'frozen', 'frozen-reuse', 'exploratory', 'screen')
 
 
 class ManifestError(ValueError):
@@ -1184,6 +1184,7 @@ class Sample:
     freeze: str | None = None
     reuses: tuple[str, ...] = ()
     reuse_decision: str | None = None
+    hypotheses: tuple[str, ...] = ()
 
 
 def load_ledger(path: Path = LEDGER) -> list[Sample]:
@@ -1202,10 +1203,15 @@ def load_ledger(path: Path = LEDGER) -> list[Sample]:
                  f"sample {entry['id']}: spent_on must be an ISO date")
         for key in ('excludes', 'siblings', 'evidence', 'reuses'):
             _require(isinstance(entry.get(key, []), list), f"sample {entry['id']}: {key} must be a list")
+        if entry['status'] == 'frozen-reuse':
+            _require(entry.get('reuses'), f"sample {entry['id']}: a frozen reuse names the samples it reuses")
+            _require(entry.get('protocol') and entry.get('freeze'), f"sample {entry['id']}: a frozen reuse needs a protocol and a freeze")
+            _require(isinstance(entry.get('hypotheses'), list) and entry['hypotheses'] and all(isinstance(h, str) and h for h in entry['hypotheses']),
+                     f"sample {entry['id']}: a frozen reuse names the hypotheses it tests")
         if entry.get('reuses'):
-            # An exploratory draw may overlap earlier samples by a recorded decision; it never confirms anything.
-            _require(entry['status'] == 'exploratory',
-                     f"sample {entry['id']}: only an exploratory draw may reuse earlier samples")
+            # A draw may overlap earlier samples by a recorded decision; exploratory, it confirms nothing; frozen-reuse, only its named new hypotheses.
+            _require(entry['status'] in ('exploratory', 'frozen-reuse'),
+                     f"sample {entry['id']}: only an exploratory or frozen-reuse draw may reuse earlier samples")
             _require(isinstance(entry.get('reuse_decision'), str) and entry['reuse_decision'].strip(),
                      f"sample {entry['id']}: reuses needs a reuse_decision (who decided, when)")
         for item in entry.get('evidence', []):
@@ -1222,7 +1228,7 @@ def load_ledger(path: Path = LEDGER) -> list[Sample]:
                               entry['record'], tuple(entry.get('excludes', [])), tuple(entry.get('siblings', [])),
                               tuple(entry.get('evidence', [])), did, unit, size,
                               entry.get('protocol'), entry.get('freeze'), tuple(entry.get('reuses', [])),
-                              entry.get('reuse_decision')))
+                              entry.get('reuse_decision'), tuple(entry.get('hypotheses', []))))
     ids = [s.id for s in samples]
     _require(len(ids) == len(set(ids)), 'duplicate sample ids')
     for sample in samples:
@@ -1252,6 +1258,12 @@ def ledger_problems(samples: list[Sample], manifest: Manifest, root: Path) -> li
                     continue
                 if earlier.id not in sample.excludes + sample.siblings + sample.reuses:
                     problems.append(f'{sample.id}: does not exclude the earlier {pool} sample {earlier.id}')
+    seen_hypotheses: dict[str, str] = {}
+    for sample in samples:
+        for name in sample.hypotheses:
+            if name in seen_hypotheses:
+                problems.append(f'{sample.id}: hypothesis {name} was already tested on {seen_hypotheses[name]}')
+            seen_hypotheses[name] = sample.id
     for sample in samples:
         try:
             where = root / manifest.repo(sample.repo).path
