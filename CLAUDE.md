@@ -28,29 +28,7 @@ Science extension (2026-12-04), ISCS 2027 (2027-03-01). Internal targets are lab
 never presented as deadlines.
 
 **Now (update this list as work finishes):**
-1. The extension (`papers/hierarchical-memory-extended/`): Alex decided on 2026-10-28 to centre it on the
-   organisation of concept co-use, with H (who made the connection) as a second result if the evidence supports it.
-   Of the two decisive comparisons, J (codebook crossing) survives in every construction and I finds no predictive
-   increment beyond recency. See that repository's PLAN.md and `notes/2026-10-28-I-J-results.md`. Alex decided on
-   2026-10-28 (evening): H (who made the connection) is one scope paragraph in the discussion (attribution through an
-   extractor, composition, and one persistence sentence: read under amendment 8 on 2026-10-29, taken-up connections
-   recur more than made ones under the primary extractor, but not across codebooks, extractors or populations;
-   `notes/2026-10-29-H-corrected-reading.md`). A second population enters the December 4 submission as a co-equal result: K (WildChat long histories, 77
-   identities) with a true-identity case series of three open personal archives (`analyses/K-long-histories/DESIGN.md`,
-   amendments 1 to 6). Both extractors were read on 2026-10-29 and every Codex review closed: every WildChat reading
-   holds under Qwen3-14B and Mistral-7B (co-use beyond themes 75 to 77 of 77; concentration in time 56 to 66 of 77);
-   the three case-series people pass the co-use test under both, and the temporal test under Qwen3-14B (case 1 fails
-   it under Mistral-7B with the paper codebook) (`notes/2026-10-29-K-results.md`). Alex decided on 2026-10-29: title
-   "Concept networks from AI conversation logs: co-use beyond shared themes, in one archive and in other people's long
-   histories" (provisional until settled with Matta), K in the abstract's second sentence, people before prediction.
-   The title, abstract, introduction, discussion and conclusion are rewritten (fe0adec) and their Codex review closed
-   after fixes (a91b221; `notes/2026-10-29-review-framing-codex.md`). Left for submission: acknowledgements and authors' contributions (Alex with Matta), the repository URL
-   and DOI, and the ISCS editors' note decision. On 2026-11-01 a critical audit (Opus as primary reviewer) led to corrections now in the manuscript, and Alex added analysis M (resolution curve, sittings and days, the person's own messages) and a PageRank predictor (I amendment 4, out of the paper until read); all designs were reviewed and closed before code, and they are running (that repository's PLAN.md, item 0). Since 2026-11-02 the extension also has a simple alternative
-   version (`paper-simple/`, `make simple`, 20 pages; Alex chooses after reading both), and on 2026-11-03 Alex approved Q,
-   a blinded audit of extraction quality by two vendor judges (Claude Opus 5.5, GPT-6.1-sol) in three staged records;
-   it ran in three approved stages (about $8; done 2026-11-05) and is in the paper as claim N18: nearly all of every
-   current extractor's concepts are in the conversations (`analyses/Q-extraction-fidelity/`). On 2026-11-06 T (literal repeats) went in as claim N20: both patterns hold after removing them, and a small part of the co-use effect goes with them (`notes/2026-11-06-T-words-results.md`). R, a frozen confirmation on 27 fresh WildChat identities (`analyses/R-fresh-confirmation/`), was frozen the same day (0c9149f) with Alex's approval and entered in `spent.json`; it awaits GPU lease L007 for extraction. A
-   discussion packet for outside assistants is built by `workspace.py packet chatgpt`.
+1. The extension (`papers/hierarchical-memory-extended/`), due December 4. Centre: the organisation of concept co-use (Alex, 2026-10-28), with a second population as a co-equal result: K, 77 WildChat long histories and three open personal archives (Qwen3-14B and Mistral-7B; co-use beyond themes 75 to 77 of 77, concentration in time 56 to 66). Title "Concept co-use beyond shared themes in AI conversation histories". On 2026-11-06, after independent reviews by Fable 5.1 and GPT-6-Astra (`notes/2026-11-06-external-review-*.md`), Alex narrowed the wording (these patterns are not separated from a person's moving from task to task) and chose a hybrid from the simple version (`paper-simple/`) to go forward. Analyses in play: R, a frozen confirmation on 27 fresh identities (0c9149f, extraction on lease L007); T, repeats (N20); U, the lag of excess co-use and time against null-graph communities (read, under review). The current list is that repository's PLAN.md, "Current". Left for submission: acknowledgements and contributions (Alex with Matta), repository URL and DOI, the ISCS editors' note, Matta's read (he has not seen the paper). A discussion packet is built by `workspace.py packet chatgpt`.
 2. The NetSci abstract (`papers/person-networks/abstracts/netsci-2027/`): its coarser-matching sentence
    was confirmed by the fingerprinted rerun (2026-10-26); it needs Alex's read and submission by Dec 1.
 3. Reach in bits (`papers/reach-bits/`, for ISCS 2027): base language models score the next user
