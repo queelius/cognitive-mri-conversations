@@ -52,6 +52,7 @@ never presented as deadlines.
 - Design before the first run, then aggregate results committed before they are interpreted;
   failed checks are reported as they are, then explored as labelled exploratory work.
 - After every milestone, commit and push every touched repository (several repos, several pushes).
+- Record hypotheses compatible with the data as well as failed ones (Alex, 2026-11-06): `papers/agenda/hypotheses.json`, with status, evidence and what would separate them. Compatible never means confirmed. Negative and parked work stays in the ledger, not only in its repository.
 - At every milestone, audit the living documents against the work just done: the agenda ledger
   (`papers/agenda/questions.json`, `studies.json`), the paper's PLAN.md (open decisions, next actions)
   and CLAIMS.md, README and resume notes, and this "Now" list. Record each mistake as a lesson in
