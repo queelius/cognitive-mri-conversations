@@ -596,6 +596,54 @@
       ],
       "note": "R (hierarchy extension, frozen confirmation, PROTOCOL.md; freeze FREEZE-R.json): every identity outside all earlier samples with at least 50 conversations over at least 60 days under K's primary rule and person screens and a metadata volume screen, tested for K's two patterns under K's frozen codebooks. Entered after selection and before any export or extraction. Alex approved, 2026-11-05 (PLAN.md).",
       "dataset": "D-wildchat-4.8m"
+    },
+    {
+      "id": "wildchat-reachbits-xs-long",
+      "pool": "wildchat",
+      "unit": "identity",
+      "status": "exploratory",
+      "spent_on": "2026-11-07",
+      "size": {
+        "identities": 77,
+        "conversations": 26086,
+        "targets": 1840
+      },
+      "repo": "cmri-reach-bits",
+      "record": "results/xs/long-gap/plan.json",
+      "ids_committed": "counts only in the record; identity indices, IP digests, conversation hashes and text stay in the gitignored cache/long",
+      "excludes": [
+        "wildchat-hme-r-fresh-confirmation"
+      ],
+      "reuses": [
+        "wildchat-temporal-screen",
+        "wildchat-development",
+        "wildchat-confirmation",
+        "wildchat-reach-long",
+        "wildchat-protocol2",
+        "wildchat-study1-development",
+        "wildchat-study1-confirmation",
+        "wildchat-study1b-light",
+        "wildchat-reachbits-fresh",
+        "wildchat-reachbits-xs-fresh",
+        "wildchat-hme-k-long-histories",
+        "wildchat-hme-q-extraction-fidelity"
+      ],
+      "reuse_decision": "Alex, 2026-11-07: \"relax the constraints on data re-use. we have to have a bit more freedom to explore and use the data.\" and \"Use the GPU eagerly while u have it to explore this space\" (K's identities, cross-session reach over long gaps)",
+      "siblings": [],
+      "evidence": [
+        {
+          "repo": "cmri-reach-bits",
+          "path": "src/reach_bits/xs_long.py",
+          "contains": "wildchat-xs-long"
+        },
+        {
+          "repo": "cmri-reach-bits",
+          "path": "DESIGN-long-gap.md",
+          "contains": "exploratory"
+        }
+      ],
+      "note": "Cross-session reach over long gaps (cmri-reach-bits DESIGN-long-gap.md, exploratory): K's 77 identities, reused, at lags 1, 8, 32 and 64; confirms nothing. R excluded K when it was drawn, so these identities are outside R. Eight are on IPs of the cross-session development panel.",
+      "dataset": "D-wildchat-4.8m"
     }
   ]
 }
