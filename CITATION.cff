@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: "If you use this work, please cite the journal paper below."
+message: "If you use this work, please cite the paper below."
 type: dataset
 title: "Cognitive MRI of AI Conversations: Research Compendium"
 authors:
@@ -17,16 +17,14 @@ repository-code: "https://github.com/queelius/cognitive-mri-conversations"
 license: MIT
 keywords:
   - complex networks
-  - temporal networks
   - knowledge networks
   - AI conversation
   - semantic embedding
-  - network evolution
   - distributed cognition
 date-released: "2026-02-25"
 preferred-citation:
-  type: article
-  title: "Temporal Evolution of Cognitive Knowledge Networks in AI-Assisted Conversations"
+  type: conference-paper
+  title: "Cognitive MRI of AI Conversations: Analyzing AI Interactions Through Semantic Embedding Networks"
   authors:
     - family-names: Towell
       given-names: Alexander
@@ -34,21 +32,17 @@ preferred-citation:
     - family-names: Matta
       given-names: John
       orcid: "https://orcid.org/0000-0002-7666-1409"
-  journal: "PLOS Complex Systems"
+  collection-title: "Complex Networks & Their Applications XIV"
+  collection-type: proceedings
+  conference:
+    name: "Complex Networks 2025"
+  publisher:
+    name: "Springer Nature Switzerland"
   year: 2026
-  status: submitted
+  start: 315
+  end: 327
+  doi: "10.1007/978-3-032-16723-1_27"
 references:
-  - type: conference-paper
-    title: "Cognitive MRI of AI Conversations: Analyzing AI Interactions through Semantic Embedding Networks"
-    authors:
-      - family-names: Towell
-        given-names: Alexander
-      - family-names: Matta
-        given-names: John
-    collection-title: "Proceedings of Complex Networks 2025"
-    publisher:
-      name: Springer
-    year: 2025
   - type: software
     title: "chatgpt-complex-net"
     authors:

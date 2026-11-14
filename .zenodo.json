@@ -1,7 +1,7 @@
 {
   "title": "Cognitive MRI of AI Conversations: Research Compendium",
   "upload_type": "other",
-  "description": "Research compendium containing papers, temporal analysis code, and data for studying the evolution of knowledge networks in AI-assisted conversations. Accompanies publications at Complex Networks 2025 (Springer) and PLOS Complex Systems.",
+  "description": "Research compendium for the Complex Networks 2025 paper (Springer): paper, pipeline code and aggregate data for studying knowledge networks in AI-assisted conversations.",
   "creators": [
     {
       "name": "Towell, Alexander",
@@ -16,12 +16,10 @@
   ],
   "keywords": [
     "complex networks",
-    "temporal networks",
     "knowledge networks",
     "AI conversation",
     "semantic embedding",
     "ChatGPT",
-    "network evolution",
     "distributed cognition"
   ],
   "license": "MIT",
@@ -30,6 +28,11 @@
       "identifier": "10.5281/zenodo.15314235",
       "relation": "isSupplementedBy",
       "resource_type": "software"
+    },
+    {
+      "identifier": "10.1007/978-3-032-16723-1_27",
+      "relation": "isSupplementTo",
+      "resource_type": "publication-conferencepaper"
     }
   ],
   "access_right": "open"
