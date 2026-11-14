@@ -1,5 +1,7 @@
 # Cognitive MRI of AI Conversations: Research Compendium
 
+> **Frozen.** This repository is kept as it was at release v2.0.0 (February 2026), the version archived on Zenodo; the status of the papers below is as of that release. On 14 November 2026 the conversation-level data files (titles, identifiers and URLs of the conversations) were removed from its history for privacy.
+
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18778377.svg)](https://doi.org/10.5281/zenodo.18778377)
 
 Applying complex network analysis to ChatGPT conversation archives to reveal knowledge organization, community structure, and temporal evolution patterns.
